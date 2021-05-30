@@ -6,6 +6,8 @@ export const Button = styled(Box)`
     display: inline-block;
     position: relative;
     text-align: center;
+    font-size: ${(props) => props.theme.fontSizes.sm}px;
+    line-height: ${(props) => props.theme.lineHeights.none};
     padding: 4px 8px;
     min-width: 32px;
     height: 24px;
