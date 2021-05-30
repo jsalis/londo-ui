@@ -21,6 +21,5 @@ export { RefreshIcon } from "./refresh-icon";
 export { SaveIcon } from "./save-icon";
 export { SelectIcon } from "./select-icon";
 export { TrashIcon } from "./trash-icon";
-export { UmbasaIcon } from "./umbasa-icon";
 export { UndoIcon } from "./undo-icon";
 export { WarningIcon } from "./warning-icon";

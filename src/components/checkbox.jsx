@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { space, flexbox } from "styled-system";
 
-import { useControllableState } from "../../hooks";
+import { useControllableState } from "../hooks";
+
 import { Box } from "./box";
 
 const Input = styled.input`

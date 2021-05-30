@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-import { useDisclosure, useControllableState, useForkHandler } from "../../hooks";
+import { useDisclosure, useControllableState, useForkHandler } from "../hooks";
 import { ChevronDownIcon } from "../icons";
 
 import { Grid } from "./grid";

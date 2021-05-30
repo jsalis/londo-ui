@@ -2,7 +2,7 @@ import { forwardRef, useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useCounter, useCallbackRef, useForkRef, useForkHandler } from "../../hooks";
+import { useCounter, useCallbackRef, useForkRef, useForkHandler } from "../hooks";
 import { MoveHorizontalIcon } from "../icons";
 
 import { Input } from "./input";

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { system } from "styled-system";
 import PropTypes from "prop-types";
 
-import { isNumber } from "../../utils/type-util";
+import { isNumber } from "../utils/type-util";
 
 import { Box } from "./box";
 

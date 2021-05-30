@@ -1,7 +1,7 @@
 import { Children, cloneElement, forwardRef, useState } from "react";
 import PropTypes from "prop-types";
 
-import { useDisclosure, useForkRef, useEventListener } from "../../hooks";
+import { useDisclosure, useForkRef, useEventListener } from "../hooks";
 
 import { Box } from "./box";
 import { Popper } from "./popper";

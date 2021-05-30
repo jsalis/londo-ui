@@ -10,10 +10,10 @@ import {
 import PropTypes from "prop-types";
 import { createPopper } from "@popperjs/core";
 
-import { HTMLElementType } from "../../utils/prop-types";
-import { isFunction } from "../../utils/type-util";
-import { assignRef } from "../../utils/react-util";
-import { useForkRef } from "../../hooks";
+import { HTMLElementType } from "../utils/prop-types";
+import { isFunction } from "../utils/type-util";
+import { assignRef } from "../utils/react-util";
+import { useForkRef } from "../hooks";
 
 import { Portal } from "./portal";
 

@@ -1,4 +1,4 @@
-import { Icon } from "../common";
+import { Icon } from "../components";
 
 export function HomeIcon(props) {
     return (

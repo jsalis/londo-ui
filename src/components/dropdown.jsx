@@ -1,7 +1,7 @@
 import { Children, cloneElement, forwardRef, useRef, useMemo } from "react";
 import PropTypes from "prop-types";
 
-import { useClickOutside, useForkRef, useForkHandler } from "../../hooks";
+import { useClickOutside, useForkRef, useForkHandler } from "../hooks";
 
 import { Box } from "./box";
 import { Popper } from "./popper";

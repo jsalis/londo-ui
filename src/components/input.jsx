@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { system, space, layout, position, flexbox, color } from "styled-system";
 
-import { getValidChildren } from "../../utils/react-util";
+import { getValidChildren } from "../utils/react-util";
 
 import { Flex } from "./flex";
 

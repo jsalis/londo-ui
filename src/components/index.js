@@ -18,6 +18,7 @@ export { Portal } from "./portal";
 export { Scroller } from "./scroller";
 export { Select } from "./select";
 export { Skeleton } from "./skeleton";
+export { Spacer } from "./spacer";
 export { Text } from "./text";
 export { Textarea } from "./textarea";
 export { Tooltip } from "./tooltip";

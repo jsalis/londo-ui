@@ -2,8 +2,8 @@ import { createContext, useContext, useState, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 
-import { HTMLElementType } from "../../utils/prop-types";
-import { isFunction } from "../../utils/type-util";
+import { HTMLElementType } from "../utils/prop-types";
+import { isFunction } from "../utils/type-util";
 
 const PortalContext = createContext(undefined);
 

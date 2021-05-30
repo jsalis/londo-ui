@@ -1,12 +1,7 @@
 import { Children, cloneElement, forwardRef, useState } from "react";
 import PropTypes from "prop-types";
 
-import {
-    useDisclosure,
-    useClickOutside,
-    useForkRef,
-    useEventListener,
-} from "../../hooks";
+import { useDisclosure, useClickOutside, useForkRef, useEventListener } from "../hooks";
 import { WarningIcon } from "../icons";
 
 import { Flex } from "./flex";
