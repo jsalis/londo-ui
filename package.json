@@ -1,10 +1,58 @@
 {
   "name": "londo-ui",
   "version": "0.0.0",
-  "description": "The greatest view in Lordran",
-  "main": "index.js",
+  "description": "The most spectacular view. A component library for React desktop apps.",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "husky install",
+    "lint": "eslint --fix src",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*.{js,jsx,css,json,md}": "prettier --write",
+    "*.{js,jsx}": "eslint --cache --fix"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ],
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "styled-system": "^5.1.5",
+    "tinycolor2": "^1.4.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0",
+    "styled-components": ">=5.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-react": "^7.13.13",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-styled-components": "^1.12.0",
+    "eslint": "^7.27.0",
+    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^6.0.0",
+    "jest": "^27.0.3",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0"
   },
   "repository": {
     "type": "git",
