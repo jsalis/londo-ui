@@ -104,7 +104,7 @@ BinaryInput.propTypes = {
     onBlur: PropTypes.func,
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
-    bits: PropTypes.oneOf([...Array(16).keys()].map((i) => i + 1)),
+    bits: PropTypes.number,
     max: PropTypes.number,
     disabled: PropTypes.bool,
     className: PropTypes.string,
