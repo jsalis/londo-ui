@@ -4,7 +4,7 @@ export default {
     title: "Design System/Flex",
     component: Flex,
     parameters: {
-        componentSubtitle: "A responsive flexbox layout component.",
+        componentSubtitle: "A responsive flex layout component.",
     },
 };
 

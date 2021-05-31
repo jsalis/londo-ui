@@ -6,12 +6,25 @@ export default {
     parameters: {
         componentSubtitle: "",
     },
+    argTypes: {
+        value: {
+            control: "number",
+        },
+        defaultValue: {
+            control: "number",
+        },
+    },
 };
 
-export function Basic() {
+export function Basic(args) {
     return (
         <Box width={180}>
-            <NumberInput min={0} step={0.1} />
+            <NumberInput {...args} />
         </Box>
     );
 }
+
+Basic.args = {
+    min: 0,
+    step: 0.1,
+};

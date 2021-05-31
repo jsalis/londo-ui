@@ -8,10 +8,6 @@ export default {
     },
 };
 
-export function Basic() {
-    return <Checkbox>Enabled</Checkbox>;
-}
-
-export function Disabled() {
-    return <Checkbox disabled>Enabled</Checkbox>;
+export function Basic(args) {
+    return <Checkbox {...args}>Enabled</Checkbox>;
 }

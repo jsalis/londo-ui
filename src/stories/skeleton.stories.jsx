@@ -9,8 +9,8 @@ export default {
     },
 };
 
-export function Basic() {
-    return <Skeleton />;
+export function Basic(args) {
+    return <Skeleton {...args} />;
 }
 
 export function Multiple() {

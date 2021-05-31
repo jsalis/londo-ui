@@ -4,17 +4,22 @@ export default {
     title: "Design System/Tooltip",
     component: Tooltip,
     parameters: {
-        componentSubtitle: "",
+        componentSubtitle: "A simple text popup.",
     },
 };
 
-export function Basic() {
+export function Basic(args) {
     return (
-        <Tooltip title="Title" placement="bottom">
+        <Tooltip {...args}>
             <Button>Hover here</Button>
         </Tooltip>
     );
 }
+
+Basic.args = {
+    title: "Title",
+    placement: "bottom",
+};
 
 export function Placements() {
     const buttonWidth = 80;

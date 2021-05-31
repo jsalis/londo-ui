@@ -4,22 +4,19 @@ export default {
     title: "Design System/Textarea",
     component: Textarea,
     parameters: {
-        componentSubtitle: "",
+        componentSubtitle: "A multi-line text input.",
     },
 };
 
-export function Basic() {
+export function Basic(args) {
     return (
         <Box width={300}>
-            <Textarea rows={4} placeholder="Placeholder" />
+            <Textarea {...args} />
         </Box>
     );
 }
 
-export function Disabled() {
-    return (
-        <Box width={300}>
-            <Textarea rows={4} placeholder="Placeholder" disabled />
-        </Box>
-    );
-}
+Basic.args = {
+    rows: 4,
+    placeholder: "Placeholder",
+};

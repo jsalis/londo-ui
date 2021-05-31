@@ -10,14 +10,14 @@ export default {
     },
 };
 
-export function Basic() {
+export function Basic(args) {
     return (
         <>
             <Text>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne quae
                 licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
             </Text>
-            <Divider my={3} />
+            <Divider my={3} {...args} />
             <Text>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne quae
                 licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
@@ -26,14 +26,14 @@ export function Basic() {
     );
 }
 
-export function ResponsiveMargin() {
+export function ResponsiveMargin(args) {
     return (
         <>
             <Text>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne quae
                 licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
             </Text>
-            <Divider my={[2, 3, 4]} />
+            <Divider my={[2, 3, 4]} {...args} />
             <Text>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne quae
                 licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
@@ -42,14 +42,14 @@ export function ResponsiveMargin() {
     );
 }
 
-export function Dashed() {
+export function Dashed(args) {
     return (
         <>
             <Text>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne quae
                 licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
             </Text>
-            <Divider my={3} dashed />
+            <Divider my={3} dashed {...args} />
             <Text>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne quae
                 licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
@@ -120,14 +120,14 @@ export function WithTextDashed() {
     );
 }
 
-export function WithButton() {
+export function WithButton(args) {
     return (
         <>
             <Text>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne quae
                 licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
             </Text>
-            <Divider my={3}>
+            <Divider my={3} {...args}>
                 <Button>Show More</Button>
             </Divider>
         </>
