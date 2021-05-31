@@ -10,35 +10,35 @@ export default {
 
 export function Basic() {
     return (
-        <Grid gap={2}>
-            <Box columnSpan={24} p={2} color="white" bg="primary.base">
+        <Grid columns={12} gap={2}>
+            <Box columnSpan={12} p={2} color="white" bg="primary.base">
                 1 / 1
             </Box>
-            <Box columnSpan={12} p={2} color="white" bg="primary.base">
+            <Box columnSpan={6} p={2} color="white" bg="primary.base">
                 1 / 2
             </Box>
-            <Box columnSpan={12} p={2} color="white" bg="primary.base">
+            <Box columnSpan={6} p={2} color="white" bg="primary.base">
                 2 / 2
             </Box>
-            <Box columnSpan={8} p={2} color="white" bg="primary.base">
+            <Box columnSpan={4} p={2} color="white" bg="primary.base">
                 1 / 3
             </Box>
-            <Box columnSpan={8} p={2} color="white" bg="primary.base">
+            <Box columnSpan={4} p={2} color="white" bg="primary.base">
                 2 / 3
             </Box>
-            <Box columnSpan={8} p={2} color="white" bg="primary.base">
+            <Box columnSpan={4} p={2} color="white" bg="primary.base">
                 3 / 3
             </Box>
-            <Box columnSpan={6} p={2} color="white" bg="primary.base">
+            <Box columnSpan={3} p={2} color="white" bg="primary.base">
                 1 / 4
             </Box>
-            <Box columnSpan={6} p={2} color="white" bg="primary.base">
+            <Box columnSpan={3} p={2} color="white" bg="primary.base">
                 2 / 4
             </Box>
-            <Box columnSpan={6} p={2} color="white" bg="primary.base">
+            <Box columnSpan={3} p={2} color="white" bg="primary.base">
                 3 / 4
             </Box>
-            <Box columnSpan={6} p={2} color="white" bg="primary.base">
+            <Box columnSpan={3} p={2} color="white" bg="primary.base">
                 4 / 4
             </Box>
         </Grid>
@@ -84,14 +84,14 @@ export function ColumnFlow() {
 
 export function ResponsiveGap() {
     return (
-        <Grid gap={[1, 2, 3]}>
-            <Box columnSpan={24} p={2} color="white" bg="primary.base">
+        <Grid columns={2} gap={[1, 2, 3]}>
+            <Box columnSpan={2} p={2} color="white" bg="primary.base">
                 1 / 1
             </Box>
-            <Box columnSpan={12} p={2} color="white" bg="primary.base">
+            <Box p={2} color="white" bg="primary.base">
                 1 / 2
             </Box>
-            <Box columnSpan={12} p={2} color="white" bg="primary.base">
+            <Box p={2} color="white" bg="primary.base">
                 2 / 2
             </Box>
         </Grid>
@@ -100,17 +100,17 @@ export function ResponsiveGap() {
 
 export function ColumnAndRowGap() {
     return (
-        <Grid columnGap={3} rowGap={1}>
-            <Box columnSpan={12} p={2} color="white" bg="primary.base">
+        <Grid columns={2} columnGap={3} rowGap={1}>
+            <Box p={2} color="white" bg="primary.base">
                 1 / 2
             </Box>
-            <Box columnSpan={12} p={2} color="white" bg="primary.base">
+            <Box p={2} color="white" bg="primary.base">
                 2 / 2
             </Box>
-            <Box columnSpan={12} p={2} color="white" bg="primary.base">
+            <Box p={2} color="white" bg="primary.base">
                 1 / 2
             </Box>
-            <Box columnSpan={12} p={2} color="white" bg="primary.base">
+            <Box p={2} color="white" bg="primary.base">
                 2 / 2
             </Box>
         </Grid>
