@@ -2,6 +2,8 @@
 
 The spectacular view. A component library for React web apps.
 
+<img width="100%" src="./assets/londo.jpg">
+
 ## Environment Support
 
 - Modern browsers
