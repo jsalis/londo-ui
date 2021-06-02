@@ -21,4 +21,5 @@ export { Skeleton } from "./skeleton";
 export { Spacer } from "./spacer";
 export { Text } from "./text";
 export { Textarea } from "./textarea";
+export { ThemeProvider } from "./theme-provider";
 export { Tooltip } from "./tooltip";

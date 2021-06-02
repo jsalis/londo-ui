@@ -1,13 +1,14 @@
-import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
-import { themes, reset } from "../src/themes";
+import { ThemeProvider, reset } from "../src";
+
 import { storybookTheme } from "./theme";
 
 const GlobalStyle = createGlobalStyle`${reset}`;
 
 export const decorators = [
     (Story) => (
-        <ThemeProvider theme={themes.dark}>
+        <ThemeProvider theme="dark">
             <GlobalStyle />
             <Story />
         </ThemeProvider>
