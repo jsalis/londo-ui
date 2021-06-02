@@ -4,6 +4,25 @@ The spectacular view. A component library for React web apps. Built for the Umba
 
 <img width="100%" src="./assets/londo.jpg">
 
+## Features
+
+- Optimized for Desktop: Components are compact and favor mouse and keyboard interaction.
+- Ease of Styling: Supports [styled-system](https://styled-system.com/) props to apply styles based on structured values defined in the global theme object.
+- Flexible and Composable: Built on top of primitive layout components like `Box`, `Flex`, and `Grid`.
+- Dark Mode: Components use a dark color scheme by default, but a light mode is also available if you wish to restore your humanity.
+
+## Install
+
+This package is a work in progess. Initial release coming soon.
+
+```bash
+npm install londo-ui
+```
+
+```bash
+yarn add londo-ui
+```
+
 ## Environment Support
 
 - Modern desktop browsers
