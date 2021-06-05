@@ -4,9 +4,11 @@ The spectacular view. A component library for React web apps.
 
 <img width="100%" src="./assets/londo.jpg">
 
+> **WARNING** This package is a work in progess. Initial release coming soon.
+
 ## Why
 
-The primary purpose of this package is to support the Umbasa game engine and my other personal web projects. You may not wish to install and use this directly, but if you are also building your own React components, you may find the source code useful.
+The primary purpose of this package is to support the Umbasa game engine and my other personal web projects. You may not want to install and use this directly, but if you are also building your own React components, you may find the source code useful.
 
 ## Features
 
@@ -17,15 +19,13 @@ The primary purpose of this package is to support the Umbasa game engine and my 
 
 ## Install
 
-This package is a work in progess. Initial release coming soon.
-
 Install the package and its peer dependencies with your package manager of choice:
 
 ```bash
-# with npm
 npm install londo-ui react react-dom styled-components
+```
 
-# with yarn
+```bash
 yarn add londo-ui react react-dom styled-components
 ```
 

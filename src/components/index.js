@@ -19,6 +19,7 @@ export { Scroller } from "./scroller";
 export { Select } from "./select";
 export { Skeleton } from "./skeleton";
 export { Spacer } from "./spacer";
+export { Tag } from "./tag";
 export { Text } from "./text";
 export { Textarea } from "./textarea";
 export { ThemeProvider } from "./theme-provider";
