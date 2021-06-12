@@ -17,6 +17,7 @@ export { Popper } from "./popper";
 export { Portal } from "./portal";
 export { Scroller } from "./scroller";
 export { Select } from "./select";
+export { SizePicker } from "./size-picker";
 export { Skeleton } from "./skeleton";
 export { Spacer } from "./spacer";
 export { Tag } from "./tag";

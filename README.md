@@ -15,7 +15,7 @@ The primary purpose of this package is to support the Umbasa game engine and my 
 - Optimized for Desktop: Components are compact and favor mouse and keyboard interaction.
 - Ease of Styling: Supports [styled-system](https://styled-system.com/) props to apply styles based on structured values defined in the global theme object.
 - Flexible and Composable: Built on top of primitive layout components like `Box`, `Flex`, and `Grid`.
-- Dark Mode: Components use a dark color scheme by default, but a light mode is also available if you wish to restore your humanity.
+- Dark Mode: Components use a dark color scheme by default, but a light theme is also available if you wish to restore your humanity.
 
 ## Install
 
