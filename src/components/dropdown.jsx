@@ -1,16 +1,16 @@
 import { Children, cloneElement, forwardRef, useRef, useMemo } from "react";
 import PropTypes from "prop-types";
 
-import { useClickOutside, useForkRef, useForkHandler } from "../hooks";
+import { useForkRef, useForkHandler } from "../hooks";
 
 import { Box } from "./box";
 import { Popper } from "./popper";
+import { ClickAwayListener } from "./click-away-listener";
 
 export const Dropdown = forwardRef((props, ref) => {
     const { overlay, placement, disabled, isOpen, onOpen, onClose, children, ...rest } =
         props;
 
-    const clickOutside = useClickOutside(() => onClose?.());
     const child = Children.only(children);
 
     const handleClick = () => {
@@ -59,22 +59,30 @@ export const Dropdown = forwardRef((props, ref) => {
     }, []);
 
     return (
-        <div {...clickOutside}>
-            {anchor}
-            <Popper
-                ref={ref}
-                anchor={anchorRef.current}
-                isOpen={isOpen}
-                placement={placement}
-                modifiers={modifiers}
-                onMouseDown={(e) => e.preventDefault()}
-                keepMounted
-            >
-                <Box py={1} borderRadius="base" boxShadow="base" bg="gray.1" {...rest}>
-                    {overlay}
-                </Box>
-            </Popper>
-        </div>
+        <ClickAwayListener onClickAway={() => onClose?.()}>
+            <div>
+                {anchor}
+                <Popper
+                    ref={ref}
+                    anchor={anchorRef.current}
+                    isOpen={isOpen}
+                    placement={placement}
+                    modifiers={modifiers}
+                    onMouseDown={(e) => e.preventDefault()}
+                    keepMounted
+                >
+                    <Box
+                        py={1}
+                        borderRadius="base"
+                        boxShadow="base"
+                        bg="gray.1"
+                        {...rest}
+                    >
+                        {overlay}
+                    </Box>
+                </Popper>
+            </div>
+        </ClickAwayListener>
     );
 });
 

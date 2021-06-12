@@ -1,13 +1,14 @@
 import { Children, cloneElement, forwardRef, useState } from "react";
 import PropTypes from "prop-types";
 
-import { useDisclosure, useClickOutside, useForkRef, useEventListener } from "../hooks";
+import { useDisclosure, useForkRef, useEventListener } from "../hooks";
 import { WarningIcon } from "../icons";
 
 import { Flex } from "./flex";
 import { Box } from "./box";
 import { Button } from "./button";
 import { Popper } from "./popper";
+import { ClickAwayListener } from "./click-away-listener";
 
 const KeyCode = {
     ESC: 27,
@@ -29,7 +30,6 @@ export const Popconfirm = forwardRef((props, ref) => {
     } = props;
 
     const { isOpen, close, toggle } = useDisclosure({ onOpen, onClose });
-    const clickOutside = useClickOutside(() => close());
 
     const handleCancel = () => {
         close();
@@ -63,32 +63,43 @@ export const Popconfirm = forwardRef((props, ref) => {
     useEventListener("keydown", handleKeyDown, anchorNode);
 
     return (
-        <div {...clickOutside}>
-            {anchor}
-            <Popper anchor={anchorNode} isOpen={isOpen} placement={placement} keepMounted>
-                <Box
-                    p={3}
-                    maxWidth={400}
-                    borderRadius="base"
-                    boxShadow="base"
-                    bg="popover.bg"
-                    {...rest}
+        <ClickAwayListener onClickAway={() => close()}>
+            <div>
+                {anchor}
+                <Popper
+                    anchor={anchorNode}
+                    isOpen={isOpen}
+                    placement={placement}
+                    keepMounted
                 >
-                    <Flex pb={2} alignItems="flex-start">
-                        <Box mr={2} flex="none">
-                            <WarningIcon size={18} display="block" color="warning.base" />
-                        </Box>
-                        <Box lineHeight="base" color="heading">
-                            {title}
-                        </Box>
-                    </Flex>
-                    <Flex justifyContent="flex-end">
-                        <Button onClick={handleCancel}>{cancelText}</Button>
-                        <Button onClick={handleConfirm}>{okText}</Button>
-                    </Flex>
-                </Box>
-            </Popper>
-        </div>
+                    <Box
+                        p={3}
+                        maxWidth={400}
+                        borderRadius="base"
+                        boxShadow="base"
+                        bg="popover.bg"
+                        {...rest}
+                    >
+                        <Flex pb={2} alignItems="flex-start">
+                            <Box mr={2} flex="none">
+                                <WarningIcon
+                                    size={18}
+                                    display="block"
+                                    color="warning.base"
+                                />
+                            </Box>
+                            <Box lineHeight="base" color="heading">
+                                {title}
+                            </Box>
+                        </Flex>
+                        <Flex justifyContent="flex-end">
+                            <Button onClick={handleCancel}>{cancelText}</Button>
+                            <Button onClick={handleConfirm}>{okText}</Button>
+                        </Flex>
+                    </Box>
+                </Popper>
+            </div>
+        </ClickAwayListener>
     );
 });
 

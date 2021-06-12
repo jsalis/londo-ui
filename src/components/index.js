@@ -2,6 +2,7 @@ export { BinaryInput } from "./binary-input";
 export { Box } from "./box";
 export { Button } from "./button";
 export { Checkbox } from "./checkbox";
+export { ClickAwayListener } from "./click-away-listener";
 export { Divider } from "./divider";
 export { Dropdown } from "./dropdown";
 export { Flex } from "./flex";

@@ -1,5 +1,4 @@
 export { useCallbackRef } from "./use-callback-ref";
-export { useClickOutside } from "./use-click-outside";
 export { useControllableState } from "./use-controllable-state";
 export { useCounter } from "./use-counter";
 export { useDebounceCallback } from "./use-debounce-callback";
