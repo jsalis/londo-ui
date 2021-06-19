@@ -36,8 +36,7 @@ export const reset = css`
         font-feature-settings: "tnum";
     }
 
-    body,
-    #root {
+    body {
         background: ${(props) => props.theme.colors.bg.body};
     }
 
