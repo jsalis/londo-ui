@@ -5,6 +5,7 @@ import { system, typography, space, layout, flexbox, color } from "styled-system
 
 const other = system({
     textTransform: true,
+    overflowWrap: true,
     whiteSpace: true,
 });
 
