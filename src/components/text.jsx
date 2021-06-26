@@ -18,16 +18,16 @@ const StyledText = styled.span`
 	${color}
 	${other}
 	
-	${(props) =>
-        props.disabled &&
+	${(p) =>
+        p.disabled &&
         css`
-            color: ${props.theme.colors.disabled};
+            color: ${p.theme.colors.disabled};
             cursor: not-allowed;
             user-select: none;
         `}
 	
-	${(props) =>
-        props.ellipsis &&
+	${(p) =>
+        p.ellipsis &&
         css`
             overflow: hidden;
             white-space: nowrap;
@@ -42,8 +42,8 @@ const StyledText = styled.span`
         margin: 0 0.2em;
         padding: 0.1em 0.4em;
         font-size: 85%;
-        background: ${(props) => props.theme.colors.alpha[0]};
-        border: 1px solid ${(props) => props.theme.colors.alpha[0]};
+        background: ${(p) => p.theme.colors.alpha[0]};
+        border: 1px solid ${(p) => p.theme.colors.alpha[0]};
         border-radius: 3px;
     }
 
@@ -51,9 +51,9 @@ const StyledText = styled.span`
         margin: 0 0.2em;
         padding: 0.1em 0.4em;
         font-size: 90%;
-        background: ${(props) => props.theme.colors.gray[1]};
-        box-shadow: 0 2px 0 ${(props) => props.theme.colors.gray[4]};
-        border: 1px solid ${(props) => props.theme.colors.gray[4]};
+        background: ${(p) => p.theme.colors.gray[1]};
+        box-shadow: 0 2px 0 ${(p) => p.theme.colors.gray[4]};
+        border: 1px solid ${(p) => p.theme.colors.gray[4]};
         border-radius: 3px;
     }
 `;

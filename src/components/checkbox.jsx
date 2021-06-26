@@ -27,9 +27,9 @@ const Control = styled.span`
     left: 0;
     width: 14px;
     height: 14px;
-    background: ${(props) => props.theme.colors.gray[1]};
-    border: ${(props) => props.theme.borders.base};
-    border-radius: ${(props) => props.theme.radii.base}px;
+    background: ${(p) => p.theme.colors.gray[1]};
+    border: ${(p) => p.theme.borders.base};
+    border-radius: ${(p) => p.theme.radii.base}px;
     transition: all 0.2s;
 
     &::after {
@@ -44,8 +44,7 @@ const Control = styled.span`
         border-left: 0;
         transform: rotate(45deg) scale(0) translate(-50%, -50%);
         opacity: 0;
-        transition: all 0.2s ${(props) => props.theme.transitions.easeOutBack},
-            opacity 0.1s;
+        transition: all 0.2s ${(p) => p.theme.transitions.easeOutBack}, opacity 0.1s;
         content: " ";
     }
 `;
@@ -60,15 +59,15 @@ const Label = styled.label`
     ${flexbox}
 
     &:hover ${Control}, ${Input}:focus + ${Control} {
-        border-color: ${(props) => props.theme.colors.gray[5]};
+        border-color: ${(p) => p.theme.colors.gray[5]};
     }
 
-    ${(props) =>
-        props.checked &&
+    ${(p) =>
+        p.checked &&
         css`
             ${Control} {
-                background-color: ${props.theme.colors.primary.base};
-                border-color: ${props.theme.colors.primary.base};
+                background-color: ${p.theme.colors.primary.base};
+                border-color: ${p.theme.colors.primary.base};
 
                 &::after {
                     transform: rotate(45deg) scale(1) translate(-50%, -50%);
@@ -77,13 +76,13 @@ const Label = styled.label`
             }
 
             &:hover ${Control}, ${Input}:focus + ${Control} {
-                background-color: ${props.theme.colors.primary.hover};
-                border-color: ${props.theme.colors.primary.hover};
+                background-color: ${p.theme.colors.primary.hover};
+                border-color: ${p.theme.colors.primary.hover};
             }
         `}
 
-    ${(props) =>
-        props.disabled &&
+    ${(p) =>
+        p.disabled &&
         css`
             &,
             ${Input} {
@@ -91,12 +90,12 @@ const Label = styled.label`
             }
 
             ${Control} {
-                opacity: ${props.checked ? 1 : 0.5};
-                background: ${props.theme.colors.gray[props.checked ? 4 : 1]} !important;
-                border-color: ${props.theme.colors.border.base} !important;
+                opacity: ${p.checked ? 1 : 0.5};
+                background: ${p.theme.colors.gray[p.checked ? 4 : 1]} !important;
+                border-color: ${p.theme.colors.border.base} !important;
 
                 &::after {
-                    border-color: ${props.theme.colors.gray[1]};
+                    border-color: ${p.theme.colors.gray[1]};
                 }
             }
         `}

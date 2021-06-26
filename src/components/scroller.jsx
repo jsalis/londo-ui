@@ -31,7 +31,7 @@ const HorizontalBar = styled.div`
 const ScrollContent = styled.div`
     height: 100%;
     overflow: scroll;
-    overscroll-behavior: ${(props) => props.overScroll};
+    overscroll-behavior: ${(p) => p.overScroll};
     scrollbar-width: none;
     -ms-overflow-style: none;
 

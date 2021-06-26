@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
 import { space, layout, border } from "styled-system";
 
-const baseColor = (props) => props.theme.colors.gray[3];
-const highlightColor = (props) => props.theme.colors.gray[1];
+const baseColor = (p) => p.theme.colors.gray[3];
+const highlightColor = (p) => p.theme.colors.gray[1];
 
 const skeletonKeyframes = keyframes`
     0% {
@@ -16,7 +16,7 @@ const skeletonKeyframes = keyframes`
 `;
 
 const Bar = styled.span`
-    animation: ${skeletonKeyframes} ${(props) => props.duration}s ease-in-out infinite;
+    animation: ${skeletonKeyframes} ${(p) => p.duration}s ease-in-out infinite;
     background-color: ${baseColor};
     background-image: linear-gradient(
         90deg,

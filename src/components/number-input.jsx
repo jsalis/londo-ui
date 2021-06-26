@@ -47,8 +47,7 @@ const StyledSuffix = styled(Input.Suffix)`
 `;
 
 const DragHandle = styled(Input.Suffix)`
-    color: ${(props) =>
-        props.active ? props.theme.colors.primary.base : props.theme.colors.text};
+    color: ${(p) => (p.active ? p.theme.colors.primary.base : p.theme.colors.text)};
     visibility: hidden;
     pointer-events: auto;
     cursor: ew-resize;

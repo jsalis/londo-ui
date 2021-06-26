@@ -4,14 +4,14 @@ import styled, { css } from "styled-components";
 import { space } from "styled-system";
 
 const StyledDivider = styled.div`
-    line-height: ${(props) => props.theme.lineHeights.base};
-    font-size: ${(props) => props.theme.fontSizes.md}px;
-    color: ${(props) => props.theme.colors.text};
-    background: ${(props) => props.theme.colors.border.base};
+    line-height: ${(p) => p.theme.lineHeights.base};
+    font-size: ${(p) => p.theme.fontSizes.md}px;
+    color: ${(p) => p.theme.colors.text};
+    background: ${(p) => p.theme.colors.border.base};
     ${space}
 
-    ${(props) =>
-        !props.children &&
+    ${(p) =>
+        !p.children &&
         css`
             display: block;
             clear: both;
@@ -20,12 +20,12 @@ const StyledDivider = styled.div`
             height: 1px;
         `}
     
-    ${(props) =>
-        props.children &&
+    ${(p) =>
+        p.children &&
         css`
             display: table;
-            color: ${props.theme.colors.heading};
-            font-size: ${props.theme.fontSizes.lg}px;
+            color: ${p.theme.colors.heading};
+            font-size: ${p.theme.fontSizes.lg}px;
             font-weight: 500;
             white-space: nowrap;
             text-align: center;
@@ -38,12 +38,12 @@ const StyledDivider = styled.div`
                 top: 50%;
                 width: 50%;
                 transform: translateY(50%);
-                border-top: ${props.theme.borders.base};
+                border-top: ${p.theme.borders.base};
                 pointer-events: none;
                 content: "";
             }
 
-            ${props.align === "left" &&
+            ${p.align === "left" &&
             css`
                 &::before {
                     width: 5%;
@@ -54,7 +54,7 @@ const StyledDivider = styled.div`
                 }
             `}
 
-            ${props.align === "right" &&
+            ${p.align === "right" &&
             css`
                 &::before {
                     width: 95%;
@@ -66,18 +66,18 @@ const StyledDivider = styled.div`
             `}
         `}
     
-    ${(props) =>
-        props.dashed &&
+    ${(p) =>
+        p.dashed &&
         css`
-            border-color: ${props.theme.colors.border.base};
+            border-color: ${p.theme.colors.border.base};
             border-style: dashed;
             border-width: 1px 0 0;
             background: none;
         `}
     
-    ${(props) =>
-        props.dashed &&
-        props.children &&
+    ${(p) =>
+        p.dashed &&
+        p.children &&
         css`
             border-top: 0;
 

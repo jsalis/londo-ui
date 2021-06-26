@@ -16,14 +16,14 @@ const StyledInput = styled.input`
     min-width: 0;
     height: 24px;
     padding: 0 4px;
-    line-height: ${(props) => props.theme.lineHeights.base};
+    line-height: ${(p) => p.theme.lineHeights.base};
     outline: 0;
     position: relative;
     appearance: none;
     transition: all 0.2s, height 0ms;
-    border: ${(props) => props.theme.borders.base};
-    border-radius: ${(props) => props.theme.radii.base}px;
-    background: ${(props) => props.theme.colors.gray[1]};
+    border: ${(p) => p.theme.borders.base};
+    border-radius: ${(p) => p.theme.radii.base}px;
+    background: ${(p) => p.theme.colors.gray[1]};
     ${space}
     ${layout}
     ${flexbox}
@@ -31,12 +31,12 @@ const StyledInput = styled.input`
     ${other}
 
     &:hover:enabled {
-        border-color: ${(props) => props.theme.colors.gray[5]};
+        border-color: ${(p) => p.theme.colors.gray[5]};
     }
 
     &:focus:enabled {
-        border-color: ${(props) => props.theme.colors.primary.hover};
-        box-shadow: 0 0 0 1px ${(props) => props.theme.colors.primary.hover};
+        border-color: ${(p) => p.theme.colors.primary.hover};
+        box-shadow: 0 0 0 1px ${(p) => p.theme.colors.primary.hover};
         z-index: 1;
     }
 
@@ -59,7 +59,7 @@ const InputElement = styled.div`
     width: 24px;
     height: 24px;
     padding: 0 4px;
-    color: ${(props) => props.theme.colors.alpha[3]};
+    color: ${(p) => p.theme.colors.alpha[3]};
     pointer-events: none;
     z-index: 2;
     ${space}

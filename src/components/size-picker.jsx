@@ -22,7 +22,7 @@ function getCellColor({ theme, active, selectionActive }) {
 export const StyledCell = styled.td`
     &::before {
         background: ${getCellColor};
-        border-radius: ${(props) => props.theme.radii.base}px;
+        border-radius: ${(p) => p.theme.radii.base}px;
         height: 100%;
         display: block;
         content: "";

@@ -17,22 +17,22 @@ const Option = styled.div`
     cursor: pointer;
 
     &:hover {
-        color: ${(props) => props.theme.colors.gray[9]};
-        background: ${(props) => props.theme.colors.gray[4]};
+        color: ${(p) => p.theme.colors.gray[9]};
+        background: ${(p) => p.theme.colors.gray[4]};
     }
 
     &:active {
-        color: ${(props) => props.theme.colors.gray[9]};
-        background: ${(props) => props.theme.colors.gray[1]};
+        color: ${(p) => p.theme.colors.gray[9]};
+        background: ${(p) => p.theme.colors.gray[1]};
     }
 
-    ${(props) =>
-        props.selected &&
+    ${(p) =>
+        p.selected &&
         css`
             &,
             &:hover {
-                color: ${(props) => props.theme.colors.primary.base};
-                background: ${(props) => props.theme.colors.gray[1]};
+                color: ${p.theme.colors.primary.base};
+                background: ${p.theme.colors.gray[1]};
             }
         `}
 `;

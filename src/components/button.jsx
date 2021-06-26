@@ -6,13 +6,13 @@ export const Button = styled(Box)`
     display: inline-block;
     position: relative;
     text-align: center;
-    font-size: ${(props) => props.theme.fontSizes.sm}px;
-    line-height: ${(props) => props.theme.lineHeights.none};
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
+    line-height: ${(p) => p.theme.lineHeights.none};
     padding: 4px 8px;
     min-width: 32px;
     height: 24px;
-    border: 1px solid ${(props) => props.theme.colors.border.base};
-    background: ${(props) => props.theme.colors.gray[1]};
+    border: 1px solid ${(p) => p.theme.colors.border.base};
+    background: ${(p) => p.theme.colors.gray[1]};
     transition: all 0.3s;
     user-select: none;
     cursor: pointer;
@@ -28,33 +28,33 @@ export const Button = styled(Box)`
     }
 
     &:hover {
-        border-color: ${(props) => props.theme.colors.gray[4]};
-        color: ${(props) => props.theme.colors.gray[9]};
-        background: ${(props) => props.theme.colors.gray[4]};
+        border-color: ${(p) => p.theme.colors.gray[4]};
+        color: ${(p) => p.theme.colors.gray[9]};
+        background: ${(p) => p.theme.colors.gray[4]};
         z-index: 1;
     }
 
     &:active {
-        background: ${(props) => props.theme.colors.gray[3]};
+        background: ${(p) => p.theme.colors.gray[3]};
     }
 
-    ${(props) =>
-        props.active &&
+    ${(p) =>
+        p.active &&
         css`
             &,
             &:hover {
                 color: #fff;
-                background: ${props.theme.colors.primary.base};
+                background: ${p.theme.colors.primary.base};
             }
         `}
 
-    ${(props) =>
-        props.disabled &&
+    ${(p) =>
+        p.disabled &&
         css`
             &,
             &:hover {
-                color: ${props.theme.colors.gray[4]};
-                background: ${props.theme.colors.gray[1]};
+                color: ${p.theme.colors.gray[4]};
+                background: ${p.theme.colors.gray[1]};
                 cursor: not-allowed;
             }
         `}
