@@ -23,6 +23,12 @@ export const Dropdown = forwardRef((props, ref) => {
         }
     };
 
+    const handleClickAway = () => {
+        if (isOpen) {
+            onClose?.();
+        }
+    };
+
     const anchorRef = useRef(null);
     const anchor = cloneElement(child, {
         ref: useForkRef(child.ref, anchorRef),
@@ -59,7 +65,7 @@ export const Dropdown = forwardRef((props, ref) => {
     }, []);
 
     return (
-        <ClickAwayListener onClickAway={() => onClose?.()}>
+        <ClickAwayListener onClickAway={handleClickAway}>
             <div>
                 {anchor}
                 <Popper

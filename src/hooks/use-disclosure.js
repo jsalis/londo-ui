@@ -1,4 +1,6 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
+
+import { useCallbackRef } from "./use-callback-ref";
 
 /**
  * Uses boolean state with functions to open, close, and toggle.
@@ -26,48 +28,43 @@ export function useDisclosure({ defaultIsOpen = false, onOpen, onClose } = {}) {
 
     useEffect(() => clearDelayTimer, []);
 
-    const open = useCallback(
-        ({ delay } = {}) => {
-            clearDelayTimer();
-            const fn = () => {
+    const open = useCallbackRef(({ delay } = {}) => {
+        clearDelayTimer();
+        const fn = () => {
+            if (!isOpen) {
                 setIsOpen(true);
                 onOpen?.();
-            };
-            if (delay) {
-                delayTimer.current = setTimeout(fn, delay);
-            } else {
-                fn();
             }
-        },
-        [onOpen]
-    );
+        };
+        if (delay) {
+            delayTimer.current = setTimeout(fn, delay);
+        } else {
+            fn();
+        }
+    });
 
-    const close = useCallback(
-        ({ delay } = {}) => {
-            clearDelayTimer();
-            const fn = () => {
+    const close = useCallbackRef(({ delay } = {}) => {
+        clearDelayTimer();
+        const fn = () => {
+            if (isOpen) {
                 setIsOpen(false);
                 onClose?.();
-            };
-            if (delay) {
-                delayTimer.current = setTimeout(fn, delay);
-            } else {
-                fn();
             }
-        },
-        [onClose]
-    );
+        };
+        if (delay) {
+            delayTimer.current = setTimeout(fn, delay);
+        } else {
+            fn();
+        }
+    });
 
-    const toggle = useCallback(
-        (opt) => {
-            if (isOpen) {
-                close(opt);
-            } else {
-                open(opt);
-            }
-        },
-        [isOpen, open, close]
-    );
+    const toggle = useCallbackRef((opt) => {
+        if (isOpen) {
+            close(opt);
+        } else {
+            open(opt);
+        }
+    });
 
     return { isOpen, open, close, toggle, clearDelayTimer };
 }
