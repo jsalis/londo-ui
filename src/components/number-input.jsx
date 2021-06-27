@@ -2,13 +2,7 @@ import { forwardRef, useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import {
-    useCounter,
-    useCallbackRef,
-    useForkRef,
-    useForkHandler,
-    useUpdateEffect,
-} from "../hooks";
+import { useCounter, useCallbackRef, useForkRef, useForkHandler, useUpdateEffect } from "../hooks";
 import { MoveHorizontalIcon } from "../icons";
 
 import { Input } from "./input";
@@ -23,13 +17,7 @@ function sanitize(value) {
 }
 
 function isNumericKeyboardEvent(event) {
-    if (
-        !event.key ||
-        event.ctrlKey ||
-        event.altKey ||
-        event.metaKey ||
-        event.key.length !== 1
-    ) {
+    if (!event.key || event.ctrlKey || event.altKey || event.metaKey || event.key.length !== 1) {
         return true;
     }
 
@@ -195,11 +183,7 @@ function useDragger(callback) {
 
             return () => {
                 document.removeEventListener("mouseup", onRelease);
-                document.removeEventListener(
-                    "pointerlockchange",
-                    onPointerLockChange,
-                    false
-                );
+                document.removeEventListener("pointerlockchange", onPointerLockChange, false);
                 document.removeEventListener("mousemove", savedCallback, false);
                 document.exitPointerLock?.();
             };

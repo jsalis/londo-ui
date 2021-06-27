@@ -66,12 +66,7 @@ export const Popconfirm = forwardRef((props, ref) => {
         <ClickAwayListener onClickAway={() => close()}>
             <div>
                 {anchor}
-                <Popper
-                    anchor={anchorNode}
-                    isOpen={isOpen}
-                    placement={placement}
-                    keepMounted
-                >
+                <Popper anchor={anchorNode} isOpen={isOpen} placement={placement} keepMounted>
                     <Box
                         p={3}
                         maxWidth={400}
@@ -82,11 +77,7 @@ export const Popconfirm = forwardRef((props, ref) => {
                     >
                         <Flex pb={2} alignItems="flex-start">
                             <Box mr={2} flex="none">
-                                <WarningIcon
-                                    size={18}
-                                    display="block"
-                                    color="warning.base"
-                                />
+                                <WarningIcon size={18} display="block" color="warning.base" />
                             </Box>
                             <Box lineHeight="base" color="heading">
                                 {title}

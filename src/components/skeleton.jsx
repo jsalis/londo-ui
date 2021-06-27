@@ -18,12 +18,7 @@ const skeletonKeyframes = keyframes`
 const Bar = styled.span`
     animation: ${skeletonKeyframes} ${(p) => p.duration}s ease-in-out infinite;
     background-color: ${baseColor};
-    background-image: linear-gradient(
-        90deg,
-        ${baseColor},
-        ${highlightColor},
-        ${baseColor}
-    );
+    background-image: linear-gradient(90deg, ${baseColor}, ${highlightColor}, ${baseColor});
     background-size: 200px 100%;
     background-repeat: no-repeat;
     display: inline-block;

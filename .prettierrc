@@ -1,5 +1,5 @@
 {
-  "printWidth": 90,
+  "printWidth": 100,
   "overrides": [
     {
       "files": ["*.js", "*.jsx", "*.mdx"],

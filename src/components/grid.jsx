@@ -55,11 +55,7 @@ Grid.propTypes = {
     flow: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     columns: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
     rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-    autoColumns: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-        PropTypes.array,
-    ]),
+    autoColumns: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
     autoRows: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
     areas: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     gap: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),

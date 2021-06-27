@@ -4,9 +4,7 @@ import PropTypes from "prop-types";
 import { Input } from "./input";
 
 export const Textarea = forwardRef((props, ref) => {
-    return (
-        <Input ref={ref} as="textarea" height="auto" minHeight={54} py={1} {...props} />
-    );
+    return <Input ref={ref} as="textarea" height="auto" minHeight={54} py={1} {...props} />;
 });
 
 Textarea.propTypes = {

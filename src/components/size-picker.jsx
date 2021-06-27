@@ -98,8 +98,7 @@ export function SizePicker({ value, onChange, defaultValue, max, ...rest }) {
 
 function DataCell({ width, height, value, selection, setSelection }) {
     const active = !selection && width <= value[0] && height <= value[1];
-    const selectionActive =
-        selection && width <= selection.width && height <= selection.height;
+    const selectionActive = selection && width <= selection.width && height <= selection.height;
 
     const onMouseMove = (event) => {
         event.preventDefault();
@@ -109,11 +108,7 @@ function DataCell({ width, height, value, selection, setSelection }) {
     };
 
     return (
-        <StyledCell
-            active={active}
-            selectionActive={selectionActive}
-            onMouseMove={onMouseMove}
-        />
+        <StyledCell active={active} selectionActive={selectionActive} onMouseMove={onMouseMove} />
     );
 }
 

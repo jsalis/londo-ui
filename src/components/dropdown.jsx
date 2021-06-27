@@ -8,8 +8,7 @@ import { Popper } from "./popper";
 import { ClickAwayListener } from "./click-away-listener";
 
 export const Dropdown = forwardRef((props, ref) => {
-    const { overlay, placement, disabled, isOpen, onOpen, onClose, children, ...rest } =
-        props;
+    const { overlay, placement, disabled, isOpen, onOpen, onClose, children, ...rest } = props;
 
     const child = Children.only(children);
 
@@ -77,13 +76,7 @@ export const Dropdown = forwardRef((props, ref) => {
                     onMouseDown={(e) => e.preventDefault()}
                     keepMounted
                 >
-                    <Box
-                        py={1}
-                        borderRadius="base"
-                        boxShadow="base"
-                        bg="gray.1"
-                        {...rest}
-                    >
+                    <Box py={1} borderRadius="base" boxShadow="base" bg="gray.1" {...rest}>
                         {overlay}
                     </Box>
                 </Popper>

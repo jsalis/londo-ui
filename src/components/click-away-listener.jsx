@@ -60,10 +60,7 @@ export function ClickAwayListener(props) {
             return;
         }
 
-        if (
-            !isInsideDom(event, doc, nodeRef.current) &&
-            (disableReactTree || !insideReactTree)
-        ) {
+        if (!isInsideDom(event, doc, nodeRef.current) && (disableReactTree || !insideReactTree)) {
             onClickAway(event);
         }
     });

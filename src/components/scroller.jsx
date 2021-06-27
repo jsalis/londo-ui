@@ -95,16 +95,12 @@ function updateScroll(content, yBar, xBar) {
     } = content;
 
     const yBarHeight = getVerticalBarHeight(content);
-    const yTrackHeight =
-        scrollWidth === clientWidth ? clientHeight : clientHeight - BAR_MARGIN;
-    const yBarOffset =
-        (scrollTop / (scrollHeight - clientHeight)) * (yTrackHeight - yBarHeight);
+    const yTrackHeight = scrollWidth === clientWidth ? clientHeight : clientHeight - BAR_MARGIN;
+    const yBarOffset = (scrollTop / (scrollHeight - clientHeight)) * (yTrackHeight - yBarHeight);
 
     const xBarWidth = getHorizontalBarWidth(content);
-    const xTrackWidth =
-        scrollHeight === clientHeight ? clientWidth : clientWidth - BAR_MARGIN;
-    const xBarOffset =
-        (scrollLeft / (scrollWidth - clientWidth)) * (xTrackWidth - xBarWidth);
+    const xTrackWidth = scrollHeight === clientHeight ? clientWidth : clientWidth - BAR_MARGIN;
+    const xBarOffset = (scrollLeft / (scrollWidth - clientWidth)) * (xTrackWidth - xBarWidth);
 
     if (yBar) {
         yBar.style.height = `${yBarHeight}px`;
