@@ -10,3 +10,4 @@ export { useForkHandler } from "./use-fork-handler";
 export { useForkRef } from "./use-fork-ref";
 export { useFullscreen } from "./use-fullscreen";
 export { useKeyPress } from "./use-key-press";
+export { useUpdateEffect } from "./use-update-effect";
