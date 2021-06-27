@@ -1,4 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
+
+import { useCallbackRef } from "./use-callback-ref";
 
 /**
  * Uses fullscreen state for a given element.
@@ -24,25 +26,25 @@ export function useFullscreen(el = document.body) {
         return () => document.removeEventListener("fullscreenchange", listener);
     }, [el]);
 
-    const enter = useCallback(() => {
+    const enter = useCallbackRef(() => {
         el.requestFullscreen().catch(() => {
             /* noop */
         });
-    }, [el]);
+    });
 
-    const exit = useCallback(() => {
+    const exit = useCallbackRef(() => {
         document.exitFullscreen().catch(() => {
             /* noop */
         });
-    }, []);
+    });
 
-    const toggle = useCallback(() => {
+    const toggle = useCallbackRef(() => {
         if (isFullscreen) {
             exit();
         } else {
             enter();
         }
-    }, [isFullscreen, enter, exit]);
+    });
 
     return { isSupported, isFullscreen, enter, exit, toggle };
 }

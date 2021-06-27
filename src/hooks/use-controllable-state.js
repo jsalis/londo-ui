@@ -1,5 +1,6 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
+import { useCallbackRef } from "./use-callback-ref";
 import { isDefined } from "../utils/type-util";
 
 /**
@@ -12,14 +13,11 @@ import { isDefined } from "../utils/type-util";
 export function useControllableState(value, initialState) {
     const [state, setState] = useState(initialState);
     const effectiveValue = isDefined(value) ? value : state;
-    const setValue = useCallback(
-        (val) => {
-            if (!isDefined(value)) {
-                setState(val);
-            }
-        },
-        [value]
-    );
+    const setValue = useCallbackRef((val) => {
+        if (!isDefined(value)) {
+            setState(val);
+        }
+    });
 
     return [effectiveValue, setValue];
 }
