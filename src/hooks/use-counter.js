@@ -1,4 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
+
+import { useCallbackRef } from "./use-callback-ref";
 
 import { isDefined, isNumber } from "../utils/type-util";
 
@@ -8,7 +10,6 @@ import { isDefined, isNumber } from "../utils/type-util";
  * @param   {Object}   [options]
  * @param   {*}        [options.value]
  * @param   {*}        [options.defaultValue]
- * @param   {Function} [options.onChange]
  * @param   {Number}   [options.min]
  * @param   {Number}   [options.max]
  * @param   {Number}   [options.step]
@@ -27,7 +28,6 @@ export function useCounter(options = {}) {
     const {
         value: valueProp,
         defaultValue,
-        onChange,
         min = Number.MIN_SAFE_INTEGER,
         max = Number.MAX_SAFE_INTEGER,
         step: stepProp = 1,
@@ -47,45 +47,29 @@ export function useCounter(options = {}) {
         }
     }, [valueProp, valueAsNumber, precision]);
 
-    const update = useCallback(
-        (val) => {
-            setValue(val.toString());
-            onChange?.(parseValue(val), val.toString());
-        },
-        [onChange]
-    );
+    const update = useCallbackRef((val) => {
+        setValue(val.toString());
+    });
 
-    const clamp = useCallback(
-        (val) => {
-            const next = clampValue(val, min, max);
-            return toPrecision(next, precision);
-        },
-        [min, max, precision]
-    );
+    const clamp = useCallbackRef((val) => {
+        const next = clampValue(val, min, max);
+        return toPrecision(next, precision);
+    });
 
-    const increment = useCallback(
-        (step = stepProp) => {
-            const next = value === "" ? parseValue(step) : parseValue(value) + step;
-            update(clamp(next));
-        },
-        [update, clamp, stepProp, value]
-    );
+    const increment = useCallbackRef((step = stepProp) => {
+        const next = value === "" ? parseValue(step) : parseValue(value) + step;
+        update(clamp(next));
+    });
 
-    const decrement = useCallback(
-        (step = stepProp) => {
-            const next = value === "" ? parseValue(-step) : parseValue(value) - step;
-            update(clamp(next));
-        },
-        [update, clamp, stepProp, value]
-    );
+    const decrement = useCallbackRef((step = stepProp) => {
+        const next = value === "" ? parseValue(-step) : parseValue(value) - step;
+        update(clamp(next));
+    });
 
-    const cast = useCallback(
-        (val) => {
-            const next = castValue(val, precision);
-            update(clamp(next));
-        },
-        [update, clamp, precision]
-    );
+    const cast = useCallbackRef((val) => {
+        const next = castValue(val, precision);
+        update(clamp(next));
+    });
 
     return {
         value,
