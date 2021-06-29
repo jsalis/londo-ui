@@ -1,6 +1,6 @@
 import { Children, isValidElement, cloneElement } from "react";
 import styled from "styled-components";
-import { space } from "styled-system";
+import { margin } from "styled-system";
 
 const cx = (...args) => args.join(" ");
 const getClassName = (el) => (el.props && el.props.className) || "";
@@ -14,4 +14,4 @@ export const Spacer = styled(({ className, children }) => {
             : child;
     });
     return <>{styledChildren}</>;
-})(space);
+})(margin);
