@@ -80,15 +80,19 @@ export const NumberInput = forwardRef((props, ref) => {
         step = 1,
         readOnly,
         disabled,
+        onDragChange,
     } = props;
 
     const counter = useCounter(props);
-    const dragger = useDragger((event) => {
-        const dx = event.movementX;
+    const dragger = useDragger({
+        onDragChange,
+        onUpdate(event) {
+            const dx = event.movementX;
 
-        if (dx !== 0) {
-            counter.increment(dx * step);
-        }
+            if (dx !== 0) {
+                counter.increment(dx * step);
+            }
+        },
     });
 
     const handleChange = (event) => {
@@ -148,11 +152,15 @@ export const NumberInput = forwardRef((props, ref) => {
     );
 });
 
-function useDragger(callback) {
+function useDragger({ onDragChange, onUpdate }) {
     const ref = useRef();
-    const savedCallback = useCallbackRef(callback);
+    const savedCallback = useCallbackRef(onUpdate);
     const [active, setActive] = useState(false);
-    const start = () => setActive(true);
+
+    const start = () => {
+        setActive(true);
+        onDragChange?.(true);
+    };
 
     useEffect(() => {
         if (active) {
@@ -161,6 +169,7 @@ function useDragger(callback) {
 
             const onRelease = () => {
                 setActive(false);
+                onDragChange?.(false);
             };
 
             const onPointerLockChange = () => {
@@ -168,6 +177,7 @@ function useDragger(callback) {
                     document.addEventListener("mousemove", savedCallback, false);
                 } else {
                     setActive(false);
+                    onDragChange?.(false);
                 }
             };
 
@@ -193,6 +203,7 @@ NumberInput.propTypes = {
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     onKeyDown: PropTypes.func,
+    onDragChange: PropTypes.func,
     min: PropTypes.number,
     max: PropTypes.number,
     step: PropTypes.number,
