@@ -10,6 +10,7 @@ import { isDefined, isNumber } from "../utils/type-util";
  * @param   {Object}   [options]
  * @param   {*}        [options.value]
  * @param   {*}        [options.defaultValue]
+ * @param   {Function} [options.onChange]
  * @param   {Number}   [options.min]
  * @param   {Number}   [options.max]
  * @param   {Number}   [options.step]
@@ -28,6 +29,7 @@ export function useCounter(options = {}) {
     const {
         value: valueProp,
         defaultValue,
+        onChange,
         min = Number.MIN_SAFE_INTEGER,
         max = Number.MAX_SAFE_INTEGER,
         step: stepProp = 1,
@@ -49,6 +51,7 @@ export function useCounter(options = {}) {
 
     const update = useCallbackRef((val) => {
         setValue(val.toString());
+        onChange?.(parseValue(val), val.toString());
     });
 
     const clamp = useCallbackRef((val) => {

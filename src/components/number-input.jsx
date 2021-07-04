@@ -2,7 +2,7 @@ import { forwardRef, useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useCounter, useCallbackRef, useForkRef, useForkHandler, useUpdateEffect } from "../hooks";
+import { useCounter, useCallbackRef, useForkRef, useForkHandler } from "../hooks";
 import { MoveHorizontalIcon } from "../icons";
 
 import { Input } from "./input";
@@ -80,7 +80,6 @@ export const NumberInput = forwardRef((props, ref) => {
         step = 1,
         readOnly,
         disabled,
-        onChange,
     } = props;
 
     const counter = useCounter(props);
@@ -131,12 +130,6 @@ export const NumberInput = forwardRef((props, ref) => {
         onBlur: useForkHandler(props.onBlur, handleBlur),
         onKeyDown: useForkHandler(props.onKeyDown, handleKeyDown),
     };
-
-    useUpdateEffect(() => {
-        if (!dragger.active) {
-            onChange?.(counter.valueAsNumber, counter.value);
-        }
-    }, [dragger.active, counter.valueAsNumber]);
 
     return (
         <Container className={className}>
