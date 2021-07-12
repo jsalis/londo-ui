@@ -18,7 +18,7 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build": "npm run clean && NODE_ENV=production babel src --out-dir dist --copy-files",
+    "build": "npm run clean && NODE_ENV=production babel src --out-dir dist --copy-files --ignore **/*.stories.jsx",
     "prepare": "husky install",
     "lint": "eslint --fix src",
     "test": "jest",

@@ -3,6 +3,5 @@ module.exports = (api) => {
     return {
         presets: [["@babel/preset-env", envConfig], "@babel/preset-react"],
         plugins: ["babel-plugin-styled-components"],
-        ignore: ["**/*.stories.jsx"],
     };
 };
