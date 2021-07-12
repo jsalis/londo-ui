@@ -2,13 +2,29 @@
   "name": "londo-ui",
   "version": "0.0.0",
   "description": "The spectacular view. A component library for React web apps.",
-  "main": "src/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "files": [
+    "dist",
+    "!dist/stories"
+  ],
+  "keywords": [
+    "react",
+    "react-components",
+    "dark-mode",
+    "ui-library",
+    "londo-ui"
+  ],
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
+    "build": "NODE_ENV=production babel src --out-dir dist --copy-files",
     "prepare": "husky install",
     "lint": "eslint --fix src",
-    "test": "jest"
+    "test": "jest",
+    "clean": "rimraf dist",
+    "release": "standard-version",
+    "release-dry-run": "standard-version --dry-run"
   },
   "lint-staged": {
     "*.{js,jsx,css,json,md}": "prettier --write",
@@ -32,9 +48,10 @@
   "peerDependencies": {
     "react": ">=17.0.0",
     "react-dom": ">=17.0.0",
-    "styled-components": ">=5.1.0"
+    "styled-components": ">=5.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.14.5",
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-react": "^7.13.13",
@@ -56,6 +73,8 @@
     "prettier": "^2.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "standard-version": "^9.3.0",
     "storybook-addon-styled-component-theme": "^2.0.0",
     "styled-components": "^5.3.0",
     "webpack": "^4.46.0",
