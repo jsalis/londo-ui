@@ -1,6 +1,6 @@
 {
   "name": "londo-ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "The spectacular view. A component library for React web apps.",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -23,8 +23,7 @@
     "lint": "eslint --fix src",
     "test": "jest",
     "clean": "rimraf dist",
-    "release": "standard-version",
-    "release-dry-run": "standard-version --dry-run"
+    "release": "standard-version"
   },
   "lint-staged": {
     "*.{js,jsx,css,json,md}": "prettier --write",
