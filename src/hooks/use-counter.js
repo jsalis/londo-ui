@@ -50,8 +50,11 @@ export function useCounter(options = {}) {
     }, [valueProp, valueAsNumber, precision]);
 
     const update = useCallbackRef((val) => {
-        setValue(val.toString());
-        onChange?.(parseValue(val), val.toString());
+        const valStr = val.toString();
+        if (value !== valStr) {
+            setValue(valStr);
+            onChange?.(parseValue(val), valStr);
+        }
     });
 
     const clamp = useCallbackRef((val) => {
