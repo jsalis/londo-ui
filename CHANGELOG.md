@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/jsalis/londo-ui/compare/v0.1.0...v0.1.1) (2021-09-07)
+
+### Bug Fixes
+
+- duplicate onChange values dispatched from input number ([50fb702](https://github.com/jsalis/londo-ui/commit/50fb70226194a3ff9b2837d58304d68a1ed9c415))
+
 ## 0.1.0 (2021-07-12)
 
 ### Features
