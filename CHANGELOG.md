@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/jsalis/londo-ui/compare/v0.1.1...v0.1.2) (2021-11-01)
+
+### Features
+
+- add ImageIcon component ([a2edbd0](https://github.com/jsalis/londo-ui/commit/a2edbd07c5370c470b4043c6a7677ee1ea98b5b8))
+- add password input component ([dc37afe](https://github.com/jsalis/londo-ui/commit/dc37afea600a6a6bbcd568b6bd74c7943baf5005))
+- support gap prop for flex ([a24ba4f](https://github.com/jsalis/londo-ui/commit/a24ba4f1ee616fc9ee0d8ebc8791fb0c34946396))
+
 ### [0.1.1](https://github.com/jsalis/londo-ui/compare/v0.1.0...v0.1.1) (2021-09-07)
 
 ### Bug Fixes
