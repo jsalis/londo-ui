@@ -15,6 +15,7 @@ export { FullscreenExitIcon } from "./fullscreen-exit-icon";
 export { GridOffIcon } from "./grid-off-icon";
 export { GridOnIcon } from "./grid-on-icon";
 export { HomeIcon } from "./home-icon";
+export { ImageIcon } from "./image-icon";
 export { LogoutIcon } from "./logout-icon";
 export { MoveHorizontalIcon } from "./move-horizontal-icon";
 export { PlayIcon } from "./play-icon";
