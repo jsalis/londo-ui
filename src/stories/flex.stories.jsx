@@ -11,11 +11,14 @@ export default {
 export function Basic() {
     return (
         <Flex>
-            <Box p={2} width={1 / 2} color="white" bg="primary.base">
+            <Box p={2} width={1 / 3} color="white" bg="primary.base">
                 First
             </Box>
-            <Box p={2} width={1 / 2} color="white" bg="negative.base">
+            <Box p={2} width={1 / 3} color="white" bg="negative.base">
                 Second
+            </Box>
+            <Box p={2} width={1 / 3} color="white" bg="positive.base">
+                Third
             </Box>
         </Flex>
     );
@@ -24,11 +27,30 @@ export function Basic() {
 export function Column() {
     return (
         <Flex flexDirection="column">
-            <Box p={2} width={1 / 2} color="white" bg="primary.base">
+            <Box p={2} width={1 / 3} color="white" bg="primary.base">
                 First
             </Box>
-            <Box p={2} width={1 / 2} color="white" bg="negative.base">
+            <Box p={2} width={1 / 3} color="white" bg="negative.base">
                 Second
+            </Box>
+            <Box p={2} width={1 / 3} color="white" bg="positive.base">
+                Third
+            </Box>
+        </Flex>
+    );
+}
+
+export function ResponsiveGap() {
+    return (
+        <Flex gap={[1, 2, 3]}>
+            <Box p={2} width={1 / 3} color="white" bg="primary.base">
+                First
+            </Box>
+            <Box p={2} width={1 / 3} color="white" bg="negative.base">
+                Second
+            </Box>
+            <Box p={2} width={1 / 3} color="white" bg="positive.base">
+                Third
             </Box>
         </Flex>
     );

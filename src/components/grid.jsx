@@ -31,18 +31,6 @@ const grid = system({
     areas: {
         property: "gridTemplateAreas",
     },
-    gap: {
-        property: "gridGap",
-        scale: "space",
-    },
-    columnGap: {
-        property: "gridColumnGap",
-        scale: "space",
-    },
-    rowGap: {
-        property: "gridRowGap",
-        scale: "space",
-    },
 });
 
 export const Grid = styled(Box)`

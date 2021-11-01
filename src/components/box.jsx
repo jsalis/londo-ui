@@ -42,6 +42,18 @@ const grid = system({
         property: "gridRowEnd",
         transform: (val) => `span ${val}`,
     },
+    gap: {
+        property: "gap",
+        scale: "space",
+    },
+    columnGap: {
+        property: "columnGap",
+        scale: "space",
+    },
+    rowGap: {
+        property: "rowGap",
+        scale: "space",
+    },
 });
 
 export const Box = styled.div`
