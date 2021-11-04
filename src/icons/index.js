@@ -8,6 +8,7 @@ export { ColorIcon } from "./color-icon";
 export { CubeIcon } from "./cube-icon";
 export { EditIcon } from "./edit-icon";
 export { EraserIcon } from "./eraser-icon";
+export { EyeDropperIcon } from "./eye-dropper-icon";
 export { EyeOffIcon } from "./eye-off-icon";
 export { EyeOnIcon } from "./eye-on-icon";
 export { FullscreenEnterIcon } from "./fullscreen-enter-icon";
