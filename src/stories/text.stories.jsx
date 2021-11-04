@@ -1,4 +1,4 @@
-import { Text, Flex, Spacer } from "../components";
+import { Text, Flex } from "../components";
 
 export default {
     title: "Design System/Text",
@@ -14,31 +14,27 @@ export function Basic() {
 
 export function Colors() {
     return (
-        <Flex flexDirection="column">
-            <Spacer mb={2}>
-                <Text color="primary.base">Hello World</Text>
-                <Text color="secondary.base">Hello World</Text>
-                <Text color="positive.base">Hello World</Text>
-                <Text color="negative.base">Hello World</Text>
-                <Text color="warning.base">Hello World</Text>
-                <Text color="gray.base">Hello World</Text>
-            </Spacer>
+        <Flex flexDirection="column" gap={2}>
+            <Text color="primary.base">Hello World</Text>
+            <Text color="secondary.base">Hello World</Text>
+            <Text color="positive.base">Hello World</Text>
+            <Text color="negative.base">Hello World</Text>
+            <Text color="warning.base">Hello World</Text>
+            <Text color="gray.base">Hello World</Text>
         </Flex>
     );
 }
 
 export function Sizes() {
     return (
-        <Flex flexDirection="column">
-            <Spacer mb={2}>
-                <Text fontSize={0}>Hello World</Text>
-                <Text fontSize={1}>Hello World</Text>
-                <Text fontSize={2}>Hello World</Text>
-                <Text fontSize={3}>Hello World</Text>
-                <Text fontSize={4}>Hello World</Text>
-                <Text fontSize={5}>Hello World</Text>
-                <Text fontSize={6}>Hello World</Text>
-            </Spacer>
+        <Flex flexDirection="column" gap={2}>
+            <Text fontSize={0}>Hello World</Text>
+            <Text fontSize={1}>Hello World</Text>
+            <Text fontSize={2}>Hello World</Text>
+            <Text fontSize={3}>Hello World</Text>
+            <Text fontSize={4}>Hello World</Text>
+            <Text fontSize={5}>Hello World</Text>
+            <Text fontSize={6}>Hello World</Text>
         </Flex>
     );
 }
@@ -46,10 +42,10 @@ export function Sizes() {
 export function Ellipsis() {
     return (
         <Text width={1 / 2} ellipsis>
-            Nunc sed blandit libero volutpat sed cras ornare arcu. Facilisi morbi tempus
-            iaculis urna id volutpat lacus laoreet non. Varius duis at consectetur lorem
-            donec massa sapien faucibus. Id aliquet lectus proin nibh. Quis varius quam
-            quisque id diam vel quam elementum. Id consectetur purus ut faucibus pulvinar.
+            Nunc sed blandit libero volutpat sed cras ornare arcu. Facilisi morbi tempus iaculis
+            urna id volutpat lacus laoreet non. Varius duis at consectetur lorem donec massa sapien
+            faucibus. Id aliquet lectus proin nibh. Quis varius quam quisque id diam vel quam
+            elementum. Id consectetur purus ut faucibus pulvinar.
         </Text>
     );
 }
