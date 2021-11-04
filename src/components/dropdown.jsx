@@ -8,7 +8,8 @@ import { Popper } from "./popper";
 import { ClickAwayListener } from "./click-away-listener";
 
 export const Dropdown = forwardRef((props, ref) => {
-    const { overlay, placement, disabled, isOpen, onOpen, onClose, children, ...rest } = props;
+    const { overlay, placement, disabled, isOpen, onOpen, onClose, sameWidth, children, ...rest } =
+        props;
 
     const child = Children.only(children);
 
@@ -35,7 +36,7 @@ export const Dropdown = forwardRef((props, ref) => {
     });
 
     const modifiers = useMemo(() => {
-        return [
+        const mods = [
             {
                 name: "offset",
                 options: {
@@ -48,7 +49,10 @@ export const Dropdown = forwardRef((props, ref) => {
                     mainAxis: false,
                 },
             },
-            {
+        ];
+
+        if (sameWidth) {
+            mods.push({
                 name: "sameWidth",
                 phase: "beforeWrite",
                 enabled: true,
@@ -59,9 +63,11 @@ export const Dropdown = forwardRef((props, ref) => {
                 effect: ({ state }) => {
                     state.elements.popper.style.width = `${state.elements.reference.offsetWidth}px`;
                 },
-            },
-        ];
-    }, []);
+            });
+        }
+
+        return mods;
+    }, [sameWidth]);
 
     return (
         <ClickAwayListener onClickAway={handleClickAway}>
@@ -108,10 +114,12 @@ Dropdown.propTypes = {
     isOpen: PropTypes.bool,
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
+    sameWidth: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
 };
 
 Dropdown.defaultProps = {
-    placement: "bottom",
+    placement: "bottom-start",
+    sameWidth: true,
 };
