@@ -12,9 +12,6 @@ import { Flex } from "./flex";
 import { Button } from "./button";
 
 const StyledButton = styled(Button)`
-    border: none;
-    background: ${(p) => p.theme.colors.gray[3]};
-
     &:last-child {
         border-radius: 0 0 2px 2px;
     }
