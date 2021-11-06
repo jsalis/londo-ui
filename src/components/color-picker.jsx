@@ -6,8 +6,19 @@ import { layout } from "styled-system";
 import { useCallbackRef, useHexColor } from "../hooks";
 import { clamp, round } from "../utils/math-util";
 import { hsvaToHslString } from "../utils/color-util";
+import { EyeDropperIcon } from "../icons";
 
 import { Flex } from "./flex";
+import { Button } from "./button";
+
+const StyledButton = styled(Button)`
+    border: none;
+    background: ${(p) => p.theme.colors.gray[3]};
+
+    &:last-child {
+        border-radius: 0 0 2px 2px;
+    }
+`;
 
 const PointerFill = styled.div`
     content: "";
@@ -63,7 +74,6 @@ const SaturationWrap = styled.div`
 const HueWrap = styled.div`
     position: relative;
     height: 24px;
-    border-radius: 0 0 2px 2px;
     background: linear-gradient(
         to right,
         #f00 0%,
@@ -75,6 +85,10 @@ const HueWrap = styled.div`
         #f00 100%
     );
     ${layout}
+
+    &:last-child {
+        border-radius: 0 0 2px 2px;
+    }
 `;
 
 function getRelativePosition(node, event) {
@@ -228,6 +242,29 @@ function Hue({ hue, onChange, ...rest }) {
     );
 }
 
+function EyeDropper({ onChange, ...rest }) {
+    const isEyeDropperSupported = () => {
+        return "EyeDropper" in window;
+    };
+
+    const openEyeDropper = () => {
+        const eyeDropper = new window.EyeDropper();
+        eyeDropper.open().then(({ sRGBHex }) => {
+            onChange(sRGBHex);
+        });
+    };
+
+    if (!isEyeDropperSupported()) {
+        return null;
+    }
+
+    return (
+        <StyledButton onClick={openEyeDropper} {...rest}>
+            <EyeDropperIcon />
+        </StyledButton>
+    );
+}
+
 export function ColorPicker({ color, onChange, ...rest }) {
     const [hsva, updateHsva] = useHexColor(color, onChange);
     return (
@@ -240,12 +277,14 @@ export function ColorPicker({ color, onChange, ...rest }) {
         >
             <Saturation hsva={hsva} onChange={updateHsva} />
             <Hue hue={hsva.h} onChange={updateHsva} />
+            <EyeDropper onChange={onChange} />
         </Flex>
     );
 }
 
 ColorPicker.Saturation = Saturation;
 ColorPicker.Hue = Hue;
+ColorPicker.EyeDropper = EyeDropper;
 ColorPicker.propTypes = {
     color: PropTypes.string,
     onChange: PropTypes.func,

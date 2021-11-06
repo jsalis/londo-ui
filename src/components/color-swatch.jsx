@@ -11,6 +11,7 @@ const other = system({
 const Swatch = styled.span`
     display: inline-block;
     border-radius: 2px;
+    border-color: transparent;
     box-shadow: ${(props) => props.theme.colors.alpha[1]} 0 0 0 1px inset;
     ${margin}
     ${layout}
