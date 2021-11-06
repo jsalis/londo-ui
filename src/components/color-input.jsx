@@ -43,7 +43,9 @@ export const ColorInput = forwardRef((props, ref) => {
         setInputValue(val);
 
         if (isValidColorHex(val)) {
-            setColor("#" + val);
+            const hex = "#" + val;
+            setColor(hex);
+            onChange?.(hex);
         }
     };
 
