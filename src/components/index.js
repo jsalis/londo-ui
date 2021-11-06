@@ -3,6 +3,7 @@ export { Box } from "./box";
 export { Button } from "./button";
 export { Checkbox } from "./checkbox";
 export { ClickAwayListener } from "./click-away-listener";
+export { ColorInput } from "./color-input";
 export { ColorPicker } from "./color-picker";
 export { ColorSwatch } from "./color-swatch";
 export { Divider } from "./divider";

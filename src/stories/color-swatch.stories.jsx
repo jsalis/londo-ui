@@ -4,7 +4,7 @@ export default {
     title: "Design System/ColorSwatch",
     component: ColorSwatch,
     parameters: {
-        componentSubtitle: "A box to preview colors.",
+        componentSubtitle: "A box to display color previews.",
     },
 };
 

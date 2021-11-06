@@ -1,14 +1,20 @@
 import { forwardRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { margin, layout } from "styled-system";
+import { system, margin, layout } from "styled-system";
+
+const other = system({
+    pointerEvents: true,
+    cursor: true,
+});
 
 const Swatch = styled.span`
-    display: block;
+    display: inline-block;
     border-radius: 2px;
     box-shadow: ${(props) => props.theme.colors.alpha[1]} 0 0 0 1px inset;
     ${margin}
     ${layout}
+    ${other}
 `;
 
 export const ColorSwatch = forwardRef((props, ref) => {
@@ -24,6 +30,6 @@ ColorSwatch.propTypes = {
 };
 
 ColorSwatch.defaultProps = {
-    color: "#ffffff",
+    color: "#000000",
     size: 14,
 };
