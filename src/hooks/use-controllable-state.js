@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-import { useCallbackRef } from "./use-callback-ref";
 import { isDefined } from "../utils/type-util";
+
+import { useCallbackRef } from "./use-callback-ref";
 
 /**
  * Uses state that can operate in controlled and uncontrolled modes.

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useCallbackRef } from "./use-callback-ref";
 
 import { isDefined, isNumber } from "../utils/type-util";
+import { round, clamp as clampValue } from "../utils/math-util";
 
 /**
  * Uses a numeric counter.
@@ -93,14 +94,12 @@ function isValidNumber(value) {
 }
 
 function toNumber(value) {
-    const num = parseFloat(value);
-    return isValidNumber(num) ? num : 0;
+    const n = parseFloat(value);
+    return isValidNumber(n) ? n : 0;
 }
 
 function toPrecision(value, precision = 10) {
-    const scale = 10 ** precision;
-    const num = Math.round(toNumber(value) * scale) / scale;
-    return String(num);
+    return round(toNumber(value), precision).toString();
 }
 
 function parseValue(value) {
@@ -109,8 +108,4 @@ function parseValue(value) {
 
 function castValue(value, precision) {
     return toPrecision(parseValue(value), precision);
-}
-
-function clampValue(value, min, max) {
-    return value < min ? min : value > max ? max : value;
 }

@@ -1,4 +1,5 @@
 export { useCallbackRef } from "./use-callback-ref";
+export { useColorManipulation } from "./use-color-manipulation";
 export { useControllableState } from "./use-controllable-state";
 export { useCounter } from "./use-counter";
 export { useDebounceCallback } from "./use-debounce-callback";
@@ -9,5 +10,6 @@ export { useEventListener } from "./use-event-listener";
 export { useForkHandler } from "./use-fork-handler";
 export { useForkRef } from "./use-fork-ref";
 export { useFullscreen } from "./use-fullscreen";
+export { useHexColor } from "./use-hex-color";
 export { useKeyPress } from "./use-key-press";
 export { useUpdateEffect } from "./use-update-effect";
