@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/jsalis/londo-ui/compare/v0.1.3...v0.1.4) (2021-11-06)
+
+### Bug Fixes
+
+- color input change with controlled state ([7ba6f0f](https://github.com/jsalis/londo-ui/commit/7ba6f0fd90e9e829e3591b06c08ddd44a3ff450e))
+- eye dropper button style ([d3d1979](https://github.com/jsalis/londo-ui/commit/d3d19790f39c4fd5e9795bf96cc7d99e03445e7a))
+
 ### [0.1.3](https://github.com/jsalis/londo-ui/compare/v0.1.2...v0.1.3) (2021-11-06)
 
 ### Features
