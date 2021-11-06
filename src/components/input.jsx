@@ -8,6 +8,8 @@ import { getValidChildren } from "../utils/react-util";
 import { Flex } from "./flex";
 
 const other = system({
+    textTransform: true,
+    pointerEvents: true,
     cursor: true,
 });
 
