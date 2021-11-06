@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/jsalis/londo-ui/compare/v0.1.2...v0.1.3) (2021-11-06)
+
+### Features
+
+- add color input component ([fd40e4b](https://github.com/jsalis/londo-ui/commit/fd40e4be91e6e0d598251c4429ce61c78328110e))
+- add color picker component ([7d885a6](https://github.com/jsalis/londo-ui/commit/7d885a6c0e4a43c480aa92875e95e76c38a303e5))
+- add color swatch component ([c660dc3](https://github.com/jsalis/londo-ui/commit/c660dc37dc01a42ece7dcff9d5c467671c5c224f))
+- add eye dropper component ([2bc0bc4](https://github.com/jsalis/londo-ui/commit/2bc0bc40b203300e0cd911098e56aa4bbab67b65))
+- add EyeDropperIcon component ([cd6c4aa](https://github.com/jsalis/londo-ui/commit/cd6c4aa2eecb7cd00e3383298807a871bdb0a937))
+- add hooks for color manipulation ([ffcce28](https://github.com/jsalis/londo-ui/commit/ffcce282b93d9429042019094b26e969d3023ee7))
+- add sameWidth prop to dropdown component ([83f8aa2](https://github.com/jsalis/londo-ui/commit/83f8aa28d55480367f4c0995279069bc8e86adbf))
+- add textTransform and pointerEvents props to input component ([0c7ed0b](https://github.com/jsalis/londo-ui/commit/0c7ed0b9c704a221ec858c0405c79eb106e064f4))
+
 ### [0.1.2](https://github.com/jsalis/londo-ui/compare/v0.1.1...v0.1.2) (2021-11-01)
 
 ### Features
