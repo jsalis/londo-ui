@@ -81,7 +81,7 @@ export const ColorInput = forwardRef((props, ref) => {
         >
             <Input.Group className={className}>
                 <Input.Prefix>
-                    <ColorSwatch color={color} />
+                    <ColorSwatch color={color} size={14} />
                 </Input.Prefix>
                 <Input
                     ref={ref}

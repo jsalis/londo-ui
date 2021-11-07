@@ -18,7 +18,6 @@ const StyledButton = styled(Button)`
 `;
 
 const PointerFill = styled.div`
-    content: "";
     position: absolute;
     left: 0;
     top: 0;
@@ -26,6 +25,7 @@ const PointerFill = styled.div`
     bottom: 0;
     pointer-events: none;
     border-radius: inherit;
+    content: "";
 `;
 
 const PointerWrap = styled.div`

@@ -15,3 +15,7 @@ export function Basic(args) {
         </Box>
     );
 }
+
+Basic.args = {
+    value: "#DF212B",
+};
