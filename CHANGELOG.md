@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/jsalis/londo-ui/compare/v0.1.4...v0.1.5) (2021-11-07)
+
+### Features
+
+- add primary and secondary props to color swatch ([3e977ab](https://github.com/jsalis/londo-ui/commit/3e977ab511fb349223d4be776e62f73667b07feb))
+- add showEyeDropper prop to color picker ([aecfe10](https://github.com/jsalis/londo-ui/commit/aecfe10feeb3793d7cd7cb8e33111f80a85075bc))
+
+### Bug Fixes
+
+- border radius style for color picker ([ac32c88](https://github.com/jsalis/londo-ui/commit/ac32c88ef8cf337e2f3e3c351282d3b5fb1c4466))
+
 ### [0.1.4](https://github.com/jsalis/londo-ui/compare/v0.1.3...v0.1.4) (2021-11-06)
 
 ### Bug Fixes
