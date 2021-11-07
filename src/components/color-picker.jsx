@@ -11,12 +11,6 @@ import { EyeDropperIcon } from "../icons";
 import { Flex } from "./flex";
 import { Button } from "./button";
 
-const StyledButton = styled(Button)`
-    &:last-child {
-        border-radius: 0 0 2px 2px;
-    }
-`;
-
 const PointerFill = styled.div`
     position: absolute;
     left: 0;
@@ -62,7 +56,6 @@ const SaturationWrap = styled.div`
     flex-grow: 1;
     border-color: transparent;
     border-bottom: 12px solid #000;
-    border-radius: 2px 2px 0 0;
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
     background-image: linear-gradient(to top, #000, rgba(0, 0, 0, 0)),
         linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
@@ -82,8 +75,14 @@ const HueWrap = styled.div`
         #f00 100%
     );
     ${layout}
+`;
 
-    &:last-child {
+const PickerWrap = styled(Flex)`
+    & > :first-child {
+        border-radius: 2px 2px 0 0;
+    }
+
+    & > :last-child {
         border-radius: 0 0 2px 2px;
     }
 `;
@@ -256,16 +255,16 @@ function EyeDropper({ onChange, ...rest }) {
     }
 
     return (
-        <StyledButton onClick={openEyeDropper} {...rest}>
+        <Button onClick={openEyeDropper} {...rest}>
             <EyeDropperIcon />
-        </StyledButton>
+        </Button>
     );
 }
 
 export function ColorPicker({ color, onChange, showEyeDropper, ...rest }) {
     const [hsva, updateHsva] = useHexColor(color, onChange);
     return (
-        <Flex
+        <PickerWrap
             position="relative"
             flexDirection="column"
             flex="none"
@@ -276,7 +275,7 @@ export function ColorPicker({ color, onChange, showEyeDropper, ...rest }) {
             <Saturation hsva={hsva} onChange={updateHsva} />
             <Hue hue={hsva.h} onChange={updateHsva} />
             {showEyeDropper && <EyeDropper onChange={onChange} />}
-        </Flex>
+        </PickerWrap>
     );
 }
 
