@@ -24,6 +24,7 @@ export const ColorInput = forwardRef((props, ref) => {
         onClose,
         onBlur,
         pickerSize,
+        showEyeDropper,
         disabled,
         className,
         ...rest
@@ -59,7 +60,14 @@ export const ColorInput = forwardRef((props, ref) => {
         onChange?.(val);
     };
 
-    const overlay = <ColorPicker color={color} onChange={handlePickerChange} size={pickerSize} />;
+    const overlay = (
+        <ColorPicker
+            color={color}
+            onChange={handlePickerChange}
+            size={pickerSize}
+            showEyeDropper={showEyeDropper}
+        />
+    );
 
     return (
         <Dropdown
@@ -101,10 +109,12 @@ ColorInput.propTypes = {
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
     pickerSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+    showEyeDropper: PropTypes.bool,
     disabled: PropTypes.bool,
     className: PropTypes.string,
 };
 
 ColorInput.defaultProps = {
     defaultValue: "#000000",
+    showEyeDropper: true,
 };

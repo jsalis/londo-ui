@@ -262,19 +262,20 @@ function EyeDropper({ onChange, ...rest }) {
     );
 }
 
-export function ColorPicker({ color, onChange, ...rest }) {
+export function ColorPicker({ color, onChange, showEyeDropper, ...rest }) {
     const [hsva, updateHsva] = useHexColor(color, onChange);
     return (
         <Flex
             position="relative"
             flexDirection="column"
+            flex="none"
             userSelect="none"
             cursor="default"
             {...rest}
         >
             <Saturation hsva={hsva} onChange={updateHsva} />
             <Hue hue={hsva.h} onChange={updateHsva} />
-            <EyeDropper onChange={onChange} />
+            {showEyeDropper && <EyeDropper onChange={onChange} />}
         </Flex>
     );
 }
@@ -286,10 +287,12 @@ ColorPicker.propTypes = {
     color: PropTypes.string,
     onChange: PropTypes.func,
     size: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+    showEyeDropper: PropTypes.bool,
     className: PropTypes.string,
 };
 
 ColorPicker.defaultProps = {
     color: "#000000",
     size: 160,
+    showEyeDropper: true,
 };
