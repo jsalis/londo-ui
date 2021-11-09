@@ -1,4 +1,4 @@
-import { useRef, useMemo, useEffect } from "react";
+import { memo, forwardRef, useRef, useMemo, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { layout } from "styled-system";
@@ -95,7 +95,7 @@ function getRelativePosition(node, event) {
     };
 }
 
-function Interactive({ onMove, onKey, ...rest }) {
+const Interactive = memo(({ onMove, onKey, ...rest }) => {
     const onMoveCallback = useCallbackRef(onMove);
     const onKeyCallback = useCallbackRef(onKey);
     const container = useRef(null);
@@ -168,77 +168,85 @@ function Interactive({ onMove, onKey, ...rest }) {
             role="slider"
         />
     );
-}
+});
 
-function Pointer({ color, left, top = 0.5, ...rest }) {
+const Pointer = ({ color, left, top = 0.5, ...rest }) => {
     return (
         <PointerWrap {...rest} style={{ top: `${top * 100}%`, left: `${left * 100}%` }}>
             <PointerFill style={{ backgroundColor: color }} />
         </PointerWrap>
     );
-}
+};
 
-function Saturation({ hsva, onChange, ...rest }) {
-    const color = hsvaToHslString({ h: hsva.h, s: 100, v: 100, a: 1 });
+const Saturation = memo(
+    forwardRef(({ hsva, onChange, ...rest }, ref) => {
+        const color = hsvaToHslString({ h: hsva.h, s: 100, v: 100, a: 1 });
 
-    const handleMove = (interaction) => {
-        onChange({
-            s: interaction.left * 100,
-            v: 100 - interaction.top * 100,
-        });
-    };
+        const handleMove = (interaction) => {
+            onChange({
+                s: interaction.left * 100,
+                v: 100 - interaction.top * 100,
+            });
+        };
 
-    const handleKey = (offset) => {
-        // saturation and brightness always fit into [0, 100] range
-        onChange({
-            s: clamp(hsva.s + offset.left * 100, 0, 100),
-            v: clamp(hsva.v - offset.top * 100, 0, 100),
-        });
-    };
+        const handleKey = (offset) => {
+            // saturation and brightness always fit into [0, 100] range
+            onChange({
+                s: clamp(hsva.s + offset.left * 100, 0, 100),
+                v: clamp(hsva.v - offset.top * 100, 0, 100),
+            });
+        };
 
-    return (
-        <SaturationWrap {...rest} style={{ backgroundColor: color }}>
-            <Interactive
-                onMove={handleMove}
-                onKey={handleKey}
-                aria-label="Color"
-                aria-valuetext={`Saturation ${round(hsva.s)}%, Brightness ${round(hsva.v)}%`}
-            >
-                <Pointer top={1 - hsva.v / 100} left={hsva.s / 100} color={hsvaToHslString(hsva)} />
-            </Interactive>
-        </SaturationWrap>
-    );
-}
+        return (
+            <SaturationWrap ref={ref} {...rest} style={{ backgroundColor: color }}>
+                <Interactive
+                    onMove={handleMove}
+                    onKey={handleKey}
+                    aria-label="Color"
+                    aria-valuetext={`Saturation ${round(hsva.s)}%, Brightness ${round(hsva.v)}%`}
+                >
+                    <Pointer
+                        top={1 - hsva.v / 100}
+                        left={hsva.s / 100}
+                        color={hsvaToHslString(hsva)}
+                    />
+                </Interactive>
+            </SaturationWrap>
+        );
+    })
+);
 
-function Hue({ hue, onChange, ...rest }) {
-    const handleMove = (interaction) => {
-        onChange({ h: 360 * interaction.left });
-    };
+const Hue = memo(
+    forwardRef(({ hue, onChange, ...rest }, ref) => {
+        const handleMove = (interaction) => {
+            onChange({ h: 360 * interaction.left });
+        };
 
-    const handleKey = (offset) => {
-        // hue measured in degrees of the color circle ranging from 0 to 360
-        onChange({ h: clamp(hue + offset.left * 360, 0, 360) });
-    };
+        const handleKey = (offset) => {
+            // hue measured in degrees of the color circle ranging from 0 to 360
+            onChange({ h: clamp(hue + offset.left * 360, 0, 360) });
+        };
 
-    return (
-        <HueWrap {...rest}>
-            <Interactive
-                onMove={handleMove}
-                onKey={handleKey}
-                aria-label="Hue"
-                aria-valuetext={round(hue)}
-            >
-                <Pointer
-                    left={hue / 360}
-                    color={hsvaToHslString({ h: hue, s: 100, v: 100, a: 1 })}
-                    height="100%"
-                />
-            </Interactive>
-        </HueWrap>
-    );
-}
+        return (
+            <HueWrap ref={ref} {...rest}>
+                <Interactive
+                    onMove={handleMove}
+                    onKey={handleKey}
+                    aria-label="Hue"
+                    aria-valuetext={round(hue)}
+                >
+                    <Pointer
+                        left={hue / 360}
+                        color={hsvaToHslString({ h: hue, s: 100, v: 100, a: 1 })}
+                        height="100%"
+                    />
+                </Interactive>
+            </HueWrap>
+        );
+    })
+);
 
-function EyeDropper({ onChange, ...rest }) {
+const EyeDropper = forwardRef(({ onChange, ...rest }, ref) => {
     const isEyeDropperSupported = () => {
         return "EyeDropper" in window;
     };
@@ -255,16 +263,17 @@ function EyeDropper({ onChange, ...rest }) {
     }
 
     return (
-        <Button onClick={openEyeDropper} {...rest}>
+        <Button ref={ref} {...rest} onClick={openEyeDropper}>
             <EyeDropperIcon />
         </Button>
     );
-}
+});
 
-export function ColorPicker({ color, onChange, showEyeDropper, ...rest }) {
+export const ColorPicker = forwardRef(({ color, onChange, showEyeDropper, ...rest }, ref) => {
     const [hsva, updateHsva] = useHexColor(color, onChange);
     return (
         <PickerWrap
+            ref={ref}
             position="relative"
             flexDirection="column"
             flex="none"
@@ -277,7 +286,7 @@ export function ColorPicker({ color, onChange, showEyeDropper, ...rest }) {
             {showEyeDropper && <EyeDropper onChange={onChange} />}
         </PickerWrap>
     );
-}
+});
 
 ColorPicker.Saturation = Saturation;
 ColorPicker.Hue = Hue;

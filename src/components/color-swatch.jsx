@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { memo, forwardRef } from "react";
 import PropTypes from "prop-types";
 import tinycolor from "tinycolor2";
 import styled, { css } from "styled-components";
@@ -54,20 +54,22 @@ const Swatch = styled.span`
         `}
 `;
 
-export const ColorSwatch = forwardRef((props, ref) => {
-    const { color, primary, secondary, style, ...rest } = props;
-    const accentColor = (primary || secondary) && tinycolor(color).isDark() ? "#fff" : "#000";
-    return (
-        <Swatch
-            ref={ref}
-            {...rest}
-            primary={primary}
-            secondary={secondary}
-            accentColor={accentColor}
-            style={{ backgroundColor: color, ...style }}
-        />
-    );
-});
+export const ColorSwatch = memo(
+    forwardRef((props, ref) => {
+        const { color, primary, secondary, style, ...rest } = props;
+        const accentColor = (primary || secondary) && tinycolor(color).isDark() ? "#fff" : "#000";
+        return (
+            <Swatch
+                ref={ref}
+                {...rest}
+                primary={primary}
+                secondary={secondary}
+                accentColor={accentColor}
+                style={{ backgroundColor: color, ...style }}
+            />
+        );
+    })
+);
 
 ColorSwatch.propTypes = {
     color: PropTypes.string,
