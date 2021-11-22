@@ -75,7 +75,7 @@ export const Select = forwardRef((props, ref) => {
                     onClick={() => handleSelect(opt.value)}
                     selected={selectedOption?.value === opt.value}
                 >
-                    {opt.label}
+                    {opt.children ?? opt.label}
                 </Option>
             ))}
         </>
@@ -111,6 +111,7 @@ Select.propTypes = {
         PropTypes.shape({
             value: PropTypes.node.isRequired,
             label: PropTypes.string.isRequired,
+            children: PropTypes.node,
         })
     ),
     value: PropTypes.any,
