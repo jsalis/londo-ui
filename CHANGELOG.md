@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/jsalis/londo-ui/compare/v0.1.5...v0.1.6) (2021-11-22)
+
+### Features
+
+- add children prop to select option ([a737a4c](https://github.com/jsalis/londo-ui/commit/a737a4cb7ca1c772849876e662e7a4ddc255ca88))
+
 ### [0.1.5](https://github.com/jsalis/londo-ui/compare/v0.1.4...v0.1.5) (2021-11-07)
 
 ### Features
