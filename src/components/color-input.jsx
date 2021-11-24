@@ -1,10 +1,11 @@
 import { forwardRef, useState } from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
 import { isNull } from "../utils/type-util";
 import { isValidColorHex } from "../utils/color-util";
 import { useDisclosure, useControllableState } from "../hooks";
-import { ColorIcon } from "../icons";
+import { EyeDropperIcon } from "../icons";
 
 import { ColorPicker } from "./color-picker";
 import { ColorSwatch } from "./color-swatch";
@@ -15,6 +16,27 @@ function escapeInput(val) {
     return val.replace(/([^0-9A-F]+)/gi, "").substr(0, 6);
 }
 
+function isEyeDropperSupported() {
+    return "EyeDropper" in window;
+}
+
+function openEyeDropper() {
+    return new window.EyeDropper().open();
+}
+
+const StyledSuffix = styled(Input.Suffix)`
+    color: ${(p) => p.theme.colors.text};
+    pointer-events: auto;
+    cursor: pointer;
+`;
+
+const StyledGroup = styled(Input.Group)`
+    input:disabled ~ ${StyledSuffix} {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+`;
+
 export const ColorInput = forwardRef((props, ref) => {
     const {
         value,
@@ -24,7 +46,6 @@ export const ColorInput = forwardRef((props, ref) => {
         onClose,
         onBlur,
         pickerSize,
-        showEyeDropper,
         disabled,
         className,
         ...rest
@@ -60,14 +81,18 @@ export const ColorInput = forwardRef((props, ref) => {
         onChange?.(val);
     };
 
-    const overlay = (
-        <ColorPicker
-            color={color}
-            onChange={handlePickerChange}
-            size={pickerSize}
-            showEyeDropper={showEyeDropper}
-        />
-    );
+    const handleEyeDropper = (event) => {
+        event.preventDefault();
+
+        if (!disabled) {
+            openEyeDropper().then(({ sRGBHex: val }) => {
+                setColor(val);
+                onChange?.(val);
+            });
+        }
+    };
+
+    const overlay = <ColorPicker color={color} onChange={handlePickerChange} size={pickerSize} />;
 
     return (
         <Dropdown
@@ -79,7 +104,7 @@ export const ColorInput = forwardRef((props, ref) => {
             sameWidth={false}
             p={2}
         >
-            <Input.Group className={className}>
+            <StyledGroup className={className}>
                 <Input.Prefix>
                     <ColorSwatch color={color} size={14} />
                 </Input.Prefix>
@@ -92,10 +117,12 @@ export const ColorInput = forwardRef((props, ref) => {
                     textTransform="uppercase"
                     {...inputProps}
                 />
-                <Input.Suffix>
-                    <ColorIcon />
-                </Input.Suffix>
-            </Input.Group>
+                {isEyeDropperSupported() && (
+                    <StyledSuffix onClick={handleEyeDropper}>
+                        <EyeDropperIcon />
+                    </StyledSuffix>
+                )}
+            </StyledGroup>
         </Dropdown>
     );
 });
@@ -109,12 +136,10 @@ ColorInput.propTypes = {
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
     pickerSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-    showEyeDropper: PropTypes.bool,
     disabled: PropTypes.bool,
     className: PropTypes.string,
 };
 
 ColorInput.defaultProps = {
     defaultValue: "#000000",
-    showEyeDropper: true,
 };

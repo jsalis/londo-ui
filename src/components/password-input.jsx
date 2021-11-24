@@ -12,7 +12,7 @@ const StyledSuffix = styled(Input.Suffix)`
     cursor: pointer;
 `;
 
-const Container = styled(Input.Group)`
+const StyledGroup = styled(Input.Group)`
     input:disabled ~ ${StyledSuffix} {
         opacity: 0.5;
         cursor: not-allowed;
@@ -33,17 +33,13 @@ export const PasswordInput = forwardRef((props, ref) => {
         }
     };
 
-    const handleMouseDown = (event) => {
-        event.preventDefault();
-    };
-
     return (
-        <Container className={className}>
+        <StyledGroup className={className}>
             <Input ref={ref} {...rest} type={type} disabled={disabled} />
-            <StyledSuffix onClick={handleVisibleChange} onMouseDown={handleMouseDown}>
+            <StyledSuffix onClick={handleVisibleChange} onMouseDown={(e) => e.preventDefault()}>
                 {suffix}
             </StyledSuffix>
-        </Container>
+        </StyledGroup>
     );
 });
 

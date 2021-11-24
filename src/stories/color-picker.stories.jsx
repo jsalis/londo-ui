@@ -8,7 +8,6 @@ export default {
     subcomponents: {
         Saturation: ColorPicker.Saturation,
         Hue: ColorPicker.Hue,
-        EyeDropper: ColorPicker.EyeDropper,
     },
     parameters: {
         componentSubtitle: "A hex color picker.",

@@ -47,7 +47,7 @@ const DragHandle = styled(Input.Suffix)`
     cursor: ew-resize;
 `;
 
-const Container = styled(Input.Group)`
+const StyledGroup = styled(Input.Group)`
     input:focus:enabled {
         padding-right: 4px;
 
@@ -136,7 +136,7 @@ export const NumberInput = forwardRef((props, ref) => {
     };
 
     return (
-        <Container className={className}>
+        <StyledGroup className={className}>
             <Input
                 value={counter.value}
                 onChange={handleChange}
@@ -148,7 +148,7 @@ export const NumberInput = forwardRef((props, ref) => {
                 <MoveHorizontalIcon />
             </DragHandle>
             {suffix && <StyledSuffix>{suffix}</StyledSuffix>}
-        </Container>
+        </StyledGroup>
     );
 });
 

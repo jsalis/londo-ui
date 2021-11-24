@@ -6,10 +6,8 @@ import { layout } from "styled-system";
 import { useCallbackRef, useHexColor } from "../hooks";
 import { clamp, round } from "../utils/math-util";
 import { hsvaToHslString } from "../utils/color-util";
-import { EyeDropperIcon } from "../icons";
 
 import { Flex } from "./flex";
-import { Button } from "./button";
 
 const PointerFill = styled.div`
     position: absolute;
@@ -246,30 +244,7 @@ const Hue = memo(
     })
 );
 
-const EyeDropper = forwardRef(({ onChange, ...rest }, ref) => {
-    const isEyeDropperSupported = () => {
-        return "EyeDropper" in window;
-    };
-
-    const openEyeDropper = () => {
-        const eyeDropper = new window.EyeDropper();
-        eyeDropper.open().then(({ sRGBHex }) => {
-            onChange(sRGBHex);
-        });
-    };
-
-    if (!isEyeDropperSupported()) {
-        return null;
-    }
-
-    return (
-        <Button ref={ref} {...rest} onClick={openEyeDropper}>
-            <EyeDropperIcon />
-        </Button>
-    );
-});
-
-export const ColorPicker = forwardRef(({ color, onChange, showEyeDropper, ...rest }, ref) => {
+export const ColorPicker = forwardRef(({ color, onChange, ...rest }, ref) => {
     const [hsva, updateHsva] = useHexColor(color, onChange);
     return (
         <PickerWrap
@@ -283,24 +258,20 @@ export const ColorPicker = forwardRef(({ color, onChange, showEyeDropper, ...res
         >
             <Saturation hsva={hsva} onChange={updateHsva} />
             <Hue hue={hsva.h} onChange={updateHsva} />
-            {showEyeDropper && <EyeDropper onChange={onChange} />}
         </PickerWrap>
     );
 });
 
 ColorPicker.Saturation = Saturation;
 ColorPicker.Hue = Hue;
-ColorPicker.EyeDropper = EyeDropper;
 ColorPicker.propTypes = {
     color: PropTypes.string,
     onChange: PropTypes.func,
     size: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-    showEyeDropper: PropTypes.bool,
     className: PropTypes.string,
 };
 
 ColorPicker.defaultProps = {
     color: "#000000",
     size: 160,
-    showEyeDropper: true,
 };
