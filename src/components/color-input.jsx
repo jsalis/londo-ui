@@ -60,12 +60,12 @@ export const ColorInput = forwardRef((props, ref) => {
         ...rest,
     };
 
-    const handleInputChange = (event) => {
-        const val = escapeInput(event.target.value);
-        setInputValue(val);
+    const handleInputChange = (val) => {
+        const escVal = escapeInput(val);
+        setInputValue(escVal);
 
-        if (isValidColorHex(val)) {
-            const hex = "#" + val;
+        if (isValidColorHex(escVal)) {
+            const hex = "#" + escVal;
             setColor(hex);
             onChange?.(hex);
         }

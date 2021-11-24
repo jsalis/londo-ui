@@ -95,8 +95,8 @@ export const NumberInput = forwardRef((props, ref) => {
         },
     });
 
-    const handleChange = (event) => {
-        counter.update(sanitize(event.target.value));
+    const handleChange = (val) => {
+        counter.update(sanitize(val));
     };
 
     const handleBlur = () => {

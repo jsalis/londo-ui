@@ -59,7 +59,7 @@ export const BinaryInput = forwardRef((props, ref) => {
                     <Flex key={i} p={1} justifyContent="center">
                         <Checkbox
                             checked={checked}
-                            onChange={(e) => handleSelect(i, e.target.checked)}
+                            onChange={(val) => handleSelect(i, val)}
                             disabled={activeBits.length >= max && !checked}
                             direction="column"
                         >
