@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/jsalis/londo-ui/compare/v0.1.6...v0.1.7) (2021-11-24)
+
+### Features
+
+- add keepMounted prop to dropdown ([3b9ac5d](https://github.com/jsalis/londo-ui/commit/3b9ac5d7a32b61383bc99261c9ca97658c2a01c6))
+- add pickerDisabled prop to color input ([7ba8f60](https://github.com/jsalis/londo-ui/commit/7ba8f60b2e52b9cb8881aaf79548c7e28523d986))
+- move change event to second argument for checkbox and input ([0f282f1](https://github.com/jsalis/londo-ui/commit/0f282f1a6aae0a422bae398e5d7ec2c4dd640ae3))
+- move eye dropper button to color input suffix ([9e1f697](https://github.com/jsalis/londo-ui/commit/9e1f6970381d6f342601e4444aca3b0aa5fbcd1c))
+
+### Bug Fixes
+
+- input handlers ([7ca0962](https://github.com/jsalis/londo-ui/commit/7ca0962d48687dfca673552c0d78d7346b46b6d3))
+
 ### [0.1.6](https://github.com/jsalis/londo-ui/compare/v0.1.5...v0.1.6) (2021-11-22)
 
 ### Features
