@@ -46,6 +46,7 @@ export const ColorInput = forwardRef((props, ref) => {
         onClose,
         onBlur,
         pickerSize,
+        pickerDisabled,
         disabled,
         className,
         ...rest
@@ -100,8 +101,9 @@ export const ColorInput = forwardRef((props, ref) => {
             isOpen={isOpen}
             onOpen={open}
             onClose={close}
-            disabled={disabled}
+            disabled={pickerDisabled || disabled}
             sameWidth={false}
+            keepMounted={false}
             p={2}
         >
             <StyledGroup className={className}>
@@ -136,6 +138,7 @@ ColorInput.propTypes = {
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
     pickerSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+    pickerDisabled: PropTypes.bool,
     disabled: PropTypes.bool,
     className: PropTypes.string,
 };
