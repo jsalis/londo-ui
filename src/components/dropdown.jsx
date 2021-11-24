@@ -8,8 +8,18 @@ import { Popper } from "./popper";
 import { ClickAwayListener } from "./click-away-listener";
 
 export const Dropdown = forwardRef((props, ref) => {
-    const { overlay, placement, disabled, isOpen, onOpen, onClose, sameWidth, children, ...rest } =
-        props;
+    const {
+        overlay,
+        placement,
+        disabled,
+        isOpen,
+        onOpen,
+        onClose,
+        sameWidth,
+        keepMounted,
+        children,
+        ...rest
+    } = props;
 
     const child = Children.only(children);
 
@@ -79,8 +89,8 @@ export const Dropdown = forwardRef((props, ref) => {
                     isOpen={isOpen}
                     placement={placement}
                     modifiers={modifiers}
+                    keepMounted={keepMounted}
                     onMouseDown={(e) => e.preventDefault()}
-                    keepMounted
                 >
                     <Box py={1} borderRadius="base" boxShadow="base" bg="gray.1" {...rest}>
                         {overlay}
@@ -115,6 +125,7 @@ Dropdown.propTypes = {
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
     sameWidth: PropTypes.bool,
+    keepMounted: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
 };
@@ -122,4 +133,5 @@ Dropdown.propTypes = {
 Dropdown.defaultProps = {
     placement: "bottom-start",
     sameWidth: true,
+    keepMounted: true,
 };
