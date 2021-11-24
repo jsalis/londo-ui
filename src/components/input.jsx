@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { system, space, layout, position, flexbox, color } from "styled-system";
 
 import { getValidChildren } from "../utils/react-util";
+import { useControllableState } from "../hooks";
 
 import { Flex } from "./flex";
 
@@ -116,7 +117,16 @@ const Suffix = forwardRef((props, ref) => {
 Suffix.id = "InputSuffix";
 
 export const Input = forwardRef((props, ref) => {
-    return <StyledInput ref={ref} {...props} />;
+    const { value, defaultValue, onChange, ...rest } = props;
+    const [inputValue, setSelectedValue] = useControllableState(value, defaultValue);
+
+    const handleSelect = (event) => {
+        const val = event.target.value;
+        setSelectedValue(val);
+        onChange?.(val, event);
+    };
+
+    return <StyledInput ref={ref} value={inputValue} onChange={handleSelect} {...rest} />;
 });
 
 Input.id = "Input";
@@ -126,6 +136,7 @@ Input.Suffix = Suffix;
 Input.propTypes = {
     type: PropTypes.string,
     value: PropTypes.any,
+    defaultValue: PropTypes.any,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,

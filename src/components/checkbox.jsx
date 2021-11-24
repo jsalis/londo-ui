@@ -116,8 +116,9 @@ export const Checkbox = forwardRef((props, ref) => {
     const [checked, setChecked] = useControllableState(checkedProp, defaultChecked);
 
     const handleChange = (event) => {
-        setChecked(event.target.checked);
-        onChange?.(event);
+        const val = event.target.checked;
+        setChecked(val);
+        onChange?.(val, event);
     };
 
     return (
