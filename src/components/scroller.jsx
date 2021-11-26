@@ -28,7 +28,7 @@ const HorizontalBar = styled.div`
     ${color}
 `;
 
-const ScrollContent = styled.div`
+const ScrollContent = styled(Box)`
     height: 100%;
     overflow: scroll;
     overscroll-behavior: ${(p) => p.overScroll};
@@ -51,18 +51,20 @@ const Container = styled(Box)`
     }
 `;
 
-export const Scroller = forwardRef(({ barColor, overScroll, children, ...rest }, ref) => {
-    const { content, yBar, xBar } = useScroll({ children });
-    return (
-        <Container ref={ref} {...rest}>
-            <ScrollContent ref={content} overScroll={overScroll}>
-                {children}
-            </ScrollContent>
-            <VerticalBar ref={yBar} bg={barColor} />
-            <HorizontalBar ref={xBar} bg={barColor} />
-        </Container>
-    );
-});
+export const Scroller = forwardRef(
+    ({ barColor, overScroll, maxHeight, children, ...rest }, ref) => {
+        const { content, yBar, xBar } = useScroll({ children });
+        return (
+            <Container ref={ref} maxHeight={maxHeight} {...rest}>
+                <ScrollContent ref={content} maxHeight={maxHeight} overScroll={overScroll}>
+                    {children}
+                </ScrollContent>
+                <VerticalBar ref={yBar} bg={barColor} />
+                <HorizontalBar ref={xBar} bg={barColor} />
+            </Container>
+        );
+    }
+);
 
 function useScroll({ children }) {
     const content = useRef();
@@ -128,6 +130,7 @@ function getHorizontalBarWidth(content) {
 Scroller.propTypes = {
     barColor: PropTypes.string,
     overScroll: PropTypes.oneOf(["auto", "contain", "none"]),
+    maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
     className: PropTypes.string,
     children: PropTypes.node,
 };

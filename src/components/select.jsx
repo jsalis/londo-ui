@@ -7,6 +7,7 @@ import { ChevronDownIcon } from "../icons";
 
 import { Input } from "./input";
 import { Dropdown } from "./dropdown";
+import { Scroller } from "./scroller";
 
 const Option = styled.div`
     padding: 4px;
@@ -68,7 +69,7 @@ export const Select = forwardRef((props, ref) => {
     };
 
     const overlay = (
-        <>
+        <Scroller maxHeight={256}>
             {options.map((opt) => (
                 <Option
                     key={opt.value}
@@ -78,7 +79,7 @@ export const Select = forwardRef((props, ref) => {
                     {opt.children ?? opt.label}
                 </Option>
             ))}
-        </>
+        </Scroller>
     );
 
     return (
