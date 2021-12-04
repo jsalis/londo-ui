@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/jsalis/londo-ui/compare/v0.1.7...v0.1.8) (2021-12-04)
+
+### Features
+
+- add debouncer component ([7d006ae](https://github.com/jsalis/londo-ui/commit/7d006ae32814f32fc23cf5e09c02efc86c1c33da))
+- add overflow scroll to select dropdown ([3c5eaeb](https://github.com/jsalis/londo-ui/commit/3c5eaeb1bdddbec009856138858d8d1b40a5545e))
+- add shorthand props to flex component ([fc78697](https://github.com/jsalis/londo-ui/commit/fc78697eaad26d9359c48aec0a4b4e123843e48c))
+- remove prop types for prod env ([21ab55a](https://github.com/jsalis/londo-ui/commit/21ab55a2d1a4f10e74516edc8b3f552a642df27c))
+- remove spacer component in favor of flex gap ([eb9c501](https://github.com/jsalis/londo-ui/commit/eb9c5015ca7aa6f52d39ac1c34a2e4f1ed08714f))
+
 ### [0.1.7](https://github.com/jsalis/londo-ui/compare/v0.1.6...v0.1.7) (2021-11-24)
 
 ### Features
