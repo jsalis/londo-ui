@@ -196,20 +196,22 @@ function useDragger({ onDragChange, onUpdate }) {
     return { ref, active, start };
 }
 
-NumberInput.propTypes = {
-    value: PropTypes.any,
-    defaultValue: PropTypes.any,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    onBlur: PropTypes.func,
-    onKeyDown: PropTypes.func,
-    onDragChange: PropTypes.func,
-    min: PropTypes.number,
-    max: PropTypes.number,
-    step: PropTypes.number,
-    precision: PropTypes.number,
-    suffix: PropTypes.node,
-    readOnly: PropTypes.bool,
-    disabled: PropTypes.bool,
-    className: PropTypes.string,
-};
+if (process.env.NODE_ENV !== "production") {
+    NumberInput.propTypes = {
+        value: PropTypes.any,
+        defaultValue: PropTypes.any,
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        onKeyDown: PropTypes.func,
+        onDragChange: PropTypes.func,
+        min: PropTypes.number,
+        max: PropTypes.number,
+        step: PropTypes.number,
+        precision: PropTypes.number,
+        suffix: PropTypes.node,
+        readOnly: PropTypes.bool,
+        disabled: PropTypes.bool,
+        className: PropTypes.string,
+    };
+}

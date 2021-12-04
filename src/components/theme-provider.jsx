@@ -9,10 +9,12 @@ export function ThemeProvider({ theme, children }) {
     return <BaseThemeProvider theme={t}>{children}</BaseThemeProvider>;
 }
 
-ThemeProvider.propTypes = {
-    theme: PropTypes.oneOfType([PropTypes.oneOf(["light", "dark"]), PropTypes.object]),
-    children: PropTypes.node,
-};
+if (process.env.NODE_ENV !== "production") {
+    ThemeProvider.propTypes = {
+        theme: PropTypes.oneOfType([PropTypes.oneOf(["light", "dark"]), PropTypes.object]),
+        children: PropTypes.node,
+    };
+}
 
 ThemeProvider.defaultProps = {
     theme: "dark",

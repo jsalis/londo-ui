@@ -101,14 +101,16 @@ export const Tag = forwardRef((props, ref) => {
     );
 });
 
-Tag.propTypes = {
-    color: PropTypes.string,
-    visible: PropTypes.bool,
-    closable: PropTypes.bool,
-    onClose: PropTypes.func,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+if (process.env.NODE_ENV !== "production") {
+    Tag.propTypes = {
+        color: PropTypes.string,
+        visible: PropTypes.bool,
+        closable: PropTypes.bool,
+        onClose: PropTypes.func,
+        className: PropTypes.string,
+        children: PropTypes.node,
+    };
+}
 
 Tag.defaultProps = {
     closable: false,

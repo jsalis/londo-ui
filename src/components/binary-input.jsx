@@ -96,19 +96,21 @@ export const BinaryInput = forwardRef((props, ref) => {
     );
 });
 
-BinaryInput.propTypes = {
-    value: PropTypes.any,
-    defaultValue: PropTypes.any,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    onBlur: PropTypes.func,
-    onOpen: PropTypes.func,
-    onClose: PropTypes.func,
-    bits: PropTypes.number,
-    max: PropTypes.number,
-    disabled: PropTypes.bool,
-    className: PropTypes.string,
-};
+if (process.env.NODE_ENV !== "production") {
+    BinaryInput.propTypes = {
+        value: PropTypes.any,
+        defaultValue: PropTypes.any,
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        onOpen: PropTypes.func,
+        onClose: PropTypes.func,
+        bits: PropTypes.number,
+        max: PropTypes.number,
+        disabled: PropTypes.bool,
+        className: PropTypes.string,
+    };
+}
 
 BinaryInput.defaultProps = {
     bits: 16,

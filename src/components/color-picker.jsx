@@ -264,12 +264,15 @@ export const ColorPicker = forwardRef(({ color, onChange, ...rest }, ref) => {
 
 ColorPicker.Saturation = Saturation;
 ColorPicker.Hue = Hue;
-ColorPicker.propTypes = {
-    color: PropTypes.string,
-    onChange: PropTypes.func,
-    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-    className: PropTypes.string,
-};
+
+if (process.env.NODE_ENV !== "production") {
+    ColorPicker.propTypes = {
+        color: PropTypes.string,
+        onChange: PropTypes.func,
+        size: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+        className: PropTypes.string,
+    };
+}
 
 ColorPicker.defaultProps = {
     color: "#000000",

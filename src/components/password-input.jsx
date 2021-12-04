@@ -43,13 +43,15 @@ export const PasswordInput = forwardRef((props, ref) => {
     );
 });
 
-PasswordInput.propTypes = {
-    value: PropTypes.any,
-    defaultValue: PropTypes.any,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    onBlur: PropTypes.func,
-    readOnly: PropTypes.bool,
-    disabled: PropTypes.bool,
-    className: PropTypes.string,
-};
+if (process.env.NODE_ENV !== "production") {
+    PasswordInput.propTypes = {
+        value: PropTypes.any,
+        defaultValue: PropTypes.any,
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        readOnly: PropTypes.bool,
+        disabled: PropTypes.bool,
+        className: PropTypes.string,
+    };
+}

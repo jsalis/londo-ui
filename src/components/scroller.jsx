@@ -127,13 +127,15 @@ function getHorizontalBarWidth(content) {
     return width === clientWidth ? 0 : Math.max(width, BAR_MIN_SIZE);
 }
 
-Scroller.propTypes = {
-    barColor: PropTypes.string,
-    overScroll: PropTypes.oneOf(["auto", "contain", "none"]),
-    maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+if (process.env.NODE_ENV !== "production") {
+    Scroller.propTypes = {
+        barColor: PropTypes.string,
+        overScroll: PropTypes.oneOf(["auto", "contain", "none"]),
+        maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+        className: PropTypes.string,
+        children: PropTypes.node,
+    };
+}
 
 Scroller.defaultProps = {
     barColor: "alpha.3",

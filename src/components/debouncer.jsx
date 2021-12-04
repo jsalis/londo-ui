@@ -7,13 +7,15 @@ export function Debouncer({ value, onChange, wait, leading, children }) {
     return <>{children({ value: currentValue, onChange: setCurrentValue })}</>;
 }
 
-Debouncer.propTypes = {
-    value: PropTypes.any,
-    onChange: PropTypes.func,
-    wait: PropTypes.number,
-    leading: PropTypes.bool,
-    children: PropTypes.func.isRequired,
-};
+if (process.env.NODE_ENV !== "production") {
+    Debouncer.propTypes = {
+        value: PropTypes.any,
+        onChange: PropTypes.func,
+        wait: PropTypes.number,
+        leading: PropTypes.bool,
+        children: PropTypes.func.isRequired,
+    };
+}
 
 Debouncer.defaultProps = {
     wait: 400,

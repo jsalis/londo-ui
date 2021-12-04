@@ -107,24 +107,26 @@ export const Select = forwardRef((props, ref) => {
     );
 });
 
-Select.propTypes = {
-    options: PropTypes.arrayOf(
-        PropTypes.shape({
-            value: PropTypes.node.isRequired,
-            label: PropTypes.string.isRequired,
-            children: PropTypes.node,
-        })
-    ),
-    value: PropTypes.any,
-    defaultValue: PropTypes.any,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    onBlur: PropTypes.func,
-    onOpen: PropTypes.func,
-    onClose: PropTypes.func,
-    disabled: PropTypes.bool,
-    className: PropTypes.string,
-};
+if (process.env.NODE_ENV !== "production") {
+    Select.propTypes = {
+        options: PropTypes.arrayOf(
+            PropTypes.shape({
+                value: PropTypes.node.isRequired,
+                label: PropTypes.string.isRequired,
+                children: PropTypes.node,
+            })
+        ),
+        value: PropTypes.any,
+        defaultValue: PropTypes.any,
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        onOpen: PropTypes.func,
+        onClose: PropTypes.func,
+        disabled: PropTypes.bool,
+        className: PropTypes.string,
+    };
+}
 
 Select.defaultProps = {
     options: [],

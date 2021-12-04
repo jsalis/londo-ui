@@ -30,9 +30,11 @@ export function Portal({ container, onMount, onUnmount, children }) {
     );
 }
 
-Portal.propTypes = {
-    container: PropTypes.oneOfType([HTMLElementType, PropTypes.func]),
-    onMount: PropTypes.func,
-    onUnmount: PropTypes.func,
-    children: PropTypes.node,
-};
+if (process.env.NODE_ENV !== "production") {
+    Portal.propTypes = {
+        container: PropTypes.oneOfType([HTMLElementType, PropTypes.func]),
+        onMount: PropTypes.func,
+        onUnmount: PropTypes.func,
+        children: PropTypes.node,
+    };
+}

@@ -129,19 +129,21 @@ export const ColorInput = forwardRef((props, ref) => {
     );
 });
 
-ColorInput.propTypes = {
-    value: PropTypes.any,
-    defaultValue: PropTypes.any,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    onBlur: PropTypes.func,
-    onOpen: PropTypes.func,
-    onClose: PropTypes.func,
-    pickerSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-    pickerDisabled: PropTypes.bool,
-    disabled: PropTypes.bool,
-    className: PropTypes.string,
-};
+if (process.env.NODE_ENV !== "production") {
+    ColorInput.propTypes = {
+        value: PropTypes.any,
+        defaultValue: PropTypes.any,
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        onOpen: PropTypes.func,
+        onClose: PropTypes.func,
+        pickerSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+        pickerDisabled: PropTypes.bool,
+        disabled: PropTypes.bool,
+        className: PropTypes.string,
+    };
+}
 
 ColorInput.defaultProps = {
     defaultValue: "#000000",

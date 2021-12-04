@@ -58,33 +58,35 @@ export const Popover = forwardRef((props, ref) => {
     );
 });
 
-Popover.propTypes = {
-    title: PropTypes.node,
-    content: PropTypes.node,
-    placement: PropTypes.oneOf([
-        "auto-end",
-        "auto-start",
-        "auto",
-        "bottom-end",
-        "bottom-start",
-        "bottom",
-        "left-end",
-        "left-start",
-        "left",
-        "right-end",
-        "right-start",
-        "right",
-        "top-end",
-        "top-start",
-        "top",
-    ]),
-    mouseEnterDelay: PropTypes.number,
-    mouseLeaveDelay: PropTypes.number,
-    onOpen: PropTypes.func,
-    onClose: PropTypes.func,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+if (process.env.NODE_ENV !== "production") {
+    Popover.propTypes = {
+        title: PropTypes.node,
+        content: PropTypes.node,
+        placement: PropTypes.oneOf([
+            "auto-end",
+            "auto-start",
+            "auto",
+            "bottom-end",
+            "bottom-start",
+            "bottom",
+            "left-end",
+            "left-start",
+            "left",
+            "right-end",
+            "right-start",
+            "right",
+            "top-end",
+            "top-start",
+            "top",
+        ]),
+        mouseEnterDelay: PropTypes.number,
+        mouseLeaveDelay: PropTypes.number,
+        onOpen: PropTypes.func,
+        onClose: PropTypes.func,
+        className: PropTypes.string,
+        children: PropTypes.node,
+    };
+}
 
 Popover.defaultProps = {
     placement: "top",

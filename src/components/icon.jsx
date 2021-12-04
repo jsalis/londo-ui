@@ -16,14 +16,16 @@ export const Icon = styled.svg`
     ${other}
 `;
 
-Icon.propTypes = {
-    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    viewBox: PropTypes.string,
-    fill: PropTypes.string,
-    color: PropTypes.string,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+if (process.env.NODE_ENV !== "production") {
+    Icon.propTypes = {
+        size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        viewBox: PropTypes.string,
+        fill: PropTypes.string,
+        color: PropTypes.string,
+        className: PropTypes.string,
+        children: PropTypes.node,
+    };
+}
 
 Icon.defaultProps = {
     size: 14,

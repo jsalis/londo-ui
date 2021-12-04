@@ -38,19 +38,21 @@ export const Grid = styled(Box)`
     ${grid}
 `;
 
-Grid.propTypes = {
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-    flow: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-    columns: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-    rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-    autoColumns: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-    autoRows: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-    areas: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-    gap: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-    columnGap: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-    rowGap: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-    className: PropTypes.string,
-};
+if (process.env.NODE_ENV !== "production") {
+    Grid.propTypes = {
+        height: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+        flow: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+        columns: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+        rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+        autoColumns: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+        autoRows: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+        areas: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+        gap: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+        columnGap: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+        rowGap: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+        className: PropTypes.string,
+    };
+}
 
 Grid.defaultProps = {
     height: "auto",

@@ -146,19 +146,21 @@ export const Checkbox = forwardRef((props, ref) => {
     );
 });
 
-Checkbox.propTypes = {
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-    checked: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-    defaultChecked: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    onBlur: PropTypes.func,
-    direction: PropTypes.oneOf(["row", "column"]),
-    disabled: PropTypes.bool,
-    readOnly: PropTypes.bool,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+if (process.env.NODE_ENV !== "production") {
+    Checkbox.propTypes = {
+        value: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+        checked: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+        defaultChecked: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        direction: PropTypes.oneOf(["row", "column"]),
+        disabled: PropTypes.bool,
+        readOnly: PropTypes.bool,
+        className: PropTypes.string,
+        children: PropTypes.node,
+    };
+}
 
 Checkbox.defaultProps = {
     defaultChecked: false,

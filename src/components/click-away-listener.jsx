@@ -91,12 +91,14 @@ export function ClickAwayListener(props) {
     return <>{cloneElement(children, childrenProps)}</>;
 }
 
-ClickAwayListener.propTypes = {
-    children: PropTypes.node,
-    disableReactTree: PropTypes.bool,
-    mouseEvent: PropTypes.oneOf(["onClick", "onMouseDown", "onMouseUp", false]),
-    onClickAway: PropTypes.func.isRequired,
-};
+if (process.env.NODE_ENV !== "production") {
+    ClickAwayListener.propTypes = {
+        children: PropTypes.node,
+        disableReactTree: PropTypes.bool,
+        mouseEvent: PropTypes.oneOf(["onClick", "onMouseDown", "onMouseUp", false]),
+        onClickAway: PropTypes.func.isRequired,
+    };
+}
 
 ClickAwayListener.defaultProps = {
     disableReactTree: false,

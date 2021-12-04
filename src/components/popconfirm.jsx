@@ -94,35 +94,37 @@ export const Popconfirm = forwardRef((props, ref) => {
     );
 });
 
-Popconfirm.propTypes = {
-    title: PropTypes.node,
-    placement: PropTypes.oneOf([
-        "auto-end",
-        "auto-start",
-        "auto",
-        "bottom-end",
-        "bottom-start",
-        "bottom",
-        "left-end",
-        "left-start",
-        "left",
-        "right-end",
-        "right-start",
-        "right",
-        "top-end",
-        "top-start",
-        "top",
-    ]),
-    disabled: PropTypes.bool,
-    cancelText: PropTypes.node,
-    okText: PropTypes.node,
-    onConfirm: PropTypes.func,
-    onCancel: PropTypes.func,
-    onOpen: PropTypes.func,
-    onClose: PropTypes.func,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+if (process.env.NODE_ENV !== "production") {
+    Popconfirm.propTypes = {
+        title: PropTypes.node,
+        placement: PropTypes.oneOf([
+            "auto-end",
+            "auto-start",
+            "auto",
+            "bottom-end",
+            "bottom-start",
+            "bottom",
+            "left-end",
+            "left-start",
+            "left",
+            "right-end",
+            "right-start",
+            "right",
+            "top-end",
+            "top-start",
+            "top",
+        ]),
+        disabled: PropTypes.bool,
+        cancelText: PropTypes.node,
+        okText: PropTypes.node,
+        onConfirm: PropTypes.func,
+        onCancel: PropTypes.func,
+        onOpen: PropTypes.func,
+        onClose: PropTypes.func,
+        className: PropTypes.string,
+        children: PropTypes.node,
+    };
+}
 
 Popconfirm.defaultProps = {
     title: "Are you sure?",

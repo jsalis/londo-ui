@@ -101,12 +101,14 @@ export const Divider = forwardRef(({ align, dashed, children, ...rest }, ref) =>
     );
 });
 
-Divider.propTypes = {
-    align: PropTypes.oneOf(["left", "right", "center"]),
-    dashed: PropTypes.bool,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+if (process.env.NODE_ENV !== "production") {
+    Divider.propTypes = {
+        align: PropTypes.oneOf(["left", "right", "center"]),
+        dashed: PropTypes.bool,
+        className: PropTypes.string,
+        children: PropTypes.node,
+    };
+}
 
 Divider.defaultProps = {
     align: "center",

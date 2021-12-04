@@ -112,13 +112,15 @@ function DataCell({ width, height, value, selection, setSelection }) {
     );
 }
 
-SizePicker.propTypes = {
-    value: PropTypes.arrayOf(PropTypes.number),
-    defaultValue: PropTypes.arrayOf(PropTypes.number),
-    max: PropTypes.arrayOf(PropTypes.number),
-    onChange: PropTypes.func,
-    className: PropTypes.string,
-};
+if (process.env.NODE_ENV !== "production") {
+    SizePicker.propTypes = {
+        value: PropTypes.arrayOf(PropTypes.number),
+        defaultValue: PropTypes.arrayOf(PropTypes.number),
+        max: PropTypes.arrayOf(PropTypes.number),
+        onChange: PropTypes.func,
+        className: PropTypes.string,
+    };
+}
 
 SizePicker.defaultProps = {
     defaultValue: [1, 1],

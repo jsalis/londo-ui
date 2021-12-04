@@ -133,17 +133,20 @@ Input.id = "Input";
 Input.Group = Group;
 Input.Prefix = Prefix;
 Input.Suffix = Suffix;
-Input.propTypes = {
-    type: PropTypes.string,
-    value: PropTypes.any,
-    defaultValue: PropTypes.any,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    onBlur: PropTypes.func,
-    readOnly: PropTypes.bool,
-    disabled: PropTypes.bool,
-    className: PropTypes.string,
-};
+
+if (process.env.NODE_ENV !== "production") {
+    Input.propTypes = {
+        type: PropTypes.string,
+        value: PropTypes.any,
+        defaultValue: PropTypes.any,
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        readOnly: PropTypes.bool,
+        disabled: PropTypes.bool,
+        className: PropTypes.string,
+    };
+}
 
 Input.defaultProps = {
     type: "text",

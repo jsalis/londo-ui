@@ -71,14 +71,16 @@ export const ColorSwatch = memo(
     })
 );
 
-ColorSwatch.propTypes = {
-    color: PropTypes.string,
-    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    primary: PropTypes.bool,
-    secondary: PropTypes.bool,
-    className: PropTypes.string,
-    style: PropTypes.object,
-};
+if (process.env.NODE_ENV !== "production") {
+    ColorSwatch.propTypes = {
+        color: PropTypes.string,
+        size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        primary: PropTypes.bool,
+        secondary: PropTypes.bool,
+        className: PropTypes.string,
+        style: PropTypes.object,
+    };
+}
 
 ColorSwatch.defaultProps = {
     color: "#000000",

@@ -81,14 +81,16 @@ export const Text = forwardRef(({ children, ...rest }, ref) => {
     );
 });
 
-Text.propTypes = {
-    ellipsis: PropTypes.bool,
-    disabled: PropTypes.bool,
-    strong: PropTypes.bool,
-    underline: PropTypes.bool,
-    italic: PropTypes.bool,
-    delete: PropTypes.bool,
-    code: PropTypes.bool,
-    keyboard: PropTypes.bool,
-    children: PropTypes.node,
-};
+if (process.env.NODE_ENV !== "production") {
+    Text.propTypes = {
+        ellipsis: PropTypes.bool,
+        disabled: PropTypes.bool,
+        strong: PropTypes.bool,
+        underline: PropTypes.bool,
+        italic: PropTypes.bool,
+        delete: PropTypes.bool,
+        code: PropTypes.bool,
+        keyboard: PropTypes.bool,
+        children: PropTypes.node,
+    };
+}

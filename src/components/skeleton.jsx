@@ -45,12 +45,14 @@ export const Skeleton = forwardRef(({ count, duration, circle, ...rest }, ref) =
     return <span ref={ref}>{elements}</span>;
 });
 
-Skeleton.propTypes = {
-    count: PropTypes.number,
-    duration: PropTypes.number,
-    circle: PropTypes.bool,
-    className: PropTypes.string,
-};
+if (process.env.NODE_ENV !== "production") {
+    Skeleton.propTypes = {
+        count: PropTypes.number,
+        duration: PropTypes.number,
+        circle: PropTypes.bool,
+        className: PropTypes.string,
+    };
+}
 
 Skeleton.defaultProps = {
     count: 1,

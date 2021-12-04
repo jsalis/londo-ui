@@ -101,34 +101,36 @@ export const Dropdown = forwardRef((props, ref) => {
     );
 });
 
-Dropdown.propTypes = {
-    overlay: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-    placement: PropTypes.oneOf([
-        "auto-end",
-        "auto-start",
-        "auto",
-        "bottom-end",
-        "bottom-start",
-        "bottom",
-        "left-end",
-        "left-start",
-        "left",
-        "right-end",
-        "right-start",
-        "right",
-        "top-end",
-        "top-start",
-        "top",
-    ]),
-    disabled: PropTypes.bool,
-    isOpen: PropTypes.bool,
-    onOpen: PropTypes.func,
-    onClose: PropTypes.func,
-    sameWidth: PropTypes.bool,
-    keepMounted: PropTypes.bool,
-    className: PropTypes.string,
-    children: PropTypes.node,
-};
+if (process.env.NODE_ENV !== "production") {
+    Dropdown.propTypes = {
+        overlay: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+        placement: PropTypes.oneOf([
+            "auto-end",
+            "auto-start",
+            "auto",
+            "bottom-end",
+            "bottom-start",
+            "bottom",
+            "left-end",
+            "left-start",
+            "left",
+            "right-end",
+            "right-start",
+            "right",
+            "top-end",
+            "top-start",
+            "top",
+        ]),
+        disabled: PropTypes.bool,
+        isOpen: PropTypes.bool,
+        onOpen: PropTypes.func,
+        onClose: PropTypes.func,
+        sameWidth: PropTypes.bool,
+        keepMounted: PropTypes.bool,
+        className: PropTypes.string,
+        children: PropTypes.node,
+    };
+}
 
 Dropdown.defaultProps = {
     placement: "bottom-start",
