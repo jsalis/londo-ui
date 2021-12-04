@@ -1,4 +1,4 @@
-import { Box, Spacer } from "../components";
+import { Box, Flex } from "../components";
 
 export default {
     title: "Design System/Box",
@@ -18,7 +18,7 @@ export function Basic() {
 
 export function Width() {
     return (
-        <Spacer mb={2}>
+        <Flex gap={2} flexDirection="column">
             <Box p={2} bg="primary.base" color="white" width={1 / 4}>
                 1 / 4
             </Box>
@@ -31,13 +31,13 @@ export function Width() {
             <Box p={2} bg="primary.base" color="white" width={1}>
                 1
             </Box>
-        </Spacer>
+        </Flex>
     );
 }
 
 export function Padding() {
     return (
-        <Spacer mb={2}>
+        <Flex gap={2} flexDirection="column">
             <Box width={1 / 2} bg="primary.base" color="white" p={0}>
                 zero
             </Box>
@@ -53,43 +53,43 @@ export function Padding() {
             <Box width={1 / 2} bg="primary.base" color="white" p="lg">
                 large
             </Box>
-        </Spacer>
+        </Flex>
     );
 }
 
 export function Colors() {
     return (
-        <Spacer mb={2} p={2}>
-            <Box width={1 / 2} bg="primary.0">
+        <Flex gap={2} flexDirection="column">
+            <Box p={2} width={1 / 2} bg="primary.0">
                 primary.0
             </Box>
-            <Box width={1 / 2} bg="primary.1">
+            <Box p={2} width={1 / 2} bg="primary.1">
                 primary.1
             </Box>
-            <Box width={1 / 2} bg="primary.2">
+            <Box p={2} width={1 / 2} bg="primary.2">
                 primary.2
             </Box>
-            <Box width={1 / 2} bg="primary.3">
+            <Box p={2} width={1 / 2} bg="primary.3">
                 primary.3
             </Box>
-            <Box width={1 / 2} bg="primary.4" color="white">
+            <Box p={2} width={1 / 2} bg="primary.4" color="white">
                 primary.4
             </Box>
-            <Box width={1 / 2} bg="primary.5" color="white">
+            <Box p={2} width={1 / 2} bg="primary.5" color="white">
                 primary.5
             </Box>
-            <Box width={1 / 2} bg="primary.6" color="white">
+            <Box p={2} width={1 / 2} bg="primary.6" color="white">
                 primary.6
             </Box>
-            <Box width={1 / 2} bg="primary.7" color="white">
+            <Box p={2} width={1 / 2} bg="primary.7" color="white">
                 primary.7
             </Box>
-            <Box width={1 / 2} bg="primary.8" color="white">
+            <Box p={2} width={1 / 2} bg="primary.8" color="white">
                 primary.8
             </Box>
-            <Box width={1 / 2} bg="primary.9" color="white">
+            <Box p={2} width={1 / 2} bg="primary.9" color="white">
                 primary.9
             </Box>
-        </Spacer>
+        </Flex>
     );
 }

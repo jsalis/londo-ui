@@ -1,4 +1,4 @@
-import { Tag, Spacer } from "../components";
+import { Tag, Flex } from "../components";
 import { BrushIcon } from "../icons";
 
 export default {
@@ -27,31 +27,29 @@ Closable.args = {
 
 export function WithIcon(args) {
     return (
-        <Spacer mr={2}>
-            <Tag {...args}>
-                <BrushIcon mr={1} />
-                Brush
-            </Tag>
-        </Spacer>
+        <Tag {...args}>
+            <BrushIcon mr={1} />
+            Brush
+        </Tag>
     );
 }
 
 export function StatusColors() {
     return (
-        <Spacer mr={2}>
+        <Flex gap={2} flexWrap="wrap">
             <Tag>Default</Tag>
             <Tag color="primary">Primary</Tag>
             <Tag color="positive">Success</Tag>
             <Tag color="negative">Error</Tag>
             <Tag color="warning">Warning</Tag>
             <Tag color="info">Info</Tag>
-        </Spacer>
+        </Flex>
     );
 }
 
 export function PresetColors() {
     return (
-        <Spacer mr={2}>
+        <Flex gap={2} flexWrap="wrap">
             <Tag color="magenta">magenta</Tag>
             <Tag color="red">red</Tag>
             <Tag color="volcano">volcano</Tag>
@@ -64,6 +62,6 @@ export function PresetColors() {
             <Tag color="blue">blue</Tag>
             <Tag color="geekblue">geekblue</Tag>
             <Tag color="purple">purple</Tag>
-        </Spacer>
+        </Flex>
     );
 }

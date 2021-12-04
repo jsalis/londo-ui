@@ -1,4 +1,4 @@
-import { Flex, Box, Spacer } from "../components";
+import { Flex, Box } from "../components";
 
 export default {
     title: "Design System/Flex",
@@ -71,14 +71,14 @@ export function JustifyContent() {
         </>
     );
     return (
-        <Spacer mb={2}>
+        <Flex gap={2} flexDirection="column">
             <Flex justifyContent="flex-start">{content}</Flex>
             <Flex justifyContent="flex-end">{content}</Flex>
             <Flex justifyContent="center">{content}</Flex>
             <Flex justifyContent="space-between">{content}</Flex>
             <Flex justifyContent="space-around">{content}</Flex>
             <Flex justifyContent="space-evenly">{content}</Flex>
-        </Spacer>
+        </Flex>
     );
 }
 

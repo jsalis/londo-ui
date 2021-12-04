@@ -25,7 +25,6 @@ export { Scroller } from "./scroller";
 export { Select } from "./select";
 export { SizePicker } from "./size-picker";
 export { Skeleton } from "./skeleton";
-export { Spacer } from "./spacer";
 export { Tag } from "./tag";
 export { Text } from "./text";
 export { Textarea } from "./textarea";
