@@ -75,7 +75,7 @@ export const Popconfirm = forwardRef((props, ref) => {
                         bg="popover.bg"
                         {...rest}
                     >
-                        <Flex pb={2} alignItems="flex-start">
+                        <Flex pb={2} align="flex-start">
                             <Box mr={2} flex="none">
                                 <WarningIcon size={18} display="block" color="warning.base" />
                             </Box>
@@ -83,7 +83,7 @@ export const Popconfirm = forwardRef((props, ref) => {
                                 {title}
                             </Box>
                         </Flex>
-                        <Flex justifyContent="flex-end">
+                        <Flex justify="flex-end">
                             <Button onClick={handleCancel}>{cancelText}</Button>
                             <Button onClick={handleConfirm}>{okText}</Button>
                         </Flex>

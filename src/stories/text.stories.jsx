@@ -14,7 +14,7 @@ export function Basic() {
 
 export function Colors() {
     return (
-        <Flex flexDirection="column" gap={2}>
+        <Flex direction="column" gap={2}>
             <Text color="primary.base">Hello World</Text>
             <Text color="secondary.base">Hello World</Text>
             <Text color="positive.base">Hello World</Text>
@@ -27,7 +27,7 @@ export function Colors() {
 
 export function Sizes() {
     return (
-        <Flex flexDirection="column" gap={2}>
+        <Flex direction="column" gap={2}>
             <Text fontSize={0}>Hello World</Text>
             <Text fontSize={1}>Hello World</Text>
             <Text fontSize={2}>Hello World</Text>

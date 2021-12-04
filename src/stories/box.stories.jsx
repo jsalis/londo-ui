@@ -18,7 +18,7 @@ export function Basic() {
 
 export function Width() {
     return (
-        <Flex gap={2} flexDirection="column">
+        <Flex gap={2} direction="column">
             <Box p={2} bg="primary.base" color="white" width={1 / 4}>
                 1 / 4
             </Box>
@@ -37,7 +37,7 @@ export function Width() {
 
 export function Padding() {
     return (
-        <Flex gap={2} flexDirection="column">
+        <Flex gap={2} direction="column">
             <Box width={1 / 2} bg="primary.base" color="white" p={0}>
                 zero
             </Box>
@@ -59,7 +59,7 @@ export function Padding() {
 
 export function Colors() {
     return (
-        <Flex gap={2} flexDirection="column">
+        <Flex gap={2} direction="column">
             <Box p={2} width={1 / 2} bg="primary.0">
                 primary.0
             </Box>

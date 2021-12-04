@@ -26,7 +26,7 @@ export function Basic() {
 
 export function Column() {
     return (
-        <Flex flexDirection="column">
+        <Flex direction="column">
             <Box p={2} width={1 / 3} color="white" bg="primary.base">
                 First
             </Box>
@@ -71,13 +71,13 @@ export function JustifyContent() {
         </>
     );
     return (
-        <Flex gap={2} flexDirection="column">
-            <Flex justifyContent="flex-start">{content}</Flex>
-            <Flex justifyContent="flex-end">{content}</Flex>
-            <Flex justifyContent="center">{content}</Flex>
-            <Flex justifyContent="space-between">{content}</Flex>
-            <Flex justifyContent="space-around">{content}</Flex>
-            <Flex justifyContent="space-evenly">{content}</Flex>
+        <Flex gap={2} direction="column">
+            <Flex justify="flex-start">{content}</Flex>
+            <Flex justify="flex-end">{content}</Flex>
+            <Flex justify="center">{content}</Flex>
+            <Flex justify="space-between">{content}</Flex>
+            <Flex justify="space-around">{content}</Flex>
+            <Flex justify="space-evenly">{content}</Flex>
         </Flex>
     );
 }

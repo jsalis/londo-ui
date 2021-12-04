@@ -36,7 +36,7 @@ export function WithIcon(args) {
 
 export function StatusColors() {
     return (
-        <Flex gap={2} flexWrap="wrap">
+        <Flex gap={2} wrap="wrap">
             <Tag>Default</Tag>
             <Tag color="primary">Primary</Tag>
             <Tag color="positive">Success</Tag>
@@ -49,7 +49,7 @@ export function StatusColors() {
 
 export function PresetColors() {
     return (
-        <Flex gap={2} flexWrap="wrap">
+        <Flex gap={2} wrap="wrap">
             <Tag color="magenta">magenta</Tag>
             <Tag color="red">red</Tag>
             <Tag color="volcano">volcano</Tag>

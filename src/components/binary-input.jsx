@@ -56,7 +56,7 @@ export const BinaryInput = forwardRef((props, ref) => {
             {bitArray.map((i) => {
                 const checked = getBit(i, decimal) !== 0;
                 return (
-                    <Flex key={i} p={1} justifyContent="center">
+                    <Flex key={i} p={1} justify="center">
                         <Checkbox
                             checked={checked}
                             onChange={(val) => handleSelect(i, val)}
