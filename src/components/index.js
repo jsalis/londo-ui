@@ -6,6 +6,7 @@ export { ClickAwayListener } from "./click-away-listener";
 export { ColorInput } from "./color-input";
 export { ColorPicker } from "./color-picker";
 export { ColorSwatch } from "./color-swatch";
+export { Debouncer } from "./debouncer";
 export { Divider } from "./divider";
 export { Dropdown } from "./dropdown";
 export { Flex } from "./flex";
