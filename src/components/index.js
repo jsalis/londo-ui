@@ -30,3 +30,4 @@ export { Text } from "./text";
 export { Textarea } from "./textarea";
 export { ThemeProvider } from "./theme-provider";
 export { Tooltip } from "./tooltip";
+export { VisuallyHidden } from "./visually-hidden";
