@@ -54,6 +54,7 @@ export const reset = css`
     p {
         margin-top: 0;
         margin-bottom: 1em;
+        line-height: ${(props) => props.theme.lineHeights.base};
     }
 
     hr {

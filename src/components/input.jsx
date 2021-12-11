@@ -62,7 +62,7 @@ const InputElement = styled.div`
     width: 24px;
     height: 24px;
     padding: 0 4px;
-    color: ${(p) => p.theme.colors.alpha[3]};
+    color: ${(p) => p.theme.colors.alpha[5]};
     pointer-events: none;
     z-index: 2;
     ${space}

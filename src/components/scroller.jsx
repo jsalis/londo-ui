@@ -138,6 +138,6 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 Scroller.defaultProps = {
-    barColor: "alpha.3",
+    barColor: "alpha.5",
     overScroll: "auto",
 };

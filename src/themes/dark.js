@@ -2,30 +2,33 @@ import { colorPaletteDark } from "./color-palette";
 import { base } from "./base";
 
 const alpha = [
-    "rgba(255, 255, 255, 0.05)",
-    "rgba(255, 255, 255, 0.15)",
-    "rgba(255, 255, 255, 0.25)",
-    "rgba(255, 255, 255, 0.35)",
-    "rgba(255, 255, 255, 0.45)",
-    "rgba(255, 255, 255, 0.55)",
-    "rgba(255, 255, 255, 0.65)",
-    "rgba(255, 255, 255, 0.75)",
-    "rgba(255, 255, 255, 0.85)",
-    "rgba(255, 255, 255, 0.95)",
+    "rgba(255, 255, 255, 0.04)",
+    "rgba(255, 255, 255, 0.06)",
+    "rgba(255, 255, 255, 0.08)",
+    "rgba(255, 255, 255, 0.16)",
+    "rgba(255, 255, 255, 0.24)",
+    "rgba(255, 255, 255, 0.36)",
+    "rgba(255, 255, 255, 0.48)",
+    "rgba(255, 255, 255, 0.64)",
+    "rgba(255, 255, 255, 0.80)",
+    "rgba(255, 255, 255, 0.92)",
 ];
 
 alpha.inverse = [
-    "rgba(0, 0, 0, 0.05)",
-    "rgba(0, 0, 0, 0.15)",
-    "rgba(0, 0, 0, 0.25)",
-    "rgba(0, 0, 0, 0.35)",
-    "rgba(0, 0, 0, 0.45)",
-    "rgba(0, 0, 0, 0.55)",
-    "rgba(0, 0, 0, 0.65)",
-    "rgba(0, 0, 0, 0.75)",
-    "rgba(0, 0, 0, 0.85)",
-    "rgba(0, 0, 0, 0.95)",
+    "rgba(0, 0, 0, 0.04)",
+    "rgba(0, 0, 0, 0.06)",
+    "rgba(0, 0, 0, 0.08)",
+    "rgba(0, 0, 0, 0.16)",
+    "rgba(0, 0, 0, 0.24)",
+    "rgba(0, 0, 0, 0.36)",
+    "rgba(0, 0, 0, 0.48)",
+    "rgba(0, 0, 0, 0.64)",
+    "rgba(0, 0, 0, 0.80)",
+    "rgba(0, 0, 0, 0.92)",
 ];
+
+alpha.white = alpha;
+alpha.black = alpha.inverse;
 
 const gray = [
     "#14141C",
@@ -76,9 +79,9 @@ const colors = {
     warning: yellow,
     info: blue,
     heading: alpha[8],
-    text: alpha[6],
-    placeholder: alpha[3],
-    disabled: alpha[2],
+    text: alpha[7],
+    placeholder: alpha[5],
+    disabled: alpha[4],
     bg: {
         base: gray[2],
         body: gray[0],
@@ -89,8 +92,8 @@ const colors = {
         grid: gray[2],
     },
     shadow: {
-        base: alpha.inverse[4],
-        inverse: alpha[4],
+        base: alpha.inverse[6],
+        inverse: alpha[6],
     },
     popover: {
         bg: gray[2],
@@ -113,7 +116,7 @@ const shadows = {
     down: "0 6px 16px -8px rgba(0, 0, 0, 0.32), 0 9px 28px 0 rgba(0, 0, 0, 0.2), 0 12px 48px 16px rgba(0, 0, 0, 0.12)",
     left: "-6px 0 16px -8px rgba(0, 0, 0, 0.32), -9px 0 28px 0 rgba(0, 0, 0, 0.2), -12px 0 48px 16px rgba(0, 0, 0, 0.12)",
     right: "6px 0 16px -8px rgba(0, 0, 0, 0.32), 9px 0 28px 0 rgba(0, 0, 0, 0.2), 12px 0 48px 16px rgba(0, 0, 0, 0.12)",
-    cell: `0 0 0 4px ${alpha[5]}`,
+    cell: `0 0 0 4px ${alpha[6]}`,
 };
 
 export const dark = {

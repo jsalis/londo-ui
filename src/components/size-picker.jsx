@@ -16,7 +16,7 @@ function getCellColor({ theme, active, selectionActive }) {
         return theme.colors.primary.base;
     }
 
-    return theme.colors.alpha[0];
+    return theme.colors.alpha[1];
 }
 
 export const StyledCell = styled.td`

@@ -42,8 +42,8 @@ const StyledText = styled.span`
         margin: 0 0.2em;
         padding: 0.1em 0.4em;
         font-size: 85%;
-        background: ${(p) => p.theme.colors.alpha[0]};
-        border: 1px solid ${(p) => p.theme.colors.alpha[0]};
+        background: ${(p) => p.theme.colors.alpha[1]};
+        border: 1px solid ${(p) => p.theme.colors.alpha[1]};
         border-radius: 3px;
     }
 

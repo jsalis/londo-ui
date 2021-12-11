@@ -14,7 +14,7 @@ const Swatch = styled.span`
     position: relative;
     border-radius: 2px;
     border-color: transparent;
-    box-shadow: ${(props) => props.theme.colors.alpha[1]} 0 0 0 1px inset;
+    box-shadow: ${(props) => props.theme.colors.alpha[3]} 0 0 0 1px inset;
     ${margin}
     ${layout}
     ${other}
