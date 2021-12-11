@@ -15,6 +15,7 @@ export { Heading } from "./heading";
 export { Icon } from "./icon";
 export { Input } from "./input";
 export { Label } from "./label";
+export { Modal } from "./modal";
 export { NumberInput } from "./number-input";
 export { PasswordInput } from "./password-input";
 export { Popconfirm } from "./popconfirm";

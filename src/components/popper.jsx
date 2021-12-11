@@ -184,11 +184,11 @@ export const Popper = forwardRef((props, ref) => {
 
 if (process.env.NODE_ENV !== "production") {
     Popper.propTypes = {
+        isOpen: PropTypes.bool.isRequired,
+        keepMounted: PropTypes.bool,
         anchor: PropTypes.oneOfType([HTMLElementType, PropTypes.func]),
         children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
         container: PropTypes.oneOfType([HTMLElementType, PropTypes.func]),
-        isOpen: PropTypes.bool.isRequired,
-        keepMounted: PropTypes.bool,
         modifiers: PropTypes.arrayOf(
             PropTypes.shape({
                 data: PropTypes.object,

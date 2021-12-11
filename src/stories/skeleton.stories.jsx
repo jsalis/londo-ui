@@ -5,7 +5,8 @@ export default {
     component: Skeleton,
     decorators: [(story) => <Box width={300}>{story()}</Box>],
     parameters: {
-        componentSubtitle: "A placeholder to visualise content that is loading.",
+        componentSubtitle:
+            "A placeholder to visualise content that is loading. Their bones are their money.",
     },
 };
 

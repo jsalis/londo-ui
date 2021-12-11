@@ -14,9 +14,7 @@ export function Basic() {
     return (
         <Button>
             <VisuallyHidden>Save</VisuallyHidden>
-            <span aria-hidden>
-                <SaveIcon />
-            </span>
+            <SaveIcon aria-hidden />
         </Button>
     );
 }
