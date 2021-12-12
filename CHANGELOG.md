@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.9](https://github.com/jsalis/londo-ui/compare/v0.1.8...v0.1.9) (2021-12-12)
+
+### Features
+
+- add display name to all components ([64dd6fc](https://github.com/jsalis/londo-ui/commit/64dd6fca5062ba4d140ab322ef78c90f66c0939f))
+- add focus management to modal component ([3d171d9](https://github.com/jsalis/londo-ui/commit/3d171d958c1bbb708c3172905fdbb7a29d602ed2))
+- add modal component ([4e2938f](https://github.com/jsalis/londo-ui/commit/4e2938f53d9eda0123de44e09fb2587386f78c6b))
+- add scrollBehavior prop to modal component ([65aa24a](https://github.com/jsalis/londo-ui/commit/65aa24a9f4085761c4ac0a5873a507b46b080cbe))
+- add visually hidden component ([b034bd6](https://github.com/jsalis/londo-ui/commit/b034bd664008b46f8b04fafed1f89e9f5b2126ea))
+- update alpha color scale ([186ad6f](https://github.com/jsalis/londo-ui/commit/186ad6fdc12e60a9276ff5f5c9c22c6bfbd25226))
+
 ### [0.1.8](https://github.com/jsalis/londo-ui/compare/v0.1.7...v0.1.8) (2021-12-04)
 
 ### Features
