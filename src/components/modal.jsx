@@ -1,9 +1,11 @@
-import { forwardRef } from "react";
+import { forwardRef, createContext, useContext } from "react";
 import { RemoveScroll } from "react-remove-scroll";
+import FocusLock from "react-focus-lock";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { HTMLElementType } from "../utils/prop-types";
+import { useCallbackRef } from "../hooks";
 import { CloseIcon } from "../icons";
 
 import { Portal } from "./portal";
@@ -11,6 +13,8 @@ import { Flex } from "./flex";
 import { Box } from "./box";
 import { ClickAwayListener } from "./click-away-listener";
 import { VisuallyHidden } from "./visually-hidden";
+
+const ModalContext = createContext(undefined);
 
 const OverlayWrap = styled(Box)`
     position: fixed;
@@ -67,35 +71,52 @@ const Overlay = forwardRef((props, ref) => {
 });
 
 const Content = forwardRef((props, ref) => {
-    const { onClickAway, children, ...rest } = props;
+    const { onClose, children, ...rest } = props;
+    const { autoFocus, restoreFocus, initialFocusRef, finalFocusRef } = useContext(ModalContext);
+
+    const onActivation = useCallbackRef(() => {
+        initialFocusRef?.current?.focus();
+    });
+
+    const onDeactivation = useCallbackRef(() => {
+        finalFocusRef?.current?.focus();
+    });
+
     return (
-        <RemoveScroll>
-            <ContentWrap
-                justify="center"
-                align="flex-start"
-                tabIndex={-1}
-                role="dialog"
-                aria-modal
-                {...rest}
-            >
-                <ClickAwayListener onClickAway={onClickAway}>
-                    <Flex
-                        ref={ref}
-                        as="section"
-                        direction="column"
-                        position="relative"
-                        borderRadius="base"
-                        boxShadow="base"
-                        bg="popover.bg"
-                        width={1}
-                        maxWidth={448}
-                        my={5}
-                    >
-                        {children}
-                    </Flex>
-                </ClickAwayListener>
-            </ContentWrap>
-        </RemoveScroll>
+        <FocusLock
+            autoFocus={autoFocus}
+            returnFocus={restoreFocus && !finalFocusRef}
+            onActivation={onActivation}
+            onDeactivation={onDeactivation}
+        >
+            <RemoveScroll>
+                <ContentWrap
+                    justify="center"
+                    align="flex-start"
+                    tabIndex={-1}
+                    role="dialog"
+                    aria-modal
+                    {...rest}
+                >
+                    <ClickAwayListener onClickAway={onClose}>
+                        <Flex
+                            ref={ref}
+                            as="section"
+                            direction="column"
+                            position="relative"
+                            borderRadius="base"
+                            boxShadow="base"
+                            bg="popover.bg"
+                            width={1}
+                            maxWidth={448}
+                            my={5}
+                        >
+                            {children}
+                        </Flex>
+                    </ClickAwayListener>
+                </ContentWrap>
+            </RemoveScroll>
+        </FocusLock>
     );
 });
 
@@ -135,14 +156,19 @@ export function Modal(props) {
     const {
         isOpen,
         onClose,
-        keepMounted,
-        container,
+        autoFocus,
+        restoreFocus,
+        initialFocusRef,
+        finalFocusRef,
         overlayRef,
         contentRef,
+        container,
         className,
         children,
         ...rest
     } = props;
+
+    const context = { autoFocus, restoreFocus, initialFocusRef, finalFocusRef };
 
     const handleClose = (event) => {
         event.stopPropagation();
@@ -156,24 +182,24 @@ export function Modal(props) {
         }
     };
 
-    if (!keepMounted && !isOpen) {
-        return null;
-    }
-
     return (
-        <Portal container={container}>
-            <Overlay ref={overlayRef} />
-            <Content
-                ref={contentRef}
-                className={className}
-                onClickAway={handleClose}
-                onKeyDown={handleKeyDown}
-                {...rest}
-            >
-                <CloseButton onClick={handleClose} />
-                {children}
-            </Content>
-        </Portal>
+        <ModalContext.Provider value={context}>
+            {isOpen && (
+                <Portal container={container}>
+                    <Overlay ref={overlayRef} />
+                    <Content
+                        ref={contentRef}
+                        className={className}
+                        onClose={handleClose}
+                        onKeyDown={handleKeyDown}
+                        {...rest}
+                    >
+                        <CloseButton onClick={handleClose} />
+                        {children}
+                    </Content>
+                </Portal>
+            )}
+        </ModalContext.Provider>
     );
 }
 
@@ -187,10 +213,13 @@ if (process.env.NODE_ENV !== "production") {
         isOpen: PropTypes.bool.isRequired,
         onClose: PropTypes.func.isRequired,
         // scrollBehavior: PropTypes.oneOf(["inside", "outside"]),
-        keepMounted: PropTypes.bool,
-        container: PropTypes.oneOfType([HTMLElementType, PropTypes.func]),
+        autoFocus: PropTypes.bool,
+        restoreFocus: PropTypes.bool,
+        initialFocusRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+        finalFocusRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
         overlayRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
         contentRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+        container: PropTypes.oneOfType([HTMLElementType, PropTypes.func]),
         className: PropTypes.string,
         children: PropTypes.node,
     };
@@ -198,5 +227,6 @@ if (process.env.NODE_ENV !== "production") {
 
 Modal.defaultProps = {
     // scrollBehavior: "outside",
-    keepMounted: false,
+    autoFocus: true,
+    restoreFocus: true,
 };
