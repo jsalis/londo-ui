@@ -102,6 +102,7 @@ export const Dropdown = forwardRef((props, ref) => {
 });
 
 if (process.env.NODE_ENV !== "production") {
+    Dropdown.displayName = "Dropdown";
     Dropdown.propTypes = {
         overlay: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
         placement: PropTypes.oneOf([

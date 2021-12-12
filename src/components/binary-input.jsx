@@ -97,6 +97,7 @@ export const BinaryInput = forwardRef((props, ref) => {
 });
 
 if (process.env.NODE_ENV !== "production") {
+    BinaryInput.displayName = "BinaryInput";
     BinaryInput.propTypes = {
         value: PropTypes.any,
         defaultValue: PropTypes.any,

@@ -82,6 +82,7 @@ export const Text = forwardRef(({ children, ...rest }, ref) => {
 });
 
 if (process.env.NODE_ENV !== "production") {
+    Text.displayName = "Text";
     Text.propTypes = {
         ellipsis: PropTypes.bool,
         disabled: PropTypes.bool,

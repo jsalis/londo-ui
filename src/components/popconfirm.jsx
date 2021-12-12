@@ -95,6 +95,7 @@ export const Popconfirm = forwardRef((props, ref) => {
 });
 
 if (process.env.NODE_ENV !== "production") {
+    Popconfirm.displayName = "Popconfirm";
     Popconfirm.propTypes = {
         title: PropTypes.node,
         placement: PropTypes.oneOf([

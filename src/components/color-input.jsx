@@ -130,6 +130,7 @@ export const ColorInput = forwardRef((props, ref) => {
 });
 
 if (process.env.NODE_ENV !== "production") {
+    ColorInput.displayName = "ColorInput";
     ColorInput.propTypes = {
         value: PropTypes.any,
         defaultValue: PropTypes.any,

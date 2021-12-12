@@ -183,6 +183,7 @@ export const Popper = forwardRef((props, ref) => {
 });
 
 if (process.env.NODE_ENV !== "production") {
+    Popper.displayName = "Popper";
     Popper.propTypes = {
         isOpen: PropTypes.bool.isRequired,
         keepMounted: PropTypes.bool,

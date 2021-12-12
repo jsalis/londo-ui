@@ -128,6 +128,7 @@ function getHorizontalBarWidth(content) {
 }
 
 if (process.env.NODE_ENV !== "production") {
+    Scroller.displayName = "Scroller";
     Scroller.propTypes = {
         barColor: PropTypes.string,
         overScroll: PropTypes.oneOf(["auto", "contain", "none"]),

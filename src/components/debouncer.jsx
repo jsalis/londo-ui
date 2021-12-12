@@ -8,6 +8,7 @@ export function Debouncer({ value, onChange, wait, leading, children }) {
 }
 
 if (process.env.NODE_ENV !== "production") {
+    Debouncer.displayName = "Debouncer";
     Debouncer.propTypes = {
         value: PropTypes.any,
         onChange: PropTypes.func,

@@ -8,6 +8,7 @@ export const Textarea = forwardRef((props, ref) => {
 });
 
 if (process.env.NODE_ENV !== "production") {
+    Textarea.displayName = "Textarea";
     Textarea.propTypes = {
         value: PropTypes.any,
         onChange: PropTypes.func,

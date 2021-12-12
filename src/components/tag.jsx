@@ -102,6 +102,7 @@ export const Tag = forwardRef((props, ref) => {
 });
 
 if (process.env.NODE_ENV !== "production") {
+    Tag.displayName = "Tag";
     Tag.propTypes = {
         color: PropTypes.string,
         visible: PropTypes.bool,

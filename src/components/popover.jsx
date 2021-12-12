@@ -59,6 +59,7 @@ export const Popover = forwardRef((props, ref) => {
 });
 
 if (process.env.NODE_ENV !== "production") {
+    Popover.displayName = "Popover";
     Popover.propTypes = {
         title: PropTypes.node,
         content: PropTypes.node,

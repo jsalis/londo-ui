@@ -92,6 +92,7 @@ export function ClickAwayListener(props) {
 }
 
 if (process.env.NODE_ENV !== "production") {
+    ClickAwayListener.displayName = "ClickAwayListener";
     ClickAwayListener.propTypes = {
         children: PropTypes.node,
         disableReactTree: PropTypes.bool,

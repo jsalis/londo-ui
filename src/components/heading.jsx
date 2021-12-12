@@ -8,6 +8,7 @@ export const Heading = forwardRef(({ level, ...rest }, ref) => (
 ));
 
 if (process.env.NODE_ENV !== "production") {
+    Heading.displayName = "Heading";
     Heading.propTypes = {
         level: PropTypes.oneOf([1, 2, 3, 4, 5]),
         ellipsis: PropTypes.bool,

@@ -102,6 +102,7 @@ export const Divider = forwardRef(({ align, dashed, children, ...rest }, ref) =>
 });
 
 if (process.env.NODE_ENV !== "production") {
+    Divider.displayName = "Divider";
     Divider.propTypes = {
         align: PropTypes.oneOf(["left", "right", "center"]),
         dashed: PropTypes.bool,

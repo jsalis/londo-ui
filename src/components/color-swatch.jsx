@@ -72,6 +72,7 @@ export const ColorSwatch = memo(
 );
 
 if (process.env.NODE_ENV !== "production") {
+    ColorSwatch.displayName = "ColorSwatch";
     ColorSwatch.propTypes = {
         color: PropTypes.string,
         size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

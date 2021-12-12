@@ -135,6 +135,7 @@ Input.Prefix = Prefix;
 Input.Suffix = Suffix;
 
 if (process.env.NODE_ENV !== "production") {
+    Input.displayName = "Input";
     Input.propTypes = {
         type: PropTypes.string,
         value: PropTypes.any,

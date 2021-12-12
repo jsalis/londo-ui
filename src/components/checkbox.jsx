@@ -147,6 +147,7 @@ export const Checkbox = forwardRef((props, ref) => {
 });
 
 if (process.env.NODE_ENV !== "production") {
+    Checkbox.displayName = "Checkbox";
     Checkbox.propTypes = {
         value: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
         checked: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),

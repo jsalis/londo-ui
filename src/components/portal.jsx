@@ -31,6 +31,7 @@ export function Portal({ container, onMount, onUnmount, children }) {
 }
 
 if (process.env.NODE_ENV !== "production") {
+    Portal.displayName = "Portal";
     Portal.propTypes = {
         container: PropTypes.oneOfType([HTMLElementType, PropTypes.func]),
         onMount: PropTypes.func,

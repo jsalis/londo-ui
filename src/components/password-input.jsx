@@ -44,6 +44,7 @@ export const PasswordInput = forwardRef((props, ref) => {
 });
 
 if (process.env.NODE_ENV !== "production") {
+    PasswordInput.displayName = "PasswordInput";
     PasswordInput.propTypes = {
         value: PropTypes.any,
         defaultValue: PropTypes.any,

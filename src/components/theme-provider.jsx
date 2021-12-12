@@ -10,6 +10,7 @@ export function ThemeProvider({ theme, children }) {
 }
 
 if (process.env.NODE_ENV !== "production") {
+    ThemeProvider.displayName = "ThemeProvider";
     ThemeProvider.propTypes = {
         theme: PropTypes.oneOfType([PropTypes.oneOf(["light", "dark"]), PropTypes.object]),
         children: PropTypes.node,

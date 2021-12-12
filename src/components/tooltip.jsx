@@ -56,6 +56,7 @@ export const Tooltip = forwardRef((props, ref) => {
 });
 
 if (process.env.NODE_ENV !== "production") {
+    Tooltip.displayName = "Tooltip";
     Tooltip.propTypes = {
         title: PropTypes.node,
         placement: PropTypes.oneOf([

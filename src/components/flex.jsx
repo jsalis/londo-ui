@@ -34,6 +34,7 @@ export const Flex = styled(Box)`
 `;
 
 if (process.env.NODE_ENV !== "production") {
+    Flex.displayName = "Flex";
     Flex.propTypes = {
         align: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
         basis: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),

@@ -17,6 +17,7 @@ export const Icon = styled.svg`
 `;
 
 if (process.env.NODE_ENV !== "production") {
+    Icon.displayName = "Icon";
     Icon.propTypes = {
         size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         viewBox: PropTypes.string,

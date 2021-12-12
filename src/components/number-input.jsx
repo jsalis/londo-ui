@@ -197,6 +197,7 @@ function useDragger({ onDragChange, onUpdate }) {
 }
 
 if (process.env.NODE_ENV !== "production") {
+    NumberInput.displayName = "NumberInput";
     NumberInput.propTypes = {
         value: PropTypes.any,
         defaultValue: PropTypes.any,

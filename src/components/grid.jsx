@@ -39,6 +39,7 @@ export const Grid = styled(Box)`
 `;
 
 if (process.env.NODE_ENV !== "production") {
+    Grid.displayName = "Grid";
     Grid.propTypes = {
         height: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
         flow: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),

@@ -108,6 +108,7 @@ export const Select = forwardRef((props, ref) => {
 });
 
 if (process.env.NODE_ENV !== "production") {
+    Select.displayName = "Select";
     Select.propTypes = {
         options: PropTypes.arrayOf(
             PropTypes.shape({

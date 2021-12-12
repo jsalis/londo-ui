@@ -266,6 +266,7 @@ ColorPicker.Saturation = Saturation;
 ColorPicker.Hue = Hue;
 
 if (process.env.NODE_ENV !== "production") {
+    ColorPicker.displayName = "ColorPicker";
     ColorPicker.propTypes = {
         color: PropTypes.string,
         onChange: PropTypes.func,

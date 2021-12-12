@@ -60,6 +60,10 @@ export const Button = styled(Box)`
         `}
 `;
 
+if (process.env.NODE_ENV !== "production") {
+    Button.displayName = "Button";
+}
+
 Button.defaultProps = {
     as: "button",
 };

@@ -113,6 +113,7 @@ function DataCell({ width, height, value, selection, setSelection }) {
 }
 
 if (process.env.NODE_ENV !== "production") {
+    SizePicker.displayName = "SizePicker";
     SizePicker.propTypes = {
         value: PropTypes.arrayOf(PropTypes.number),
         defaultValue: PropTypes.arrayOf(PropTypes.number),

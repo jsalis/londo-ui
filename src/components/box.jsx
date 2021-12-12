@@ -74,3 +74,7 @@ export const Box = styled.div`
         display: none !important;
     }
 `;
+
+if (process.env.NODE_ENV !== "production") {
+    Box.displayName = "Box";
+}

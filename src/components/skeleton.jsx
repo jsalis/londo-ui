@@ -46,6 +46,7 @@ export const Skeleton = forwardRef(({ count, duration, circle, ...rest }, ref) =
 });
 
 if (process.env.NODE_ENV !== "production") {
+    Skeleton.displayName = "Skeleton";
     Skeleton.propTypes = {
         count: PropTypes.number,
         duration: PropTypes.number,
