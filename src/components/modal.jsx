@@ -32,7 +32,6 @@ const ContentWrap = styled(Flex)`
     width: 100vw;
     height: 100vh;
     z-index: 1;
-    overflow: auto;
 `;
 
 const CloseButtonWrap = styled.button`
@@ -71,8 +70,9 @@ const Overlay = forwardRef((props, ref) => {
 });
 
 const Content = forwardRef((props, ref) => {
-    const { onClose, children, ...rest } = props;
-    const { autoFocus, restoreFocus, initialFocusRef, finalFocusRef } = useContext(ModalContext);
+    const { onClose, onKeyDown, children, ...rest } = props;
+    const { scrollBehavior, autoFocus, restoreFocus, initialFocusRef, finalFocusRef } =
+        useContext(ModalContext);
 
     const onActivation = useCallbackRef(() => {
         initialFocusRef?.current?.focus();
@@ -93,10 +93,11 @@ const Content = forwardRef((props, ref) => {
                 <ContentWrap
                     justify="center"
                     align="flex-start"
+                    overflow={scrollBehavior === "inside" ? "hidden" : "auto"}
                     tabIndex={-1}
                     role="dialog"
                     aria-modal
-                    {...rest}
+                    onKeyDown={onKeyDown}
                 >
                     <ClickAwayListener onClickAway={onClose}>
                         <Flex
@@ -107,9 +108,11 @@ const Content = forwardRef((props, ref) => {
                             borderRadius="base"
                             boxShadow="base"
                             bg="popover.bg"
+                            my={5}
                             width={1}
                             maxWidth={448}
-                            my={5}
+                            maxHeight={scrollBehavior === "inside" ? "calc(100% - 128px)" : ""}
+                            {...rest}
                         >
                             {children}
                         </Flex>
@@ -125,7 +128,20 @@ const Header = forwardRef((props, ref) => {
 });
 
 const Body = forwardRef((props, ref) => {
-    return <Box ref={ref} flex={1} lineHeight="base" pt={2} pb={3} px={3} {...props} />;
+    const { scrollBehavior } = useContext(ModalContext);
+    const overflow = scrollBehavior === "inside" ? "auto" : "";
+    return (
+        <Box
+            ref={ref}
+            flex={1}
+            lineHeight="base"
+            pt={2}
+            pb={3}
+            px={3}
+            overflow={overflow}
+            {...props}
+        />
+    );
 });
 
 const Footer = forwardRef((props, ref) => {
@@ -156,6 +172,7 @@ export function Modal(props) {
     const {
         isOpen,
         onClose,
+        scrollBehavior,
         autoFocus,
         restoreFocus,
         initialFocusRef,
@@ -168,7 +185,7 @@ export function Modal(props) {
         ...rest
     } = props;
 
-    const context = { autoFocus, restoreFocus, initialFocusRef, finalFocusRef };
+    const context = { scrollBehavior, autoFocus, restoreFocus, initialFocusRef, finalFocusRef };
 
     const handleClose = (event) => {
         event.stopPropagation();
@@ -189,10 +206,10 @@ export function Modal(props) {
                     <Overlay ref={overlayRef} />
                     <Content
                         ref={contentRef}
+                        {...rest}
                         className={className}
                         onClose={handleClose}
                         onKeyDown={handleKeyDown}
-                        {...rest}
                     >
                         <CloseButton onClick={handleClose} />
                         {children}
@@ -212,7 +229,7 @@ if (process.env.NODE_ENV !== "production") {
     Modal.propTypes = {
         isOpen: PropTypes.bool.isRequired,
         onClose: PropTypes.func.isRequired,
-        // scrollBehavior: PropTypes.oneOf(["inside", "outside"]),
+        scrollBehavior: PropTypes.oneOf(["inside", "outside"]),
         autoFocus: PropTypes.bool,
         restoreFocus: PropTypes.bool,
         initialFocusRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -226,7 +243,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 Modal.defaultProps = {
-    // scrollBehavior: "outside",
+    scrollBehavior: "outside",
     autoFocus: true,
     restoreFocus: true,
 };
