@@ -83,7 +83,7 @@ export const Popconfirm = forwardRef((props, ref) => {
                                 {title}
                             </Box>
                         </Flex>
-                        <Flex justify="flex-end">
+                        <Flex justify="flex-end" gap={2}>
                             <Button onClick={handleCancel}>{cancelText}</Button>
                             <Button onClick={handleConfirm}>{okText}</Button>
                         </Flex>

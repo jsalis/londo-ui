@@ -11,20 +11,17 @@ export const Button = styled(Box)`
     padding: 4px 8px;
     min-width: 32px;
     height: 24px;
-    border: 1px solid ${(p) => p.theme.colors.border.base};
+    outline: 0;
+    border: 0;
+    border-radius: ${(p) => p.theme.radii.base}px;
     background: ${(p) => p.theme.colors.gray[1]};
-    transition: all 0.3s;
+    transition: all 0.2s;
     user-select: none;
     cursor: pointer;
 
-    & + & {
-        margin-left: -1px;
-    }
-
-    &,
     &:active,
     &:focus {
-        outline: 0;
+        box-shadow: 0 0 0 2px ${(p) => p.theme.colors.primary[2]};
     }
 
     &:hover {

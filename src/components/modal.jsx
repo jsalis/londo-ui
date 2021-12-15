@@ -53,7 +53,7 @@ const CloseButtonWrap = styled.button`
 
     &:active,
     &:focus {
-        box-shadow: 0 0 0 3px ${(p) => p.theme.colors.primary[2]};
+        box-shadow: 0 0 0 2px ${(p) => p.theme.colors.primary[2]};
     }
 
     &:hover {
@@ -152,7 +152,7 @@ const Footer = forwardRef((props, ref) => {
             justify="flex-end"
             align="center"
             flex={0}
-            gap={3}
+            gap={2}
             p={3}
             {...props}
         />
