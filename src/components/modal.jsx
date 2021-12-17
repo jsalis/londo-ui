@@ -47,7 +47,7 @@ const CloseButtonWrap = styled.button`
     background: transparent;
     border: none;
     border-radius: ${(p) => p.theme.radii.base}px;
-    transition: box-shadow 0.2s;
+    transition: box-shadow 0.2s, background 0.2s;
     outline: 0;
     cursor: pointer;
 
@@ -107,7 +107,7 @@ const Content = forwardRef((props, ref) => {
                             position="relative"
                             borderRadius="base"
                             boxShadow="base"
-                            bg="popover.bg"
+                            bg="modal.bg"
                             my={5}
                             width={1}
                             maxWidth={448}

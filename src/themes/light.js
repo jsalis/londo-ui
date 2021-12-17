@@ -95,6 +95,9 @@ const colors = {
         base: alpha[3],
         inverse: alpha.inverse[3],
     },
+    modal: {
+        bg: gray[0],
+    },
     popover: {
         bg: gray[0],
     },
