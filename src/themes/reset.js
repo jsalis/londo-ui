@@ -15,7 +15,7 @@ export const reset = css`
 
     ::selection {
         color: #fff;
-        background: ${(props) => props.theme.colors.primary.base};
+        background: ${(p) => p.theme.colors.primary.base};
     }
 
     html {
@@ -28,16 +28,16 @@ export const reset = css`
 
     body {
         margin: 0;
-        color: ${(props) => props.theme.colors.text};
-        font-family: ${(props) => props.theme.fonts.body};
-        font-size: ${(props) => props.theme.fontSizes.sm}px;
-        line-height: ${(props) => props.theme.lineHeights.none};
+        color: ${(p) => p.theme.colors.text};
+        font-family: ${(p) => p.theme.fonts.body};
+        font-size: ${(p) => p.theme.fontSizes.sm}px;
+        line-height: ${(p) => p.theme.lineHeights.none};
         font-variant: tabular-nums;
         font-feature-settings: "tnum";
     }
 
     body {
-        background: ${(props) => props.theme.colors.bg.body};
+        background: ${(p) => p.theme.colors.bg.body};
     }
 
     h1,
@@ -47,14 +47,14 @@ export const reset = css`
     h5,
     h6 {
         margin: 0;
-        color: ${(props) => props.theme.colors.heading};
+        color: ${(p) => p.theme.colors.heading};
         font-weight: 600;
     }
 
     p {
         margin-top: 0;
         margin-bottom: 1em;
-        line-height: ${(props) => props.theme.lineHeights.base};
+        line-height: ${(p) => p.theme.lineHeights.base};
     }
 
     hr {
@@ -64,7 +64,7 @@ export const reset = css`
     }
 
     a {
-        color: ${(props) => props.theme.colors.primary.base};
+        color: ${(p) => p.theme.colors.primary.base};
         background-color: transparent;
         text-decoration: none;
         outline: none;
@@ -72,11 +72,11 @@ export const reset = css`
         transition: color 0.3s;
 
         &:hover {
-            color: ${(props) => props.theme.colors.primary.hover};
+            color: ${(p) => p.theme.colors.primary.hover};
         }
 
         &:active {
-            color: ${(props) => props.theme.colors.primary.active};
+            color: ${(p) => p.theme.colors.primary.active};
         }
 
         &:active,
@@ -86,7 +86,7 @@ export const reset = css`
         }
 
         &[disabled] {
-            color: ${(props) => props.theme.colors.disabled};
+            color: ${(p) => p.theme.colors.disabled};
             cursor: not-allowed;
             pointer-events: none;
         }
