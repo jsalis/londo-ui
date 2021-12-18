@@ -99,7 +99,7 @@ const colors = {
         bg: gray[1],
     },
     popover: {
-        bg: gray[2],
+        bg: gray[1],
     },
     tooltip: {
         bg: gray[4],
