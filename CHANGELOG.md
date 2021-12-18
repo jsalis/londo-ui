@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.11](https://github.com/jsalis/londo-ui/compare/v0.1.10...v0.1.11) (2021-12-18)
+
+### Features
+
+- add dropdown background color to theme ([5ca0aad](https://github.com/jsalis/londo-ui/commit/5ca0aadf19bcf960a036962a8d4fae755a4e02ba))
+- add focus outline to checkbox ([7fd37e7](https://github.com/jsalis/londo-ui/commit/7fd37e748b21eda800e44497da26e1298deab29f))
+- add focus outline to links ([f26621c](https://github.com/jsalis/londo-ui/commit/f26621c0fe26799c78da4e9caeea4d70748b30a4))
+- update button style ([af2d383](https://github.com/jsalis/londo-ui/commit/af2d383df1fbe64a959a510dbe4180d50c219869))
+- update hover style for select option ([b739e4e](https://github.com/jsalis/londo-ui/commit/b739e4eaab8503e8f26c9ab4f848699458c04f6b))
+
 ### [0.1.10](https://github.com/jsalis/londo-ui/compare/v0.1.9...v0.1.10) (2021-12-18)
 
 ### Features
