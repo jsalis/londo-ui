@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.10](https://github.com/jsalis/londo-ui/compare/v0.1.9...v0.1.10) (2021-12-18)
+
+### Features
+
+- add focus outline to buttons ([bf7f48f](https://github.com/jsalis/londo-ui/commit/bf7f48fca809c40a54aa14263832665c361c25ba))
+- add modal background color to theme ([57b5706](https://github.com/jsalis/londo-ui/commit/57b57063ca8b9b85a3361a7e7b0adc073a930620))
+- update button style ([d8a2837](https://github.com/jsalis/londo-ui/commit/d8a2837e1a1030404a53a6b7195bac50b82c07ac))
+
 ### [0.1.9](https://github.com/jsalis/londo-ui/compare/v0.1.8...v0.1.9) (2021-12-12)
 
 ### Features
