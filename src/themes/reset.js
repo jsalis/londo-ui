@@ -65,11 +65,16 @@ export const reset = css`
 
     a {
         color: ${(p) => p.theme.colors.primary.base};
+        border-radius: ${(p) => p.theme.radii.base}px;
         background-color: transparent;
         text-decoration: none;
         outline: none;
-        cursor: pointer;
         transition: color 0.3s;
+        cursor: pointer;
+
+        &:focus:focus-visible {
+            box-shadow: 0 0 0 2px ${(p) => p.theme.colors.primary[2]};
+        }
 
         &:hover {
             color: ${(p) => p.theme.colors.primary.hover};
@@ -87,7 +92,6 @@ export const reset = css`
 
         &[disabled] {
             color: ${(p) => p.theme.colors.disabled};
-            cursor: not-allowed;
             pointer-events: none;
         }
     }

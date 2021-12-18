@@ -10,7 +10,7 @@ export const Button = styled(Box)`
     font-size: ${(p) => p.theme.fontSizes.sm}px;
     line-height: ${(p) => p.theme.lineHeights.none};
     padding: 4px 8px;
-    min-width: 32px;
+    min-width: 30px;
     height: 24px;
     outline: 0;
     border: 0;
