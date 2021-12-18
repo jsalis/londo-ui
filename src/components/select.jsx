@@ -17,14 +17,10 @@ const Option = styled.div`
     text-overflow: ellipsis;
     cursor: pointer;
 
-    &:hover {
-        color: ${(p) => p.theme.colors.gray[9]};
-        background: ${(p) => p.theme.colors.gray[4]};
-    }
-
+    &:hover,
     &:active {
         color: ${(p) => p.theme.colors.gray[9]};
-        background: ${(p) => p.theme.colors.gray[1]};
+        background: ${(p) => p.theme.colors.alpha[1]};
     }
 
     ${(p) =>
