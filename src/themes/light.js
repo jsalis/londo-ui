@@ -98,6 +98,9 @@ const colors = {
     modal: {
         bg: gray[0],
     },
+    dropdown: {
+        bg: gray[0],
+    },
     popover: {
         bg: gray[0],
     },

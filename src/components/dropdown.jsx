@@ -92,7 +92,7 @@ export const Dropdown = forwardRef((props, ref) => {
                     keepMounted={keepMounted}
                     onMouseDown={(e) => e.preventDefault()}
                 >
-                    <Box py={1} borderRadius="base" boxShadow="base" bg="gray.1" {...rest}>
+                    <Box py={1} borderRadius="base" boxShadow="base" bg="dropdown.bg" {...rest}>
                         {overlay}
                     </Box>
                 </Popper>
