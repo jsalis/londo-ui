@@ -58,8 +58,12 @@ const Label = styled.label`
     ${space}
     ${flexbox}
 
-    &:hover ${Control}, ${Input}:focus + ${Control} {
+    &:hover ${Control} {
         border-color: ${(p) => p.theme.colors.gray[5]};
+    }
+
+    ${Input}:focus + ${Control} {
+        box-shadow: 0 0 0 2px ${(p) => p.theme.colors.primary[2]};
     }
 
     ${(p) =>
@@ -75,7 +79,7 @@ const Label = styled.label`
                 }
             }
 
-            &:hover ${Control}, ${Input}:focus + ${Control} {
+            &:hover ${Control} {
                 background-color: ${p.theme.colors.primary.hover};
                 border-color: ${p.theme.colors.primary.hover};
             }
@@ -84,6 +88,8 @@ const Label = styled.label`
     ${(p) =>
         p.disabled &&
         css`
+            color: ${p.theme.colors.disabled};
+
             &,
             ${Input} {
                 cursor: not-allowed;
@@ -95,7 +101,7 @@ const Label = styled.label`
                 border-color: ${p.theme.colors.border.base} !important;
 
                 &::after {
-                    border-color: ${p.theme.colors.gray[1]};
+                    border-color: ${p.theme.colors.disabled};
                 }
             }
         `}
