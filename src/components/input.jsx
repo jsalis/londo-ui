@@ -151,4 +151,5 @@ if (process.env.NODE_ENV !== "production") {
 
 Input.defaultProps = {
     type: "text",
+    defaultValue: "",
 };
