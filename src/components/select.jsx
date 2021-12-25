@@ -8,6 +8,7 @@ import { ChevronDownIcon } from "../icons";
 import { Input } from "./input";
 import { Dropdown } from "./dropdown";
 import { Scroller } from "./scroller";
+import { Flex } from "./flex";
 
 const Option = styled.div`
     padding: 4px;
@@ -50,7 +51,7 @@ export const Select = forwardRef((props, ref) => {
 
     const { isOpen, open, close } = useDisclosure({ onOpen, onClose });
     const [selectedValue, setSelectedValue] = useControllableState(value, defaultValue);
-    const selectedOption = options?.find((opt) => opt.value === selectedValue);
+    const selectedOption = options.find((opt) => opt.value === selectedValue);
 
     const inputProps = {
         onBlur: useForkHandler(onBlur, close),
@@ -75,6 +76,11 @@ export const Select = forwardRef((props, ref) => {
                     {opt.children ?? opt.label}
                 </Option>
             ))}
+            {options.length === 0 && (
+                <Flex p={1} align="center" justify="center" color="placeholder">
+                    No Data
+                </Flex>
+            )}
         </Scroller>
     );
 
