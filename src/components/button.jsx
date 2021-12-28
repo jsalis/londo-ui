@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { space } from "styled-system";
 
 import { Box } from "./box";
 
@@ -10,7 +11,7 @@ export const Button = styled(Box)`
     font-size: ${(p) => p.theme.fontSizes.sm}px;
     line-height: ${(p) => p.theme.lineHeights.none};
     padding: 4px 8px;
-    min-width: 30px;
+    min-width: 24px;
     height: 24px;
     outline: 0;
     border: 0;
@@ -20,6 +21,7 @@ export const Button = styled(Box)`
     transition: all 0.2s;
     user-select: none;
     cursor: pointer;
+    ${space}
 
     &:focus:focus-visible {
         box-shadow: 0 0 0 2px ${(p) => p.theme.colors.primary[2]};

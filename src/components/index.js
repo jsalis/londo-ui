@@ -12,6 +12,7 @@ export { Dropdown } from "./dropdown";
 export { Flex } from "./flex";
 export { Grid } from "./grid";
 export { Heading } from "./heading";
+export { IconButton } from "./icon-button";
 export { Icon } from "./icon";
 export { Image } from "./image";
 export { Input } from "./input";
