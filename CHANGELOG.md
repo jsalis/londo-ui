@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.12](https://github.com/jsalis/londo-ui/compare/v0.1.11...v0.1.12) (2021-12-28)
+
+### Features
+
+- add empty message to select component ([04e2e92](https://github.com/jsalis/londo-ui/commit/04e2e9236b1ab3258c185f9486781a294e3ffde7))
+- add icon button component ([0a46e33](https://github.com/jsalis/londo-ui/commit/0a46e332d27d7dcfe49cb6c836200eb0cd7fdce9))
+- add image component ([a2f8ed1](https://github.com/jsalis/londo-ui/commit/a2f8ed10249841baab8f785277047904e044ffca))
+
+### Bug Fixes
+
+- allow strings for checkbox value ([622022f](https://github.com/jsalis/londo-ui/commit/622022f245714add6940b391ab87c8e668db494e))
+- set default value for input to avoid react warning ([d8243c1](https://github.com/jsalis/londo-ui/commit/d8243c16d82c8db0479a137311fc657913dd2ae8))
+
 ### [0.1.11](https://github.com/jsalis/londo-ui/compare/v0.1.10...v0.1.11) (2021-12-18)
 
 ### Features
