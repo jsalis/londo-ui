@@ -1,37 +1,22 @@
-import { forwardRef } from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
-export const VisuallyHidden = forwardRef((props, ref) => {
-    const { as: Component, style = {}, ...rest } = props;
-    return (
-        <Component
-            ref={ref}
-            style={{
-                border: "0",
-                clip: "rect(0 0 0 0)",
-                height: "1px",
-                width: "1px",
-                padding: "0",
-                overflow: "hidden",
-                position: "absolute",
-                whiteSpace: "nowrap",
-                wordWrap: "normal",
-                ...style,
-            }}
-            {...rest}
-        />
-    );
-});
+export const VisuallyHidden = styled.span`
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    padding: 0;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    word-wrap: normal;
+`;
 
 if (process.env.NODE_ENV !== "production") {
     VisuallyHidden.displayName = "VisuallyHidden";
     VisuallyHidden.propTypes = {
-        as: PropTypes.any,
-        style: PropTypes.object,
+        className: PropTypes.string,
         children: PropTypes.node,
     };
 }
-
-VisuallyHidden.defaultProps = {
-    as: "span",
-};
