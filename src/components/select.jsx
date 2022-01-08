@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 
 import { useDisclosure, useControllableState, useForkHandler } from "../hooks";
 import { ChevronDownIcon } from "../icons";
+import { KeyCode } from "../utils/key-code";
 
 import { Input } from "./input";
 import { Dropdown } from "./dropdown";
@@ -44,6 +45,7 @@ export const Select = forwardRef((props, ref) => {
         onOpen,
         onClose,
         onBlur,
+        onKeyDown,
         disabled,
         className,
         ...rest
@@ -53,16 +55,26 @@ export const Select = forwardRef((props, ref) => {
     const [selectedValue, setSelectedValue] = useControllableState(value, defaultValue);
     const selectedOption = options.find((opt) => opt.value === selectedValue);
 
-    const inputProps = {
-        onBlur: useForkHandler(onBlur, close),
-        disabled,
-        ...rest,
+    const handleKeyDown = (event) => {
+        if (event.key === KeyCode.ENTER) {
+            open();
+        } else if (event.key === KeyCode.ESC) {
+            event.stopPropagation();
+            close();
+        }
     };
 
     const handleSelect = (val) => {
         setSelectedValue(val);
         onChange?.(val);
         close();
+    };
+
+    const inputProps = {
+        onBlur: useForkHandler(onBlur, close),
+        onKeyDown: useForkHandler(onKeyDown, handleKeyDown),
+        disabled,
+        ...rest,
     };
 
     const overlay = (
@@ -124,6 +136,7 @@ if (process.env.NODE_ENV !== "production") {
         onChange: PropTypes.func,
         onFocus: PropTypes.func,
         onBlur: PropTypes.func,
+        onKeyDown: PropTypes.func,
         onOpen: PropTypes.func,
         onClose: PropTypes.func,
         disabled: PropTypes.bool,

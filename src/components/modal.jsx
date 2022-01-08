@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { HTMLElementType } from "../utils/prop-types";
 import { useCallbackRef } from "../hooks";
 import { CloseIcon } from "../icons";
+import { KeyCode } from "../utils/key-code";
 
 import { Portal } from "./portal";
 import { Flex } from "./flex";
@@ -193,7 +194,7 @@ export function Modal(props) {
     };
 
     const handleKeyDown = (event) => {
-        if (event.key === "Escape") {
+        if (event.key === KeyCode.ESC) {
             event.stopPropagation();
             onClose?.();
         }

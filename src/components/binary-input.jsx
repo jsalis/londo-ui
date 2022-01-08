@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { useDisclosure, useControllableState, useForkHandler } from "../hooks";
 import { ChevronDownIcon } from "../icons";
+import { KeyCode } from "../utils/key-code";
 
 import { Grid } from "./grid";
 import { Flex } from "./flex";
@@ -26,6 +27,7 @@ export const BinaryInput = forwardRef((props, ref) => {
         onOpen,
         onClose,
         onBlur,
+        onKeyDown,
         bits,
         max,
         disabled,
@@ -39,16 +41,26 @@ export const BinaryInput = forwardRef((props, ref) => {
     const bitArray = [...Array(bits).keys()];
     const activeBits = bitArray.filter((i) => getBit(i, decimal) !== 0).map((i) => i + 1);
 
-    const inputProps = {
-        onBlur: useForkHandler(onBlur, close),
-        disabled,
-        ...rest,
+    const handleKeyDown = (event) => {
+        if (event.key === KeyCode.ENTER) {
+            open();
+        } else if (event.key === KeyCode.ESC) {
+            event.stopPropagation();
+            close();
+        }
     };
 
     const handleSelect = (i, val) => {
         const next = setBit(i, decimal, val);
         setDecimal(next);
         onChange?.(next);
+    };
+
+    const inputProps = {
+        onBlur: useForkHandler(onBlur, close),
+        onKeyDown: useForkHandler(onKeyDown, handleKeyDown),
+        disabled,
+        ...rest,
     };
 
     const overlay = (
@@ -106,6 +118,7 @@ if (process.env.NODE_ENV !== "production") {
         onBlur: PropTypes.func,
         onOpen: PropTypes.func,
         onClose: PropTypes.func,
+        onKeyDown: PropTypes.func,
         bits: PropTypes.number,
         max: PropTypes.number,
         disabled: PropTypes.bool,

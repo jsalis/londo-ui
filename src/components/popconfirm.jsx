@@ -3,16 +3,13 @@ import PropTypes from "prop-types";
 
 import { useDisclosure, useForkRef, useEventListener } from "../hooks";
 import { WarningIcon } from "../icons";
+import { KeyCode } from "../utils/key-code";
 
 import { Flex } from "./flex";
 import { Box } from "./box";
 import { Button } from "./button";
 import { Popper } from "./popper";
 import { ClickAwayListener } from "./click-away-listener";
-
-const KeyCode = {
-    ESC: 27,
-};
 
 export const Popconfirm = forwardRef((props, ref) => {
     const {
@@ -48,7 +45,7 @@ export const Popconfirm = forwardRef((props, ref) => {
     };
 
     const handleKeyDown = (event) => {
-        if (event.keyCode === KeyCode.ESC && isOpen) {
+        if (event.key === KeyCode.ESC && isOpen) {
             close();
         }
     };

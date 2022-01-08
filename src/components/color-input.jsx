@@ -4,8 +4,9 @@ import styled from "styled-components";
 
 import { isNull } from "../utils/type-util";
 import { isValidColorHex } from "../utils/color-util";
-import { useDisclosure, useControllableState } from "../hooks";
+import { useDisclosure, useControllableState, useForkHandler } from "../hooks";
 import { EyeDropperIcon } from "../icons";
+import { KeyCode } from "../utils/key-code";
 
 import { ColorPicker } from "./color-picker";
 import { ColorSwatch } from "./color-swatch";
@@ -45,6 +46,7 @@ export const ColorInput = forwardRef((props, ref) => {
         onOpen,
         onClose,
         onBlur,
+        onKeyDown,
         pickerSize,
         pickerDisabled,
         disabled,
@@ -55,11 +57,6 @@ export const ColorInput = forwardRef((props, ref) => {
     const { isOpen, open, close } = useDisclosure({ onOpen, onClose });
     const [color, setColor] = useControllableState(value, defaultValue);
     const [inputValue, setInputValue] = useState(null);
-
-    const inputProps = {
-        disabled,
-        ...rest,
-    };
 
     const handleInputChange = (val) => {
         const escVal = escapeInput(val);
@@ -91,6 +88,21 @@ export const ColorInput = forwardRef((props, ref) => {
                 onChange?.(val);
             });
         }
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === KeyCode.ENTER) {
+            open();
+        } else if (event.key === KeyCode.ESC) {
+            event.stopPropagation();
+            close();
+        }
+    };
+
+    const inputProps = {
+        onKeyDown: useForkHandler(onKeyDown, handleKeyDown),
+        disabled,
+        ...rest,
     };
 
     const overlay = <ColorPicker color={color} onChange={handlePickerChange} size={pickerSize} />;
@@ -139,6 +151,7 @@ if (process.env.NODE_ENV !== "production") {
         onBlur: PropTypes.func,
         onOpen: PropTypes.func,
         onClose: PropTypes.func,
+        onKeyDown: PropTypes.func,
         pickerSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
         pickerDisabled: PropTypes.bool,
         disabled: PropTypes.bool,

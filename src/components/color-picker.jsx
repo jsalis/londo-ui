@@ -6,6 +6,7 @@ import { layout } from "styled-system";
 import { useCallbackRef, useHexColor } from "../hooks";
 import { clamp, round } from "../utils/math-util";
 import { hsvaToHslString } from "../utils/color-util";
+import { KeyCode } from "../utils/key-code";
 
 import { Flex } from "./flex";
 
@@ -138,8 +139,8 @@ const Interactive = memo(({ onMove, onKey, ...rest }) => {
             if (key.startsWith("Arrow")) {
                 event.preventDefault();
                 onKeyCallback({
-                    left: key === "ArrowRight" ? 0.05 : key === "ArrowLeft" ? -0.05 : 0,
-                    top: key === "ArrowDown" ? 0.05 : key === "ArrowUp" ? -0.05 : 0,
+                    left: key === KeyCode.RIGHT ? 0.05 : key === KeyCode.LEFT ? -0.05 : 0,
+                    top: key === KeyCode.DOWN ? 0.05 : key === KeyCode.UP ? -0.05 : 0,
                 });
             }
         };
