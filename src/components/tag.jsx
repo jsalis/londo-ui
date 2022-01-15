@@ -96,7 +96,7 @@ export const Tag = forwardRef((props, ref) => {
             {...rest}
         >
             {children}
-            {closable && <CloseIcon ml={1} cursor="pointer" onClick={handleClose} />}
+            {closable ? <CloseIcon ml={1} cursor="pointer" onClick={handleClose} /> : null}
         </StyledTag>
     );
 });

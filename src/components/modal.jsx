@@ -202,7 +202,7 @@ export function Modal(props) {
 
     return (
         <ModalContext.Provider value={context}>
-            {isOpen && (
+            {isOpen ? (
                 <Portal container={container}>
                     <Overlay ref={overlayRef} />
                     <Content
@@ -216,7 +216,7 @@ export function Modal(props) {
                         {children}
                     </Content>
                 </Portal>
-            )}
+            ) : null}
         </ModalContext.Provider>
     );
 }

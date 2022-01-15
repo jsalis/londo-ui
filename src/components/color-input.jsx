@@ -131,11 +131,11 @@ export const ColorInput = forwardRef((props, ref) => {
                     textTransform="uppercase"
                     {...inputProps}
                 />
-                {isEyeDropperSupported() && (
+                {isEyeDropperSupported() ? (
                     <StyledSuffix onClick={handleEyeDropper}>
                         <EyeDropperIcon />
                     </StyledSuffix>
-                )}
+                ) : null}
             </StyledGroup>
         </Dropdown>
     );

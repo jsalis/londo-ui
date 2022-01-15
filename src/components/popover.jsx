@@ -46,11 +46,11 @@ export const Popover = forwardRef((props, ref) => {
                     onMouseLeave={closeWithDelay}
                     {...rest}
                 >
-                    {title && (
+                    {title ? (
                         <Box p={2} borderBottom="split" color="heading">
                             {title}
                         </Box>
-                    )}
+                    ) : null}
                     <Box p={2}>{content}</Box>
                 </Box>
             </Popper>

@@ -96,7 +96,7 @@ const InnerText = styled.span`
 export const Divider = forwardRef(({ align, dashed, children, ...rest }, ref) => {
     return (
         <StyledDivider ref={ref} {...rest} align={align} dashed={dashed}>
-            {children && <InnerText>{children}</InnerText>}
+            {children ? <InnerText>{children}</InnerText> : null}
         </StyledDivider>
     );
 });

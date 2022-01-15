@@ -79,16 +79,17 @@ export const Select = forwardRef((props, ref) => {
 
     const overlay = (
         <Scroller maxHeight={256}>
-            {options.map((opt) => (
-                <Option
-                    key={opt.value}
-                    onClick={() => handleSelect(opt.value)}
-                    selected={selectedOption?.value === opt.value}
-                >
-                    {opt.children ?? opt.label}
-                </Option>
-            ))}
-            {options.length === 0 && (
+            {options.length > 0 ? (
+                options.map((opt) => (
+                    <Option
+                        key={opt.value}
+                        onClick={() => handleSelect(opt.value)}
+                        selected={selectedOption?.value === opt.value}
+                    >
+                        {opt.children ?? opt.label}
+                    </Option>
+                ))
+            ) : (
                 <Flex p={1} align="center" justify="center" color="placeholder">
                     No Data
                 </Flex>

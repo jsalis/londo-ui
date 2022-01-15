@@ -147,7 +147,7 @@ export const NumberInput = forwardRef((props, ref) => {
             <DragHandle active={dragger.active} onMouseDown={dragger.start}>
                 <MoveHorizontalIcon />
             </DragHandle>
-            {suffix && <StyledSuffix>{suffix}</StyledSuffix>}
+            {suffix ? <StyledSuffix>{suffix}</StyledSuffix> : null}
         </StyledGroup>
     );
 });

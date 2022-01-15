@@ -143,11 +143,11 @@ export const Checkbox = forwardRef((props, ref) => {
                 {...rest}
             />
             <Control />
-            {children && (
+            {children ? (
                 <Box pl={direction === "row" ? 2 : 0} pt={direction === "column" ? 2 : 0}>
                     {children}
                 </Box>
-            )}
+            ) : null}
         </Label>
     );
 });
