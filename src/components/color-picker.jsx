@@ -145,11 +145,11 @@ const Interactive = memo(({ onMove, onKey, ...rest }) => {
             }
         };
 
-        function toggleDocumentEvents(state) {
+        const toggleDocumentEvents = (state) => {
             const toggleEvent = state ? window.addEventListener : window.removeEventListener;
             toggleEvent("mousemove", handleMove);
             toggleEvent("mouseup", handleMoveEnd);
-        }
+        };
 
         return [handleMoveStart, handleKeyDown, toggleDocumentEvents];
     }, []);

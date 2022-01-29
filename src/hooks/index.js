@@ -12,4 +12,5 @@ export { useForkRef } from "./use-fork-ref";
 export { useFullscreen } from "./use-fullscreen";
 export { useHexColor } from "./use-hex-color";
 export { useKeyPress } from "./use-key-press";
+export { useLazyRef } from "./use-lazy-ref";
 export { useUpdateEffect } from "./use-update-effect";
