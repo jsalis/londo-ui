@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "importsNotUsedAsValues": "error",
+    "noUnusedLocals": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "react",
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["src/stories/**/*"]
+}

@@ -3,6 +3,7 @@ module.exports = (api) => {
     return {
         presets: [
             ["@babel/preset-env", envConfig],
+            ["@babel/preset-typescript"],
             ["@babel/preset-react", { runtime: "automatic" }],
         ],
         plugins: ["babel-plugin-styled-components"],

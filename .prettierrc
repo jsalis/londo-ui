@@ -2,7 +2,7 @@
   "printWidth": 100,
   "overrides": [
     {
-      "files": ["*.js", "*.jsx", "*.mdx"],
+      "files": ["*.js?(x)", "*.ts?(x)", "*.mdx"],
       "options": {
         "tabWidth": 4
       }
