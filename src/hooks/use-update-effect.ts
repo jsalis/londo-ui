@@ -2,11 +2,8 @@ import { useRef, useEffect } from "react";
 
 /**
  * Uses an effect that skips the first mount and only runs on update.
- *
- * @param {Function} effect
- * @param {Array}    [deps]
  */
-export function useUpdateEffect(effect, deps) {
+export function useUpdateEffect(effect: React.EffectCallback, deps?: React.DependencyList) {
     const isMounted = useRef(false);
 
     useEffect(() => {

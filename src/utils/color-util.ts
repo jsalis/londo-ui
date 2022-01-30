@@ -1,8 +1,12 @@
 import { round } from "./math-util";
 
+type RgbaColor = { r: number; g: number; b: number; a: number };
+type HsvaColor = { h: number; s: number; v: number; a: number };
+type HslaColor = { h: number; s: number; l: number; a: number };
+
 const HEX_COLOR_REGEX = /^#?([0-9A-F]{3,8})$/i;
 
-export function isValidColorHex(value, alpha) {
+export function isValidColorHex(value: string, alpha: boolean) {
     const match = HEX_COLOR_REGEX.exec(value);
     const length = match ? match[1].length : 0;
 
@@ -10,11 +14,11 @@ export function isValidColorHex(value, alpha) {
     return length === 6 || (!!alpha && length === 8);
 }
 
-export function equalColorHex(first, second) {
+export function equalColorHex(first: string, second: string) {
     return first.toLowerCase() === second.toLowerCase();
 }
 
-export function hexToRgba(hex) {
+export function hexToRgba(hex: string): RgbaColor {
     if (hex[0] === "#") {
         hex = hex.substr(1);
     }
@@ -36,7 +40,7 @@ export function hexToRgba(hex) {
     };
 }
 
-export function rgbaToHsva({ r, g, b, a }) {
+export function rgbaToHsva({ r, g, b, a }: RgbaColor): HsvaColor {
     const max = Math.max(r, g, b);
     const delta = max - Math.min(r, g, b);
 
@@ -57,7 +61,7 @@ export function rgbaToHsva({ r, g, b, a }) {
     };
 }
 
-export function hsvaToRgba({ h, s, v, a }) {
+export function hsvaToRgba({ h, s, v, a }: HsvaColor): RgbaColor {
     h = (h / 360) * 6;
     s = s / 100;
     v = v / 100;
@@ -76,16 +80,16 @@ export function hsvaToRgba({ h, s, v, a }) {
     };
 }
 
-function formatToHex(n) {
+function formatToHex(n: number): string {
     const hex = n.toString(16);
     return hex.length < 2 ? "0" + hex : hex;
 }
 
-export function rgbaToHex({ r, g, b }) {
+export function rgbaToHex({ r, g, b }: RgbaColor) {
     return "#" + formatToHex(r) + formatToHex(g) + formatToHex(b);
 }
 
-export function hsvaToHsla({ h, s, v, a }) {
+export function hsvaToHsla({ h, s, v, a }: HsvaColor): HslaColor {
     const hh = ((200 - s) * v) / 100;
     return {
         h: round(h),
@@ -95,15 +99,15 @@ export function hsvaToHsla({ h, s, v, a }) {
     };
 }
 
-export function hsvaToHslString(hsva) {
+export function hsvaToHslString(hsva: HsvaColor) {
     const { h, s, l } = hsvaToHsla(hsva);
     return `hsl(${h}, ${s}%, ${l}%)`;
 }
 
-export function hexToHsva(hex) {
+export function hexToHsva(hex: string) {
     return rgbaToHsva(hexToRgba(hex));
 }
 
-export function hsvaToHex(hsva) {
+export function hsvaToHex(hsva: HsvaColor) {
     return rgbaToHex(hsvaToRgba(hsva));
 }

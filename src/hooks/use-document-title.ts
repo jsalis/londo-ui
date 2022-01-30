@@ -8,12 +8,8 @@ const defaultOptions = {
 
 /**
  * Sets the document title.
- *
- * @param {String}  title
- * @param {Object}  options
- * @param {Boolean} options.restoreOnUnmount
  */
-export function useDocumentTitle(title, options = defaultOptions) {
+export function useDocumentTitle(title: string, options = defaultOptions) {
     const prevTitle = useRef(document.title);
 
     if (isNonEmptyString(title)) {
@@ -26,5 +22,6 @@ export function useDocumentTitle(title, options = defaultOptions) {
                 document.title = prevTitle.current;
             };
         }
+        return;
     }, []);
 }

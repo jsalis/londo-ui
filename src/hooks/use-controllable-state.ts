@@ -6,14 +6,14 @@ import { useCallbackRef } from "./use-callback-ref";
 
 /**
  * Uses state that can operate in controlled and uncontrolled modes.
- *
- * @param   {*} value
- * @param   {*} [initialState]
- * @returns {[*, Function]}
  */
-export function useControllableState(value, initialState) {
+export function useControllableState<S>(
+    value?: S,
+    initialState?: S | (() => S)
+): [S | undefined, React.Dispatch<React.SetStateAction<S>>] {
     const [state, setState] = useState(initialState);
     const effectiveValue = isDefined(value) ? value : state;
+
     const setValue = useCallbackRef((val) => {
         if (!isDefined(value)) {
             setState(val);

@@ -5,28 +5,20 @@ import { useCallbackRef } from "./use-callback-ref";
 import { isDefined, isNumber } from "../utils/type-util";
 import { round, clamp as clampValue } from "../utils/math-util";
 
+type CounterOptions = {
+    value?: any;
+    defaultValue?: any;
+    onChange?: (val: number, valStr: string) => void;
+    min?: number;
+    max?: number;
+    step?: number;
+    precision?: number;
+};
+
 /**
  * Uses a numeric counter.
- *
- * @param   {Object}   [options]
- * @param   {*}        [options.value]
- * @param   {*}        [options.defaultValue]
- * @param   {Function} [options.onChange]
- * @param   {Number}   [options.min]
- * @param   {Number}   [options.max]
- * @param   {Number}   [options.step]
- * @param   {Number}   [options.precision]
- * @returns {{
- *     value: *,
- *     valueAsNumber: number,
- *     update: function(*): void,
- *     increment: function(*): void,
- *     decrement: function(*): void,
- *     clamp: function(*): string,
- *     cast: function(*): void
- * }}
  */
-export function useCounter(options = {}) {
+export function useCounter(options: CounterOptions = {}) {
     const {
         value: valueProp,
         defaultValue,
@@ -63,12 +55,12 @@ export function useCounter(options = {}) {
         return toPrecision(next, precision);
     });
 
-    const increment = useCallbackRef((step = stepProp) => {
+    const increment = useCallbackRef((step: number = stepProp) => {
         const next = value === "" ? parseValue(step) : parseValue(value) + step;
         update(clamp(next));
     });
 
-    const decrement = useCallbackRef((step = stepProp) => {
+    const decrement = useCallbackRef((step: number = stepProp) => {
         const next = value === "" ? parseValue(-step) : parseValue(value) - step;
         update(clamp(next));
     });
@@ -89,23 +81,23 @@ export function useCounter(options = {}) {
     };
 }
 
-function isValidNumber(value) {
-    return isNumber(value) && !Number.isNaN(value) && Number.isFinite(value);
+function isValidNumber(val: any): val is number {
+    return isNumber(val) && !Number.isNaN(val) && Number.isFinite(val);
 }
 
-function toNumber(value) {
-    const n = parseFloat(value);
+function toNumber(val: any) {
+    const n = parseFloat(val);
     return isValidNumber(n) ? n : 0;
 }
 
-function toPrecision(value, precision = 10) {
-    return round(toNumber(value), precision).toString();
+function toPrecision(val: any, precision = 10) {
+    return round(toNumber(val), precision).toString();
 }
 
-function parseValue(value) {
-    return toNumber(String(value).replace(/[^\w.-]+/g, ""));
+function parseValue(val: any) {
+    return toNumber(String(val).replace(/[^\w.-]+/g, ""));
 }
 
-function castValue(value, precision) {
-    return toPrecision(parseValue(value), precision);
+function castValue(val: any, precision?: number) {
+    return toPrecision(parseValue(val), precision);
 }

@@ -4,15 +4,6 @@ import { useCallbackRef } from "./use-callback-ref";
 
 /**
  * Uses fullscreen state for a given element.
- *
- * @param {HTMLElement} [el]
- * @returns {{
- *     isSupported: Boolean,
- *     isFullscreen: Boolean,
- *     enter: function(),
- *     exit: function(),
- *     toggle: function()
- * }}
  */
 export function useFullscreen(el = document.body) {
     const isSupported = document.fullscreenEnabled;
@@ -27,23 +18,15 @@ export function useFullscreen(el = document.body) {
     }, [el]);
 
     const enter = useCallbackRef(() => {
-        el.requestFullscreen().catch(() => {
-            /* noop */
-        });
+        return el.requestFullscreen();
     });
 
     const exit = useCallbackRef(() => {
-        document.exitFullscreen().catch(() => {
-            /* noop */
-        });
+        return document.exitFullscreen();
     });
 
     const toggle = useCallbackRef(() => {
-        if (isFullscreen) {
-            exit();
-        } else {
-            enter();
-        }
+        return isFullscreen ? exit() : enter();
     });
 
     return { isSupported, isFullscreen, enter, exit, toggle };

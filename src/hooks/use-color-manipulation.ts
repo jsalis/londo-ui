@@ -2,32 +2,22 @@ import { useState, useEffect, useRef } from "react";
 
 import { useCallbackRef } from "./use-callback-ref";
 
-/**
- * @typedef  ColorModel
- * @type     {Object}
- * @property {Function} toHsva
- * @property {Function} fromHsva
- * @property {Function} equal
- */
+type HsvaColor = { h: number; s: number; v: number; a: number };
 
-/**
- * @typedef  HsvaColor
- * @type     {Object}
- * @property {Number} h
- * @property {Number} s
- * @property {Number} v
- * @property {Number} a
- */
+type ColorModel = {
+    toHsva: (color: any) => HsvaColor;
+    fromHsva: (color: HsvaColor) => any;
+    equal: (a: any, b: any) => boolean;
+};
 
 /**
  * Uses color manipulation in HSVA format. Can be applied to any incoming color format by specifying the color model.
- *
- * @param   {ColorModel} colorModel
- * @param   {*}          color
- * @param   {Function}   onChange
- * @returns {[HsvaColor, Function]}
  */
-export function useColorManipulation(colorModel, color, onChange) {
+export function useColorManipulation(
+    colorModel: ColorModel,
+    color: any,
+    onChange: (color: any) => void
+): [HsvaColor, (color: Partial<HsvaColor>) => void] {
     const [hsva, setHsva] = useState(() => colorModel.toHsva(color));
     const cache = useRef({ color, hsva });
     const onChangeCallback = useCallbackRef(onChange);
@@ -52,14 +42,14 @@ export function useColorManipulation(colorModel, color, onChange) {
         }
     }, [hsva, colorModel]);
 
-    const updateHsva = useCallbackRef((params) => {
+    const updateHsva = useCallbackRef((params: Partial<HsvaColor>) => {
         setHsva((current) => ({ ...current, ...params }));
     });
 
     return [hsva, updateHsva];
 }
 
-function equalColorObjects(first, second) {
+function equalColorObjects(first: any, second: any) {
     if (first === second) {
         return true;
     }

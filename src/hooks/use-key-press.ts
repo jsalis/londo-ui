@@ -5,18 +5,15 @@ import { useEventListener } from "./use-event-listener";
 
 /**
  * Uses a key press event.
- *
- * @param {String}   key
- * @param {Function} handler
  */
-export function useKeyPress(key, handler) {
-    const savedHandler = useCallbackRef(handler);
+export function useKeyPress(key: string, callback: () => void) {
+    const savedCallback = useCallbackRef(callback);
     const [keyPressed, setKeyPressed] = useState(false);
 
     useEventListener(
         "keydown",
         (event) => {
-            if (event.key === key && !keyPressed) {
+            if ((event as KeyboardEvent).key === key && !keyPressed) {
                 setKeyPressed(true);
             }
         },
@@ -27,7 +24,7 @@ export function useKeyPress(key, handler) {
     useEventListener(
         "keyup",
         (event) => {
-            if (event.key === key && keyPressed) {
+            if ((event as KeyboardEvent).key === key && keyPressed) {
                 setKeyPressed(false);
             }
         },
@@ -37,7 +34,7 @@ export function useKeyPress(key, handler) {
 
     useEffect(() => {
         if (keyPressed) {
-            savedHandler();
+            savedCallback();
         }
     }, [keyPressed]);
 }

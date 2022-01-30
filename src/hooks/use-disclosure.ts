@@ -2,24 +2,22 @@ import { useState, useRef, useEffect } from "react";
 
 import { useCallbackRef } from "./use-callback-ref";
 
+type DisclosureOptions = {
+    defaultIsOpen?: boolean;
+    onOpen?: () => void;
+    onClose?: () => void;
+};
+
+type ToggleOptions = {
+    delay?: number;
+};
+
 /**
  * Uses boolean state with functions to open, close, and toggle.
- *
- * @param   {Object}   [options]
- * @param   {Boolean}  [options.defaultIsOpen]
- * @param   {Function} [options.onOpen]
- * @param   {Function} [options.onClose]
- * @returns {{
- *     isOpen: Boolean,
- *     open: function(delay: Number),
- *     close: function(delay: Number),
- *     toggle: function(delay: Number),
- *     clearDelayTimer: function()
- * }}
  */
-export function useDisclosure({ defaultIsOpen = false, onOpen, onClose } = {}) {
-    const [isOpen, setIsOpen] = useState(defaultIsOpen);
-    const delayTimer = useRef(null);
+export function useDisclosure({ defaultIsOpen, onOpen, onClose }: DisclosureOptions = {}) {
+    const [isOpen, setIsOpen] = useState(defaultIsOpen ?? false);
+    const delayTimer: any = useRef(null);
 
     const clearDelayTimer = () => {
         clearTimeout(delayTimer.current);
@@ -28,7 +26,7 @@ export function useDisclosure({ defaultIsOpen = false, onOpen, onClose } = {}) {
 
     useEffect(() => clearDelayTimer, []);
 
-    const open = useCallbackRef(({ delay } = {}) => {
+    const open = useCallbackRef((opt: ToggleOptions = {}) => {
         clearDelayTimer();
         const fn = () => {
             if (!isOpen) {
@@ -36,14 +34,14 @@ export function useDisclosure({ defaultIsOpen = false, onOpen, onClose } = {}) {
                 onOpen?.();
             }
         };
-        if (delay) {
-            delayTimer.current = setTimeout(fn, delay);
+        if (opt.delay) {
+            delayTimer.current = setTimeout(fn, opt.delay);
         } else {
             fn();
         }
     });
 
-    const close = useCallbackRef(({ delay } = {}) => {
+    const close = useCallbackRef((opt: ToggleOptions = {}) => {
         clearDelayTimer();
         const fn = () => {
             if (isOpen) {
@@ -51,14 +49,14 @@ export function useDisclosure({ defaultIsOpen = false, onOpen, onClose } = {}) {
                 onClose?.();
             }
         };
-        if (delay) {
-            delayTimer.current = setTimeout(fn, delay);
+        if (opt.delay) {
+            delayTimer.current = setTimeout(fn, opt.delay);
         } else {
             fn();
         }
     });
 
-    const toggle = useCallbackRef((opt) => {
+    const toggle = useCallbackRef((opt: ToggleOptions = {}) => {
         if (isOpen) {
             close(opt);
         } else {

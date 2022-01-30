@@ -2,18 +2,17 @@ import { useRef, useLayoutEffect, useCallback } from "react";
 
 /**
  * Persists a function between renders.
- *
- * @param   {Function} callback
- * @returns {Function}
  */
-export function useCallbackRef(callback) {
+export function useCallbackRef<T extends (...args: any[]) => any>(callback: T) {
     const ref = useRef(callback);
 
     useLayoutEffect(() => {
         ref.current = callback;
     });
 
-    return useCallback((...args) => {
+    const fn = (...args: any[]) => {
         return ref.current?.(...args);
-    }, []);
+    };
+
+    return useCallback(fn as T, []);
 }
