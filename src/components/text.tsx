@@ -1,7 +1,37 @@
-import { createElement, forwardRef } from "react";
-import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
+import * as React from "react";
+import type * as CSS from "csstype";
+import type {
+    TypographyProps,
+    SpaceProps,
+    LayoutProps,
+    FlexboxProps,
+    ColorProps,
+    ResponsiveValue,
+} from "styled-system";
 import { system, typography, space, layout, flexbox, color } from "styled-system";
+import styled, { css } from "styled-components";
+
+export interface TextProps
+    extends TypographyProps,
+        SpaceProps,
+        LayoutProps,
+        FlexboxProps,
+        Omit<ColorProps, "color"> {
+    as?: keyof JSX.IntrinsicElements;
+    ellipsis?: boolean;
+    disabled?: boolean;
+    strong?: boolean;
+    underline?: boolean;
+    italic?: boolean;
+    delete?: boolean;
+    code?: boolean;
+    keyboard?: boolean;
+    color?: string;
+    textTransform?: ResponsiveValue<CSS.Property.TextTransform>;
+    overflowWrap?: ResponsiveValue<CSS.Property.OverflowWrap>;
+    whiteSpace?: ResponsiveValue<CSS.Property.WhiteSpace>;
+    children?: React.ReactNode;
+}
 
 const other = system({
     textTransform: true,
@@ -9,7 +39,7 @@ const other = system({
     whiteSpace: true,
 });
 
-const StyledText = styled.span`
+const StyledText = styled.span<TextProps>`
     transition: color 0.3s;
     ${typography}
     ${space}
@@ -17,15 +47,15 @@ const StyledText = styled.span`
 	${flexbox}
 	${color}
 	${other}
-	
+
 	${(p) =>
-        p.disabled &&
+        p.ellipsis &&
         css`
             color: ${p.theme.colors.disabled};
             cursor: not-allowed;
             user-select: none;
         `}
-	
+
 	${(p) =>
         p.ellipsis &&
         css`
@@ -37,7 +67,7 @@ const StyledText = styled.span`
                 display: inline-block;
             }
         `}
-	
+
 	code {
         margin: 0 0.2em;
         padding: 0.1em 0.4em;
@@ -67,31 +97,18 @@ const wrapperTags = Object.entries({
     keyboard: "kbd",
 });
 
-function composeWrappers(props, children) {
+function composeWrappers(props: TextProps, children: React.ReactNode) {
     return wrapperTags.reduce((el, [key, tag]) => {
-        return props[key] ? createElement(tag, {}, el) : el;
+        return props[key as keyof TextProps] ? React.createElement(tag, {}, el) : el;
     }, children);
 }
 
-export const Text = forwardRef(({ children, ...rest }, ref) => {
-    return (
-        <StyledText ref={ref} {...rest}>
-            {composeWrappers(rest, children)}
-        </StyledText>
-    );
-});
+export const Text = React.forwardRef<HTMLElement, TextProps>(({ children, ...rest }, ref) => (
+    <StyledText ref={ref} {...rest}>
+        {composeWrappers(rest, children)}
+    </StyledText>
+));
 
 if (process.env.NODE_ENV !== "production") {
     Text.displayName = "Text";
-    Text.propTypes = {
-        ellipsis: PropTypes.bool,
-        disabled: PropTypes.bool,
-        strong: PropTypes.bool,
-        underline: PropTypes.bool,
-        italic: PropTypes.bool,
-        delete: PropTypes.bool,
-        code: PropTypes.bool,
-        keyboard: PropTypes.bool,
-        children: PropTypes.node,
-    };
 }

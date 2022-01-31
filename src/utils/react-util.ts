@@ -1,4 +1,4 @@
-import { Children, isValidElement } from "react";
+import * as React from "react";
 
 import { isFunction } from "./type-util";
 
@@ -20,5 +20,5 @@ export function assignRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
  * Gets the valid children of a component and ignores any nullish or falsy child.
  */
 export function getValidChildren(children: React.ReactNode | React.ReactNode[]) {
-    return Children.toArray(children).filter((el) => isValidElement(el));
+    return React.Children.toArray(children).filter((el) => React.isValidElement(el));
 }
