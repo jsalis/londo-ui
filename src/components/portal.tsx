@@ -1,13 +1,18 @@
 import { createContext, useContext, useState, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
-import PropTypes from "prop-types";
 
-import { HTMLElementType } from "../utils/prop-types";
 import { isFunction } from "../utils/type-util";
 
-const PortalContext = createContext(undefined);
+export interface PortalProps {
+    container?: HTMLElement | (() => HTMLElement);
+    onMount?: () => void;
+    onUnmount?: () => void;
+    children: React.ReactNode;
+}
 
-export function Portal({ container, onMount, onUnmount, children }) {
+const PortalContext = createContext<HTMLElement | undefined>(undefined);
+
+export function Portal({ container, onMount, onUnmount, children }: PortalProps) {
     const [portal] = useState(() => document.createElement("div"));
     const parentPortal = useContext(PortalContext);
 
@@ -32,10 +37,4 @@ export function Portal({ container, onMount, onUnmount, children }) {
 
 if (process.env.NODE_ENV !== "production") {
     Portal.displayName = "Portal";
-    Portal.propTypes = {
-        container: PropTypes.oneOfType([HTMLElementType, PropTypes.func]),
-        onMount: PropTypes.func,
-        onUnmount: PropTypes.func,
-        children: PropTypes.node,
-    };
 }

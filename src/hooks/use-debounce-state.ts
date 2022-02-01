@@ -11,7 +11,7 @@ export function useDebounceState<S>(
     onChange: (value: S) => void,
     wait: number,
     leading?: boolean
-): [S, (value: S) => void] {
+) {
     const [currentValue, setCurrentValue] = useState(value);
     const onChangeDebounce = useDebounceCallback(onChange, wait, leading);
     const setValue = (value: S) => {
@@ -21,5 +21,5 @@ export function useDebounceState<S>(
 
     useEffect(() => setCurrentValue(value), [value]);
 
-    return [currentValue, setValue];
+    return [currentValue, setValue] as const;
 }

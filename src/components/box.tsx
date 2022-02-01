@@ -1,4 +1,3 @@
-import type * as React from "react";
 import type * as CSS from "csstype";
 import type {
     TypographyProps,
@@ -30,11 +29,10 @@ export interface BoxProps
         LayoutProps,
         PositionProps,
         FlexboxProps,
-        Omit<ColorProps, "color">,
+        ColorProps,
         BorderProps,
         ShadowProps {
     as?: keyof JSX.IntrinsicElements;
-    color?: string;
     area?: ResponsiveValue<CSS.Property.GridArea>;
     columnStart?: ResponsiveValue<CSS.Property.GridColumnStart>;
     columnEnd?: ResponsiveValue<CSS.Property.GridColumnEnd>;

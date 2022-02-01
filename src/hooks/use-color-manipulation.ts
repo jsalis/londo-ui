@@ -17,7 +17,7 @@ export function useColorManipulation(
     colorModel: ColorModel,
     color: any,
     onChange: (color: any) => void
-): [HsvaColor, (color: Partial<HsvaColor>) => void] {
+) {
     const [hsva, setHsva] = useState(() => colorModel.toHsva(color));
     const cache = useRef({ color, hsva });
     const onChangeCallback = useCallbackRef(onChange);
@@ -46,7 +46,7 @@ export function useColorManipulation(
         setHsva((current) => ({ ...current, ...params }));
     });
 
-    return [hsva, updateHsva];
+    return [hsva, updateHsva] as const;
 }
 
 function equalColorObjects(first: any, second: any) {

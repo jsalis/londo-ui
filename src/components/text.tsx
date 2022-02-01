@@ -1,4 +1,3 @@
-import * as React from "react";
 import type * as CSS from "csstype";
 import type {
     TypographyProps,
@@ -8,6 +7,7 @@ import type {
     ColorProps,
     ResponsiveValue,
 } from "styled-system";
+import { forwardRef, createElement } from "react";
 import { system, typography, space, layout, flexbox, color } from "styled-system";
 import styled, { css } from "styled-components";
 
@@ -16,7 +16,7 @@ export interface TextProps
         SpaceProps,
         LayoutProps,
         FlexboxProps,
-        Omit<ColorProps, "color"> {
+        ColorProps {
     as?: keyof JSX.IntrinsicElements;
     ellipsis?: boolean;
     disabled?: boolean;
@@ -26,7 +26,6 @@ export interface TextProps
     delete?: boolean;
     code?: boolean;
     keyboard?: boolean;
-    color?: string;
     textTransform?: ResponsiveValue<CSS.Property.TextTransform>;
     overflowWrap?: ResponsiveValue<CSS.Property.OverflowWrap>;
     whiteSpace?: ResponsiveValue<CSS.Property.WhiteSpace>;
@@ -99,12 +98,12 @@ const wrapperTags = Object.entries({
 
 function composeWrappers(props: TextProps, children: React.ReactNode) {
     return wrapperTags.reduce((el, [key, tag]) => {
-        return props[key as keyof TextProps] ? React.createElement(tag, {}, el) : el;
+        return props[key as keyof TextProps] ? createElement(tag, {}, el) : el;
     }, children);
 }
 
-export const Text = React.forwardRef<HTMLElement, TextProps>(({ children, ...rest }, ref) => (
-    <StyledText ref={ref} {...rest}>
+export const Text = forwardRef<HTMLElement, TextProps>(({ children, color, ...rest }, ref) => (
+    <StyledText ref={ref} color={color as any} {...rest}>
         {composeWrappers(rest, children)}
     </StyledText>
 ));
