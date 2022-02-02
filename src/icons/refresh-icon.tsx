@@ -1,27 +1,28 @@
+import type { IconProps } from "../components";
 import { Icon } from "../components";
 
-export function CubeIcon(props) {
+export function RefreshIcon(props: IconProps) {
     return (
         <Icon {...props} viewBox="0 0 512 512">
             <path
-                d="M448 341.37V170.61A32 32 0 00432.11 143l-152-88.46a47.94 47.94 0 00-48.24 0L79.89 143A32 32 0 0064 170.61v170.76A32 32 0 0079.89 369l152 88.46a48 48 0 0048.24 0l152-88.46A32 32 0 00448 341.37z"
                 style={{
                     fill: "none",
                     stroke: "currentColor",
                     strokeLinecap: "round",
-                    strokeLinejoin: "round",
-                    strokeWidth: "32px",
+                    strokeMiterlimit: 10,
+                    strokeWidth: "40px",
                 }}
+                d="M320,146s24.36-12-64-12A160,160,0,1,0,416,294"
             />
-            <path
-                d="M69 153.99l187 110 187-110M256 463.99v-200"
+            <polyline
                 style={{
                     fill: "none",
                     stroke: "currentColor",
                     strokeLinecap: "round",
                     strokeLinejoin: "round",
-                    strokeWidth: "32px",
+                    strokeWidth: "40px",
                 }}
+                points="256 58 336 138 256 218"
             />
         </Icon>
     );

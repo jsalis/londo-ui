@@ -1,6 +1,7 @@
+import type { IconProps } from "../components";
 import { Icon } from "../components";
 
-export function ColorIcon(props) {
+export function ColorIcon(props: IconProps) {
     return (
         <Icon {...props} viewBox="40 40 440 440">
             <path

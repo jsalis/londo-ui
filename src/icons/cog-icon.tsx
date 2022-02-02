@@ -1,6 +1,7 @@
+import type { IconProps } from "../components";
 import { Icon } from "../components";
 
-export function CogIcon(props) {
+export function CogIcon(props: IconProps) {
     return (
         <Icon {...props}>
             <path d="M12,16c2.206,0,4-1.794,4-4s-1.794-4-4-4s-4,1.794-4,4S9.794,16,12,16z M12,10c1.084,0,2,0.916,2,2s-0.916,2-2,2 s-2-0.916-2-2S10.916,10,12,10z" />

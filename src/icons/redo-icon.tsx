@@ -1,6 +1,7 @@
+import type { IconProps } from "../components";
 import { Icon } from "../components";
 
-export function UndoIcon(props) {
+export function RedoIcon(props: IconProps) {
     return (
         <Icon {...props} viewBox="0 0 512 512">
             <path
@@ -10,7 +11,7 @@ export function UndoIcon(props) {
                     strokeLinejoin: "round",
                     strokeWidth: "40px",
                 }}
-                d="M240,424V328c116.4,0,159.39,33.76,208,96,0-119.23-39.57-240-208-240V88L64,256Z"
+                d="M448,256,272,88v96C103.57,184,64,304.77,64,424c48.61-62.24,91.6-96,208-96v96Z"
             />
         </Icon>
     );

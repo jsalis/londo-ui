@@ -1,6 +1,7 @@
+import type { IconProps } from "../components";
 import { Icon } from "../components";
 
-export function TrashIcon(props) {
+export function TrashIcon(props: IconProps) {
     return (
         <Icon {...props}>
             <path

@@ -1,6 +1,7 @@
+import type { IconProps } from "../components";
 import { Icon } from "../components";
 
-export function EyeOnIcon(props) {
+export function EyeOnIcon(props: IconProps) {
     return (
         <Icon {...props} viewBox="0 0 512 512">
             <path

@@ -1,6 +1,7 @@
+import type { IconProps } from "../components";
 import { Icon } from "../components";
 
-export function ChipIcon(props) {
+export function ChipIcon(props: IconProps) {
     return (
         <Icon {...props}>
             <path d="M9 9H15V15H9z" />

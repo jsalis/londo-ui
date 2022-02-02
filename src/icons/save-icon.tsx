@@ -1,6 +1,7 @@
+import type { IconProps } from "../components";
 import { Icon } from "../components";
 
-export function SaveIcon(props) {
+export function SaveIcon(props: IconProps) {
     return (
         <Icon {...props}>
             <path

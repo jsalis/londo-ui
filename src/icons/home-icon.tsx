@@ -1,6 +1,7 @@
+import type { IconProps } from "../components";
 import { Icon } from "../components";
 
-export function HomeIcon(props) {
+export function HomeIcon(props: IconProps) {
     return (
         <Icon {...props}>
             <path

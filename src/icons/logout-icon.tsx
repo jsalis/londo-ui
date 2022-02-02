@@ -1,6 +1,7 @@
+import type { IconProps } from "../components";
 import { Icon } from "../components";
 
-export function LogoutIcon(props) {
+export function LogoutIcon(props: IconProps) {
     return (
         <Icon {...props}>
             <path d="M2 12L7 16 7 13 16 13 16 11 7 11 7 8z" />

@@ -1,16 +1,17 @@
+import type { IconProps } from "../components";
 import { Icon } from "../components";
 
-export function PlayIcon(props) {
+export function UndoIcon(props: IconProps) {
     return (
         <Icon {...props} viewBox="0 0 512 512">
             <path
                 style={{
                     fill: "none",
                     stroke: "currentColor",
-                    strokeMiterlimit: 10,
+                    strokeLinejoin: "round",
                     strokeWidth: "40px",
                 }}
-                d="M112 111v290c0 17.44 17 28.52 31 20.16l247.9-148.37c12.12-7.25 12.12-26.33 0-33.58L143 90.84c-14-8.36-31 2.72-31 20.16z"
+                d="M240,424V328c116.4,0,159.39,33.76,208,96,0-119.23-39.57-240-208-240V88L64,256Z"
             />
         </Icon>
     );
