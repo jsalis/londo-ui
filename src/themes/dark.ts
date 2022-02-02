@@ -1,6 +1,12 @@
 import { colorPaletteDark } from "./color-palette";
 import { base } from "./base";
 
+type AlphaColors = string[] & {
+    inverse: string[];
+    white: string[];
+    black: string[];
+};
+
 const alpha = [
     "rgba(255, 255, 255, 0.04)",
     "rgba(255, 255, 255, 0.06)",
@@ -12,7 +18,7 @@ const alpha = [
     "rgba(255, 255, 255, 0.64)",
     "rgba(255, 255, 255, 0.80)",
     "rgba(255, 255, 255, 0.92)",
-];
+] as AlphaColors;
 
 alpha.inverse = [
     "rgba(0, 0, 0, 0.04)",
@@ -30,6 +36,11 @@ alpha.inverse = [
 alpha.white = alpha;
 alpha.black = alpha.inverse;
 
+type GrayColors = string[] & {
+    light: string;
+    base: string;
+};
+
 const gray = [
     "#14141C",
     "#191921",
@@ -41,7 +52,8 @@ const gray = [
     "#BABAC2",
     "#D0D0D8",
     "#EDEDF5",
-];
+] as GrayColors;
+
 gray.light = gray[5];
 gray.base = gray[6];
 

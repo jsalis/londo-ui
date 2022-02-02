@@ -3,7 +3,13 @@ const fonts = {
     body: "Roboto Mono, Source Code Pro, Menlo, Courier, monospace",
 };
 
-const fontSizes = [12, 14, 16, 20, 24, 32, 48, 64];
+type FontSizes = number[] & {
+    sm: number;
+    md: number;
+    lg: number;
+};
+
+const fontSizes = [12, 14, 16, 20, 24, 32, 48, 64] as FontSizes;
 fontSizes.sm = fontSizes[0];
 fontSizes.md = fontSizes[1];
 fontSizes.lg = fontSizes[2];
@@ -17,13 +23,25 @@ const lineHeights = {
     taller: 2,
 };
 
-const space = [0, 4, 8, 16, 32, 64, 128, 256];
+type Space = number[] & {
+    xs: number;
+    sm: number;
+    md: number;
+    lg: number;
+};
+
+const space = [0, 4, 8, 16, 32, 64, 128, 256] as Space;
 space.xs = space[1];
 space.sm = space[2];
 space.md = space[3];
 space.lg = space[4];
 
-const breakpoints = ["768px", "1200px"];
+type Breakpoints = string[] & {
+    md: string;
+    lg: string;
+};
+
+const breakpoints = ["768px", "1200px"] as Breakpoints;
 breakpoints.md = breakpoints[0];
 breakpoints.lg = breakpoints[1];
 
