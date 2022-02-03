@@ -1,11 +1,19 @@
 import { forwardRef } from "react";
-import PropTypes from "prop-types";
 import styled, { useTheme } from "styled-components";
 
 import { useControllableState } from "../hooks";
 import { CloseIcon } from "../icons";
 
+import type { BoxProps } from "./box";
 import { Box } from "./box";
+
+export interface TagProps extends BoxProps {
+    color: string;
+    visible?: boolean;
+    closable?: boolean;
+    onClose?: (event: React.MouseEvent) => void;
+    children?: React.ReactNode;
+}
 
 const presetColors = [
     "magenta",
@@ -40,11 +48,11 @@ const StyledTag = styled(Box)`
     transition: all 0.3s;
 `;
 
-export const Tag = forwardRef((props, ref) => {
-    const { color, closable, onClose, className, children, ...rest } = props;
+export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
+    const { color, closable = false, onClose, children, ...rest } = props;
     const isPresetColor = presetColors.includes(color);
 
-    const theme = useTheme();
+    const theme: any = useTheme();
     const [visible, setVisible] = useControllableState(props.visible, true);
 
     const getBorderColor = () => {
@@ -77,7 +85,7 @@ export const Tag = forwardRef((props, ref) => {
         return theme.colors.gray[1];
     };
 
-    const handleClose = (event) => {
+    const handleClose = (event: React.MouseEvent) => {
         event.stopPropagation();
         setVisible(false);
         onClose?.(event);
@@ -86,7 +94,6 @@ export const Tag = forwardRef((props, ref) => {
     return (
         <StyledTag
             ref={ref}
-            className={className}
             hidden={!visible}
             fontSize="sm"
             borderRadius="base"
@@ -103,16 +110,4 @@ export const Tag = forwardRef((props, ref) => {
 
 if (process.env.NODE_ENV !== "production") {
     Tag.displayName = "Tag";
-    Tag.propTypes = {
-        color: PropTypes.string,
-        visible: PropTypes.bool,
-        closable: PropTypes.bool,
-        onClose: PropTypes.func,
-        className: PropTypes.string,
-        children: PropTypes.node,
-    };
 }
-
-Tag.defaultProps = {
-    closable: false,
-};

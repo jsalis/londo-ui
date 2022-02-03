@@ -1,11 +1,25 @@
+import type { SpaceProps, FlexboxProps } from "styled-system";
 import { forwardRef } from "react";
-import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
 import { space, flexbox } from "styled-system";
+import styled, { css } from "styled-components";
 
 import { useControllableState } from "../hooks";
 
 import { Box } from "./box";
+
+interface LabelProps extends SpaceProps, FlexboxProps {
+    checked?: boolean;
+    disabled?: boolean;
+}
+
+export interface CheckboxProps
+    extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
+    direction?: "row" | "column";
+    checked?: boolean;
+    defaultChecked?: boolean;
+    onChange?: (value: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+    children?: React.ReactNode;
+}
 
 const Input = styled.input`
     position: absolute;
@@ -49,7 +63,7 @@ const Control = styled.span`
     }
 `;
 
-const Label = styled.label`
+const Label = styled.label<LabelProps>`
     display: inline-flex;
     align-items: center;
     vertical-align: top;
@@ -107,12 +121,12 @@ const Label = styled.label`
         `}
 `;
 
-export const Checkbox = forwardRef((props, ref) => {
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
     const {
         checked: checkedProp,
-        defaultChecked,
+        defaultChecked = false,
         onChange,
-        direction,
+        direction = "row",
         disabled,
         className,
         children,
@@ -121,7 +135,7 @@ export const Checkbox = forwardRef((props, ref) => {
 
     const [checked, setChecked] = useControllableState(checkedProp, defaultChecked);
 
-    const handleChange = (event) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const val = event.target.checked;
         setChecked(val);
         onChange?.(val, event);
@@ -154,22 +168,4 @@ export const Checkbox = forwardRef((props, ref) => {
 
 if (process.env.NODE_ENV !== "production") {
     Checkbox.displayName = "Checkbox";
-    Checkbox.propTypes = {
-        value: PropTypes.oneOfType([PropTypes.number, PropTypes.bool, PropTypes.string]),
-        checked: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-        defaultChecked: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-        onChange: PropTypes.func,
-        onFocus: PropTypes.func,
-        onBlur: PropTypes.func,
-        direction: PropTypes.oneOf(["row", "column"]),
-        disabled: PropTypes.bool,
-        readOnly: PropTypes.bool,
-        className: PropTypes.string,
-        children: PropTypes.node,
-    };
 }
-
-Checkbox.defaultProps = {
-    defaultChecked: false,
-    direction: "row",
-};

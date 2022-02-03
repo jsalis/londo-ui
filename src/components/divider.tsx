@@ -1,9 +1,15 @@
+import type { SpaceProps } from "styled-system";
 import { forwardRef } from "react";
-import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
 import { space } from "styled-system";
+import styled, { css } from "styled-components";
 
-const StyledDivider = styled.div`
+export interface DividerProps extends React.HTMLAttributes<HTMLDivElement>, SpaceProps {
+    align?: "left" | "right" | "center";
+    dashed?: boolean;
+    children?: React.ReactNode;
+}
+
+const StyledDivider = styled.div<DividerProps>`
     line-height: ${(p) => p.theme.lineHeights.base};
     font-size: ${(p) => p.theme.fontSizes.md}px;
     color: ${(p) => p.theme.colors.text};
@@ -93,25 +99,16 @@ const InnerText = styled.span`
     padding: 0 1em;
 `;
 
-export const Divider = forwardRef(({ align, dashed, children, ...rest }, ref) => {
-    return (
-        <StyledDivider ref={ref} {...rest} align={align} dashed={dashed}>
-            {children ? <InnerText>{children}</InnerText> : null}
-        </StyledDivider>
-    );
-});
+export const Divider = forwardRef<HTMLDivElement, DividerProps>(
+    ({ align = "center", dashed = false, children, ...rest }, ref) => {
+        return (
+            <StyledDivider ref={ref} {...rest} align={align} dashed={dashed}>
+                {children ? <InnerText>{children}</InnerText> : null}
+            </StyledDivider>
+        );
+    }
+);
 
 if (process.env.NODE_ENV !== "production") {
     Divider.displayName = "Divider";
-    Divider.propTypes = {
-        align: PropTypes.oneOf(["left", "right", "center"]),
-        dashed: PropTypes.bool,
-        className: PropTypes.string,
-        children: PropTypes.node,
-    };
 }
-
-Divider.defaultProps = {
-    align: "center",
-    dashed: false,
-};

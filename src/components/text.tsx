@@ -12,7 +12,8 @@ import { system, typography, space, layout, flexbox, color } from "styled-system
 import styled, { css } from "styled-components";
 
 export interface TextProps
-    extends TypographyProps,
+    extends Omit<React.HTMLAttributes<HTMLSpanElement>, "color">,
+        TypographyProps,
         SpaceProps,
         LayoutProps,
         FlexboxProps,
@@ -102,7 +103,7 @@ function composeWrappers(props: TextProps, children: React.ReactNode) {
     }, children);
 }
 
-export const Text = forwardRef<HTMLElement, TextProps>(({ color, children, ...rest }, ref) => (
+export const Text = forwardRef<HTMLSpanElement, TextProps>(({ color, children, ...rest }, ref) => (
     <StyledText ref={ref} {...rest} color={color as any}>
         {composeWrappers(rest, children)}
     </StyledText>

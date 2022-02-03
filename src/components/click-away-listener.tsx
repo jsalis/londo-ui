@@ -1,34 +1,46 @@
 import { cloneElement, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
 
 import { useForkRef, useCallbackRef } from "../hooks";
 import { ownerDocument } from "../utils/dom-util";
 
-function mapEventPropToEvent(eventProp) {
+type ClickAwayMouseEventHandler = "onClick" | "onMouseDown" | "onMouseUp";
+
+export interface ClickAwayListenerProps {
+    disableReactTree?: boolean;
+    mouseEvent?: ClickAwayMouseEventHandler | false;
+    onClickAway: (event: MouseEvent) => void;
+    children: React.ReactElement;
+}
+
+function mapEventPropToEvent(eventProp: ClickAwayMouseEventHandler) {
     return eventProp.substring(2).toLowerCase();
 }
 
-function clickedRootScrollbar(event, doc) {
+function clickedRootScrollbar(event: MouseEvent, doc: Document) {
     return (
         doc.documentElement.clientWidth < event.clientX ||
         doc.documentElement.clientHeight < event.clientY
     );
 }
 
-function isInsideDom(event, doc, el) {
+function isInsideDom(event: MouseEvent, doc: Document, el: HTMLElement) {
     if (event.composedPath) {
         return event.composedPath().indexOf(el) > -1;
     }
-    return !doc.documentElement.contains(event.target) || el.contains(event.target);
+    return !doc.documentElement.contains(event.target as Node) || el.contains(event.target as Node);
 }
 
-export function ClickAwayListener(props) {
-    const { children, disableReactTree, mouseEvent, onClickAway } = props;
+export function ClickAwayListener(props: ClickAwayListenerProps) {
+    const { children, disableReactTree = false, mouseEvent = "onClick", onClickAway } = props;
 
-    const nodeRef = useRef(null);
+    const nodeRef = useRef<HTMLElement>(null);
     const activatedRef = useRef(false);
     const syntheticEventRef = useRef(false);
-    const handleRef = useForkRef(children.ref, nodeRef);
+    const handleRef = useForkRef(
+        // @ts-expect-error
+        children.ref,
+        nodeRef
+    );
 
     useEffect(() => {
         // Ensure that this component is not "activated" synchronously.
@@ -76,13 +88,14 @@ export function ClickAwayListener(props) {
                 doc.removeEventListener(eventName, handleClickAway);
             };
         }
+        return;
     }, [handleClickAway, mouseEvent]);
 
-    const childrenProps = { ref: handleRef };
+    const childrenProps: any = { ref: handleRef };
 
     if (mouseEvent !== false) {
         // Keep track of mouse events that bubbled up through the portal
-        childrenProps[mouseEvent] = (event) => {
+        childrenProps[mouseEvent] = (event: React.SyntheticEvent) => {
             syntheticEventRef.current = true;
             children.props[mouseEvent]?.(event);
         };
@@ -93,15 +106,4 @@ export function ClickAwayListener(props) {
 
 if (process.env.NODE_ENV !== "production") {
     ClickAwayListener.displayName = "ClickAwayListener";
-    ClickAwayListener.propTypes = {
-        children: PropTypes.node,
-        disableReactTree: PropTypes.bool,
-        mouseEvent: PropTypes.oneOf(["onClick", "onMouseDown", "onMouseUp", false]),
-        onClickAway: PropTypes.func.isRequired,
-    };
 }
-
-ClickAwayListener.defaultProps = {
-    disableReactTree: false,
-    mouseEvent: "onClick",
-};

@@ -15,6 +15,7 @@ export interface IconProps extends FontSizeProps, SpaceProps, LayoutProps, Color
     viewBox?: string;
     fill?: string;
     cursor?: ResponsiveValue<CSS.Property.Cursor>;
+    onClick?: React.MouseEventHandler;
     children?: React.ReactNode;
 }
 
