@@ -33,7 +33,7 @@ export const StyledIcon = styled.svg<IconProps>`
 `;
 
 export const Icon = forwardRef<HTMLElement, IconProps>(({ color, ...rest }, ref) => (
-    <StyledIcon ref={ref} color={color as any} {...rest} />
+    <StyledIcon ref={ref} {...rest} color={color as any} />
 ));
 
 if (process.env.NODE_ENV !== "production") {

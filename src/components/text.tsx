@@ -103,7 +103,7 @@ function composeWrappers(props: TextProps, children: React.ReactNode) {
 }
 
 export const Text = forwardRef<HTMLElement, TextProps>(({ color, children, ...rest }, ref) => (
-    <StyledText ref={ref} color={color as any} {...rest}>
+    <StyledText ref={ref} {...rest} color={color as any}>
         {composeWrappers(rest, children)}
     </StyledText>
 ));

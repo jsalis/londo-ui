@@ -1,15 +1,30 @@
+import type { MarginProps, LayoutProps } from "styled-system";
 import { memo, forwardRef } from "react";
-import PropTypes from "prop-types";
-import tinycolor from "tinycolor2";
-import styled, { css } from "styled-components";
 import { system, margin, layout } from "styled-system";
+import styled, { css } from "styled-components";
+import tinycolor from "tinycolor2";
+
+export interface ColorSwatchProps
+    extends React.HTMLAttributes<HTMLSpanElement>,
+        MarginProps,
+        LayoutProps {
+    color?: string;
+    size?: number;
+    primary?: boolean;
+    secondary?: boolean;
+}
+
+interface StyledColorSwatchProps extends ColorSwatchProps {
+    accentColor: string;
+}
 
 const other = system({
     pointerEvents: true,
     cursor: true,
 });
 
-const Swatch = styled.span`
+const Swatch = styled.span<StyledColorSwatchProps>`
+    --accent-color: ${(p) => p.accentColor};
     display: inline-block;
     position: relative;
     border-radius: 2px;
@@ -23,9 +38,9 @@ const Swatch = styled.span`
         p.primary &&
         css`
             &::before {
-                border-width: ${Math.round(p.size / 4)}px;
+                border-width: ${Math.round((p.size ?? 0) / 4)}px;
                 border-style: solid;
-                border-color: ${p.accentColor} transparent transparent ${p.accentColor};
+                border-color: var(--accent-color) transparent transparent var(--accent-color);
                 border-radius: 2px 0 0 0;
                 transform: translate(1px, 1px);
                 position: absolute;
@@ -40,9 +55,9 @@ const Swatch = styled.span`
         p.secondary &&
         css`
             &::after {
-                border-width: ${Math.round(p.size / 6)}px;
+                border-width: ${Math.round((p.size ?? 0) / 6)}px;
                 border-style: solid;
-                border-color: transparent ${p.accentColor} ${p.accentColor} transparent;
+                border-color: transparent var(--accent-color) var(--accent-color) transparent;
                 border-radius: 0 0 2px 0;
                 transform: translate(-1px, -1px);
                 position: absolute;
@@ -54,9 +69,8 @@ const Swatch = styled.span`
         `}
 `;
 
-export const ColorSwatch = memo(
-    forwardRef((props, ref) => {
-        const { color, primary, secondary, style, ...rest } = props;
+const BaseColorSwatch = forwardRef<HTMLSpanElement, ColorSwatchProps>(
+    ({ color = "#000000", primary, secondary, size = 20, style, ...rest }, ref) => {
         const accentColor = (primary || secondary) && tinycolor(color).isDark() ? "#fff" : "#000";
         return (
             <Swatch
@@ -64,26 +78,16 @@ export const ColorSwatch = memo(
                 {...rest}
                 primary={primary}
                 secondary={secondary}
+                size={size}
                 accentColor={accentColor}
                 style={{ backgroundColor: color, ...style }}
             />
         );
-    })
+    }
 );
+
+export const ColorSwatch = memo(BaseColorSwatch);
 
 if (process.env.NODE_ENV !== "production") {
     ColorSwatch.displayName = "ColorSwatch";
-    ColorSwatch.propTypes = {
-        color: PropTypes.string,
-        size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        primary: PropTypes.bool,
-        secondary: PropTypes.bool,
-        className: PropTypes.string,
-        style: PropTypes.object,
-    };
 }
-
-ColorSwatch.defaultProps = {
-    color: "#000000",
-    size: 20,
-};

@@ -1,9 +1,16 @@
 import styled, { css } from "styled-components";
 import { space } from "styled-system";
 
+import type { BoxProps } from "./box";
 import { Box } from "./box";
 
-export const Button = styled(Box)`
+export interface ButtonProps
+    extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "color">,
+        BoxProps {
+    active?: boolean;
+}
+
+export const Button = styled(Box)<ButtonProps>`
     --shadow-color: ${(p) => p.theme.colors.gray[5]};
     display: inline-flex;
     align-items: center;

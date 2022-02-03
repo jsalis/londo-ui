@@ -1,7 +1,10 @@
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const VisuallyHidden = styled.span`
+export interface VisuallyHiddenProps {
+    children: React.ReactNode;
+}
+
+export const VisuallyHidden = styled.span<VisuallyHiddenProps>`
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -15,8 +18,4 @@ export const VisuallyHidden = styled.span`
 
 if (process.env.NODE_ENV !== "production") {
     VisuallyHidden.displayName = "VisuallyHidden";
-    VisuallyHidden.propTypes = {
-        className: PropTypes.string,
-        children: PropTypes.node,
-    };
 }
