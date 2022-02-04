@@ -1,21 +1,46 @@
 import { forwardRef, createContext, useContext } from "react";
 import { RemoveScroll } from "react-remove-scroll";
 import FocusLock from "react-focus-lock";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { HTMLElementType } from "../utils/prop-types";
 import { useCallbackRef } from "../hooks";
 import { CloseIcon } from "../icons";
 import { KeyCode } from "../utils/key-code";
 
-import { Portal } from "./portal";
+import type { FlexProps } from "./flex";
+import type { BoxProps } from "./box";
 import { Flex } from "./flex";
 import { Box } from "./box";
+import { Portal } from "./portal";
 import { ClickAwayListener } from "./click-away-listener";
 import { VisuallyHidden } from "./visually-hidden";
 
-const ModalContext = createContext(undefined);
+interface ModalContextValue {
+    scrollBehavior?: "inside" | "outside";
+    autoFocus?: boolean;
+    restoreFocus?: boolean;
+    initialFocusRef?: React.RefObject<any>;
+    finalFocusRef?: React.RefObject<any>;
+}
+
+interface ModalContentProps extends FlexProps {
+    onClose?: (event: MouseEvent) => void;
+    onKeyDown?: (event: React.KeyboardEvent) => void;
+}
+
+export interface ModalHeaderProps extends BoxProps {}
+export interface ModalBodyProps extends BoxProps {}
+export interface ModalFooterProps extends FlexProps {}
+
+export interface ModalProps extends ModalContextValue, FlexProps {
+    isOpen: boolean;
+    onClose: () => void;
+    overlayRef?: React.RefObject<any>;
+    contentRef?: React.RefObject<any>;
+    container?: HTMLElement | (() => HTMLElement);
+}
+
+const ModalContext = createContext<ModalContextValue>({} as ModalContextValue);
 
 const OverlayWrap = styled(Box)`
     position: fixed;
@@ -66,12 +91,12 @@ const CloseButtonWrap = styled.button`
     }
 `;
 
-const Overlay = forwardRef((props, ref) => {
-    return <OverlayWrap ref={ref} bg="alpha.black.6" {...props} />;
+const Overlay = forwardRef<HTMLDivElement, BoxProps>(({ color, ...rest }, ref) => {
+    return <OverlayWrap ref={ref} bg="alpha.black.6" {...rest} color={color as any} />;
 });
 
-const Content = forwardRef((props, ref) => {
-    const { onClose, onKeyDown, children, ...rest } = props;
+const Content = forwardRef<HTMLDivElement, ModalContentProps>((props, ref) => {
+    const { onClose, onKeyDown, color, children, ...rest } = props;
     const { scrollBehavior, autoFocus, restoreFocus, initialFocusRef, finalFocusRef } =
         useContext(ModalContext);
 
@@ -113,6 +138,7 @@ const Content = forwardRef((props, ref) => {
                             width={1}
                             maxWidth={448}
                             maxHeight={scrollBehavior === "inside" ? "calc(100% - 128px)" : ""}
+                            color={color as any}
                             {...rest}
                         >
                             {children}
@@ -124,11 +150,11 @@ const Content = forwardRef((props, ref) => {
     );
 });
 
-const Header = forwardRef((props, ref) => {
-    return <Box ref={ref} as="header" flex={0} fontSize={3} p={3} color="heading" {...props} />;
+const Header = forwardRef<HTMLElement, ModalHeaderProps>(({ color = "heading", ...rest }, ref) => {
+    return <Box ref={ref} as="header" flex={0} fontSize={3} p={3} color={color as any} {...rest} />;
 });
 
-const Body = forwardRef((props, ref) => {
+const Body = forwardRef<HTMLElement, ModalBodyProps>(({ color, ...rest }, ref) => {
     const { scrollBehavior } = useContext(ModalContext);
     const overflow = scrollBehavior === "inside" ? "auto" : "";
     return (
@@ -140,12 +166,13 @@ const Body = forwardRef((props, ref) => {
             pb={3}
             px={3}
             overflow={overflow}
-            {...props}
+            color={color as any}
+            {...rest}
         />
     );
 });
 
-const Footer = forwardRef((props, ref) => {
+const Footer = forwardRef<HTMLElement, ModalFooterProps>(({ color, ...rest }, ref) => {
     return (
         <Flex
             ref={ref}
@@ -155,45 +182,46 @@ const Footer = forwardRef((props, ref) => {
             flex={0}
             gap={2}
             p={3}
-            {...props}
+            color={color as any}
+            {...rest}
         />
     );
 });
 
-const CloseButton = forwardRef((props, ref) => {
-    return (
-        <CloseButtonWrap ref={ref} type="button" {...props}>
-            <VisuallyHidden>Close</VisuallyHidden>
-            <CloseIcon size={24} aria-hidden />
-        </CloseButtonWrap>
-    );
-});
+const CloseButton = forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
+    (props, ref) => {
+        return (
+            <CloseButtonWrap ref={ref} type="button" {...props}>
+                <VisuallyHidden>Close</VisuallyHidden>
+                <CloseIcon size={24} aria-hidden />
+            </CloseButtonWrap>
+        );
+    }
+);
 
-export function Modal(props) {
-    const {
-        isOpen,
-        onClose,
-        scrollBehavior,
-        autoFocus,
-        restoreFocus,
-        initialFocusRef,
-        finalFocusRef,
-        overlayRef,
-        contentRef,
-        container,
-        className,
-        children,
-        ...rest
-    } = props;
-
+export function Modal({
+    isOpen,
+    onClose,
+    scrollBehavior = "outside",
+    autoFocus = true,
+    restoreFocus = true,
+    initialFocusRef,
+    finalFocusRef,
+    overlayRef,
+    contentRef,
+    container,
+    className,
+    children,
+    ...rest
+}: ModalProps) {
     const context = { scrollBehavior, autoFocus, restoreFocus, initialFocusRef, finalFocusRef };
 
-    const handleClose = (event) => {
+    const handleClose = (event: React.SyntheticEvent | Event) => {
         event.stopPropagation();
         onClose?.();
     };
 
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event: React.KeyboardEvent) => {
         if (event.key === KeyCode.ESC) {
             event.stopPropagation();
             onClose?.();
@@ -227,24 +255,4 @@ Modal.Footer = Footer;
 
 if (process.env.NODE_ENV !== "production") {
     Modal.displayName = "Modal";
-    Modal.propTypes = {
-        isOpen: PropTypes.bool.isRequired,
-        onClose: PropTypes.func.isRequired,
-        scrollBehavior: PropTypes.oneOf(["inside", "outside"]),
-        autoFocus: PropTypes.bool,
-        restoreFocus: PropTypes.bool,
-        initialFocusRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-        finalFocusRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-        overlayRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-        contentRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-        container: PropTypes.oneOfType([HTMLElementType, PropTypes.func]),
-        className: PropTypes.string,
-        children: PropTypes.node,
-    };
 }
-
-Modal.defaultProps = {
-    scrollBehavior: "outside",
-    autoFocus: true,
-    restoreFocus: true,
-};

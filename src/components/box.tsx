@@ -34,19 +34,20 @@ export interface BoxProps
         ShadowProps {
     as?: keyof JSX.IntrinsicElements;
     area?: ResponsiveValue<CSS.Property.GridArea>;
-    columnStart?: ResponsiveValue<CSS.Property.GridColumnStart>;
-    columnEnd?: ResponsiveValue<CSS.Property.GridColumnEnd>;
+    columnStart?: ResponsiveValue<CSS.Property.GridColumnStart | number>;
+    columnEnd?: ResponsiveValue<CSS.Property.GridColumnEnd | number>;
     columnSpan?: ResponsiveValue<number>;
-    rowStart?: ResponsiveValue<CSS.Property.GridRowStart>;
-    rowEnd?: ResponsiveValue<CSS.Property.GridRowEnd>;
+    rowStart?: ResponsiveValue<CSS.Property.GridRowStart | number>;
+    rowEnd?: ResponsiveValue<CSS.Property.GridRowEnd | number>;
     rowSpan?: ResponsiveValue<number>;
-    gap?: ResponsiveValue<CSS.Property.Gap>;
-    columnGap?: ResponsiveValue<CSS.Property.ColumnGap>;
-    rowGap?: ResponsiveValue<CSS.Property.RowGap>;
+    gap?: ResponsiveValue<CSS.Property.Gap | number>;
+    columnGap?: ResponsiveValue<CSS.Property.ColumnGap | number>;
+    rowGap?: ResponsiveValue<CSS.Property.RowGap | number>;
     whiteSpace?: ResponsiveValue<CSS.Property.WhiteSpace>;
     pointerEvents?: ResponsiveValue<CSS.Property.PointerEvents>;
     userSelect?: ResponsiveValue<CSS.Property.UserSelect>;
     cursor?: ResponsiveValue<CSS.Property.Cursor>;
+    className?: string;
     children?: React.ReactNode;
 }
 

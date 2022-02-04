@@ -1,14 +1,23 @@
+import type * as CSS from "csstype";
+import type { ColorProps, ResponsiveValue } from "styled-system";
 import { forwardRef, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
 import { color } from "styled-system";
+import styled from "styled-components";
 
+import type { BoxProps } from "./box";
 import { Box } from "./box";
 
 const BAR_MIN_SIZE = 32;
 const BAR_MARGIN = 8;
 
-const VerticalBar = styled.div`
+interface BarProps extends ColorProps {}
+
+export interface ScrollerProps extends BoxProps {
+    barColor?: ResponsiveValue<CSS.Property.BackgroundColor>;
+    overScroll?: CSS.Property.OverscrollBehavior;
+}
+
+const VerticalBar = styled.div<BarProps>`
     width: 4px;
     position: absolute;
     top: 0;
@@ -18,7 +27,7 @@ const VerticalBar = styled.div`
     ${color}
 `;
 
-const HorizontalBar = styled.div`
+const HorizontalBar = styled.div<BarProps>`
     height: 4px;
     position: absolute;
     bottom: 0;
@@ -28,7 +37,7 @@ const HorizontalBar = styled.div`
     ${color}
 `;
 
-const ScrollContent = styled(Box)`
+const ScrollContent = styled(Box)<ScrollerProps>`
     height: 100%;
     overflow: scroll;
     overscroll-behavior: ${(p) => p.overScroll};
@@ -51,29 +60,19 @@ const Container = styled(Box)`
     }
 `;
 
-export const Scroller = forwardRef(
-    ({ barColor, overScroll, maxHeight, children, ...rest }, ref) => {
-        const { content, yBar, xBar } = useScroll({ children });
-        return (
-            <Container ref={ref} maxHeight={maxHeight} {...rest}>
-                <ScrollContent ref={content} maxHeight={maxHeight} overScroll={overScroll}>
-                    {children}
-                </ScrollContent>
-                <VerticalBar ref={yBar} bg={barColor} />
-                <HorizontalBar ref={xBar} bg={barColor} />
-            </Container>
-        );
-    }
-);
-
-function useScroll({ children }) {
-    const content = useRef();
-    const yBar = useRef();
-    const xBar = useRef();
+function useScroll(children: React.ReactNode) {
+    const content = useRef<HTMLDivElement>(null);
+    const yBar = useRef<HTMLDivElement>(null);
+    const xBar = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const update = () => updateScroll(content.current, yBar.current, xBar.current);
-        content.current.addEventListener("scroll", update);
+        const update = () => {
+            if (content.current && yBar.current && xBar.current) {
+                updateScroll(content.current, yBar.current, xBar.current);
+            }
+        };
+
+        content.current?.addEventListener("scroll", update);
         window.addEventListener("resize", update);
         update();
 
@@ -86,7 +85,7 @@ function useScroll({ children }) {
     return { content, yBar, xBar };
 }
 
-function updateScroll(content, yBar, xBar) {
+function updateScroll(content: HTMLElement, yBar: HTMLElement, xBar: HTMLElement) {
     const {
         scrollTop = 0,
         scrollHeight = 0,
@@ -115,30 +114,33 @@ function updateScroll(content, yBar, xBar) {
     }
 }
 
-function getVerticalBarHeight(content) {
+function getVerticalBarHeight(content: HTMLElement) {
     const { scrollHeight = 0, clientHeight = 0 } = content;
     const height = Math.ceil((clientHeight / scrollHeight) * clientHeight);
     return height === clientHeight ? 0 : Math.max(height, BAR_MIN_SIZE);
 }
 
-function getHorizontalBarWidth(content) {
+function getHorizontalBarWidth(content: HTMLElement) {
     const { scrollWidth = 0, clientWidth = 0 } = content;
     const width = Math.ceil((clientWidth / scrollWidth) * clientWidth);
     return width === clientWidth ? 0 : Math.max(width, BAR_MIN_SIZE);
 }
 
+export const Scroller = forwardRef<HTMLDivElement, ScrollerProps>(
+    ({ barColor = "alpha.5", overScroll = "auto", maxHeight, color, children, ...rest }, ref) => {
+        const { content, yBar, xBar } = useScroll(children);
+        return (
+            <Container ref={ref} maxHeight={maxHeight} {...rest} color={color as any}>
+                <ScrollContent ref={content} maxHeight={maxHeight} overScroll={overScroll}>
+                    {children}
+                </ScrollContent>
+                <VerticalBar ref={yBar} bg={barColor} />
+                <HorizontalBar ref={xBar} bg={barColor} />
+            </Container>
+        );
+    }
+);
+
 if (process.env.NODE_ENV !== "production") {
     Scroller.displayName = "Scroller";
-    Scroller.propTypes = {
-        barColor: PropTypes.string,
-        overScroll: PropTypes.oneOf(["auto", "contain", "none"]),
-        maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-        className: PropTypes.string,
-        children: PropTypes.node,
-    };
 }
-
-Scroller.defaultProps = {
-    barColor: "alpha.5",
-    overScroll: "auto",
-};

@@ -1,13 +1,33 @@
 import { useState } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 import { useControllableState } from "../hooks";
 
-import { Box } from "./box";
 import { Label } from "./label";
 
-function getCellColor({ theme, active, selectionActive }) {
+type Selection = { width: number; height: number };
+
+interface StyledCellProps {
+    active: boolean;
+    selectionActive: boolean;
+}
+
+interface DataCellProps {
+    width: number;
+    height: number;
+    value: [number, number];
+    selection: Selection | null;
+    onSelectionChange: (val: Selection) => void;
+}
+
+export interface SizePickerProps {
+    value?: [number, number];
+    defaultValue?: [number, number];
+    max?: [number, number];
+    onChange?: (val: [number, number]) => void;
+}
+
+function getCellColor({ theme, active, selectionActive }: any) {
     if (selectionActive) {
         return theme.colors.primary[2];
     }
@@ -19,7 +39,7 @@ function getCellColor({ theme, active, selectionActive }) {
     return theme.colors.alpha[1];
 }
 
-export const StyledCell = styled.td`
+const StyledCell = styled.td<StyledCellProps>`
     &::before {
         background: ${getCellColor};
         border-radius: ${(p) => p.theme.radii.base}px;
@@ -29,7 +49,7 @@ export const StyledCell = styled.td`
     }
 `;
 
-export const StyledTable = styled.table`
+const StyledTable = styled.table`
     border: 0;
     border-spacing: 0;
     border-collapse: collapse;
@@ -46,18 +66,35 @@ export const StyledTable = styled.table`
     }
 `;
 
-export function SizePicker({ value, onChange, defaultValue, max, ...rest }) {
-    const [selection, setSelection] = useState(null);
-    const [size, setSize] = useControllableState(value, defaultValue);
+function DataCell({ width, height, value, selection, onSelectionChange }: DataCellProps) {
+    const active = !selection && width <= value[0] && height <= value[1];
+    const selectionActive = !!selection && width <= selection.width && height <= selection.height;
+
+    const onMouseMove = (event: React.MouseEvent) => {
+        event.preventDefault();
+        if (!selection || selection.width !== width || selection.height !== height) {
+            onSelectionChange({ width, height });
+        }
+    };
+
+    return (
+        <StyledCell active={active} selectionActive={selectionActive} onMouseMove={onMouseMove} />
+    );
+}
+
+export function SizePicker({ value, defaultValue, max, onChange }: SizePickerProps) {
+    const defaultSize: [number, number] = [1, 1];
+    const [selection, setSelection] = useState<Selection | null>(null);
+    const [size, setSize] = useControllableState(value, defaultValue ?? defaultSize);
 
     const [width, height] = size;
-    const [maxWidth, maxHeight] = max;
+    const [maxWidth, maxHeight] = max ?? defaultSize;
     const rows = [...Array(maxHeight).keys()];
     const columns = [...Array(maxWidth).keys()];
 
     const onClick = () => {
         if (selection) {
-            const nextValue = [selection.width, selection.height];
+            const nextValue: [number, number] = [selection.width, selection.height];
             setSize(nextValue);
             onChange?.(nextValue);
         }
@@ -70,7 +107,7 @@ export function SizePicker({ value, onChange, defaultValue, max, ...rest }) {
     };
 
     return (
-        <Box {...rest}>
+        <div>
             <StyledTable onClick={onClick} onMouseLeave={onMouseLeave}>
                 <tbody>
                     {rows.map((row) => (
@@ -82,7 +119,7 @@ export function SizePicker({ value, onChange, defaultValue, max, ...rest }) {
                                     height={row + 1}
                                     value={size}
                                     selection={selection}
-                                    setSelection={setSelection}
+                                    onSelectionChange={setSelection}
                                 />
                             ))}
                         </tr>
@@ -92,38 +129,10 @@ export function SizePicker({ value, onChange, defaultValue, max, ...rest }) {
             <Label p={1}>
                 {selection?.width ?? width}x{selection?.height ?? height}
             </Label>
-        </Box>
-    );
-}
-
-function DataCell({ width, height, value, selection, setSelection }) {
-    const active = !selection && width <= value[0] && height <= value[1];
-    const selectionActive = selection && width <= selection.width && height <= selection.height;
-
-    const onMouseMove = (event) => {
-        event.preventDefault();
-        if (!selection || selection.width !== width || selection.height !== height) {
-            setSelection({ width, height });
-        }
-    };
-
-    return (
-        <StyledCell active={active} selectionActive={selectionActive} onMouseMove={onMouseMove} />
+        </div>
     );
 }
 
 if (process.env.NODE_ENV !== "production") {
     SizePicker.displayName = "SizePicker";
-    SizePicker.propTypes = {
-        value: PropTypes.arrayOf(PropTypes.number),
-        defaultValue: PropTypes.arrayOf(PropTypes.number),
-        max: PropTypes.arrayOf(PropTypes.number),
-        onChange: PropTypes.func,
-        className: PropTypes.string,
-    };
 }
-
-SizePicker.defaultProps = {
-    defaultValue: [1, 1],
-    max: [4, 4],
-};

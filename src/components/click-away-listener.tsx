@@ -3,16 +3,14 @@ import { cloneElement, useRef, useEffect } from "react";
 import { useForkRef, useCallbackRef } from "../hooks";
 import { ownerDocument } from "../utils/dom-util";
 
-type ClickAwayMouseEventHandler = "onClick" | "onMouseDown" | "onMouseUp";
-
 export interface ClickAwayListenerProps {
     disableReactTree?: boolean;
-    mouseEvent?: ClickAwayMouseEventHandler | false;
-    onClickAway: (event: MouseEvent) => void;
+    mouseEvent?: "onClick" | "onMouseDown" | "onMouseUp" | false;
+    onClickAway?: (event: MouseEvent) => void;
     children: React.ReactElement;
 }
 
-function mapEventPropToEvent(eventProp: ClickAwayMouseEventHandler) {
+function mapEventPropToEvent(eventProp: string) {
     return eventProp.substring(2).toLowerCase();
 }
 
@@ -73,7 +71,7 @@ export function ClickAwayListener(props: ClickAwayListenerProps) {
         }
 
         if (!isInsideDom(event, doc, nodeRef.current) && (disableReactTree || !insideReactTree)) {
-            onClickAway(event);
+            onClickAway?.(event);
         }
     });
 
