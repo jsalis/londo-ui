@@ -10,7 +10,6 @@ import {
 import PropTypes from "prop-types";
 import { createPopper } from "@popperjs/core";
 
-import { HTMLElementType } from "../utils/prop-types";
 import { isFunction } from "../utils/type-util";
 import { assignRef } from "../utils/react-util";
 import { useForkRef } from "../hooks";
@@ -187,9 +186,9 @@ if (process.env.NODE_ENV !== "production") {
     Popper.propTypes = {
         isOpen: PropTypes.bool.isRequired,
         keepMounted: PropTypes.bool,
-        anchor: PropTypes.oneOfType([HTMLElementType, PropTypes.func]),
+        anchor: PropTypes.oneOfType([PropTypes.object, PropTypes.func]), // HTMLElementType
         children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-        container: PropTypes.oneOfType([HTMLElementType, PropTypes.func]),
+        container: PropTypes.oneOfType([PropTypes.object, PropTypes.func]), // HTMLElementType
         modifiers: PropTypes.arrayOf(
             PropTypes.shape({
                 data: PropTypes.object,

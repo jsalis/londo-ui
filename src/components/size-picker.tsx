@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import styled from "styled-components";
 
 import { useControllableState } from "../hooks";
@@ -82,56 +82,58 @@ function DataCell({ width, height, value, selection, onSelectionChange }: DataCe
     );
 }
 
-export function SizePicker({ value, defaultValue, max, onChange }: SizePickerProps) {
-    const defaultSize: [number, number] = [1, 1];
-    const [selection, setSelection] = useState<Selection | null>(null);
-    const [size, setSize] = useControllableState(value, defaultValue ?? defaultSize);
+export const SizePicker = forwardRef<HTMLDivElement, SizePickerProps>(
+    ({ value, defaultValue, max, onChange }, ref) => {
+        const defaultSize: [number, number] = [1, 1];
+        const [selection, setSelection] = useState<Selection | null>(null);
+        const [size, setSize] = useControllableState(value, defaultValue ?? defaultSize);
 
-    const [width, height] = size;
-    const [maxWidth, maxHeight] = max ?? defaultSize;
-    const rows = [...Array(maxHeight).keys()];
-    const columns = [...Array(maxWidth).keys()];
+        const [width, height] = size;
+        const [maxWidth, maxHeight] = max ?? defaultSize;
+        const rows = [...Array(maxHeight).keys()];
+        const columns = [...Array(maxWidth).keys()];
 
-    const onClick = () => {
-        if (selection) {
-            const nextValue: [number, number] = [selection.width, selection.height];
-            setSize(nextValue);
-            onChange?.(nextValue);
-        }
-    };
+        const onClick = () => {
+            if (selection) {
+                const nextValue: [number, number] = [selection.width, selection.height];
+                setSize(nextValue);
+                onChange?.(nextValue);
+            }
+        };
 
-    const onMouseLeave = () => {
-        if (selection) {
-            setSelection(null);
-        }
-    };
+        const onMouseLeave = () => {
+            if (selection) {
+                setSelection(null);
+            }
+        };
 
-    return (
-        <div>
-            <StyledTable onClick={onClick} onMouseLeave={onMouseLeave}>
-                <tbody>
-                    {rows.map((row) => (
-                        <tr key={row}>
-                            {columns.map((col) => (
-                                <DataCell
-                                    key={col}
-                                    width={col + 1}
-                                    height={row + 1}
-                                    value={size}
-                                    selection={selection}
-                                    onSelectionChange={setSelection}
-                                />
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </StyledTable>
-            <Label p={1}>
-                {selection?.width ?? width}x{selection?.height ?? height}
-            </Label>
-        </div>
-    );
-}
+        return (
+            <div ref={ref}>
+                <StyledTable onClick={onClick} onMouseLeave={onMouseLeave}>
+                    <tbody>
+                        {rows.map((row) => (
+                            <tr key={row}>
+                                {columns.map((col) => (
+                                    <DataCell
+                                        key={col}
+                                        width={col + 1}
+                                        height={row + 1}
+                                        value={size}
+                                        selection={selection}
+                                        onSelectionChange={setSelection}
+                                    />
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </StyledTable>
+                <Label p={1}>
+                    {selection?.width ?? width}x{selection?.height ?? height}
+                </Label>
+            </div>
+        );
+    }
+);
 
 if (process.env.NODE_ENV !== "production") {
     SizePicker.displayName = "SizePicker";
