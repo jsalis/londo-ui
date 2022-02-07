@@ -12,6 +12,6 @@ const colorModel = {
  * Uses color manipulation in HSVA format. Can be applied to any
  * incoming color format by specifying the color model.
  */
-export function useHexColor(color: any, onChange: (color: any) => void) {
+export function useHexColor(color: any, onChange?: (color: any) => void) {
     return useColorManipulation(colorModel, color, onChange);
 }

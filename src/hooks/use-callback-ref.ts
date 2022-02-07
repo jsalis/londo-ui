@@ -3,7 +3,7 @@ import { useRef, useLayoutEffect, useCallback } from "react";
 /**
  * Persists a function between renders.
  */
-export function useCallbackRef<T extends (...args: any[]) => any>(callback: T) {
+export function useCallbackRef<T extends (...args: any[]) => any>(callback?: T) {
     const ref = useRef(callback);
 
     useLayoutEffect(() => {

@@ -1,14 +1,46 @@
+import type { LayoutProps } from "styled-system";
 import { memo, forwardRef, useRef, useMemo, useEffect } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
 import { layout } from "styled-system";
+import styled from "styled-components";
 
 import { useCallbackRef, useHexColor } from "../hooks";
 import { clamp, round } from "../utils/math-util";
 import { hsvaToHslString } from "../utils/color-util";
 import { KeyCode } from "../utils/key-code";
 
+import type { FlexProps } from "./flex";
 import { Flex } from "./flex";
+
+type HsvaColor = { h: number; s: number; v: number; a: number };
+
+interface InteractiveProps {
+    onMove?: (offset: { left: number; top: number }) => void;
+    onKey?: (offset: { left: number; top: number }) => void;
+    children?: React.ReactNode;
+}
+
+interface PointerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "color">, LayoutProps {
+    color?: string;
+    left?: number;
+    top?: number;
+}
+
+export interface ColorSaturationProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "color"> {
+    hsva: HsvaColor;
+    onChange?: (color: any) => void;
+}
+
+export interface ColorHueProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "color"> {
+    hue: number;
+    onChange?: (color: any) => void;
+}
+
+export interface ColorPickerProps
+    extends Omit<React.HTMLAttributes<HTMLDivElement>, "color">,
+        FlexProps {
+    color?: string;
+    onChange?: (color: any) => void;
+}
 
 const PointerFill = styled.div`
     position: absolute;
@@ -86,21 +118,22 @@ const PickerWrap = styled(Flex)`
     }
 `;
 
-function getRelativePosition(node, event) {
-    const rect = node.getBoundingClientRect();
+function getRelativePosition(el: HTMLElement, event: MouseEvent) {
+    const rect = el.getBoundingClientRect();
     return {
         left: clamp((event.pageX - (rect.left + window.pageXOffset)) / rect.width),
         top: clamp((event.pageY - (rect.top + window.pageYOffset)) / rect.height),
     };
 }
 
-const Interactive = memo(({ onMove, onKey, ...rest }) => {
+const Interactive = memo(({ onMove, onKey, ...rest }: InteractiveProps) => {
     const onMoveCallback = useCallbackRef(onMove);
     const onKeyCallback = useCallbackRef(onKey);
-    const container = useRef(null);
+    const container = useRef<HTMLDivElement>(null);
 
     const [handleMoveStart, handleKeyDown, toggleDocumentEvents] = useMemo(() => {
-        const handleMoveStart = ({ nativeEvent }) => {
+        const handleMoveStart = (event: React.MouseEvent) => {
+            const { nativeEvent } = event;
             const el = container.current;
 
             if (el) {
@@ -112,7 +145,7 @@ const Interactive = memo(({ onMove, onKey, ...rest }) => {
             }
         };
 
-        const handleMove = (event) => {
+        const handleMove = (event: MouseEvent) => {
             event.preventDefault();
 
             // If user moves the pointer outside of the window bounds and releases it there,
@@ -133,7 +166,7 @@ const Interactive = memo(({ onMove, onKey, ...rest }) => {
             toggleDocumentEvents(false);
         };
 
-        const handleKeyDown = (event) => {
+        const handleKeyDown = (event: React.KeyboardEvent) => {
             const key = event.key;
 
             if (key.startsWith("Arrow")) {
@@ -145,7 +178,7 @@ const Interactive = memo(({ onMove, onKey, ...rest }) => {
             }
         };
 
-        const toggleDocumentEvents = (state) => {
+        const toggleDocumentEvents = (state?: boolean) => {
             const toggleEvent = state ? window.addEventListener : window.removeEventListener;
             toggleEvent("mousemove", handleMove);
             toggleEvent("mouseup", handleMoveEnd);
@@ -169,7 +202,7 @@ const Interactive = memo(({ onMove, onKey, ...rest }) => {
     );
 });
 
-const Pointer = ({ color, left, top = 0.5, ...rest }) => {
+const Pointer = ({ color, left = 0, top = 0.5, ...rest }: PointerProps) => {
     return (
         <PointerWrap {...rest} style={{ top: `${top * 100}%`, left: `${left * 100}%` }}>
             <PointerFill style={{ backgroundColor: color }} />
@@ -178,19 +211,19 @@ const Pointer = ({ color, left, top = 0.5, ...rest }) => {
 };
 
 const Saturation = memo(
-    forwardRef(({ hsva, onChange, ...rest }, ref) => {
+    forwardRef<HTMLDivElement, ColorSaturationProps>(({ hsva, onChange, ...rest }, ref) => {
         const color = hsvaToHslString({ h: hsva.h, s: 100, v: 100, a: 1 });
 
-        const handleMove = (interaction) => {
-            onChange({
-                s: interaction.left * 100,
-                v: 100 - interaction.top * 100,
+        const handleMove = (offset: { left: number; top: number }) => {
+            onChange?.({
+                s: offset.left * 100,
+                v: 100 - offset.top * 100,
             });
         };
 
-        const handleKey = (offset) => {
+        const handleKey = (offset: { left: number; top: number }) => {
             // saturation and brightness always fit into [0, 100] range
-            onChange({
+            onChange?.({
                 s: clamp(hsva.s + offset.left * 100, 0, 100),
                 v: clamp(hsva.v - offset.top * 100, 0, 100),
             });
@@ -216,14 +249,14 @@ const Saturation = memo(
 );
 
 const Hue = memo(
-    forwardRef(({ hue, onChange, ...rest }, ref) => {
-        const handleMove = (interaction) => {
-            onChange({ h: 360 * interaction.left });
+    forwardRef<HTMLDivElement, ColorHueProps>(({ hue, onChange, ...rest }, ref) => {
+        const handleMove = (offset: { left: number; top: number }) => {
+            onChange?.({ h: 360 * offset.left });
         };
 
-        const handleKey = (offset) => {
+        const handleKey = (offset: { left: number; top: number }) => {
             // hue measured in degrees of the color circle ranging from 0 to 360
-            onChange({ h: clamp(hue + offset.left * 360, 0, 360) });
+            onChange?.({ h: clamp(hue + offset.left * 360, 0, 360) });
         };
 
         return (
@@ -245,38 +278,34 @@ const Hue = memo(
     })
 );
 
-export const ColorPicker = forwardRef(({ color, onChange, ...rest }, ref) => {
-    const [hsva, updateHsva] = useHexColor(color, onChange);
-    return (
-        <PickerWrap
-            ref={ref}
-            position="relative"
-            flexDirection="column"
-            flex="none"
-            userSelect="none"
-            cursor="default"
-            {...rest}
-        >
-            <Saturation hsva={hsva} onChange={updateHsva} />
-            <Hue hue={hsva.h} onChange={updateHsva} />
-        </PickerWrap>
-    );
+const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
+    ({ color = "#000000", size = 160, onChange, ...rest }, ref) => {
+        const [hsva, updateHsva] = useHexColor(color, onChange);
+        return (
+            <PickerWrap
+                ref={ref}
+                position="relative"
+                flexDirection="column"
+                flex="none"
+                userSelect="none"
+                cursor="default"
+                size={size}
+                {...rest}
+            >
+                <Saturation hsva={hsva} onChange={updateHsva} />
+                <Hue hue={hsva.h} onChange={updateHsva} />
+            </PickerWrap>
+        );
+    }
+);
+
+const CompoundColorPicker = Object.assign(ColorPicker, {
+    Saturation,
+    Hue,
 });
 
-ColorPicker.Saturation = Saturation;
-ColorPicker.Hue = Hue;
+export { CompoundColorPicker as ColorPicker };
 
 if (process.env.NODE_ENV !== "production") {
     ColorPicker.displayName = "ColorPicker";
-    ColorPicker.propTypes = {
-        color: PropTypes.string,
-        onChange: PropTypes.func,
-        size: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-        className: PropTypes.string,
-    };
 }
-
-ColorPicker.defaultProps = {
-    color: "#000000",
-    size: 160,
-};

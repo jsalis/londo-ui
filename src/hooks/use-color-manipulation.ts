@@ -16,7 +16,7 @@ type ColorModel = {
 export function useColorManipulation(
     colorModel: ColorModel,
     color: any,
-    onChange: (color: any) => void
+    onChange?: (color: any) => void
 ) {
     const [hsva, setHsva] = useState(() => colorModel.toHsva(color));
     const cache = useRef({ color, hsva });
