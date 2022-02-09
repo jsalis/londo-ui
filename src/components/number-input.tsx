@@ -1,5 +1,4 @@
 import { forwardRef, useState, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { useCounter, useCallbackRef, useForkRef, useForkHandler } from "../hooks";
@@ -7,16 +6,43 @@ import { MoveHorizontalIcon } from "../icons";
 
 import { Input } from "./input";
 
+interface DraggerOptions {
+    onDragChange?: (drag: boolean) => void;
+    onUpdate?: (event: MouseEvent) => void;
+}
+
+interface DragHandleProps {
+    active: boolean;
+}
+
+export interface NumberInputProps {
+    value?: any;
+    defaultValue?: any;
+    onChange?: (val: number, valStr: string) => void;
+    onFocus?: (event: React.FocusEvent) => void;
+    onBlur?: (event: React.FocusEvent) => void;
+    onKeyDown?: (event: React.KeyboardEvent) => void;
+    onDragChange?: (drag: boolean) => void;
+    min?: number;
+    max?: number;
+    step?: number;
+    precision?: number;
+    suffix?: React.ReactNode;
+    readOnly?: boolean;
+    disabled?: boolean;
+    className?: string;
+}
+
 const FLOATING_POINT_REGEX = /^[Ee0-9+\-.]$/;
 
-function sanitize(value) {
+function sanitize(value: string) {
     return value
         .split("")
         .filter((char) => FLOATING_POINT_REGEX.test(char))
         .join("");
 }
 
-function isNumericKeyboardEvent(event) {
+function isNumericKeyboardEvent(event: React.KeyboardEvent) {
     if (!event.key || event.ctrlKey || event.altKey || event.metaKey || event.key.length !== 1) {
         return true;
     }
@@ -24,7 +50,7 @@ function isNumericKeyboardEvent(event) {
     return FLOATING_POINT_REGEX.test(event.key);
 }
 
-function getStepFactor(event) {
+function getStepFactor(event: React.KeyboardEvent) {
     if (event.metaKey || event.ctrlKey) {
         return 0.1;
     }
@@ -36,11 +62,56 @@ function getStepFactor(event) {
     return 1;
 }
 
+function useDragger({ onDragChange, onUpdate }: DraggerOptions) {
+    const ref = useRef<HTMLInputElement>();
+    const savedCallback = useCallbackRef(onUpdate);
+    const [active, setActive] = useState(false);
+
+    const start = () => {
+        setActive(true);
+        onDragChange?.(true);
+    };
+
+    useEffect(() => {
+        if (active) {
+            ref.current?.focus();
+            ref.current?.requestPointerLock();
+
+            const onRelease = () => {
+                setActive(false);
+                onDragChange?.(false);
+            };
+
+            const onPointerLockChange = () => {
+                if (document.pointerLockElement === ref.current) {
+                    document.addEventListener("mousemove", savedCallback, false);
+                } else {
+                    setActive(false);
+                    onDragChange?.(false);
+                }
+            };
+
+            document.addEventListener("mouseup", onRelease);
+            document.addEventListener("pointerlockchange", onPointerLockChange, false);
+
+            return () => {
+                document.removeEventListener("mouseup", onRelease);
+                document.removeEventListener("pointerlockchange", onPointerLockChange, false);
+                document.removeEventListener("mousemove", savedCallback, false);
+                document.exitPointerLock?.();
+            };
+        }
+        return;
+    }, [active]);
+
+    return { ref, active, start };
+}
+
 const StyledSuffix = styled(Input.Suffix)`
     visibility: visible;
 `;
 
-const DragHandle = styled(Input.Suffix)`
+const DragHandle = styled(Input.Suffix)<DragHandleProps>`
     color: ${(p) => (p.active ? p.theme.colors.primary.base : p.theme.colors.text)};
     visibility: hidden;
     pointer-events: auto;
@@ -71,7 +142,7 @@ const StyledGroup = styled(Input.Group)`
     }
 `;
 
-export const NumberInput = forwardRef((props, ref) => {
+export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>((props, ref) => {
     const {
         className,
         suffix,
@@ -86,7 +157,7 @@ export const NumberInput = forwardRef((props, ref) => {
     const counter = useCounter(props);
     const dragger = useDragger({
         onDragChange,
-        onUpdate(event) {
+        onUpdate(event: MouseEvent) {
             const dx = event.movementX;
 
             if (dx !== 0) {
@@ -95,7 +166,7 @@ export const NumberInput = forwardRef((props, ref) => {
         },
     });
 
-    const handleChange = (val) => {
+    const handleChange = (val: string) => {
         counter.update(sanitize(val));
     };
 
@@ -103,7 +174,7 @@ export const NumberInput = forwardRef((props, ref) => {
         counter.cast(counter.value);
     };
 
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event: React.KeyboardEvent) => {
         if (!isNumericKeyboardEvent(event)) {
             event.preventDefault();
         }
@@ -113,7 +184,7 @@ export const NumberInput = forwardRef((props, ref) => {
         }
 
         const stepFactor = getStepFactor(event) * step;
-        const keyMap = {
+        const keyMap: Record<string, () => void> = {
             ArrowUp: () => counter.increment(stepFactor),
             ArrowDown: () => counter.decrement(stepFactor),
             Home: () => counter.update(min),
@@ -152,67 +223,6 @@ export const NumberInput = forwardRef((props, ref) => {
     );
 });
 
-function useDragger({ onDragChange, onUpdate }) {
-    const ref = useRef();
-    const savedCallback = useCallbackRef(onUpdate);
-    const [active, setActive] = useState(false);
-
-    const start = () => {
-        setActive(true);
-        onDragChange?.(true);
-    };
-
-    useEffect(() => {
-        if (active) {
-            ref.current?.focus();
-            ref.current?.requestPointerLock();
-
-            const onRelease = () => {
-                setActive(false);
-                onDragChange?.(false);
-            };
-
-            const onPointerLockChange = () => {
-                if (document.pointerLockElement === ref.current) {
-                    document.addEventListener("mousemove", savedCallback, false);
-                } else {
-                    setActive(false);
-                    onDragChange?.(false);
-                }
-            };
-
-            document.addEventListener("mouseup", onRelease);
-            document.addEventListener("pointerlockchange", onPointerLockChange, false);
-
-            return () => {
-                document.removeEventListener("mouseup", onRelease);
-                document.removeEventListener("pointerlockchange", onPointerLockChange, false);
-                document.removeEventListener("mousemove", savedCallback, false);
-                document.exitPointerLock?.();
-            };
-        }
-    }, [active]);
-
-    return { ref, active, start };
-}
-
 if (process.env.NODE_ENV !== "production") {
     NumberInput.displayName = "NumberInput";
-    NumberInput.propTypes = {
-        value: PropTypes.any,
-        defaultValue: PropTypes.any,
-        onChange: PropTypes.func,
-        onFocus: PropTypes.func,
-        onBlur: PropTypes.func,
-        onKeyDown: PropTypes.func,
-        onDragChange: PropTypes.func,
-        min: PropTypes.number,
-        max: PropTypes.number,
-        step: PropTypes.number,
-        precision: PropTypes.number,
-        suffix: PropTypes.node,
-        readOnly: PropTypes.bool,
-        disabled: PropTypes.bool,
-        className: PropTypes.string,
-    };
 }
