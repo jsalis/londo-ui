@@ -6,7 +6,7 @@ type HslaColor = { h: number; s: number; l: number; a: number };
 
 const HEX_COLOR_REGEX = /^#?([0-9A-F]{3,8})$/i;
 
-export function isValidColorHex(value: string, alpha: boolean) {
+export function isValidColorHex(value: string, alpha?: boolean) {
     const match = HEX_COLOR_REGEX.exec(value);
     const length = match ? match[1].length : 0;
 

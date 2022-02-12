@@ -51,9 +51,6 @@ const countryOptions = [
 export default {
     title: "Design System/Select",
     component: Select,
-    subcomponents: {
-        Option: Select.Option,
-    },
     parameters: {
         componentSubtitle: "",
     },
