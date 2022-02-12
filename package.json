@@ -18,7 +18,7 @@
     "storybook": "start-storybook -p 6006",
     "build": "npm run clean && npm run build-js && npm run build-ts",
     "build-storybook": "build-storybook",
-    "build-js": "cross-env NODE_ENV=production babel src --ignore src/stories --extensions \".js,.jsx,.ts,.tsx\" --out-dir dist",
+    "build-js": "cross-env NODE_ENV=production babel src --ignore src/stories --extensions \".ts,.tsx\" --out-dir dist",
     "build-ts": "tsc --emitDeclarationOnly",
     "check-types": "tsc --noEmit",
     "lint": "eslint --fix src",
@@ -28,8 +28,8 @@
     "release": "standard-version"
   },
   "lint-staged": {
-    "*.{js,jsx,css,json,md}": "prettier --write",
-    "*.{js,jsx}": "eslint --fix"
+    "*.{js,ts,tsx,css,json,md}": "prettier --write",
+    "*.{ts,tsx}": "eslint --fix"
   },
   "commitlint": {
     "extends": [

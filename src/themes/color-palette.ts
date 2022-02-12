@@ -1,5 +1,12 @@
 import tinycolor from "tinycolor2";
 
+type ColorPalette = string[] & {
+    light: string;
+    base: string;
+    hover: string;
+    active: string;
+};
+
 const hueStep = 2;
 const saturationStep = 16;
 const saturationStep2 = 5;
@@ -8,7 +15,7 @@ const brightnessStep2 = 15;
 const lightColorCount = 5;
 const darkColorCount = 4;
 
-function getHue(hsv, i, isLight) {
+function getHue(hsv: any, i: number, isLight: boolean) {
     let hue;
 
     if (hsv.h >= 60 && hsv.h <= 240) {
@@ -26,7 +33,7 @@ function getHue(hsv, i, isLight) {
     return Math.round(hue);
 }
 
-function getSaturation(hsv, i, isLight) {
+function getSaturation(hsv: any, i: number, isLight: boolean) {
     let saturation;
 
     if (isLight) {
@@ -52,7 +59,7 @@ function getSaturation(hsv, i, isLight) {
     return Math.round(saturation);
 }
 
-function getValue(hsv, i, isLight) {
+function getValue(hsv: any, i: number, isLight: boolean) {
     if (isLight) {
         return Math.round(hsv.v * 100) + brightnessStep1 * i;
     }
@@ -60,7 +67,7 @@ function getValue(hsv, i, isLight) {
     return Math.round(hsv.v * 100) - brightnessStep2 * i;
 }
 
-export function sampleColor(color, index) {
+export function sampleColor(color: string, index: number) {
     const isLight = index <= 6;
     const hsv = tinycolor(color).toHsv();
     const i = isLight ? lightColorCount + 1 - index : index - lightColorCount - 1;
@@ -74,7 +81,7 @@ export function sampleColor(color, index) {
         .toUpperCase();
 }
 
-export function colorPaletteLight(baseColor) {
+export function colorPaletteLight(baseColor: string) {
     const palette = [
         sampleColor(baseColor, 2),
         sampleColor(baseColor, 3),
@@ -86,7 +93,7 @@ export function colorPaletteLight(baseColor) {
         sampleColor(baseColor, 9),
         sampleColor(baseColor, 10),
         sampleColor(baseColor, 11),
-    ];
+    ] as ColorPalette;
 
     palette.light = sampleColor(baseColor, 1);
     palette.base = palette[4];
@@ -95,12 +102,10 @@ export function colorPaletteLight(baseColor) {
     return palette;
 }
 
-export function colorPaletteDark(baseColor, bgColor) {
-    const mix = (...args) =>
-        tinycolor
-            .mix(...args)
-            .toHexString()
-            .toUpperCase();
+export function colorPaletteDark(baseColor: string, bgColor: string) {
+    const mix = (c1: string, c2: string, amount?: number) => {
+        return tinycolor.mix(c1, c2, amount).toHexString().toUpperCase();
+    };
 
     const palette = [
         mix(sampleColor(baseColor, 8), bgColor, 80),
@@ -113,7 +118,7 @@ export function colorPaletteDark(baseColor, bgColor) {
         mix(sampleColor(baseColor, 4), bgColor, 5),
         mix(sampleColor(baseColor, 3), bgColor, 4),
         mix(sampleColor(baseColor, 2), bgColor, 3),
-    ];
+    ] as ColorPalette;
 
     palette.light = palette[0];
     palette.base = palette[5];
