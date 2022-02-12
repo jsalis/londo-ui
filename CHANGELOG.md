@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.13](https://github.com/jsalis/londo-ui/compare/v0.1.12...v0.1.13) (2022-02-12)
+
+### Features
+
+- add useLazyRef hook ([bfbb36c](https://github.com/jsalis/londo-ui/commit/bfbb36c4f7b134fd596412a770d3afb581d12fac))
+- export focus lock component ([1adb9f6](https://github.com/jsalis/londo-ui/commit/1adb9f6f7b6dc1e0acde983a1d527a4af832607b))
+- open and close dropdown inputs with keyboard ([5aeb989](https://github.com/jsalis/londo-ui/commit/5aeb9891e259a73fdc4fabcc9581c67e84df6b28))
+- replace popper with floater ([19d40a5](https://github.com/jsalis/londo-ui/commit/19d40a5209476b208d432cfac665cc672ee73ef0))
+
+### Bug Fixes
+
+- disabled text style ([c441c4e](https://github.com/jsalis/londo-ui/commit/c441c4e246a6345b6dad7293b7e4c621a891fe54))
+
 ### [0.1.12](https://github.com/jsalis/londo-ui/compare/v0.1.11...v0.1.12) (2021-12-28)
 
 ### Features
