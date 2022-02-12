@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useDisclosure, useForkRef, useEventListener } from "../hooks";
 
 import { Box } from "./box";
-import { Popper } from "./popper";
+import { Floater } from "./floater";
 
 export const Tooltip = forwardRef((props, ref) => {
     const {
@@ -37,7 +37,7 @@ export const Tooltip = forwardRef((props, ref) => {
     return (
         <>
             {anchor}
-            <Popper anchor={anchorNode} isOpen={isOpen} placement={placement}>
+            <Floater anchor={anchorNode} isOpen={isOpen} placement={placement}>
                 <Box
                     p={1}
                     borderRadius="base"
@@ -50,7 +50,7 @@ export const Tooltip = forwardRef((props, ref) => {
                 >
                     {title}
                 </Box>
-            </Popper>
+            </Floater>
         </>
     );
 });

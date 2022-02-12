@@ -8,7 +8,7 @@ import { KeyCode } from "../utils/key-code";
 import { Flex } from "./flex";
 import { Box } from "./box";
 import { Button } from "./button";
-import { Popper } from "./popper";
+import { Floater } from "./floater";
 import { ClickAwayListener } from "./click-away-listener";
 
 export const Popconfirm = forwardRef((props, ref) => {
@@ -63,7 +63,7 @@ export const Popconfirm = forwardRef((props, ref) => {
         <ClickAwayListener onClickAway={() => close()}>
             <div>
                 {anchor}
-                <Popper anchor={anchorNode} isOpen={isOpen} placement={placement} keepMounted>
+                <Floater anchor={anchorNode} isOpen={isOpen} placement={placement} keepMounted>
                     <Box
                         p={3}
                         maxWidth={400}
@@ -85,7 +85,7 @@ export const Popconfirm = forwardRef((props, ref) => {
                             <Button onClick={handleConfirm}>{okText}</Button>
                         </Flex>
                     </Box>
-                </Popper>
+                </Floater>
             </div>
         </ClickAwayListener>
     );

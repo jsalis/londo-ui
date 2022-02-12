@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useDisclosure, useForkRef, useEventListener } from "../hooks";
 
 import { Box } from "./box";
-import { Popper } from "./popper";
+import { Floater } from "./floater";
 
 export const Popover = forwardRef((props, ref) => {
     const {
@@ -36,7 +36,7 @@ export const Popover = forwardRef((props, ref) => {
     return (
         <>
             {anchor}
-            <Popper anchor={anchorNode} isOpen={isOpen} placement={placement} keepMounted>
+            <Floater anchor={anchorNode} isOpen={isOpen} placement={placement} keepMounted>
                 <Box
                     maxWidth={400}
                     borderRadius="base"
@@ -53,7 +53,7 @@ export const Popover = forwardRef((props, ref) => {
                     ) : null}
                     <Box p={2}>{content}</Box>
                 </Box>
-            </Popper>
+            </Floater>
         </>
     );
 });

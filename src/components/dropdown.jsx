@@ -1,10 +1,10 @@
-import { Children, cloneElement, forwardRef, useRef, useMemo } from "react";
+import { Children, cloneElement, forwardRef, useRef } from "react";
 import PropTypes from "prop-types";
 
 import { useForkRef, useForkHandler } from "../hooks";
 
 import { Box } from "./box";
-import { Popper } from "./popper";
+import { Floater } from "./floater";
 import { ClickAwayListener } from "./click-away-listener";
 
 export const Dropdown = forwardRef((props, ref) => {
@@ -45,57 +45,24 @@ export const Dropdown = forwardRef((props, ref) => {
         onClick: useForkHandler(child.props.onClick, handleClick),
     });
 
-    const modifiers = useMemo(() => {
-        const mods = [
-            {
-                name: "offset",
-                options: {
-                    offset: [0, 4],
-                },
-            },
-            {
-                name: "preventOverflow",
-                options: {
-                    mainAxis: false,
-                },
-            },
-        ];
-
-        if (sameWidth) {
-            mods.push({
-                name: "sameWidth",
-                phase: "beforeWrite",
-                enabled: true,
-                requires: ["computeStyles"],
-                fn: ({ state }) => {
-                    state.styles.popper.width = `${state.rects.reference.width}px`;
-                },
-                effect: ({ state }) => {
-                    state.elements.popper.style.width = `${state.elements.reference.offsetWidth}px`;
-                },
-            });
-        }
-
-        return mods;
-    }, [sameWidth]);
-
     return (
         <ClickAwayListener onClickAway={handleClickAway}>
             <div>
                 {anchor}
-                <Popper
+                <Floater
                     ref={ref}
+                    offset={4}
                     anchor={anchorRef.current}
                     isOpen={isOpen}
                     placement={placement}
-                    modifiers={modifiers}
                     keepMounted={keepMounted}
                     onMouseDown={(e) => e.preventDefault()}
+                    matchWidth
                 >
                     <Box py={1} borderRadius="base" boxShadow="base" bg="dropdown.bg" {...rest}>
                         {overlay}
                     </Box>
-                </Popper>
+                </Floater>
             </div>
         </ClickAwayListener>
     );
