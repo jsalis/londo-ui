@@ -49,7 +49,7 @@ const StyledText = styled.span<TextProps>`
 	${other}
 
 	${(p) =>
-        p.ellipsis &&
+        p.disabled &&
         css`
             color: ${p.theme.colors.disabled};
             cursor: not-allowed;
