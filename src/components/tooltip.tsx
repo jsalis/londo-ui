@@ -36,7 +36,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
         const openWithDelay = () => open({ delay: mouseEnterDelay });
         const closeWithDelay = () => close({ delay: mouseLeaveDelay });
 
-        const [anchorNode, setAnchorNode] = useState<HTMLElement>();
+        const [anchorNode, setAnchorNode] = useState<HTMLElement | null>(null);
         const child = Children.only(children);
         const childProps = { ref: useForkRef((child as any).ref, setAnchorNode) };
         const anchor = isValidElement(child) ? cloneElement(child, childProps) : child;

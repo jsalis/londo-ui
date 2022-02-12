@@ -8,7 +8,7 @@ import { Portal } from "./portal";
 
 export interface FloaterProps extends React.HTMLAttributes<HTMLDivElement> {
     isOpen: boolean;
-    anchor?: HTMLElement;
+    anchor?: HTMLElement | null;
     container?: HTMLElement | (() => HTMLElement);
     keepMounted?: boolean;
     matchWidth?: boolean;

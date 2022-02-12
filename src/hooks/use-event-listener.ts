@@ -8,7 +8,7 @@ import { useCallbackRef } from "./use-callback-ref";
 export function useEventListener(
     eventType: string,
     callback: EventListener,
-    el: EventTarget = document,
+    el: EventTarget | null = document,
     options?: EventListenerOptions | boolean
 ) {
     const savedCallback = useCallbackRef(callback);
