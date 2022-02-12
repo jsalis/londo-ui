@@ -34,7 +34,7 @@ export interface InputElementProps
 export interface InputProps
     extends Omit<
             React.InputHTMLAttributes<HTMLInputElement>,
-            "width" | "height" | "size" | "color" | "onChange"
+            "size" | "width" | "height" | "color" | "onChange"
         >,
         SpaceProps,
         LayoutProps,
@@ -163,7 +163,7 @@ const CompoundSuffix = Object.assign(Suffix, {
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
     (
-        { type = "text", value, defaultValue = "", color, width, height, size, onChange, ...rest },
+        { type = "text", value, defaultValue = "", color, size, width, height, onChange, ...rest },
         ref
     ) => {
         const [inputValue, setSelectedValue] = useControllableState(value, defaultValue);
@@ -179,9 +179,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 ref={ref}
                 value={inputValue}
                 onChange={handleSelect}
+                size={size as any}
                 width={width as any}
                 height={height as any}
-                size={size as any}
                 color={color as any}
                 {...rest}
             />
