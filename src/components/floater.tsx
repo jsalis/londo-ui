@@ -6,7 +6,7 @@ import { useForkRef } from "../hooks";
 
 import { Portal } from "./portal";
 
-export interface FloaterProps {
+export interface FloaterProps extends React.HTMLAttributes<HTMLDivElement> {
     isOpen: boolean;
     anchor?: HTMLElement;
     container?: HTMLElement | (() => HTMLElement);
