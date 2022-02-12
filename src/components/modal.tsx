@@ -1,6 +1,5 @@
 import { forwardRef, createContext, useContext } from "react";
 import { RemoveScroll } from "react-remove-scroll";
-import FocusLock from "react-focus-lock";
 import styled from "styled-components";
 
 import { useCallbackRef } from "../hooks";
@@ -12,6 +11,7 @@ import type { BoxProps } from "./box";
 import { Flex } from "./flex";
 import { Box } from "./box";
 import { Portal } from "./portal";
+import { FocusLock } from "./focus-lock";
 import { ClickAwayListener } from "./click-away-listener";
 import { VisuallyHidden } from "./visually-hidden";
 
