@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.14](https://github.com/jsalis/londo-ui/compare/v0.1.13...v0.1.14) (2022-02-13)
+
+### Features
+
+- replace useKeyPress with useHotKey hook ([c97c829](https://github.com/jsalis/londo-ui/commit/c97c8298711808623efbba964a3730e106218799))
+
+### Bug Fixes
+
+- division by 0 and sub-pixel precision error in scroller ([ec75cb2](https://github.com/jsalis/londo-ui/commit/ec75cb2dc6dd5b0dcd344c9e64abc3f36c025a4e))
+- set initial anchor node to null to prevent document event listener ([e560107](https://github.com/jsalis/londo-ui/commit/e560107046cfd43172669bec717562654f68fe4d))
+- undefined size overrides width ([76fa1e9](https://github.com/jsalis/londo-ui/commit/76fa1e9958a04ff80533831eb10fe4d51c9533c4))
+
 ### [0.1.13](https://github.com/jsalis/londo-ui/compare/v0.1.12...v0.1.13) (2022-02-12)
 
 ### Features
