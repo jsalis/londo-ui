@@ -11,6 +11,6 @@ export * from "./use-fork-handler";
 export * from "./use-fork-ref";
 export * from "./use-fullscreen";
 export * from "./use-hex-color";
-export * from "./use-key-press";
+export * from "./use-hot-key";
 export * from "./use-lazy-ref";
 export * from "./use-update-effect";
