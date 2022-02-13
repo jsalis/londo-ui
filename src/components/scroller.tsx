@@ -86,22 +86,23 @@ function useScroll(children: React.ReactNode) {
 }
 
 function updateScroll(content: HTMLElement, yBar: HTMLElement, xBar: HTMLElement) {
-    const {
-        scrollTop = 0,
-        scrollHeight = 0,
-        clientHeight = 0,
-        scrollLeft = 0,
-        scrollWidth = 0,
-        clientWidth = 0,
-    } = content;
+    const scrollTop = content.scrollTop ?? 0;
+    const clientHeight = content.clientHeight ?? 0;
+    const scrollHeight = Math.max(content.scrollHeight ?? 0, clientHeight);
+
+    const scrollLeft = content.scrollLeft ?? 0;
+    const clientWidth = content.clientWidth ?? 0;
+    const scrollWidth = Math.max(content.scrollWidth ?? 0, clientWidth);
 
     const yBarHeight = getVerticalBarHeight(content);
     const yTrackHeight = scrollWidth === clientWidth ? clientHeight : clientHeight - BAR_MARGIN;
-    const yBarOffset = (scrollTop / (scrollHeight - clientHeight)) * (yTrackHeight - yBarHeight);
+    const yDiff = scrollHeight - clientHeight;
+    const yBarOffset = yDiff === 0 ? 0 : (scrollTop / yDiff) * (yTrackHeight - yBarHeight);
 
     const xBarWidth = getHorizontalBarWidth(content);
     const xTrackWidth = scrollHeight === clientHeight ? clientWidth : clientWidth - BAR_MARGIN;
-    const xBarOffset = (scrollLeft / (scrollWidth - clientWidth)) * (xTrackWidth - xBarWidth);
+    const xDiff = scrollWidth - clientWidth;
+    const xBarOffset = xDiff === 0 ? 0 : (scrollLeft / xDiff) * (xTrackWidth - xBarWidth);
 
     if (yBar) {
         yBar.style.height = `${yBarHeight}px`;
@@ -115,14 +116,16 @@ function updateScroll(content: HTMLElement, yBar: HTMLElement, xBar: HTMLElement
 }
 
 function getVerticalBarHeight(content: HTMLElement) {
-    const { scrollHeight = 0, clientHeight = 0 } = content;
-    const height = Math.ceil((clientHeight / scrollHeight) * clientHeight);
+    const clientHeight = content.clientHeight ?? 0;
+    const scrollHeight = Math.max(content.scrollHeight ?? 0, clientHeight);
+    const height = scrollHeight === 0 ? 0 : Math.ceil((clientHeight / scrollHeight) * clientHeight);
     return height === clientHeight ? 0 : Math.max(height, BAR_MIN_SIZE);
 }
 
 function getHorizontalBarWidth(content: HTMLElement) {
-    const { scrollWidth = 0, clientWidth = 0 } = content;
-    const width = Math.ceil((clientWidth / scrollWidth) * clientWidth);
+    const clientWidth = content.clientWidth ?? 0;
+    const scrollWidth = Math.max(content.scrollWidth ?? 0, clientWidth);
+    const width = scrollWidth === 0 ? 0 : Math.ceil((clientWidth / scrollWidth) * clientWidth);
     return width === clientWidth ? 0 : Math.max(width, BAR_MIN_SIZE);
 }
 
