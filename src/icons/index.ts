@@ -24,6 +24,7 @@ export * from "./redo-icon";
 export * from "./refresh-icon";
 export * from "./save-icon";
 export * from "./select-icon";
+export * from "./selection-icon";
 export * from "./trash-icon";
 export * from "./undo-icon";
 export * from "./warning-icon";
