@@ -1,3 +1,4 @@
+export * from "./arrow-back-icon";
 export * from "./brush-icon";
 export * from "./chevron-down-icon";
 export * from "./chevron-up-icon";
