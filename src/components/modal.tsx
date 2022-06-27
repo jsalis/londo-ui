@@ -12,7 +12,6 @@ import { Flex } from "./flex";
 import { Box } from "./box";
 import { Portal } from "./portal";
 import { FocusLock } from "./focus-lock";
-import { ClickAwayListener } from "./click-away-listener";
 import { VisuallyHidden } from "./visually-hidden";
 
 interface ModalContextValue {
@@ -23,8 +22,9 @@ interface ModalContextValue {
     finalFocusRef?: React.RefObject<any>;
 }
 
+interface ModalOverlayProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "color">, BoxProps {}
+
 interface ModalContentProps extends FlexProps {
-    onClose?: (event: MouseEvent) => void;
     onKeyDown?: (event: React.KeyboardEvent) => void;
 }
 
@@ -57,6 +57,7 @@ const ContentWrap = styled(Flex)`
     left: 0;
     width: 100vw;
     height: 100vh;
+    pointer-events: none;
     z-index: 1;
 `;
 
@@ -91,12 +92,12 @@ const CloseButtonWrap = styled.button`
     }
 `;
 
-const Overlay = forwardRef<HTMLDivElement, BoxProps>(({ color, ...rest }, ref) => {
+const Overlay = forwardRef<HTMLDivElement, ModalOverlayProps>(({ color, ...rest }, ref) => {
     return <OverlayWrap ref={ref} bg="alpha.black.6" {...rest} color={color as any} />;
 });
 
 const Content = forwardRef<HTMLDivElement, ModalContentProps>((props, ref) => {
-    const { onClose, onKeyDown, color, children, ...rest } = props;
+    const { onKeyDown, color, children, ...rest } = props;
     const { scrollBehavior, autoFocus, restoreFocus, initialFocusRef, finalFocusRef } =
         useContext(ModalContext);
 
@@ -125,25 +126,24 @@ const Content = forwardRef<HTMLDivElement, ModalContentProps>((props, ref) => {
                     aria-modal
                     onKeyDown={onKeyDown}
                 >
-                    <ClickAwayListener onClickAway={onClose}>
-                        <Flex
-                            ref={ref}
-                            as="section"
-                            direction="column"
-                            position="relative"
-                            borderRadius="base"
-                            boxShadow="base"
-                            bg="modal.bg"
-                            my={5}
-                            width={1}
-                            maxWidth={448}
-                            maxHeight={scrollBehavior === "inside" ? "calc(100% - 128px)" : ""}
-                            color={color as any}
-                            {...rest}
-                        >
-                            {children}
-                        </Flex>
-                    </ClickAwayListener>
+                    <Flex
+                        ref={ref}
+                        as="section"
+                        direction="column"
+                        position="relative"
+                        borderRadius="base"
+                        boxShadow="base"
+                        bg="modal.bg"
+                        pointerEvents="initial"
+                        my={5}
+                        width={1}
+                        maxWidth={448}
+                        maxHeight={scrollBehavior === "inside" ? "calc(100% - 128px)" : ""}
+                        color={color as any}
+                        {...rest}
+                    >
+                        {children}
+                    </Flex>
                 </ContentWrap>
             </RemoveScroll>
         </FocusLock>
@@ -232,12 +232,11 @@ export function Modal({
         <ModalContext.Provider value={context}>
             {isOpen ? (
                 <Portal container={container}>
-                    <Overlay ref={overlayRef} />
+                    <Overlay ref={overlayRef} onClick={handleClose} />
                     <Content
                         ref={contentRef}
                         {...rest}
                         className={className}
-                        onClose={handleClose}
                         onKeyDown={handleKeyDown}
                     >
                         <CloseButton onClick={handleClose} />
