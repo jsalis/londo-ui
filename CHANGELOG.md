@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.15](https://github.com/jsalis/londo-ui/compare/v0.1.14...v0.1.15) (2022-07-04)
+
+### Features
+
+- add ArrowBackIcon component ([0060d8c](https://github.com/jsalis/londo-ui/commit/0060d8ce89efa7bd86e429c96f69d919bbc865a7))
+- add radio component ([f2c0e6f](https://github.com/jsalis/londo-ui/commit/f2c0e6fb3b2b27999d05800b7348dd7c72fa4bcd))
+- add SelectionIcon component ([3bf82e0](https://github.com/jsalis/londo-ui/commit/3bf82e0bc0e3816055a5d523a1cff5d3f8b04c2e))
+
+### Bug Fixes
+
+- close modal on overlay click instead of using ClickAwayListener ([ae2e8cf](https://github.com/jsalis/londo-ui/commit/ae2e8cf7560348d60b5a4612021da8c86d16a1d7))
+
 ### [0.1.14](https://github.com/jsalis/londo-ui/compare/v0.1.13...v0.1.14) (2022-02-13)
 
 ### Features
