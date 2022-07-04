@@ -4,7 +4,7 @@ export default {
     title: "Design System/Checkbox",
     component: Checkbox,
     parameters: {
-        componentSubtitle: "",
+        componentSubtitle: "An input that allows multiple selections from several options.",
     },
 };
 

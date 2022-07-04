@@ -18,6 +18,7 @@ export interface CheckboxProps
     checked?: boolean;
     defaultChecked?: boolean;
     onChange?: (value: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled?: boolean;
     children?: React.ReactNode;
 }
 
@@ -68,6 +69,7 @@ const Label = styled.label<LabelProps>`
     align-items: center;
     vertical-align: top;
     position: relative;
+    user-select: none;
     cursor: pointer;
     ${space}
     ${flexbox}

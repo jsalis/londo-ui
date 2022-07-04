@@ -161,33 +161,41 @@ const CompoundSuffix = Object.assign(Suffix, {
     id: "InputSuffix",
 });
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
-    (
-        { type = "text", value, defaultValue = "", color, size, width, height, onChange, ...rest },
-        ref
-    ) => {
-        const [inputValue, setSelectedValue] = useControllableState(value, defaultValue);
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+    const {
+        type = "text",
+        value,
+        defaultValue = "",
+        color,
+        size,
+        width,
+        height,
+        onChange,
+        ...rest
+    } = props;
 
-        const handleSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-            const val = event.target.value;
-            setSelectedValue(val);
-            onChange?.(val, event);
-        };
+    const [inputValue, setSelectedValue] = useControllableState(value, defaultValue);
 
-        return (
-            <StyledInput
-                ref={ref}
-                value={inputValue}
-                onChange={handleSelect}
-                size={size as any}
-                width={width as any}
-                height={height as any}
-                color={color as any}
-                {...rest}
-            />
-        );
-    }
-);
+    const handleSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const val = event.target.value;
+        setSelectedValue(val);
+        onChange?.(val, event);
+    };
+
+    return (
+        <StyledInput
+            ref={ref}
+            type={type}
+            value={inputValue}
+            onChange={handleSelect}
+            size={size as any}
+            width={width as any}
+            height={height as any}
+            color={color as any}
+            {...rest}
+        />
+    );
+});
 
 const CompoundInput = Object.assign(Input, {
     id: "Input",
@@ -200,4 +208,7 @@ export { CompoundInput as Input };
 
 if (process.env.NODE_ENV !== "production") {
     Input.displayName = "Input";
+    Group.displayName = "InputGroup";
+    CompoundPrefix.displayName = "InputPrefix";
+    CompoundSuffix.displayName = "InputSuffix";
 }

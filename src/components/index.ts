@@ -25,6 +25,7 @@ export * from "./password-input";
 export * from "./popconfirm";
 export * from "./popover";
 export * from "./portal";
+export * from "./radio";
 export * from "./scroller";
 export * from "./select";
 export * from "./size-picker";
