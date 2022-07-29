@@ -1,5 +1,12 @@
 import type { Strategy, Placement } from "@floating-ui/react-dom";
-import { useFloating, getScrollParents, offset, flip, shift, size } from "@floating-ui/react-dom";
+import {
+    useFloating,
+    getOverflowAncestors,
+    offset,
+    flip,
+    shift,
+    size,
+} from "@floating-ui/react-dom";
 import { forwardRef, useLayoutEffect, useEffect } from "react";
 
 import { useForkRef } from "../hooks";
@@ -44,10 +51,10 @@ export const Floater = forwardRef<HTMLElement, FloaterProps>(
                 flip({ padding: 8 }),
                 shift({ padding: 8 }),
                 size({
-                    apply({ reference }) {
+                    apply({ rects }) {
                         if (matchWidth && refs.floating.current) {
                             Object.assign(refs.floating.current.style, {
-                                width: `${reference.width}px`,
+                                width: `${rects.reference.width}px`,
                             });
                         }
                     },
@@ -65,18 +72,18 @@ export const Floater = forwardRef<HTMLElement, FloaterProps>(
                 return;
             }
 
-            const parents = [
-                ...getScrollParents(refs.reference.current),
-                ...getScrollParents(refs.floating.current),
+            const ancestors = [
+                ...getOverflowAncestors(refs.reference.current as HTMLElement),
+                ...getOverflowAncestors(refs.floating.current),
             ];
 
-            parents.forEach((el) => {
+            ancestors.forEach((el) => {
                 el.addEventListener("scroll", update);
                 el.addEventListener("resize", update);
             });
 
             return () => {
-                parents.forEach((el) => {
+                ancestors.forEach((el) => {
                     el.removeEventListener("scroll", update);
                     el.removeEventListener("resize", update);
                 });
