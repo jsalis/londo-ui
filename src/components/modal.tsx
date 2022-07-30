@@ -1,8 +1,8 @@
-import { forwardRef, createContext, useContext } from "react";
+import React, { forwardRef, createContext, useContext, useRef } from "react";
 import { RemoveScroll } from "react-remove-scroll";
 import styled from "styled-components";
 
-import { useCallbackRef } from "../hooks";
+import { useCallbackRef, useForkHandler } from "../hooks";
 import { CloseIcon } from "../icons";
 import { KeyCode } from "../utils/key-code";
 
@@ -22,9 +22,9 @@ interface ModalContextValue {
     finalFocusRef?: React.RefObject<any>;
 }
 
-interface ModalOverlayProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "color">, BoxProps {}
-
 interface ModalContentProps extends FlexProps {
+    onClick?: (event: React.MouseEvent) => void;
+    onClose?: (event: React.MouseEvent) => void;
     onKeyDown?: (event: React.KeyboardEvent) => void;
 }
 
@@ -57,7 +57,6 @@ const ContentWrap = styled(Flex)`
     left: 0;
     width: 100vw;
     height: 100vh;
-    pointer-events: none;
     z-index: 1;
 `;
 
@@ -92,14 +91,26 @@ const CloseButtonWrap = styled.button`
     }
 `;
 
-const Overlay = forwardRef<HTMLDivElement, ModalOverlayProps>(({ color, ...rest }, ref) => {
+const Overlay = forwardRef<HTMLDivElement, BoxProps>(({ color, ...rest }, ref) => {
     return <OverlayWrap ref={ref} bg="alpha.black.6" {...rest} color={color as any} />;
 });
 
 const Content = forwardRef<HTMLDivElement, ModalContentProps>((props, ref) => {
-    const { onKeyDown, color, children, ...rest } = props;
+    const { onClose, onKeyDown, onClick, color, children, ...rest } = props;
     const { scrollBehavior, autoFocus, restoreFocus, initialFocusRef, finalFocusRef } =
         useContext(ModalContext);
+
+    const mouseDownTarget = useRef<EventTarget | null>(null);
+
+    const onMouseDown = (event: React.MouseEvent) => {
+        mouseDownTarget.current = event.target;
+    };
+
+    const onClickAway = (event: React.MouseEvent) => {
+        if (mouseDownTarget.current === event.target) {
+            onClose?.(event);
+        }
+    };
 
     const onActivation = useCallbackRef(() => {
         initialFocusRef?.current?.focus();
@@ -108,6 +119,11 @@ const Content = forwardRef<HTMLDivElement, ModalContentProps>((props, ref) => {
     const onDeactivation = useCallbackRef(() => {
         finalFocusRef?.current?.focus();
     });
+
+    const sectionProps = {
+        onClick: useForkHandler(onClick, (e: React.MouseEvent) => e.stopPropagation()),
+        ...rest,
+    };
 
     return (
         <FocusLock
@@ -125,6 +141,8 @@ const Content = forwardRef<HTMLDivElement, ModalContentProps>((props, ref) => {
                     role="dialog"
                     aria-modal
                     onKeyDown={onKeyDown}
+                    onMouseDown={onMouseDown}
+                    onClick={onClickAway}
                 >
                     <Flex
                         ref={ref}
@@ -140,7 +158,7 @@ const Content = forwardRef<HTMLDivElement, ModalContentProps>((props, ref) => {
                         maxWidth={448}
                         maxHeight={scrollBehavior === "inside" ? "calc(100% - 128px)" : ""}
                         color={color as any}
-                        {...rest}
+                        {...sectionProps}
                     >
                         {children}
                     </Flex>
@@ -232,11 +250,12 @@ export function Modal({
         <ModalContext.Provider value={context}>
             {isOpen ? (
                 <Portal container={container}>
-                    <Overlay ref={overlayRef} onClick={handleClose} />
+                    <Overlay ref={overlayRef} />
                     <Content
                         ref={contentRef}
                         {...rest}
                         className={className}
+                        onClose={handleClose}
                         onKeyDown={handleKeyDown}
                     >
                         <CloseButton onClick={handleClose} />
