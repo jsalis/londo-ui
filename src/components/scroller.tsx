@@ -19,6 +19,7 @@ export interface ScrollerProps extends BoxProps {
 
 const VerticalBar = styled.div<BarProps>`
     width: 4px;
+    border-radius: 2px;
     position: absolute;
     top: 0;
     right: 0;
@@ -29,6 +30,7 @@ const VerticalBar = styled.div<BarProps>`
 
 const HorizontalBar = styled.div<BarProps>`
     height: 4px;
+    border-radius: 2px;
     position: absolute;
     bottom: 0;
     left: 0;
