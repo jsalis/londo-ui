@@ -30,6 +30,7 @@ export * from "./scroller";
 export * from "./select";
 export * from "./size-picker";
 export * from "./skeleton";
+export * from "./spinner";
 export * from "./tag";
 export * from "./text";
 export * from "./textarea";
