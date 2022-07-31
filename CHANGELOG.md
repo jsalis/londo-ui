@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.16](https://github.com/jsalis/londo-ui/compare/v0.1.15...v0.1.16) (2022-07-31)
+
+### Features
+
+- add border radius to scoll bars ([559484f](https://github.com/jsalis/londo-ui/commit/559484fddffabe817301abef490df67807a9c268))
+- add spinner component ([66fb957](https://github.com/jsalis/londo-ui/commit/66fb9576e2772766e4bd80b98cbad91792a56c85))
+
+### Bug Fixes
+
+- close modal on content click ([f5ea74e](https://github.com/jsalis/londo-ui/commit/f5ea74ede61a313020ee68c1e6cf432fbb0c3345))
+
 ### [0.1.15](https://github.com/jsalis/londo-ui/compare/v0.1.14...v0.1.15) (2022-07-04)
 
 ### Features
