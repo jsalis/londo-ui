@@ -14,6 +14,8 @@ export * from "./eraser-icon";
 export * from "./eye-dropper-icon";
 export * from "./eye-off-icon";
 export * from "./eye-on-icon";
+export * from "./folder-icon";
+export * from "./folder-open-icon";
 export * from "./fullscreen-enter-icon";
 export * from "./fullscreen-exit-icon";
 export * from "./grid-off-icon";
