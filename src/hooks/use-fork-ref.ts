@@ -4,6 +4,8 @@ import { assignRef } from "../utils/react-util";
 
 type ReactRef<T> = React.Ref<T> | React.RefObject<T> | React.MutableRefObject<T>;
 
+// https://github.com/gregberge/react-merge-refs/blob/main/src/index.tsx
+
 /**
  * Merges multiple refs into a single ref. This will create a new function if the ref props change
  * and are defined. This means react will call the old forkRef with `null` and the new forkRef

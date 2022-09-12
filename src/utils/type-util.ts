@@ -22,7 +22,7 @@ export function isUndefined(val: any): val is undefined {
 /**
  * Returns whether a value is an object and not null.
  */
-export function isObjectLike(val: any) {
+export function isObjectLike(val: any): val is object {
     return typeof val === "object" && val !== null;
 }
 

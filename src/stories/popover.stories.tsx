@@ -1,5 +1,11 @@
 import { Popover, Box, Button } from "../components";
 
+const sampleText = `
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+	incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+	nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+`;
+
 export default {
     title: "Design System/Popover",
     component: Popover,
@@ -18,8 +24,23 @@ export function Basic(args) {
 
 Basic.args = {
     title: "Title",
-    content: "Hello World",
-    placement: "bottom",
+    content: sampleText,
+    placement: "bottom-start",
+};
+
+export function TriggerOnClick(args) {
+    return (
+        <Popover {...args}>
+            <Button>Click here</Button>
+        </Popover>
+    );
+}
+
+TriggerOnClick.args = {
+    title: "Title",
+    content: sampleText,
+    placement: "bottom-start",
+    trigger: "click",
 };
 
 export function Placements() {
@@ -35,22 +56,22 @@ export function Placements() {
                 }}
             >
                 <div style={{ marginLeft: buttonWidth + 16, whiteSpace: "nowrap" }}>
-                    <Popover placement="top" title="Title" content="Hello World">
+                    <Popover placement="top" title="Title" content={sampleText}>
                         <Button width={buttonWidth}>Top</Button>
                     </Popover>
                 </div>
                 <div style={{ width: buttonWidth, float: "left" }}>
-                    <Popover placement="left" title="Title" content="Hello World">
+                    <Popover placement="left" title="Title" content={sampleText}>
                         <Button width={buttonWidth}>Left</Button>
                     </Popover>
                 </div>
                 <div style={{ width: buttonWidth, marginLeft: buttonWidth + 112 }}>
-                    <Popover placement="right" title="Title" content="Hello World">
+                    <Popover placement="right" title="Title" content={sampleText}>
                         <Button width={buttonWidth}>Right</Button>
                     </Popover>
                 </div>
                 <div style={{ marginLeft: buttonWidth + 16, whiteSpace: "nowrap" }}>
-                    <Popover placement="bottom" title="Title" content="Hello World">
+                    <Popover placement="bottom" title="Title" content={sampleText}>
                         <Button width={buttonWidth}>Bottom</Button>
                     </Popover>
                 </div>

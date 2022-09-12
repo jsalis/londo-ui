@@ -18,7 +18,7 @@ export function Basic(args) {
 
 Basic.args = {
     title: "Are you sure?",
-    placement: "bottom",
+    placement: "bottom-start",
 };
 
 export function Placements() {

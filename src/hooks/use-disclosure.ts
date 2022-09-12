@@ -1,8 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
+import { useControllableState } from "./use-controllable-state";
 import { useCallbackRef } from "./use-callback-ref";
 
 type DisclosureOptions = {
+    isOpen?: boolean;
     defaultIsOpen?: boolean;
     onOpen?: () => void;
     onClose?: () => void;
@@ -15,8 +17,13 @@ type ToggleOptions = {
 /**
  * Uses boolean state with functions to open, close, and toggle.
  */
-export function useDisclosure({ defaultIsOpen, onOpen, onClose }: DisclosureOptions = {}) {
-    const [isOpen, setIsOpen] = useState(defaultIsOpen ?? false);
+export function useDisclosure({
+    isOpen: isOpenProp,
+    defaultIsOpen,
+    onOpen,
+    onClose,
+}: DisclosureOptions = {}) {
+    const [isOpen, setIsOpen] = useControllableState(isOpenProp, defaultIsOpen ?? false);
     const delayTimer: any = useRef(null);
 
     const clearDelayTimer = () => {
