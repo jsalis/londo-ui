@@ -1,111 +1,103 @@
-import { Children, isValidElement, cloneElement, forwardRef, useState } from "react";
+import { forwardRef } from "react";
 
-import { useDisclosure, useForkRef, useEventListener } from "../hooks";
+import { useDisclosure } from "../hooks";
 import { WarningIcon } from "../icons";
-import { KeyCode } from "../utils/key-code";
 
-import type { BoxProps } from "./box";
-import type { FloaterProps } from "./floater";
+import type { PopoverProps } from "./popover";
+import { Popover } from "./popover";
 import { Flex } from "./flex";
 import { Box } from "./box";
 import { Button } from "./button";
-import { Floater } from "./floater";
-import { ClickAwayListener } from "./click-away-listener";
 
-export interface PopconfirmProps extends BoxProps {
-    title?: React.ReactNode;
-    placement?: FloaterProps["placement"];
+export interface PopconfirmProps extends PopoverProps {
+    title: React.ReactNode;
     disabled?: boolean;
-    cancelText?: React.ReactNode;
+    onConfirm?: (e?: React.MouseEvent) => void;
+    onCancel?: (e?: React.MouseEvent) => void;
     okText?: React.ReactNode;
-    onConfirm?: () => void;
-    onCancel?: () => void;
-    onOpen?: () => void;
-    onClose?: () => void;
-    children?: React.ReactNode;
+    cancelText?: React.ReactNode;
+    icon?: React.ReactNode;
 }
 
 export const Popconfirm = forwardRef<HTMLDivElement, PopconfirmProps>(
     (
         {
-            title = "Are you sure?",
-            placement = "top",
-            disabled,
-            cancelText = "Cancel",
-            okText = "Ok",
+            title,
+            disabled = false,
+            trigger = "click",
             onConfirm,
             onCancel,
+            okText = "Ok",
+            cancelText = "Cancel",
+            icon,
+            isOpen: isOpenProp,
+            defaultIsOpen,
             onOpen,
             onClose,
-            color,
             children,
             ...rest
         },
         ref
     ) => {
-        const { isOpen, close, toggle } = useDisclosure({ onOpen, onClose });
+        const { isOpen, open, close } = useDisclosure({
+            isOpen: isOpenProp,
+            defaultIsOpen,
+            onOpen,
+            onClose,
+        });
 
-        const handleCancel = () => {
-            close();
-            onCancel?.();
-        };
-
-        const handleConfirm = () => {
-            close();
-            onConfirm?.();
-        };
-
-        const handleToggle = () => {
+        const handleOpen = () => {
             if (!disabled) {
-                toggle();
+                open();
             }
         };
 
-        const handleKeyDown = (event: Event) => {
-            if ((event as KeyboardEvent).key === KeyCode.ESC && isOpen) {
+        const handleClose = () => {
+            if (!disabled) {
                 close();
             }
         };
 
-        const [anchorNode, setAnchorNode] = useState<HTMLElement | null>(null);
-        const child = Children.only(children);
-        const childProps = { ref: useForkRef((child as any).ref, setAnchorNode) };
-        const anchor = isValidElement(child) ? cloneElement(child, childProps) : child;
+        const handleCancel = (event: React.MouseEvent) => {
+            close();
+            onCancel?.(event);
+        };
 
-        useEventListener("click", handleToggle, anchorNode);
-        useEventListener("keydown", handleKeyDown, anchorNode);
+        const handleConfirm = (event: React.MouseEvent) => {
+            close();
+            onConfirm?.(event);
+        };
+
+        const content = (
+            <>
+                <Flex gap={2} pb={2} alignItems="flex-start">
+                    <Box flex="none">
+                        {icon ?? <WarningIcon size={18} display="block" color="warning.base" />}
+                    </Box>
+                    <Box lineHeight="base" color="heading">
+                        {title}
+                    </Box>
+                </Flex>
+                <Flex gap={2} justifyContent="flex-end">
+                    <Button onClick={handleCancel}>{cancelText}</Button>
+                    <Button onClick={handleConfirm}>{okText}</Button>
+                </Flex>
+            </>
+        );
 
         return (
-            <ClickAwayListener onClickAway={() => close()}>
-                <div>
-                    {anchor}
-                    <Floater anchor={anchorNode} isOpen={isOpen} placement={placement} keepMounted>
-                        <Box
-                            ref={ref}
-                            p={3}
-                            maxWidth={400}
-                            borderRadius="base"
-                            boxShadow="base"
-                            bg="popover.bg"
-                            color={color as any}
-                            {...rest}
-                        >
-                            <Flex pb={2} align="flex-start">
-                                <Box mr={2} flex="none">
-                                    <WarningIcon size={18} display="block" color="warning.base" />
-                                </Box>
-                                <Box lineHeight="base" color="heading">
-                                    {title}
-                                </Box>
-                            </Flex>
-                            <Flex justify="flex-end" gap={2}>
-                                <Button onClick={handleCancel}>{cancelText}</Button>
-                                <Button onClick={handleConfirm}>{okText}</Button>
-                            </Flex>
-                        </Box>
-                    </Floater>
-                </div>
-            </ClickAwayListener>
+            <Popover
+                ref={ref}
+                p={2}
+                {...rest}
+                isOpen={isOpen}
+                onOpen={handleOpen}
+                onClose={handleClose}
+                trigger={trigger}
+                content={content}
+            >
+                {children}
+            </Popover>
         );
     }
 );
