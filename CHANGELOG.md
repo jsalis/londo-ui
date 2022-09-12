@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.17](https://github.com/jsalis/londo-ui/compare/v0.1.16...v0.1.17) (2022-09-12)
+
+### Features
+
+- add arrow element to popconfirm component ([6c51b02](https://github.com/jsalis/londo-ui/commit/6c51b02fd0c02dfd6183f1cd376d2e60d3fa53df))
+- add arrow element to popover component ([f42b9c8](https://github.com/jsalis/londo-ui/commit/f42b9c8b1611b4c09b75aaa42d4af7a02071c486))
+- add chevron icons ([4e128b2](https://github.com/jsalis/londo-ui/commit/4e128b2b83246abf5f708a79084bb4a780b348ab))
+- add ellipsis icons ([1809e83](https://github.com/jsalis/londo-ui/commit/1809e83fdd10f218edd975d794ffbff75def569a))
+- add folder icons ([3bfbcbe](https://github.com/jsalis/londo-ui/commit/3bfbcbe5499a500c432fda97b52610a309fe6e31))
+
 ### [0.1.16](https://github.com/jsalis/londo-ui/compare/v0.1.15...v0.1.16) (2022-07-31)
 
 ### Features
