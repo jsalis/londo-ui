@@ -8,6 +8,8 @@ export * from "./cog-icon";
 export * from "./color-icon";
 export * from "./cube-icon";
 export * from "./edit-icon";
+export * from "./ellipsis-horizontal-icon";
+export * from "./ellipsis-vertical-icon";
 export * from "./eraser-icon";
 export * from "./eye-dropper-icon";
 export * from "./eye-off-icon";
