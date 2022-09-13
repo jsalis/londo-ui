@@ -5,6 +5,7 @@ export * from "./chevron-left-icon";
 export * from "./chevron-right-icon";
 export * from "./chevron-up-icon";
 export * from "./chip-icon";
+export * from "./clone-icon";
 export * from "./close-icon";
 export * from "./cog-icon";
 export * from "./color-icon";
