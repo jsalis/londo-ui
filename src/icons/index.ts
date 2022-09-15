@@ -28,6 +28,7 @@ export * from "./image-icon";
 export * from "./logout-icon";
 export * from "./move-horizontal-icon";
 export * from "./play-icon";
+export * from "./plus-icon";
 export * from "./redo-icon";
 export * from "./refresh-icon";
 export * from "./save-icon";
