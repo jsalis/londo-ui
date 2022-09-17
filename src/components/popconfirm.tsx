@@ -1,10 +1,11 @@
 import { forwardRef } from "react";
 
-import { useDisclosure } from "../hooks";
+import { useDisclosure, useCallbackRef } from "../hooks";
 import { WarningIcon } from "../icons";
 
 import type { PopoverProps } from "./popover";
 import { Popover } from "./popover";
+import { FocusLock } from "./focus-lock";
 import { Flex } from "./flex";
 import { Box } from "./box";
 import { Button } from "./button";
@@ -17,6 +18,10 @@ export interface PopconfirmProps extends PopoverProps {
     okText?: React.ReactNode;
     cancelText?: React.ReactNode;
     icon?: React.ReactNode;
+    autoFocus?: boolean;
+    restoreFocus?: boolean;
+    initialFocusRef?: React.RefObject<any>;
+    finalFocusRef?: React.RefObject<any>;
 }
 
 export const Popconfirm = forwardRef<HTMLDivElement, PopconfirmProps>(
@@ -34,6 +39,10 @@ export const Popconfirm = forwardRef<HTMLDivElement, PopconfirmProps>(
             defaultIsOpen,
             onOpen,
             onClose,
+            autoFocus = true,
+            restoreFocus = true,
+            initialFocusRef,
+            finalFocusRef,
             children,
             ...rest
         },
@@ -68,8 +77,21 @@ export const Popconfirm = forwardRef<HTMLDivElement, PopconfirmProps>(
             onConfirm?.(event);
         };
 
+        const onActivation = useCallbackRef(() => {
+            initialFocusRef?.current?.focus();
+        });
+
+        const onDeactivation = useCallbackRef(() => {
+            finalFocusRef?.current?.focus();
+        });
+
         const content = (
-            <>
+            <FocusLock
+                autoFocus={autoFocus}
+                returnFocus={restoreFocus}
+                onActivation={onActivation}
+                onDeactivation={onDeactivation}
+            >
                 <Flex gap={2} pb={2} alignItems="flex-start">
                     <Box flex="none">
                         {icon ?? <WarningIcon size={18} display="block" color="warning.base" />}
@@ -82,7 +104,7 @@ export const Popconfirm = forwardRef<HTMLDivElement, PopconfirmProps>(
                     <Button onClick={handleCancel}>{cancelText}</Button>
                     <Button onClick={handleConfirm}>{okText}</Button>
                 </Flex>
-            </>
+            </FocusLock>
         );
 
         return (

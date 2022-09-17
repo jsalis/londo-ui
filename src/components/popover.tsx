@@ -166,49 +166,53 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
         return (
             <>
                 {anchor}
-                <Portal container={container}>
-                    <div
-                        ref={floating}
-                        role="tooltip"
-                        style={{
-                            position: strategy,
-                            top: y ?? "",
-                            left: x ?? "",
-                            display: !isOpen ? "none" : "",
-                            transformOrigin: getTransformOrigin(autoPlacement),
-                            zIndex: 1,
-                        }}
-                    >
-                        <ClickAwayListener mouseEvent="onMouseDown" onClickAway={handleClickAway}>
-                            <Box
-                                ref={ref}
-                                minWidth={120}
-                                maxWidth={300}
-                                borderRadius="base"
-                                boxShadow="base"
-                                bg="popover.bg"
-                                userSelect="text"
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                                color={color as any}
-                                {...rest}
+                {isOpen ? (
+                    <Portal container={container}>
+                        <div
+                            ref={floating}
+                            role="tooltip"
+                            style={{
+                                position: strategy,
+                                top: y ?? "",
+                                left: x ?? "",
+                                transformOrigin: getTransformOrigin(autoPlacement),
+                                zIndex: 1,
+                            }}
+                        >
+                            <ClickAwayListener
+                                mouseEvent="onMouseDown"
+                                onClickAway={handleClickAway}
                             >
-                                <Arrow ref={setArrowNode} bg="popover.bg" />
-                                {title ? (
-                                    <Box
-                                        p={2}
-                                        borderBottom="split"
-                                        color="heading"
-                                        fontWeight="bold"
-                                    >
-                                        {title}
-                                    </Box>
-                                ) : null}
-                                <Box p={2}>{content}</Box>
-                            </Box>
-                        </ClickAwayListener>
-                    </div>
-                </Portal>
+                                <Box
+                                    ref={ref}
+                                    minWidth={120}
+                                    maxWidth={300}
+                                    borderRadius="base"
+                                    boxShadow="base"
+                                    bg="popover.bg"
+                                    userSelect="text"
+                                    onMouseEnter={handleMouseEnter}
+                                    onMouseLeave={handleMouseLeave}
+                                    color={color as any}
+                                    {...rest}
+                                >
+                                    <Arrow ref={setArrowNode} bg="popover.bg" />
+                                    {title ? (
+                                        <Box
+                                            p={2}
+                                            borderBottom="split"
+                                            color="heading"
+                                            fontWeight="bold"
+                                        >
+                                            {title}
+                                        </Box>
+                                    ) : null}
+                                    <Box p={2}>{content}</Box>
+                                </Box>
+                            </ClickAwayListener>
+                        </div>
+                    </Portal>
+                ) : null}
             </>
         );
     }
