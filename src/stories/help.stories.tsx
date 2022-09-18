@@ -8,22 +8,24 @@ export default {
     },
 };
 
-export function Basic({ show, ...args }) {
+export function Info({ show, ...args }) {
     return (
         <Box width={300}>
-            <Help {...args}>{show && "This is a help message."}</Help>
+            <Help type="info" {...args}>
+                {show && "This is a help message."}
+            </Help>
         </Box>
     );
 }
 
-Basic.args = {
+Info.args = {
     show: true,
 };
 
 export function Error({ show, ...args }) {
     return (
         <Box width={300}>
-            <Help bg="negative.base" {...args}>
+            <Help type="error" {...args}>
                 {show && "This is an error message."}
             </Help>
         </Box>
@@ -37,7 +39,7 @@ Error.args = {
 export function Warning({ show, ...args }) {
     return (
         <Box width={300}>
-            <Help bg="warning.base" color="gray.3" {...args}>
+            <Help type="warning" {...args}>
                 {show && "This is a warning message."}
             </Help>
         </Box>
