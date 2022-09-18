@@ -14,6 +14,7 @@ export * from "./floater";
 export * from "./focus-lock";
 export * from "./grid";
 export * from "./heading";
+export * from "./help";
 export * from "./icon-button";
 export * from "./icon";
 export * from "./image";
