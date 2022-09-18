@@ -1,7 +1,7 @@
 import type { IconProps } from "../components";
 import { Icon } from "../components";
 
-export function DuplicateIcon(props: IconProps) {
+export function CloneIcon(props: IconProps) {
     return (
         <Icon {...props}>
             <path d="M11 10H9v3H6v2h3v3h2v-3h3v-2h-3z" />
