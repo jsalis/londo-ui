@@ -1,3 +1,4 @@
+export * from "./alert";
 export * from "./binary-input";
 export * from "./box";
 export * from "./button";

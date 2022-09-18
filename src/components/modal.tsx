@@ -66,6 +66,7 @@ const CloseButtonWrap = styled.button`
     position: absolute;
     top: 8px;
     right: 8px;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;

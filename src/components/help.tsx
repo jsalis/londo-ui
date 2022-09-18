@@ -12,7 +12,6 @@ const makeTypeColor = (type: string, color: string) => (p: any) =>
     p.type === type &&
     css`
         background-color: ${p.theme.colors[color][0]};
-        border: 1px solid ${p.theme.colors[color][2]};
         color: ${p.theme.colors[color][7]};
     `;
 

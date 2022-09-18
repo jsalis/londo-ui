@@ -4,7 +4,7 @@ export default {
     title: "Design System/Help",
     component: Help,
     parameters: {
-        componentSubtitle: "A text component for showing help messages.",
+        componentSubtitle: "A component for showing help messages.",
     },
 };
 
