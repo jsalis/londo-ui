@@ -45,6 +45,11 @@ const breakpoints = ["768px", "1200px"] as Breakpoints;
 breakpoints.md = breakpoints[0];
 breakpoints.lg = breakpoints[1];
 
+const mediaQueries = {
+    md: `@media screen and (min-width: ${breakpoints.md})`,
+    lg: `@media screen and (min-width: ${breakpoints.lg})`,
+};
+
 const radii = {
     base: 2,
 };
@@ -78,6 +83,7 @@ export const base = {
     lineHeights,
     space,
     breakpoints,
+    mediaQueries,
     radii,
     transitions,
     animationDurations,
