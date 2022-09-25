@@ -1,5 +1,7 @@
-import React, { forwardRef, createContext, useContext, useRef } from "react";
+import { forwardRef, createContext, useContext, useRef } from "react";
 import { RemoveScroll } from "react-remove-scroll";
+// @ts-ignore
+import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
 import styled from "styled-components";
 
 import { useCallbackRef, useForkHandler } from "../hooks";
@@ -145,24 +147,31 @@ const Content = forwardRef<HTMLDivElement, ModalContentProps>((props, ref) => {
                     onMouseDown={onMouseDown}
                     onClick={onClickAway}
                 >
-                    <Flex
-                        ref={ref}
-                        as="section"
-                        direction="column"
-                        position="relative"
-                        borderRadius="base"
-                        boxShadow="base"
-                        bg="modal.bg"
-                        pointerEvents="initial"
-                        my={5}
-                        width={1}
-                        maxWidth={448}
-                        maxHeight={scrollBehavior === "inside" ? "calc(100% - 128px)" : ""}
-                        color={color as any}
-                        {...sectionProps}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ type: "spring", damping: 20, stiffness: 300 }}
                     >
-                        {children}
-                    </Flex>
+                        <Flex
+                            ref={ref}
+                            as="section"
+                            direction="column"
+                            position="relative"
+                            borderRadius="base"
+                            boxShadow="base"
+                            bg="modal.bg"
+                            pointerEvents="initial"
+                            my={5}
+                            width={1}
+                            maxWidth={448}
+                            maxHeight={scrollBehavior === "inside" ? "calc(100% - 128px)" : ""}
+                            color={color as any}
+                            {...sectionProps}
+                        >
+                            {children}
+                        </Flex>
+                    </motion.div>
                 </ContentWrap>
             </RemoveScroll>
         </FocusLock>
@@ -249,21 +258,23 @@ export function Modal({
 
     return (
         <ModalContext.Provider value={context}>
-            {isOpen ? (
-                <Portal container={container}>
-                    <Overlay ref={overlayRef} />
-                    <Content
-                        ref={contentRef}
-                        {...rest}
-                        className={className}
-                        onClose={handleClose}
-                        onKeyDown={handleKeyDown}
-                    >
-                        <CloseButton onClick={handleClose} />
-                        {children}
-                    </Content>
-                </Portal>
-            ) : null}
+            <AnimatePresence>
+                {isOpen ? (
+                    <Portal container={container}>
+                        <Overlay ref={overlayRef} />
+                        <Content
+                            ref={contentRef}
+                            {...rest}
+                            className={className}
+                            onClose={handleClose}
+                            onKeyDown={handleKeyDown}
+                        >
+                            <CloseButton onClick={handleClose} />
+                            {children}
+                        </Content>
+                    </Portal>
+                ) : null}
+            </AnimatePresence>
         </ModalContext.Provider>
     );
 }

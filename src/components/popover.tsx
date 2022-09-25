@@ -10,6 +10,8 @@ import {
     useLayoutEffect,
 } from "react";
 import { useFloating, autoUpdate, offset, flip, shift, arrow, size } from "@floating-ui/react-dom";
+// @ts-ignore
+import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
 import { color } from "styled-system";
 import styled from "styled-components";
 
@@ -166,53 +168,59 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
         return (
             <>
                 {anchor}
-                {isOpen ? (
-                    <Portal container={container}>
-                        <div
-                            ref={floating}
-                            role="tooltip"
-                            style={{
-                                position: strategy,
-                                top: y ?? "",
-                                left: x ?? "",
-                                transformOrigin: getTransformOrigin(autoPlacement),
-                                zIndex: 1,
-                            }}
-                        >
-                            <ClickAwayListener
-                                mouseEvent="onMouseDown"
-                                onClickAway={handleClickAway}
+                <AnimatePresence>
+                    {isOpen ? (
+                        <Portal container={container}>
+                            <motion.div
+                                ref={floating}
+                                role="tooltip"
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.8 }}
+                                transition={{ type: "spring", damping: 20, stiffness: 300 }}
+                                style={{
+                                    position: strategy,
+                                    top: y ?? "",
+                                    left: x ?? "",
+                                    transformOrigin: getTransformOrigin(autoPlacement),
+                                    zIndex: 1,
+                                }}
                             >
-                                <Box
-                                    ref={ref}
-                                    minWidth={120}
-                                    maxWidth={300}
-                                    borderRadius="base"
-                                    boxShadow="base"
-                                    bg="popover.bg"
-                                    userSelect="text"
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                    color={color as any}
-                                    {...rest}
+                                <ClickAwayListener
+                                    mouseEvent="onMouseDown"
+                                    onClickAway={handleClickAway}
                                 >
-                                    <Arrow ref={setArrowNode} bg="popover.bg" />
-                                    {title ? (
-                                        <Box
-                                            p={2}
-                                            borderBottom="split"
-                                            color="heading"
-                                            fontWeight="bold"
-                                        >
-                                            {title}
-                                        </Box>
-                                    ) : null}
-                                    <Box p={2}>{content}</Box>
-                                </Box>
-                            </ClickAwayListener>
-                        </div>
-                    </Portal>
-                ) : null}
+                                    <Box
+                                        ref={ref}
+                                        minWidth={120}
+                                        maxWidth={300}
+                                        borderRadius="base"
+                                        boxShadow="base"
+                                        bg="popover.bg"
+                                        userSelect="text"
+                                        onMouseEnter={handleMouseEnter}
+                                        onMouseLeave={handleMouseLeave}
+                                        color={color as any}
+                                        {...rest}
+                                    >
+                                        <Arrow ref={setArrowNode} bg="popover.bg" />
+                                        {title ? (
+                                            <Box
+                                                p={2}
+                                                borderBottom="split"
+                                                color="heading"
+                                                fontWeight="bold"
+                                            >
+                                                {title}
+                                            </Box>
+                                        ) : null}
+                                        <Box p={2}>{content}</Box>
+                                    </Box>
+                                </ClickAwayListener>
+                            </motion.div>
+                        </Portal>
+                    ) : null}
+                </AnimatePresence>
             </>
         );
     }
