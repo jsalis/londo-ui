@@ -62,6 +62,8 @@ const ContentWrap = styled(Flex)`
     z-index: 1;
 `;
 
+const ContentBox = motion(Flex);
+
 const CloseButtonWrap = styled.button`
     width: 32px;
     height: 32px;
@@ -147,32 +149,28 @@ const Content = forwardRef<HTMLDivElement, ModalContentProps>((props, ref) => {
                     onMouseDown={onMouseDown}
                     onClick={onClickAway}
                 >
-                    <motion.div
+                    <ContentBox
+                        ref={ref}
+                        as="section"
+                        direction="column"
+                        position="relative"
+                        borderRadius="base"
+                        boxShadow="base"
+                        bg="modal.bg"
+                        pointerEvents="initial"
+                        my={5}
+                        width={1}
+                        maxWidth={448}
+                        maxHeight={scrollBehavior === "inside" ? "calc(100% - 128px)" : ""}
+                        color={color as any}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.8 }}
                         transition={{ type: "spring", damping: 20, stiffness: 300 }}
-                        style={{ height: "inherit" }}
+                        {...sectionProps}
                     >
-                        <Flex
-                            ref={ref}
-                            as="section"
-                            direction="column"
-                            position="relative"
-                            borderRadius="base"
-                            boxShadow="base"
-                            bg="modal.bg"
-                            pointerEvents="initial"
-                            my={5}
-                            width={1}
-                            maxWidth={448}
-                            maxHeight={scrollBehavior === "inside" ? "calc(100% - 128px)" : ""}
-                            color={color as any}
-                            {...sectionProps}
-                        >
-                            {children}
-                        </Flex>
-                    </motion.div>
+                        {children}
+                    </ContentBox>
                 </ContentWrap>
             </RemoveScroll>
         </FocusLock>

@@ -194,6 +194,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
                                         ref={ref}
                                         minWidth={120}
                                         maxWidth={300}
+                                        lineHeight="base"
                                         borderRadius="base"
                                         boxShadow="base"
                                         bg="popover.bg"
