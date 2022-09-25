@@ -152,6 +152,7 @@ const Content = forwardRef<HTMLDivElement, ModalContentProps>((props, ref) => {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.8 }}
                         transition={{ type: "spring", damping: 20, stiffness: 300 }}
+                        style={{ height: "inherit" }}
                     >
                         <Flex
                             ref={ref}
