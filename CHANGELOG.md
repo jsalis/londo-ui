@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.19](https://github.com/jsalis/londo-ui/compare/v0.1.18...v0.1.19) (2022-09-25)
+
+### Features
+
+- add animation to popover and modal components ([d24e6f5](https://github.com/jsalis/londo-ui/commit/d24e6f5dab8f9f966bba0188ca7046c7752233cc))
+- add mediaQueries to theme object ([116c65d](https://github.com/jsalis/londo-ui/commit/116c65d55f3f35d7d1bc0b7b2e092be8b6df6fe9))
+- change fonts ([a25df0a](https://github.com/jsalis/londo-ui/commit/a25df0a8bb1763d04a97c84d50e56a12c8b1fe83))
+
+### Bug Fixes
+
+- modal scroll behavior ([f1684eb](https://github.com/jsalis/londo-ui/commit/f1684ebdb170a32413ce4cfa1f57dca9eb8fa403))
+- rename icon ([42678a5](https://github.com/jsalis/londo-ui/commit/42678a516e1135e2b043bb6ce2570a8949cc9e1c))
+
 ### [0.1.18](https://github.com/jsalis/londo-ui/compare/v0.1.17...v0.1.18) (2022-09-18)
 
 ### Features
