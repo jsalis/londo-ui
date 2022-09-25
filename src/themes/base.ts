@@ -1,6 +1,6 @@
 const fonts = {
-    brand: "Quantico, sans-serif",
-    body: "Roboto Mono, Source Code Pro, Menlo, Courier, monospace",
+    brand: "'Chakra Petch', sans-serif",
+    body: "Inconsolata, Monaco, Menlo, 'Ubuntu Mono', Consolas, source-code-pro, monospace",
 };
 
 type FontSizes = number[] & {
