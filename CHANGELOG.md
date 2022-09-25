@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.20](https://github.com/jsalis/londo-ui/compare/v0.1.19...v0.1.20) (2022-09-25)
+
+### Bug Fixes
+
+- modal size issue ([091c46c](https://github.com/jsalis/londo-ui/commit/091c46c0f3ebea62f6d9b0a9a63eeb0293c96452))
+
 ### [0.1.19](https://github.com/jsalis/londo-ui/compare/v0.1.18...v0.1.19) (2022-09-25)
 
 ### Features
