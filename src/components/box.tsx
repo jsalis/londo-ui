@@ -53,6 +53,7 @@ export interface BoxProps
 
 const other = system({
     whiteSpace: true,
+    textTransform: true,
     pointerEvents: true,
     userSelect: true,
     cursor: true,
