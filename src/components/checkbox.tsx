@@ -37,6 +37,7 @@ const Input = styled.input`
 
 const Control = styled.span`
     display: inline-flex;
+    flex: none;
     position: relative;
     top: 0;
     left: 0;
