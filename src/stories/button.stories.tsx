@@ -31,7 +31,15 @@ export function Sizes(args) {
 export function Variants(args) {
     return (
         <Flex gap={2}>
-            <Button {...args}>Default</Button>
+            <Button {...args} variant="default">
+                Default
+            </Button>
+            <Button {...args} variant="primary">
+                Primary
+            </Button>
+            <Button {...args} variant="dash">
+                Dash
+            </Button>
             <Button {...args} variant="text">
                 Text
             </Button>
