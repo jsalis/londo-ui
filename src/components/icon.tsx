@@ -26,6 +26,7 @@ const other = system({
 export const StyledIcon = styled.svg<IconProps>`
     display: inline-block;
     user-select: none;
+    flex-shrink: 0;
     ${fontSize}
     ${space}
     ${layout}

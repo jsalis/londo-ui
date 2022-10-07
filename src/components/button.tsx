@@ -28,7 +28,6 @@ const StyledButton = styled(Box)<StyledButtonProps>`
     transition: all 0.2s;
     user-select: none;
     cursor: pointer;
-    ${space}
 
     &:focus:focus-visible {
         box-shadow: 0 0 0 2px ${(p) => p.theme.colors.primary[2]};
@@ -57,6 +56,8 @@ const StyledButton = styled(Box)<StyledButtonProps>`
             },
         },
     })}
+
+    ${space}
 
     ${(p) =>
         variant({
