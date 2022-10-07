@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { space, variant } from "styled-system";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import type { BoxProps } from "./box";
 import { Box } from "./box";

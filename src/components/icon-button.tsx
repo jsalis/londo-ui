@@ -11,7 +11,9 @@ export interface IconButtonProps extends ButtonProps {
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     ({ "aria-label": label, icon, color, ...rest }, ref) => {
-        const children = isValidElement(icon) ? cloneElement(icon, { "aria-hidden": true }) : null;
+        const children = isValidElement(icon)
+            ? cloneElement(icon, { "aria-hidden": true } as any)
+            : null;
         return (
             <Button ref={ref} aria-label={label} p={1} color={color as any} {...rest}>
                 <VisuallyHidden>{label}</VisuallyHidden>
