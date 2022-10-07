@@ -4,12 +4,14 @@ import styled from "styled-components";
 
 import type { BoxProps } from "./box";
 import { Box } from "./box";
+import { Spinner } from "./spinner";
 
 export interface ButtonProps
     extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "color">,
         BoxProps {
     size?: "sm" | "md" | "lg";
     variant?: "default" | "primary" | "danger" | "dash" | "text";
+    isLoading?: boolean;
 }
 
 interface StyledButtonProps extends ButtonProps {
@@ -164,7 +166,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
 `;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ size = "md", variant = "default", color, children, ...rest }, ref) => {
+    ({ size = "md", variant = "default", isLoading, color, children, ...rest }, ref) => {
         return (
             <StyledButton
                 as="button"
@@ -175,7 +177,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 variant={variant}
                 color={color as any}
             >
-                {children}
+                {isLoading ? (
+                    <>
+                        <Box position="absolute">
+                            <Spinner size="1em" />
+                        </Box>
+                        <Box opacity={0}>{children}</Box>
+                    </>
+                ) : (
+                    children
+                )}
             </StyledButton>
         );
     }

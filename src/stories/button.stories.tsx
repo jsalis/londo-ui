@@ -49,3 +49,11 @@ export function Variants(args) {
         </Flex>
     );
 }
+
+export function Loading(args) {
+    return <Button {...args}>Submit</Button>;
+}
+
+Loading.args = {
+    isLoading: true,
+};
