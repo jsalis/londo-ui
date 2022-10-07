@@ -101,10 +101,10 @@ export const Popconfirm = forwardRef<HTMLDivElement, PopconfirmProps>(
                     </Box>
                 </Flex>
                 <Flex gap={2} justifyContent="flex-end">
-                    <Button size="small" onClick={handleCancel}>
+                    <Button size="sm" onClick={handleCancel}>
                         {cancelText}
                     </Button>
-                    <Button size="small" onClick={handleConfirm}>
+                    <Button size="sm" onClick={handleConfirm}>
                         {okText}
                     </Button>
                 </Flex>

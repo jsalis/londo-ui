@@ -127,7 +127,7 @@ export function WithButton(args) {
                 ista probare, quae sunt a te dicta? Refert tamen, quo modo.
             </Text>
             <Divider my={3} {...args}>
-                <Button size="small">Show More</Button>
+                <Button size="sm">Show More</Button>
             </Divider>
         </>
     );

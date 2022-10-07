@@ -8,7 +8,7 @@ import { Box } from "./box";
 export interface ButtonProps
     extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "color">,
         BoxProps {
-    size?: "small" | "default" | "large";
+    size?: "sm" | "md" | "lg";
     active?: boolean;
 }
 
@@ -30,31 +30,6 @@ const StyledButton = styled(Box)<StyledButtonProps>`
     transition: all 0.2s;
     user-select: none;
     cursor: pointer;
-
-    ${variant({
-        prop: "$size",
-        variants: {
-            small: {
-                fontSize: "sm",
-                paddingX: "sm",
-                height: "24px",
-                minWidth: "24px",
-            },
-            default: {
-                fontSize: "md",
-                paddingX: "md",
-                height: "32px",
-                minWidth: "32px",
-            },
-            large: {
-                fontSize: "lg",
-                paddingX: "md",
-                height: "40px",
-                minWidth: "40px",
-            },
-        },
-    })}
-
     ${space}
 
     &:focus:focus-visible {
@@ -97,10 +72,51 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                 cursor: not-allowed;
             }
         `}
+
+    ${variant({
+        prop: "$size",
+        variants: {
+            sm: {
+                fontSize: "sm",
+                paddingX: "sm",
+                height: "24px",
+                minWidth: "24px",
+            },
+            md: {
+                fontSize: "md",
+                paddingX: "md",
+                height: "32px",
+                minWidth: "32px",
+            },
+            lg: {
+                fontSize: "lg",
+                paddingX: "md",
+                height: "40px",
+                minWidth: "40px",
+            },
+        },
+    })}
+
+    ${variant({
+        variants: {
+            text: {
+                bg: "transparent",
+                boxShadow: "none",
+                transform: "none !important",
+                ":hover": {
+                    bg: "alpha.1",
+                    boxShadow: "none",
+                },
+                ":active": {
+                    bg: "alpha.3",
+                },
+            },
+        },
+    })}
 `;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ size = "default", color, children, ...rest }, ref) => {
+    ({ size = "md", color, children, ...rest }, ref) => {
         return (
             <StyledButton as="button" ref={ref} {...rest} $size={size} color={color as any}>
                 {children}

@@ -15,14 +15,25 @@ export function Basic(args) {
 export function Sizes(args) {
     return (
         <Flex gap={2}>
-            <Button {...args} size="small">
+            <Button {...args} size="sm">
                 Small
             </Button>
-            <Button {...args} size="default">
+            <Button {...args} size="md">
                 Default
             </Button>
-            <Button {...args} size="large">
+            <Button {...args} size="lg">
                 Large
+            </Button>
+        </Flex>
+    );
+}
+
+export function Variants(args) {
+    return (
+        <Flex gap={2}>
+            <Button {...args}>Default</Button>
+            <Button {...args} variant="text">
+                Text
             </Button>
         </Flex>
     );

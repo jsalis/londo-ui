@@ -12,7 +12,7 @@ export default {
 
 export function Basic() {
     return (
-        <Button size="small">
+        <Button size="sm">
             <VisuallyHidden>Save</VisuallyHidden>
             <SaveIcon aria-hidden />
         </Button>
