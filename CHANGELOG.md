@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.22](https://github.com/jsalis/londo-ui/compare/v0.1.21...v0.1.22) (2022-10-07)
+
+### Features
+
+- add danger variant to button component ([4bba5d8](https://github.com/jsalis/londo-ui/commit/4bba5d81098f17e02470b8796ef11800d0d2f15d))
+- add isLoading prop to button component ([3eb0cd6](https://github.com/jsalis/londo-ui/commit/3eb0cd6a356b4c7adac5a7d07438b71586329eb4))
+- add sun and moon icons ([7a96dcd](https://github.com/jsalis/londo-ui/commit/7a96dcd3814adafddbaa50f27a2b2b7a9a20bac8))
+- add thickness prop to spinner component ([2467892](https://github.com/jsalis/londo-ui/commit/2467892fb7d082043b978aec29f5d0b8ad3fd58e))
+
+### Bug Fixes
+
+- icon button style issue ([02fe018](https://github.com/jsalis/londo-ui/commit/02fe01805db382ac7ec9c3e78a5be403913bf395))
+
 ### [0.1.21](https://github.com/jsalis/londo-ui/compare/v0.1.20...v0.1.21) (2022-10-07)
 
 ### Features
