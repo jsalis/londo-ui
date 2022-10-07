@@ -14,7 +14,7 @@ import { Flex } from "./flex";
 import { Box } from "./box";
 import { Portal } from "./portal";
 import { FocusLock } from "./focus-lock";
-import { VisuallyHidden } from "./visually-hidden";
+import { IconButton } from "./icon-button";
 
 interface ModalContextValue {
     scrollBehavior?: "inside" | "outside";
@@ -63,38 +63,6 @@ const ContentWrap = styled(Flex)`
 `;
 
 const ContentBox = motion(Flex);
-
-const CloseButtonWrap = styled.button`
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    background: transparent;
-    border: none;
-    border-radius: ${(p) => p.theme.radii.base}px;
-    transition: box-shadow 0.2s, background 0.2s;
-    outline: 0;
-    cursor: pointer;
-
-    &:active,
-    &:focus {
-        box-shadow: 0 0 0 2px ${(p) => p.theme.colors.primary[2]};
-    }
-
-    &:hover {
-        background: ${(p) => p.theme.colors.alpha[1]};
-    }
-
-    &:active {
-        background: ${(p) => p.theme.colors.alpha[0]};
-    }
-`;
 
 const Overlay = forwardRef<HTMLDivElement, BoxProps>(({ color, ...rest }, ref) => {
     return <OverlayWrap ref={ref} bg="alpha.black.6" {...rest} color={color as any} />;
@@ -218,10 +186,17 @@ const Footer = forwardRef<HTMLElement, ModalFooterProps>(({ color, ...rest }, re
 const CloseButton = forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
     (props, ref) => {
         return (
-            <CloseButtonWrap ref={ref} type="button" {...props}>
-                <VisuallyHidden>Close</VisuallyHidden>
-                <CloseIcon size={24} aria-hidden />
-            </CloseButtonWrap>
+            <IconButton
+                ref={ref}
+                type="button"
+                variant="text"
+                position="absolute"
+                top="8px"
+                right="8px"
+                aria-label="Close"
+                icon={<CloseIcon size={24} />}
+                {...props}
+            />
         );
     }
 );
