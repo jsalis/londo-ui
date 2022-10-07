@@ -12,18 +12,10 @@ export default {
 export function Basic() {
     return (
         <Portal>
-            <Box m={1} p={3} top="0" left="0" position="absolute" bg="primary.base">
+            <Box p={2} width={1 / 2} bg="primary.base">
                 <Text color="white">first</Text>
                 <Portal>
-                    <Box
-                        m={1}
-                        p={3}
-                        top="40px"
-                        left="8px"
-                        position="absolute"
-                        bg="positive.base"
-                        opacity={0.8}
-                    >
+                    <Box p={2} width={1 / 2} bg="positive.base">
                         <Text color="white">second</Text>
                     </Box>
                 </Portal>

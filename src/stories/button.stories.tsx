@@ -1,4 +1,4 @@
-import { Button } from "../components";
+import { Button, Flex } from "../components";
 
 export default {
     title: "Design System/Button",
@@ -10,4 +10,20 @@ export default {
 
 export function Basic(args) {
     return <Button {...args}>Submit</Button>;
+}
+
+export function Sizes(args) {
+    return (
+        <Flex gap={2}>
+            <Button {...args} size="small">
+                Small
+            </Button>
+            <Button {...args} size="default">
+                Default
+            </Button>
+            <Button {...args} size="large">
+                Large
+            </Button>
+        </Flex>
+    );
 }

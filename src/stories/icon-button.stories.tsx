@@ -1,5 +1,5 @@
 import { IconButton } from "../components";
-import { SaveIcon } from "../icons";
+import { TrashIcon } from "../icons";
 
 export default {
     title: "Design System/IconButton",
@@ -10,5 +10,5 @@ export default {
 };
 
 export function Basic() {
-    return <IconButton aria-label="Save" icon={<SaveIcon />} />;
+    return <IconButton aria-label="Delete" icon={<TrashIcon />} />;
 }
