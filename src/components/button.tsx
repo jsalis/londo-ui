@@ -9,7 +9,7 @@ export interface ButtonProps
     extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "color">,
         BoxProps {
     size?: "sm" | "md" | "lg";
-    variant?: "default" | "primary" | "dash" | "text";
+    variant?: "default" | "primary" | "danger" | "dash" | "text";
 }
 
 interface StyledButtonProps extends ButtonProps {
@@ -97,6 +97,28 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                         boxShadow: "0 1px 0 0 var(--shadow-color)",
                         transform: "translateY(1px)",
                         bg: "primary.4",
+                    },
+                    ":disabled": {
+                        "--shadow-color": p.theme.colors.gray[4],
+                        boxShadow: "0 3px 0 0 var(--shadow-color)",
+                        transform: "translateY(0)",
+                        bg: "gray.1",
+                    },
+                },
+                danger: {
+                    "--shadow-color": p.theme.colors.negative[7],
+                    boxShadow: "0 2px 0 0 var(--shadow-color)",
+                    color: "white",
+                    bg: "negative.base",
+                    ":hover": {
+                        boxShadow: "0 3px 0 0 var(--shadow-color)",
+                        transform: "translateY(-1px)",
+                        color: "white",
+                    },
+                    ":active": {
+                        boxShadow: "0 1px 0 0 var(--shadow-color)",
+                        transform: "translateY(1px)",
+                        bg: "negative.4",
                     },
                     ":disabled": {
                         "--shadow-color": p.theme.colors.gray[4],

@@ -45,7 +45,7 @@ export function Basic(args) {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={onClose}>Cancel</Button>
-                    <Button>Save</Button>
+                    <Button variant="primary">Save</Button>
                 </Modal.Footer>
             </Modal>
         </>

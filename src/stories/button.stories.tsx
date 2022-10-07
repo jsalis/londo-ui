@@ -37,6 +37,9 @@ export function Variants(args) {
             <Button {...args} variant="primary">
                 Primary
             </Button>
+            <Button {...args} variant="danger">
+                Danger
+            </Button>
             <Button {...args} variant="dash">
                 Dash
             </Button>

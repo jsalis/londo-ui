@@ -4,6 +4,7 @@ import { useDisclosure, useCallbackRef } from "../hooks";
 import { WarningIcon } from "../icons";
 
 import type { PopoverProps } from "./popover";
+import type { ButtonProps } from "./button";
 import { Popover } from "./popover";
 import { FocusLock } from "./focus-lock";
 import { Flex } from "./flex";
@@ -15,6 +16,7 @@ export interface PopconfirmProps extends PopoverProps {
     disabled?: boolean;
     onConfirm?: (e?: React.MouseEvent) => void;
     onCancel?: (e?: React.MouseEvent) => void;
+    okVariant?: ButtonProps["variant"];
     okText?: React.ReactNode;
     cancelText?: React.ReactNode;
     icon?: React.ReactNode;
@@ -32,6 +34,7 @@ export const Popconfirm = forwardRef<HTMLDivElement, PopconfirmProps>(
             trigger = "click",
             onConfirm,
             onCancel,
+            okVariant = "primary",
             okText = "Ok",
             cancelText = "Cancel",
             icon,
@@ -104,7 +107,7 @@ export const Popconfirm = forwardRef<HTMLDivElement, PopconfirmProps>(
                     <Button size="sm" onClick={handleCancel}>
                         {cancelText}
                     </Button>
-                    <Button size="sm" onClick={handleConfirm}>
+                    <Button size="sm" variant={okVariant} onClick={handleConfirm}>
                         {okText}
                     </Button>
                 </Flex>

@@ -13,7 +13,7 @@ export function Basic(args) {
         <FocusLock autoFocus {...args}>
             <Flex gap={2}>
                 <Button>Cancel</Button>
-                <Button>Submit</Button>
+                <Button variant="primary">Submit</Button>
             </Flex>
         </FocusLock>
     );
