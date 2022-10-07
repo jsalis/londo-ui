@@ -9,5 +9,9 @@ export default {
 };
 
 export function Basic(args) {
-    return <Spinner size="1.5rem" {...args} />;
+    return <Spinner {...args} />;
+}
+
+export function Thickness(args) {
+    return <Spinner size="2rem" thickness="4px" {...args} />;
 }

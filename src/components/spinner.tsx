@@ -10,6 +10,7 @@ export interface SpinnerProps
         LayoutProps,
         SpaceProps {
     label?: string;
+    thickness?: string;
     children?: React.ReactNode;
 }
 
@@ -27,7 +28,7 @@ const StyledSpinner = styled.div<SpinnerProps>`
     border-color: currentColor;
     border-style: solid;
     border-radius: 100%;
-    border-width: 4px;
+    border-width: ${(p) => p.thickness};
     border-bottom-color: transparent;
     border-left-color: transparent;
     animation: ${spin} 0.45s linear infinite;
@@ -36,9 +37,9 @@ const StyledSpinner = styled.div<SpinnerProps>`
 `;
 
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
-    ({ label = "Loading...", size = "1.5rem", ...rest }, ref) => {
+    ({ label = "Loading...", size = "1.5rem", thickness = "2px", ...rest }, ref) => {
         return (
-            <StyledSpinner ref={ref} size={size} {...rest}>
+            <StyledSpinner ref={ref} size={size} thickness={thickness} {...rest}>
                 {label ? <VisuallyHidden>{label}</VisuallyHidden> : null}
             </StyledSpinner>
         );
