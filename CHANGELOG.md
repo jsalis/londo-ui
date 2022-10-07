@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.21](https://github.com/jsalis/londo-ui/compare/v0.1.20...v0.1.21) (2022-10-07)
+
+### Features
+
+- add more button variants and remove active prop ([764ab31](https://github.com/jsalis/londo-ui/commit/764ab313b08b6f0b6be7ebdda3ef443477c4404f))
+- add size prop to button component ([5e14b8d](https://github.com/jsalis/londo-ui/commit/5e14b8da1c437e89854244e2cac94cba23d77e33))
+- add textTransform prop to box ([82dcb79](https://github.com/jsalis/londo-ui/commit/82dcb79599888d12c303444ac0589fc4dae46e95))
+- add variant prop to button component ([32925f2](https://github.com/jsalis/londo-ui/commit/32925f2bdd3cdc8ef5f50f166932d0e66dcee37f))
+
+### Bug Fixes
+
+- checkbox control style ([ba08bbe](https://github.com/jsalis/londo-ui/commit/ba08bbe010cdc3673e383effcb1e0cfa3949fb69))
+
 ### [0.1.20](https://github.com/jsalis/londo-ui/compare/v0.1.19...v0.1.20) (2022-09-25)
 
 ### Bug Fixes
