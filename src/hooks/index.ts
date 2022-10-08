@@ -13,4 +13,5 @@ export * from "./use-fullscreen";
 export * from "./use-hex-color";
 export * from "./use-hot-key";
 export * from "./use-lazy-ref";
+export * from "./use-media-query";
 export * from "./use-update-effect";
