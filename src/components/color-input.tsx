@@ -106,7 +106,7 @@ export const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
         };
 
         const handleKeyDown = (event: React.KeyboardEvent) => {
-            if (event.key === KeyCode.ENTER) {
+            if (event.key === KeyCode.ENTER && !pickerDisabled) {
                 open();
             } else if (event.key === KeyCode.ESC) {
                 event.stopPropagation();
