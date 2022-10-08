@@ -1,3 +1,4 @@
+export * from "./use-breakpoints";
 export * from "./use-callback-ref";
 export * from "./use-color-manipulation";
 export * from "./use-controllable-state";
