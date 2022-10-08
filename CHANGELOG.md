@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.23](https://github.com/jsalis/londo-ui/compare/v0.1.22...v0.1.23) (2022-10-08)
+
+### Features
+
+- add useBreakpoints hook ([343f04c](https://github.com/jsalis/londo-ui/commit/343f04c62f584f74453eb080c5188c793df7db86))
+- add useLocalStorage and useSessionStorage hooks ([c8576f7](https://github.com/jsalis/londo-ui/commit/c8576f7b5adaca04ec8c42f80294a548348c4049))
+- add useMediaQuery hook ([0f4361f](https://github.com/jsalis/londo-ui/commit/0f4361f53bbb36de5287cd84420be1cf9e51b028))
+
 ### [0.1.22](https://github.com/jsalis/londo-ui/compare/v0.1.21...v0.1.22) (2022-10-07)
 
 ### Features
