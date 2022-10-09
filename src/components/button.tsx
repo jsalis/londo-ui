@@ -80,7 +80,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                     },
                     ":disabled": {
                         "--shadow-color": p.theme.colors.gray[4],
-                        boxShadow: "0 3px 0 0 var(--shadow-color)",
+                        boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
                         bg: "gray.1",
                     },
@@ -102,7 +102,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                     },
                     ":disabled": {
                         "--shadow-color": p.theme.colors.gray[4],
-                        boxShadow: "0 3px 0 0 var(--shadow-color)",
+                        boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
                         bg: "gray.1",
                     },
@@ -124,7 +124,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                     },
                     ":disabled": {
                         "--shadow-color": p.theme.colors.gray[4],
-                        boxShadow: "0 3px 0 0 var(--shadow-color)",
+                        boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
                         bg: "gray.1",
                     },
