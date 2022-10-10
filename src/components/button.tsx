@@ -82,7 +82,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                         "--shadow-color": p.theme.colors.gray[4],
                         boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
-                        bg: "gray.1",
+                        bg: "gray.2",
                     },
                 },
                 primary: {
@@ -104,7 +104,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                         "--shadow-color": p.theme.colors.gray[4],
                         boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
-                        bg: "gray.1",
+                        bg: "gray.2",
                     },
                 },
                 danger: {
@@ -126,7 +126,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                         "--shadow-color": p.theme.colors.gray[4],
                         boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
-                        bg: "gray.1",
+                        bg: "gray.2",
                     },
                 },
                 dash: {
@@ -166,7 +166,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
 `;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ size = "md", variant = "default", isLoading, color, children, ...rest }, ref) => {
+    ({ size = "md", variant = "default", disabled, isLoading, color, children, ...rest }, ref) => {
         return (
             <StyledButton
                 as="button"
@@ -175,6 +175,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 {...rest}
                 $size={size}
                 variant={variant}
+                disabled={disabled || isLoading}
                 color={color as any}
             >
                 {isLoading ? (

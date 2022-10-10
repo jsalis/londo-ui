@@ -6,6 +6,11 @@ export default {
     parameters: {
         componentSubtitle: "A button that triggers an operation.",
     },
+    argTypes: {
+        disabled: {
+            control: "boolean",
+        },
+    },
 };
 
 export function Basic(args) {
