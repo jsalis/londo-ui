@@ -17,8 +17,8 @@ export function Colors() {
         <Flex direction="column" gap={2}>
             <Text color="primary.base">Hello World</Text>
             <Text color="secondary.base">Hello World</Text>
-            <Text color="positive.base">Hello World</Text>
-            <Text color="negative.base">Hello World</Text>
+            <Text color="success.base">Hello World</Text>
+            <Text color="danger.base">Hello World</Text>
             <Text color="warning.base">Hello World</Text>
             <Text color="gray.base">Hello World</Text>
         </Flex>

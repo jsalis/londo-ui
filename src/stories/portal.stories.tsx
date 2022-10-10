@@ -15,7 +15,7 @@ export function Basic() {
             <Box p={2} width={1 / 2} bg="primary.base">
                 <Text color="white">first</Text>
                 <Portal>
-                    <Box p={2} width={1 / 2} bg="positive.base">
+                    <Box p={2} width={1 / 2} bg="success.base">
                         <Text color="white">second</Text>
                     </Box>
                 </Portal>

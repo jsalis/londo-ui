@@ -29,8 +29,8 @@ const presetColors = [
     "geekblue",
     "purple",
     "primary",
-    "positive",
-    "negative",
+    "success",
+    "danger",
     "warning",
     "info",
 ];

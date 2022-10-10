@@ -108,10 +108,10 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                     },
                 },
                 danger: {
-                    "--shadow-color": p.theme.colors.negative[7],
+                    "--shadow-color": p.theme.colors.danger[7],
                     boxShadow: "0 2px 0 0 var(--shadow-color)",
                     color: "white",
-                    bg: "negative.base",
+                    bg: "danger.base",
                     ":hover": {
                         boxShadow: "0 3px 0 0 var(--shadow-color)",
                         transform: "translateY(-1px)",
@@ -120,13 +120,13 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                     ":active": {
                         boxShadow: "0 1px 0 0 var(--shadow-color)",
                         transform: "translateY(1px)",
-                        bg: "negative.4",
+                        bg: "danger.4",
                     },
                     ":disabled": {
-                        "--shadow-color": p.theme.colors.negative[4],
+                        "--shadow-color": p.theme.colors.danger[4],
                         boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
-                        bg: "negative.3",
+                        bg: "danger.3",
                     },
                 },
                 dash: {

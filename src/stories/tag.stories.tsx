@@ -39,8 +39,8 @@ export function StatusColors() {
         <Flex gap={2} wrap="wrap">
             <Tag>Default</Tag>
             <Tag color="primary">Primary</Tag>
-            <Tag color="positive">Success</Tag>
-            <Tag color="negative">Error</Tag>
+            <Tag color="success">Success</Tag>
+            <Tag color="danger">Error</Tag>
             <Tag color="warning">Warning</Tag>
             <Tag color="info">Info</Tag>
         </Flex>

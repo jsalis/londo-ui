@@ -74,8 +74,8 @@ const StyledAlert = styled(Flex)<AlertProps>`
     color: ${(p) => p.theme.colors.heading};
 
     ${makeTypeColor("info", "info")}
-    ${makeTypeColor("success", "positive")}
-    ${makeTypeColor("error", "negative")}
+    ${makeTypeColor("success", "success")}
+    ${makeTypeColor("error", "danger")}
     ${makeTypeColor("warning", "warning")}
 
     ${(p) =>

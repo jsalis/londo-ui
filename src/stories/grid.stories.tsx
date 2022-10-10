@@ -123,19 +123,19 @@ export function AutoFit() {
             <Box p={2} color="white" bg="primary.base">
                 A
             </Box>
-            <Box p={2} color="white" bg="negative.base">
+            <Box p={2} color="white" bg="danger.base">
                 B
             </Box>
-            <Box p={2} color="white" bg="positive.base">
+            <Box p={2} color="white" bg="success.base">
                 C
             </Box>
             <Box p={2} color="white" bg="primary.base">
                 D
             </Box>
-            <Box p={2} color="white" bg="negative.base">
+            <Box p={2} color="white" bg="danger.base">
                 E
             </Box>
-            <Box p={2} color="white" bg="positive.base">
+            <Box p={2} color="white" bg="success.base">
                 F
             </Box>
         </Grid>
@@ -148,10 +148,10 @@ export function AutoRows() {
             <Box p={2} color="white" bg="primary.base">
                 A
             </Box>
-            <Box p={2} color="white" bg="negative.base">
+            <Box p={2} color="white" bg="danger.base">
                 B
             </Box>
-            <Box p={2} color="white" bg="positive.base">
+            <Box p={2} color="white" bg="success.base">
                 C
             </Box>
         </Grid>
@@ -164,10 +164,10 @@ export function AutoColumns() {
             <Box p={2} color="white" bg="primary.base">
                 A
             </Box>
-            <Box p={2} color="white" bg="negative.base">
+            <Box p={2} color="white" bg="danger.base">
                 B
             </Box>
-            <Box p={2} color="white" bg="positive.base">
+            <Box p={2} color="white" bg="success.base">
                 C
             </Box>
         </Grid>
@@ -177,10 +177,10 @@ export function AutoColumns() {
 export function Order() {
     return (
         <Grid gap={2} columns={3}>
-            <Box p={2} color="white" bg="negative.base" order={2}>
+            <Box p={2} color="white" bg="danger.base" order={2}>
                 B
             </Box>
-            <Box p={2} color="white" bg="positive.base" order={3}>
+            <Box p={2} color="white" bg="success.base" order={3}>
                 C
             </Box>
             <Box p={2} color="white" bg="primary.base" order={1}>

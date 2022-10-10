@@ -17,7 +17,7 @@ const makeTypeColor = (type: string, color: string) => (p: any) =>
 
 const StyledHelp = styled(Box)`
     ${makeTypeColor("info", "info")}
-    ${makeTypeColor("error", "negative")}
+    ${makeTypeColor("error", "danger")}
     ${makeTypeColor("warning", "warning")}
 `;
 

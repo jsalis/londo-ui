@@ -26,10 +26,10 @@ export function Colors() {
             <Heading level={2} color="primary.base">
                 Hello World
             </Heading>
-            <Heading level={2} color="positive.base">
+            <Heading level={2} color="success.base">
                 Hello World
             </Heading>
-            <Heading level={2} color="negative.base">
+            <Heading level={2} color="danger.base">
                 Hello World
             </Heading>
             <Heading level={2} color="warning.base">

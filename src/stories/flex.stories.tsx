@@ -14,10 +14,10 @@ export function Basic() {
             <Box p={2} width={1 / 3} color="white" bg="primary.base">
                 First
             </Box>
-            <Box p={2} width={1 / 3} color="white" bg="negative.base">
+            <Box p={2} width={1 / 3} color="white" bg="danger.base">
                 Second
             </Box>
-            <Box p={2} width={1 / 3} color="white" bg="positive.base">
+            <Box p={2} width={1 / 3} color="white" bg="success.base">
                 Third
             </Box>
         </Flex>
@@ -30,10 +30,10 @@ export function Column() {
             <Box p={2} width={1 / 3} color="white" bg="primary.base">
                 First
             </Box>
-            <Box p={2} width={1 / 3} color="white" bg="negative.base">
+            <Box p={2} width={1 / 3} color="white" bg="danger.base">
                 Second
             </Box>
-            <Box p={2} width={1 / 3} color="white" bg="positive.base">
+            <Box p={2} width={1 / 3} color="white" bg="success.base">
                 Third
             </Box>
         </Flex>
@@ -46,10 +46,10 @@ export function ResponsiveGap() {
             <Box p={2} width={1 / 3} color="white" bg="primary.base">
                 First
             </Box>
-            <Box p={2} width={1 / 3} color="white" bg="negative.base">
+            <Box p={2} width={1 / 3} color="white" bg="danger.base">
                 Second
             </Box>
-            <Box p={2} width={1 / 3} color="white" bg="positive.base">
+            <Box p={2} width={1 / 3} color="white" bg="success.base">
                 Third
             </Box>
         </Flex>
@@ -62,10 +62,10 @@ export function JustifyContent() {
             <Box p={2} width={1 / 6} color="white" bg="primary.base">
                 First
             </Box>
-            <Box p={2} width={1 / 6} color="white" bg="negative.base">
+            <Box p={2} width={1 / 6} color="white" bg="danger.base">
                 Second
             </Box>
-            <Box p={2} width={1 / 6} color="white" bg="positive.base">
+            <Box p={2} width={1 / 6} color="white" bg="success.base">
                 Third
             </Box>
         </>
@@ -85,10 +85,10 @@ export function JustifyContent() {
 export function Order() {
     return (
         <Flex>
-            <Box order={2} p={2} width={1 / 3} color="white" bg="negative.base">
+            <Box order={2} p={2} width={1 / 3} color="white" bg="danger.base">
                 Second
             </Box>
-            <Box order={3} p={2} width={1 / 3} color="white" bg="positive.base">
+            <Box order={3} p={2} width={1 / 3} color="white" bg="success.base">
                 Third
             </Box>
             <Box order={1} p={2} width={1 / 3} color="white" bg="primary.base">
@@ -104,10 +104,10 @@ export function Grow() {
             <Box p={2} flexGrow={2} color="white" bg="primary.base">
                 First
             </Box>
-            <Box p={2} flexGrow={1} color="white" bg="negative.base">
+            <Box p={2} flexGrow={1} color="white" bg="danger.base">
                 Second
             </Box>
-            <Box p={2} flexGrow={2} color="white" bg="positive.base">
+            <Box p={2} flexGrow={2} color="white" bg="success.base">
                 Third
             </Box>
         </Flex>
@@ -121,10 +121,10 @@ export function FillSpace() {
                 First
             </Box>
             <Box m="auto" />
-            <Box p={2} width={1 / 6} color="white" bg="negative.base">
+            <Box p={2} width={1 / 6} color="white" bg="danger.base">
                 Second
             </Box>
-            <Box p={2} width={1 / 6} color="white" bg="positive.base">
+            <Box p={2} width={1 / 6} color="white" bg="success.base">
                 Third
             </Box>
         </Flex>
@@ -137,10 +137,10 @@ export function FillRest() {
             <Box p={2} width={120} color="white" bg="primary.base">
                 First
             </Box>
-            <Box p={2} width={120} color="white" bg="negative.base">
+            <Box p={2} width={120} color="white" bg="danger.base">
                 Second
             </Box>
-            <Box p={2} flex="auto" color="white" bg="positive.base">
+            <Box p={2} flex="auto" color="white" bg="success.base">
                 Third
             </Box>
         </Flex>
