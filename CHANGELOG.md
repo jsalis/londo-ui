@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.24](https://github.com/jsalis/londo-ui/compare/v0.1.23...v0.1.24) (2022-10-10)
+
+### Features
+
+- add new icons ([a143de9](https://github.com/jsalis/londo-ui/commit/a143de921eaed29a31e71e26b9ed46b7af84fe20))
+
+### Bug Fixes
+
+- color picker should not open when disabled ([c7f2719](https://github.com/jsalis/londo-ui/commit/c7f2719a8455d821e7b73352684221e0c8ca1465))
+- disabled button if loading ([a8de799](https://github.com/jsalis/londo-ui/commit/a8de79991ee51ff24c520e2dbbc8510893544bec))
+- disabled button shadow size ([b2c9d61](https://github.com/jsalis/londo-ui/commit/b2c9d6198bfdcb7262a1825113e15897b0c0c30f))
+
 ### [0.1.23](https://github.com/jsalis/londo-ui/compare/v0.1.22...v0.1.23) (2022-10-08)
 
 ### Features
