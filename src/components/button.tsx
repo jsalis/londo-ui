@@ -67,7 +67,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                 default: {
                     "--shadow-color": p.theme.colors.gray[5],
                     boxShadow: "0 2px 0 0 var(--shadow-color)",
-                    bg: "gray.4",
+                    bg: "alpha.3",
                     ":hover": {
                         boxShadow: "0 3px 0 0 var(--shadow-color)",
                         transform: "translateY(-1px)",
@@ -76,13 +76,13 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                     ":active": {
                         boxShadow: "0 1px 0 0 var(--shadow-color)",
                         transform: "translateY(1px)",
-                        bg: "gray.3",
+                        bg: "alpha.2",
                     },
                     ":disabled": {
                         "--shadow-color": p.theme.colors.gray[4],
                         boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
-                        bg: "gray.2",
+                        bg: "alpha.1",
                     },
                 },
                 primary: {
@@ -101,10 +101,10 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                         bg: "primary.4",
                     },
                     ":disabled": {
-                        "--shadow-color": p.theme.colors.gray[4],
+                        "--shadow-color": p.theme.colors.primary[4],
                         boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
-                        bg: "gray.2",
+                        bg: "primary.3",
                     },
                 },
                 danger: {
@@ -123,10 +123,10 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                         bg: "negative.4",
                     },
                     ":disabled": {
-                        "--shadow-color": p.theme.colors.gray[4],
+                        "--shadow-color": p.theme.colors.negative[4],
                         boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
-                        bg: "gray.2",
+                        bg: "negative.3",
                     },
                 },
                 dash: {
