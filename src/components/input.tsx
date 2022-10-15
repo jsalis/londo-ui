@@ -50,13 +50,17 @@ export interface InputProps
     cursor?: ResponsiveValue<CSS.Property.Cursor>;
 }
 
+interface StyledInputProps {
+    isInvalid?: boolean;
+}
+
 const other = system({
     textTransform: true,
     pointerEvents: true,
     cursor: true,
 });
 
-const StyledInput = styled.input<InputProps>`
+const StyledInput = styled.input<StyledInputProps>`
     width: 100%;
     min-width: 0;
     height: 24px;
@@ -189,11 +193,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         ...rest
     } = props;
 
-    const [inputValue, setSelectedValue] = useControllableState(value, defaultValue);
+    const [inputValue, setInputValue] = useControllableState(value, defaultValue);
 
-    const handleSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const val = event.target.value;
-        setSelectedValue(val);
+        setInputValue(val);
         onChange?.(val, event);
     };
 
@@ -202,7 +206,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             ref={ref}
             type={type}
             value={inputValue}
-            onChange={handleSelect}
+            onChange={handleChange}
             size={size as any}
             width={width as any}
             height={height as any}
