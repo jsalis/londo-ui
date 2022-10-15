@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.25](https://github.com/jsalis/londo-ui/compare/v0.1.24...v0.1.25) (2022-10-15)
+
+### Features
+
+- add isInvalid prop to input component ([be75313](https://github.com/jsalis/londo-ui/commit/be75313b297cfb7eb12d80a6a3e0af8991247173))
+
+### Bug Fixes
+
+- adjust button colors ([868efd5](https://github.com/jsalis/londo-ui/commit/868efd57c7e75964f407a3c48b86c53de446aea8))
+
 ### [0.1.24](https://github.com/jsalis/londo-ui/compare/v0.1.23...v0.1.24) (2022-10-10)
 
 ### Features
