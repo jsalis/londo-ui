@@ -28,3 +28,17 @@ Basic.args = {
     min: 0,
     step: 0.1,
 };
+
+export function Invalid(args) {
+    return (
+        <Box width={180}>
+            <NumberInput {...args} />
+        </Box>
+    );
+}
+
+Invalid.args = {
+    isInvalid: true,
+    min: 0,
+    step: 0.1,
+};

@@ -8,7 +8,7 @@ import type {
     ResponsiveValue,
 } from "styled-system";
 import { forwardRef, cloneElement } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { system, space, layout, position, flexbox, color } from "styled-system";
 
 import { getValidChildren } from "../utils/react-util";
@@ -44,6 +44,7 @@ export interface InputProps
     value?: any;
     defaultValue?: any;
     onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+    isInvalid?: boolean;
     textTransform?: ResponsiveValue<CSS.Property.TextTransform>;
     pointerEvents?: ResponsiveValue<CSS.Property.PointerEvents>;
     cursor?: ResponsiveValue<CSS.Property.Cursor>;
@@ -55,7 +56,7 @@ const other = system({
     cursor: true,
 });
 
-const StyledInput = styled.input`
+const StyledInput = styled.input<InputProps>`
     width: 100%;
     min-width: 0;
     height: 24px;
@@ -92,6 +93,20 @@ const StyledInput = styled.input`
         opacity: 0.5;
         cursor: not-allowed;
     }
+
+    ${(p) =>
+        p.isInvalid &&
+        css`
+            &,
+            &:hover:enabled {
+                border-color: ${(p) => p.theme.colors.danger.base};
+            }
+
+            &:focus:enabled {
+                border-color: ${(p) => p.theme.colors.danger.hover};
+                box-shadow: 0 0 0 1px ${(p) => p.theme.colors.danger.hover};
+            }
+        `}
 `;
 
 const InputElement = styled.div`

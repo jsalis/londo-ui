@@ -15,3 +15,15 @@ export function Basic(args) {
         </Box>
     );
 }
+
+export function Invalid(args) {
+    return (
+        <Box width={180}>
+            <PasswordInput {...args} />
+        </Box>
+    );
+}
+
+Invalid.args = {
+    isInvalid: true,
+};

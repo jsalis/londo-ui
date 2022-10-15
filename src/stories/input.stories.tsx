@@ -24,3 +24,16 @@ export function Basic(args) {
 Basic.args = {
     placeholder: "Placeholder",
 };
+
+export function Invalid(args) {
+    return (
+        <Box width={180}>
+            <Input {...args} />
+        </Box>
+    );
+}
+
+Invalid.args = {
+    isInvalid: true,
+    placeholder: "Placeholder",
+};

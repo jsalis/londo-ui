@@ -28,6 +28,7 @@ export interface NumberInputProps {
     step?: number;
     precision?: number;
     suffix?: React.ReactNode;
+    isInvalid?: boolean;
     readOnly?: boolean;
     disabled?: boolean;
     className?: string;
@@ -149,6 +150,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>((props
         min = Number.MIN_SAFE_INTEGER,
         max = Number.MAX_SAFE_INTEGER,
         step = 1,
+        isInvalid,
         readOnly,
         disabled,
         onDragChange,
@@ -211,6 +213,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>((props
             <Input
                 value={counter.value}
                 onChange={handleChange}
+                isInvalid={isInvalid}
                 readOnly={readOnly}
                 disabled={disabled}
                 {...inputProps}
