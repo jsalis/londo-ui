@@ -14,11 +14,13 @@ interface RadioGroupContextValue {
     onChange?: (value: string | number, event: React.ChangeEvent<HTMLInputElement>) => void;
     name: string;
     disabled?: boolean;
+    isInvalid?: boolean;
 }
 
 interface LabelProps extends SpaceProps, FlexboxProps {
     checked?: boolean;
     disabled?: boolean;
+    isInvalid?: boolean;
 }
 
 export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
@@ -33,6 +35,7 @@ export interface RadioGroupProps extends FlexProps {
     onChange?: (value: string | number, event: React.ChangeEvent<HTMLInputElement>) => void;
     name: string;
     disabled?: boolean;
+    isInvalid?: boolean;
 }
 
 const Input = styled.input`
@@ -139,6 +142,31 @@ const Label = styled.label<LabelProps>`
                 }
             }
         `}
+
+    ${(p) =>
+        p.isInvalid &&
+        css`
+            ${Control} {
+                border-color: ${(p) => p.theme.colors.danger.base};
+
+                &::after {
+                    background-color: ${(p) => p.theme.colors.danger.base};
+                }
+            }
+
+            &:hover ${Control} {
+                border-color: ${(p) => p.theme.colors.danger.hover};
+
+                &::after {
+                    background-color: ${p.theme.colors.danger.hover};
+                }
+            }
+
+            ${Input}:focus:enabled + ${Control} {
+                border-color: ${(p) => p.theme.colors.danger.hover};
+                box-shadow: 0 0 0 1px ${(p) => p.theme.colors.danger.hover};
+            }
+        `}
 `;
 
 const RadioGroupContext = createContext<RadioGroupContextValue | undefined>(undefined);
@@ -150,6 +178,7 @@ const Group = forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
         onChange,
         name,
         disabled,
+        isInvalid,
         color,
         children,
         ...rest
@@ -165,8 +194,8 @@ const Group = forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
     );
 
     const group = useMemo(
-        () => ({ value, onChange: handleChange, name, disabled }),
-        [value, handleChange, name, disabled]
+        () => ({ value, onChange: handleChange, name, disabled, isInvalid }),
+        [value, handleChange, name, disabled, isInvalid]
     );
 
     return (
@@ -191,6 +220,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
     const group = useContext(RadioGroupContext);
     const isChecked = group?.value === value;
     const isDisabled = group?.disabled || disabled;
+    const isInvalid = group?.isInvalid;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         group?.onChange?.(value, event);
@@ -198,7 +228,12 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
     };
 
     return (
-        <Label className={className} checked={isChecked} disabled={isDisabled}>
+        <Label
+            className={className}
+            checked={isChecked}
+            disabled={isDisabled}
+            isInvalid={isInvalid}
+        >
             <Input
                 ref={ref}
                 type="radio"

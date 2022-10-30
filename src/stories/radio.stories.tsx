@@ -20,3 +20,17 @@ export function Basic(args) {
         </Radio.Group>
     );
 }
+
+export function Invalid(args) {
+    return (
+        <Radio.Group name="example" {...args}>
+            <Radio value="1">First</Radio>
+            <Radio value="2">Second</Radio>
+            <Radio value="3">Third</Radio>
+        </Radio.Group>
+    );
+}
+
+Invalid.args = {
+    isInvalid: true,
+};
