@@ -22,7 +22,7 @@ interface LabelProps extends SpaceProps, FlexboxProps {
 }
 
 export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
-    value?: string | number;
+    value: string | number;
     onChange?: (value: string | number, event: React.ChangeEvent<HTMLInputElement>) => void;
     children?: React.ReactNode;
 }
@@ -193,9 +193,8 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
     const isDisabled = group?.disabled || disabled;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const val = event.target.value;
-        group?.onChange?.(val, event);
-        onChange?.(val, event);
+        group?.onChange?.(value, event);
+        onChange?.(value, event);
     };
 
     return (
