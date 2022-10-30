@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.27](https://github.com/jsalis/londo-ui/compare/v0.1.26...v0.1.27) (2022-10-30)
+
+### Bug Fixes
+
+- button should allow override for position ([94c558b](https://github.com/jsalis/londo-ui/commit/94c558b541eeda34b86f6a26a30f804ce7d6d6ca))
+
 ### [0.1.26](https://github.com/jsalis/londo-ui/compare/v0.1.25...v0.1.26) (2022-10-30)
 
 ### Features
