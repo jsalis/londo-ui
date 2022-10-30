@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.26](https://github.com/jsalis/londo-ui/compare/v0.1.25...v0.1.26) (2022-10-30)
+
+### Features
+
+- add isInvalid prop to radio component ([ba1dcf3](https://github.com/jsalis/londo-ui/commit/ba1dcf37ee473c60fe3b5fb8d6574e3fa249269c))
+
+### Bug Fixes
+
+- open close loop when hovering button ([5c7759c](https://github.com/jsalis/londo-ui/commit/5c7759cbc5fb061e2b40046d6c42836ac1f724bd))
+- radio component should support number values ([03065ad](https://github.com/jsalis/londo-ui/commit/03065ad77f3dc6672a8ae372dea437446dee6c21))
+
 ### [0.1.25](https://github.com/jsalis/londo-ui/compare/v0.1.24...v0.1.25) (2022-10-15)
 
 ### Features
