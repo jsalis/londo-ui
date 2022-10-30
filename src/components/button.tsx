@@ -19,6 +19,7 @@ interface StyledButtonProps extends ButtonProps {
 }
 
 const StyledButton = styled(Box)<StyledButtonProps>`
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -33,6 +34,15 @@ const StyledButton = styled(Box)<StyledButtonProps>`
 
     &:focus:focus-visible {
         box-shadow: 0 0 0 2px ${(p) => p.theme.colors.primary[2]};
+    }
+
+    &:hover::after {
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        content: "";
     }
 
     ${variant({
