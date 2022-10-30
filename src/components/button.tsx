@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { space, variant } from "styled-system";
+import { space, position, variant } from "styled-system";
 import styled from "styled-components";
 
 import type { BoxProps } from "./box";
@@ -70,6 +70,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
     })}
 
     ${space}
+    ${position}
 
     ${(p) =>
         variant({
