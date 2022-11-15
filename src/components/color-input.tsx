@@ -4,7 +4,7 @@ import { forwardRef, useState } from "react";
 import styled from "styled-components";
 
 import { isNull } from "../utils/type-util";
-import { isValidColorHex } from "../utils/color-util";
+import { isValidColorHex, rgbStringToHex } from "../utils/color-util";
 import { useDisclosure, useControllableState, useForkHandler } from "../hooks";
 import { EyeDropperIcon } from "../icons";
 import { KeyCode } from "../utils/key-code";
@@ -33,9 +33,10 @@ function isEyeDropperSupported() {
     return "EyeDropper" in window;
 }
 
-function openEyeDropper(): Promise<{ sRGBHex: string }> {
+async function openEyeDropper(): Promise<string> {
     // @ts-ignore
-    return new window.EyeDropper().open();
+    const { sRGBHex: color } = await new window.EyeDropper().open();
+    return color.startsWith("rgb") ? rgbStringToHex(color) : color;
 }
 
 const StyledSuffix = styled(Input.Suffix)`
@@ -98,7 +99,7 @@ export const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
             event.preventDefault();
 
             if (!disabled) {
-                openEyeDropper().then(({ sRGBHex: val }) => {
+                openEyeDropper().then((val) => {
                     setColor(val);
                     onChange?.(val);
                 });

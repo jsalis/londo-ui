@@ -5,6 +5,7 @@ type HsvaColor = { h: number; s: number; v: number; a: number };
 type HslaColor = { h: number; s: number; l: number; a: number };
 
 const HEX_COLOR_REGEX = /^#?([0-9A-F]{3,8})$/i;
+const RGB_STRING_REGEX = /rgb\(?\s*(-?\d*\.?\d+)[,\s]+(-?\d*\.?\d+)[,\s]+(-?\d*\.?\d+)\s*\)?/i;
 
 export function isValidColorHex(value: string, alpha?: boolean) {
     const match = HEX_COLOR_REGEX.exec(value);
@@ -87,6 +88,21 @@ function formatToHex(n: number): string {
 
 export function rgbaToHex({ r, g, b }: RgbaColor) {
     return "#" + formatToHex(r) + formatToHex(g) + formatToHex(b);
+}
+
+export function rgbStringToHex(rgbString: string): string {
+    const match = RGB_STRING_REGEX.exec(rgbString);
+
+    if (!match) {
+        return "#000000";
+    }
+
+    return rgbaToHex({
+        r: Number(match[1]),
+        g: Number(match[2]),
+        b: Number(match[3]),
+        a: 1,
+    });
 }
 
 export function hsvaToHsla({ h, s, v, a }: HsvaColor): HslaColor {
