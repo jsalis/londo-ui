@@ -1,4 +1,4 @@
-import tinycolor from "tinycolor2";
+import { hexToRgba, rgbaToHex, hexToHsva, hsvaToHex } from "../utils/color-util";
 
 type ColorPalette = string[] & {
     light: string;
@@ -14,6 +14,20 @@ const brightnessStep1 = 5;
 const brightnessStep2 = 15;
 const lightColorCount = 5;
 const darkColorCount = 4;
+
+function mix(c1: string, c2: string, amount: number): string {
+    const p = amount / 100;
+    const rgb1 = hexToRgba(c1);
+    const rgb2 = hexToRgba(c2);
+    const hex = rgbaToHex({
+        r: (rgb2.r - rgb1.r) * p + rgb1.r,
+        g: (rgb2.g - rgb1.g) * p + rgb1.g,
+        b: (rgb2.b - rgb1.b) * p + rgb1.b,
+        a: 1,
+    });
+
+    return hex.toUpperCase();
+}
 
 function getHue(hsv: any, i: number, isLight: boolean) {
     let hue;
@@ -37,11 +51,11 @@ function getSaturation(hsv: any, i: number, isLight: boolean) {
     let saturation;
 
     if (isLight) {
-        saturation = Math.round(hsv.s * 100) - saturationStep * i;
+        saturation = hsv.s - saturationStep * i;
     } else if (i === darkColorCount) {
-        saturation = Math.round(hsv.s * 100) + saturationStep;
+        saturation = hsv.s + saturationStep;
     } else {
-        saturation = Math.round(hsv.s * 100) + saturationStep2 * i;
+        saturation = hsv.s + saturationStep2 * i;
     }
 
     if (saturation > 100) {
@@ -60,25 +74,33 @@ function getSaturation(hsv: any, i: number, isLight: boolean) {
 }
 
 function getValue(hsv: any, i: number, isLight: boolean) {
+    let value;
+
     if (isLight) {
-        return Math.round(hsv.v * 100) + brightnessStep1 * i;
+        value = hsv.v + brightnessStep1 * i;
+    } else {
+        value = hsv.v - brightnessStep2 * i;
     }
 
-    return Math.round(hsv.v * 100) - brightnessStep2 * i;
+    if (value > 100) {
+        value = 100;
+    }
+
+    return value;
 }
 
-export function sampleColor(color: string, index: number) {
+function sampleColor(color: string, index: number) {
     const isLight = index <= 6;
-    const hsv = tinycolor(color).toHsv();
+    const hsv = hexToHsva(color);
     const i = isLight ? lightColorCount + 1 - index : index - lightColorCount - 1;
-
-    return tinycolor({
+    const hex = hsvaToHex({
         h: getHue(hsv, i, isLight),
         s: getSaturation(hsv, i, isLight),
         v: getValue(hsv, i, isLight),
-    })
-        .toHexString()
-        .toUpperCase();
+        a: 1,
+    });
+
+    return hex.toUpperCase();
 }
 
 export function colorPaletteLight(baseColor: string) {
@@ -103,10 +125,6 @@ export function colorPaletteLight(baseColor: string) {
 }
 
 export function colorPaletteDark(baseColor: string, bgColor: string) {
-    const mix = (c1: string, c2: string, amount?: number) => {
-        return tinycolor.mix(c1, c2, amount).toHexString().toUpperCase();
-    };
-
     const palette = [
         mix(sampleColor(baseColor, 8), bgColor, 80),
         mix(sampleColor(baseColor, 7), bgColor, 70),

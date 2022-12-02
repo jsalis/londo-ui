@@ -7,6 +7,15 @@ type HslaColor = { h: number; s: number; l: number; a: number };
 const HEX_COLOR_REGEX = /^#?([0-9A-F]{3,8})$/i;
 const RGB_STRING_REGEX = /rgb\(?\s*(-?\d*\.?\d+)[,\s]+(-?\d*\.?\d+)[,\s]+(-?\d*\.?\d+)\s*\)?/i;
 
+export function getBrightness({ r, g, b }: RgbaColor) {
+    // http://www.w3.org/TR/AERT#color-contrast
+    return (r * 299 + g * 587 + b * 114) / 1000;
+}
+
+export function isDarkColor(rgb: RgbaColor) {
+    return getBrightness(rgb) < 128;
+}
+
 export function isValidColorHex(value: string, alpha?: boolean) {
     const match = HEX_COLOR_REGEX.exec(value);
     const length = match ? match[1].length : 0;
@@ -82,7 +91,7 @@ export function hsvaToRgba({ h, s, v, a }: HsvaColor): RgbaColor {
 }
 
 function formatToHex(n: number): string {
-    const hex = n.toString(16);
+    const hex = round(n).toString(16);
     return hex.length < 2 ? "0" + hex : hex;
 }
 

@@ -1,8 +1,9 @@
 import type { MarginProps, LayoutProps } from "styled-system";
-import { memo, forwardRef } from "react";
+import { memo, forwardRef, useMemo } from "react";
 import { system, margin, layout } from "styled-system";
 import styled, { css } from "styled-components";
-import tinycolor from "tinycolor2";
+
+import { hexToRgba, isDarkColor } from "../utils/color-util";
 
 export interface ColorSwatchProps
     extends React.HTMLAttributes<HTMLSpanElement>,
@@ -71,7 +72,11 @@ const Swatch = styled.span<StyledColorSwatchProps>`
 
 const BaseColorSwatch = forwardRef<HTMLSpanElement, ColorSwatchProps>(
     ({ color = "#000000", primary, secondary, size = 20, style, ...rest }, ref) => {
-        const accentColor = (primary || secondary) && tinycolor(color).isDark() ? "#fff" : "#000";
+        const accentColor = useMemo(() => {
+            const rgb = hexToRgba(color);
+            return isDarkColor(rgb) ? "#fff" : "#000";
+        }, [color]);
+
         return (
             <Swatch
                 ref={ref}
