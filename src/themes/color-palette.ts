@@ -15,10 +15,10 @@ const brightnessStep2 = 15;
 const lightColorCount = 5;
 const darkColorCount = 4;
 
-function mix(c1: string, c2: string, amount: number): string {
+function mix(color1: string, color2: string, amount: number): string {
     const p = amount / 100;
-    const rgb1 = hexToRgba(c1);
-    const rgb2 = hexToRgba(c2);
+    const rgb1 = hexToRgba(color1);
+    const rgb2 = hexToRgba(color2);
     const hex = rgbaToHex({
         r: (rgb2.r - rgb1.r) * p + rgb1.r,
         g: (rgb2.g - rgb1.g) * p + rgb1.g,

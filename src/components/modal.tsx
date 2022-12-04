@@ -1,7 +1,8 @@
-import { forwardRef, createContext, useContext, useRef } from "react";
+import { forwardRef, createContext, useContext, useRef, useEffect } from "react";
 import { RemoveScroll } from "react-remove-scroll";
 // @ts-ignore
 import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
+import { suppressOthers } from "aria-hidden";
 import styled from "styled-components";
 
 import { useCallbackRef, useForkHandler } from "../hooks";
@@ -73,7 +74,15 @@ const Content = forwardRef<HTMLDivElement, ModalContentProps>((props, ref) => {
     const { scrollBehavior, autoFocus, restoreFocus, initialFocusRef, finalFocusRef } =
         useContext(ModalContext);
 
+    const contentRef = useRef<HTMLDivElement>(null);
     const mouseDownTarget = useRef<EventTarget | null>(null);
+
+    useEffect(() => {
+        if (contentRef.current) {
+            return suppressOthers(contentRef.current);
+        }
+        return;
+    }, []);
 
     const onMouseDown = (event: React.MouseEvent) => {
         mouseDownTarget.current = event.target;
@@ -107,11 +116,12 @@ const Content = forwardRef<HTMLDivElement, ModalContentProps>((props, ref) => {
         >
             <RemoveScroll>
                 <ContentWrap
+                    ref={contentRef}
+                    role="dialog"
                     justify="center"
                     align="flex-start"
                     overflow={scrollBehavior === "inside" ? "hidden" : "auto"}
                     tabIndex={-1}
-                    role="dialog"
                     aria-modal
                     onKeyDown={onKeyDown}
                     onMouseDown={onMouseDown}
