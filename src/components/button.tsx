@@ -94,6 +94,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                         boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
                         bg: "alpha.1",
+                        color: "disabled",
                     },
                 },
                 primary: {
@@ -116,6 +117,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                         boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
                         bg: "primary.3",
+                        color: "alpha.5",
                     },
                 },
                 danger: {
@@ -138,6 +140,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                         boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
                         bg: "danger.3",
+                        color: "alpha.5",
                     },
                 },
                 dash: {
@@ -153,6 +156,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                     },
                     ":disabled": {
                         borderColor: "alpha.1",
+                        color: "disabled",
                     },
                 },
                 text: {
@@ -165,13 +169,13 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                     },
                     ":disabled": {
                         bg: "transparent",
+                        color: "disabled",
                     },
                 },
             },
         })}
 
     &:disabled {
-        color: ${(p) => p.theme.colors.disabled};
         cursor: not-allowed;
     }
 `;
