@@ -41,7 +41,7 @@ export function Sizes() {
     return (
         <Flex gap={2}>
             <Switch {...events} defaultChecked />
-            <Switch {...events} defaultChecked size="small" />
+            <Switch {...events} defaultChecked size="sm" />
         </Flex>
     );
 }
@@ -50,7 +50,7 @@ export function Loading(args) {
     return (
         <Flex gap={2}>
             <Switch {...events} defaultChecked {...args} />
-            <Switch {...events} size="small" {...args} />
+            <Switch {...events} size="sm" {...args} />
         </Flex>
     );
 }

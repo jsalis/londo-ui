@@ -17,7 +17,7 @@ export interface AvatarProps extends Omit<AvatarPrimitiveProps, "color">, Margin
     fallback?: React.ReactNode;
     delayMs?: number;
     onLoadingStatusChange?: AvatarImageProps["onLoadingStatusChange"];
-    size?: "default" | "small" | "large" | number;
+    size?: "sm" | "md" | "lg" | number;
     shape?: "circle" | "square";
 }
 
@@ -52,8 +52,8 @@ const AvatarRoot = styled(AvatarPrimitive.Root)<AvatarProps>`
     ${margin}
     ${color}
 
-    ${(p) => p.size === "small" && getSizeStyle(24)}
-    ${(p) => p.size === "large" && getSizeStyle(40)}
+    ${(p) => p.size === "sm" && getSizeStyle(24)}
+    ${(p) => p.size === "lg" && getSizeStyle(40)}
     ${(p) => isNumber(p.size) && getSizeStyle(p.size)}
 `;
 
@@ -92,7 +92,7 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
             src,
             alt,
             delayMs,
-            size = "default",
+            size = "md",
             shape = "circle",
             color,
             onLoadingStatusChange,

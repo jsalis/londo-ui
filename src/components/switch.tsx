@@ -15,7 +15,7 @@ export interface SwitchProps
     onChange?: (checked: boolean) => void;
     checkedContent?: React.ReactNode;
     uncheckedContent?: React.ReactNode;
-    size?: "default" | "small";
+    size?: "sm" | "md";
     isLoading?: boolean;
 }
 
@@ -89,7 +89,7 @@ const SwitchRoot = styled(SwitchPrimitive.Root)<SwitchProps>`
         outline: 0;
     }
 
-    &[data-size="small"] {
+    &[data-size="sm"] {
         --thumb-size: 12px;
         min-width: 28px;
         height: 16px;
@@ -169,7 +169,10 @@ const SwitchRoot = styled(SwitchPrimitive.Root)<SwitchProps>`
 `;
 
 export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
-    ({ size, disabled, isLoading, onChange, checkedContent, uncheckedContent, ...rest }, ref) => {
+    (
+        { size = "md", disabled, isLoading, onChange, checkedContent, uncheckedContent, ...rest },
+        ref
+    ) => {
         return (
             <SwitchRoot
                 ref={ref}

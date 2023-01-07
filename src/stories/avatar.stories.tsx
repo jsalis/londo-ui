@@ -26,10 +26,10 @@ export function Basic() {
 export function Circle() {
     return (
         <Flex gap={3} alignItems="center">
-            <Avatar shape="circle" size={64} fallback={<UserIcon />} />
-            <Avatar shape="circle" size="large" fallback={<UserIcon />} />
+            <Avatar shape="circle" fallback={<UserIcon />} size={64} />
+            <Avatar shape="circle" fallback={<UserIcon />} size="lg" />
             <Avatar shape="circle" fallback={<UserIcon />} />
-            <Avatar shape="circle" size="small" fallback={<UserIcon />} />
+            <Avatar shape="circle" fallback={<UserIcon />} size="sm" />
         </Flex>
     );
 }
@@ -37,10 +37,10 @@ export function Circle() {
 export function Square() {
     return (
         <Flex gap={3} alignItems="center">
-            <Avatar shape="square" size={64} fallback={<UserIcon />} />
-            <Avatar shape="square" size="large" fallback={<UserIcon />} />
+            <Avatar shape="square" fallback={<UserIcon />} size={64} />
+            <Avatar shape="square" fallback={<UserIcon />} size="lg" />
             <Avatar shape="square" fallback={<UserIcon />} />
-            <Avatar shape="square" size="small" fallback={<UserIcon />} />
+            <Avatar shape="square" fallback={<UserIcon />} size="sm" />
         </Flex>
     );
 }
