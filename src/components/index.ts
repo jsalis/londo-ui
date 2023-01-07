@@ -32,6 +32,7 @@ export * from "./scroller";
 export * from "./select";
 export * from "./size-picker";
 export * from "./skeleton";
+export * from "./slider";
 export * from "./spinner";
 export * from "./switch";
 export * from "./tag";

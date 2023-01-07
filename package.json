@@ -42,6 +42,7 @@
   ],
   "dependencies": {
     "@floating-ui/react-dom": "^1.0.0",
+    "@radix-ui/react-slider": "^1.1.0",
     "@radix-ui/react-switch": "^1.0.1",
     "aria-hidden": "^1.2.2",
     "framer-motion": "^6.5.1",
