@@ -46,11 +46,15 @@ export function Sizes() {
     );
 }
 
-export function Loading() {
+export function Loading(args) {
     return (
         <Flex gap={2}>
-            <Switch {...events} defaultChecked loading />
-            <Switch {...events} size="small" loading />
+            <Switch {...events} defaultChecked {...args} />
+            <Switch {...events} size="small" {...args} />
         </Flex>
     );
 }
+
+Loading.args = {
+    isLoading: true,
+};

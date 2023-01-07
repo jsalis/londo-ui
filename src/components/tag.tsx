@@ -103,7 +103,9 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
             {...rest}
         >
             {children}
-            {closable ? <CloseIcon ml={1} cursor="pointer" onClick={handleClose} /> : null}
+            {closable ? (
+                <CloseIcon ml={1} size={14} cursor="pointer" onClick={handleClose} />
+            ) : null}
         </StyledTag>
     );
 });

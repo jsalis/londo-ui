@@ -1,4 +1,5 @@
 export * from "./alert";
+export * from "./avatar";
 export * from "./binary-input";
 export * from "./box";
 export * from "./button";

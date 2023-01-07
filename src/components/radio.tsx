@@ -171,7 +171,7 @@ const Label = styled.label<LabelProps>`
 
 const RadioGroupContext = createContext<RadioGroupContextValue | undefined>(undefined);
 
-const Group = forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
+const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
     const {
         value: valueProp,
         defaultValue = "",
@@ -251,12 +251,12 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
 
 const CompoundRadio = Object.assign(Radio, {
     id: "Radio",
-    Group: Group,
+    Group: RadioGroup,
 });
 
 export { CompoundRadio as Radio };
 
 if (process.env.NODE_ENV !== "production") {
     Radio.displayName = "Radio";
-    Group.displayName = "RadioGroup";
+    RadioGroup.displayName = "RadioGroup";
 }

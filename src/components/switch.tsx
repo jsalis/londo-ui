@@ -16,7 +16,7 @@ export interface SwitchProps
     checkedContent?: React.ReactNode;
     uncheckedContent?: React.ReactNode;
     size?: "default" | "small";
-    loading?: boolean;
+    isLoading?: boolean;
 }
 
 const SwitchSpinner = styled(Spinner)`
@@ -169,16 +169,16 @@ const SwitchRoot = styled(SwitchPrimitive.Root)<SwitchProps>`
 `;
 
 export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
-    ({ size, disabled, loading, onChange, checkedContent, uncheckedContent, ...rest }, ref) => {
+    ({ size, disabled, isLoading, onChange, checkedContent, uncheckedContent, ...rest }, ref) => {
         return (
             <SwitchRoot
                 ref={ref}
                 {...rest}
-                disabled={disabled || loading}
+                disabled={disabled || isLoading}
                 onCheckedChange={onChange}
                 data-size={size}
             >
-                <SwitchThumb>{loading ? <SwitchSpinner /> : null}</SwitchThumb>
+                <SwitchThumb>{isLoading ? <SwitchSpinner /> : null}</SwitchThumb>
                 <SwitchContent>
                     <Flex data-checked-content>{checkedContent}</Flex>
                     <Flex data-unchecked-content>{uncheckedContent}</Flex>

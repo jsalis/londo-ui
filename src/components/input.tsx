@@ -121,6 +121,7 @@ const InputElement = styled.div`
     top: 0;
     width: 24px;
     height: 24px;
+    font-size: 14px;
     padding: 0 4px;
     color: ${(p) => p.theme.colors.alpha[5]};
     pointer-events: none;

@@ -43,7 +43,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 Icon.defaultProps = {
-    size: 14,
+    size: "1em",
     viewBox: "0 0 24 24",
     color: "currentColor",
     fill: "currentColor",

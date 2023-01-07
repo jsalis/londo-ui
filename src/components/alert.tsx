@@ -19,11 +19,13 @@ export interface AlertProps extends FlexProps {
 const PrefixIcon = styled.div`
     display: inline-flex;
     flex: none;
+    font-size: 24px;
 `;
 
 const CloseButton = styled.button`
     width: 24px;
     height: 24px;
+    font-size: 24px;
     padding: 0;
     display: flex;
     align-self: flex-start;
@@ -92,7 +94,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
             type = "info",
             message,
             banner = false,
-            icon = <WarningIcon size={24} />,
+            icon = <WarningIcon />,
             closable = false,
             onClose,
             color,
@@ -127,7 +129,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
                 {closable ? (
                     <CloseButton type="button" onClick={handleClose}>
                         <VisuallyHidden>Close</VisuallyHidden>
-                        <CloseIcon size={24} aria-hidden />
+                        <CloseIcon aria-hidden />
                     </CloseButton>
                 ) : null}
             </StyledAlert>

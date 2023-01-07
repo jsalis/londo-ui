@@ -41,4 +41,5 @@ export * from "./selection-icon";
 export * from "./sun-icon";
 export * from "./trash-icon";
 export * from "./undo-icon";
+export * from "./user-icon";
 export * from "./warning-icon";
