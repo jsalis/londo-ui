@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.28](https://github.com/jsalis/londo-ui/compare/v0.1.27...v0.1.28) (2023-01-07)
+
+### Features
+
+- add aria-hidden support to modal ([ec7ae4b](https://github.com/jsalis/londo-ui/commit/ec7ae4bdcd05cee97ac09f2b48bfe6ef082fbb82))
+- add avatar component ([3bbc134](https://github.com/jsalis/londo-ui/commit/3bbc134c11b6c7c795426cde010f0ed6403df3ae))
+- add slider component ([2e4c408](https://github.com/jsalis/londo-ui/commit/2e4c40851b8043fa0edcd4b8db071a878462646f))
+- add switch component ([d328a71](https://github.com/jsalis/londo-ui/commit/d328a71f1cfbbb6bf308feed018adfe0ad4f7252))
+
+### Bug Fixes
+
+- adjust button disabled color ([cb06d97](https://github.com/jsalis/londo-ui/commit/cb06d97d41fe0fe25f19306e5784f7e331e2d197))
+- parse rgb string from eye dropper ([09aabd0](https://github.com/jsalis/londo-ui/commit/09aabd014c5065e52eb63a200ee3400bd5afbba2))
+
 ### [0.1.27](https://github.com/jsalis/londo-ui/compare/v0.1.26...v0.1.27) (2022-10-30)
 
 ### Bug Fixes
