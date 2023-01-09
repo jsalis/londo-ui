@@ -8,7 +8,7 @@ import { KeyCode } from "../utils/key-code";
 import type { InputProps } from "./input";
 import { Input } from "./input";
 import { Dropdown } from "./dropdown";
-import { Scroller } from "./scroller";
+import { ScrollArea } from "./scroll-area";
 import { Flex } from "./flex";
 
 type SelectOption = {
@@ -101,7 +101,7 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
         };
 
         const overlay = (
-            <Scroller maxHeight={256}>
+            <ScrollArea maxHeight={256}>
                 {options.length > 0 ? (
                     options.map((opt) => (
                         <Option
@@ -117,7 +117,7 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
                         No Data
                     </Flex>
                 )}
-            </Scroller>
+            </ScrollArea>
         );
 
         return (
