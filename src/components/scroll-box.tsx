@@ -8,7 +8,7 @@ import { Box } from "./box";
 
 type ScrollAreaPrimitiveProps = React.ComponentProps<typeof ScrollAreaPrimitive.Root>;
 
-export interface ScrollAreaProps extends BoxProps {
+export interface ScrollBoxProps extends BoxProps {
     type?: ScrollAreaPrimitiveProps["type"];
     scrollHideDelay?: ScrollAreaPrimitiveProps["scrollHideDelay"];
     overScroll?: CSS.Property.OverscrollBehavior;
@@ -66,7 +66,7 @@ const ScrollAreaViewport = styled(ScrollAreaPrimitive.Viewport)`
     border-radius: inherit;
 `;
 
-const ScrollAreaRoot = styled(ScrollAreaPrimitive.Root)<ScrollAreaProps>`
+const ScrollAreaRoot = styled(ScrollAreaPrimitive.Root)<ScrollBoxProps>`
     --scrollbar-size: 8px;
     overflow: hidden;
 
@@ -75,7 +75,7 @@ const ScrollAreaRoot = styled(ScrollAreaPrimitive.Root)<ScrollAreaProps>`
     }
 `;
 
-export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(
+export const ScrollBox = forwardRef<HTMLDivElement, ScrollBoxProps>(
     (
         { type = "hover", scrollHideDelay = 600, overScroll = "auto", color, children, ...rest },
         ref
@@ -103,5 +103,5 @@ export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(
 );
 
 if (process.env.NODE_ENV !== "production") {
-    ScrollArea.displayName = "ScrollArea";
+    ScrollBox.displayName = "ScrollBox";
 }

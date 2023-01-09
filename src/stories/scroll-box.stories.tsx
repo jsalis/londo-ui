@@ -1,8 +1,8 @@
-import { ScrollArea, Box, Text } from "../components";
+import { ScrollBox, Box, Text } from "../components";
 
 export default {
-    title: "Design System/ScrollArea",
-    component: ScrollArea,
+    title: "Design System/ScrollBox",
+    component: ScrollBox,
     parameters: {
         componentSubtitle:
             "Augments native scroll functionality for custom, cross-browser styling.",
@@ -45,20 +45,20 @@ const sampleContent = (
 
 export function Basic(args) {
     return (
-        <ScrollArea width={1 / 2} height={300} {...args}>
+        <ScrollBox width={1 / 2} height={300} {...args}>
             <Box p={3} bg="alpha.0">
                 {sampleContent}
             </Box>
-        </ScrollArea>
+        </ScrollBox>
     );
 }
 
 export function TwoAxis() {
     return (
-        <ScrollArea width={300} height={300}>
+        <ScrollBox width={300} height={300}>
             <Box p={3} width={400} bg="alpha.0">
                 {sampleContent}
             </Box>
-        </ScrollArea>
+        </ScrollBox>
     );
 }

@@ -29,7 +29,7 @@ export * from "./popconfirm";
 export * from "./popover";
 export * from "./portal";
 export * from "./radio";
-export * from "./scroll-area";
+export * from "./scroll-box";
 export * from "./select";
 export * from "./size-picker";
 export * from "./skeleton";
