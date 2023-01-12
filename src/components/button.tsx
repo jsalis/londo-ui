@@ -10,7 +10,7 @@ export interface ButtonProps
     extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "color">,
         BoxProps {
     size?: "sm" | "md" | "lg";
-    variant?: "default" | "primary" | "danger" | "dash" | "text";
+    variant?: "default" | "primary" | "danger" | "dash" | "text" | "link";
     isLoading?: boolean;
 }
 
@@ -169,6 +169,18 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                     },
                     ":disabled": {
                         bg: "transparent",
+                        color: "disabled",
+                    },
+                },
+                link: {
+                    color: "primary.base",
+                    ":hover": {
+                        color: "primary.hover",
+                    },
+                    ":active": {
+                        color: "primary.active",
+                    },
+                    ":disabled": {
                         color: "disabled",
                     },
                 },

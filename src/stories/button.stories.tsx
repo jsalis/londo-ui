@@ -51,6 +51,9 @@ export function Variants(args) {
             <Button {...args} variant="text">
                 Text
             </Button>
+            <Button {...args} variant="link">
+                Link
+            </Button>
         </Flex>
     );
 }
