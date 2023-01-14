@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.29](https://github.com/jsalis/londo-ui/compare/v0.1.28...v0.1.29) (2023-01-14)
+
+### Features
+
+- add checkbox group ([255e062](https://github.com/jsalis/londo-ui/commit/255e062a21747772363c06739a550ee16d1e237d))
+- add link button ([01846f3](https://github.com/jsalis/londo-ui/commit/01846f3992318cf7898330971cc67bd7159733ee))
+- change checkbox direction prop to orientation ([df63a57](https://github.com/jsalis/londo-ui/commit/df63a5755b8058bee65bd14a131d69250571abf0))
+- normalize size props for avatar and switch components ([7a29765](https://github.com/jsalis/londo-ui/commit/7a29765872fad27d21b50841ef8ef3e19c097aa9))
+- replace scroller with scroll area component ([b8602ad](https://github.com/jsalis/londo-ui/commit/b8602ad478ca50c2da0786e24a81be0558c392b2))
+
 ### [0.1.28](https://github.com/jsalis/londo-ui/compare/v0.1.27...v0.1.28) (2023-01-07)
 
 ### Features
