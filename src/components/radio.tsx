@@ -1,7 +1,6 @@
-import type { SpaceProps, FlexboxProps } from "styled-system";
 import { forwardRef, createContext, useContext, useMemo } from "react";
 import { space, flexbox } from "styled-system";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import { useControllableState, useCallbackRef } from "../hooks";
 
@@ -13,12 +12,6 @@ interface RadioGroupContextValue {
     value?: string | number;
     onChange?: (value: string | number, event: React.ChangeEvent<HTMLInputElement>) => void;
     name: string;
-    disabled?: boolean;
-    isInvalid?: boolean;
-}
-
-interface LabelProps extends SpaceProps, FlexboxProps {
-    checked?: boolean;
     disabled?: boolean;
     isInvalid?: boolean;
 }
@@ -84,7 +77,7 @@ const Control = styled.span`
     }
 `;
 
-const Label = styled.label<LabelProps>`
+const Label = styled.label`
     display: inline-flex;
     align-items: center;
     vertical-align: top;
@@ -102,71 +95,69 @@ const Label = styled.label<LabelProps>`
         box-shadow: 0 0 0 2px ${(p) => p.theme.colors.primary[2]};
     }
 
-    ${(p) =>
-        p.checked &&
-        css`
-            ${Control} {
-                border-color: ${p.theme.colors.primary.base};
+    &[data-state="checked"] {
+        ${Control} {
+            border-color: ${(p) => p.theme.colors.primary.base};
 
-                &::after {
-                    transform: scale(0.5);
-                    opacity: 1;
-                }
+            &::after {
+                transform: scale(0.5);
+                opacity: 1;
             }
+        }
 
-            &:hover ${Control} {
-                border-color: ${p.theme.colors.primary.hover};
+        &:hover ${Control} {
+            border-color: ${(p) => p.theme.colors.primary.hover};
 
-                &::after {
-                    background-color: ${p.theme.colors.primary.hover};
-                }
+            &::after {
+                background-color: ${(p) => p.theme.colors.primary.hover};
             }
-        `}
+        }
+    }
 
-    ${(p) =>
-        p.disabled &&
-        css`
-            color: ${p.theme.colors.disabled};
+    &[data-disabled] {
+        color: ${(p) => p.theme.colors.disabled};
 
-            &,
-            ${Input} {
-                cursor: not-allowed;
+        &,
+        ${Input} {
+            cursor: not-allowed;
+        }
+
+        ${Control} {
+            opacity: 0.5;
+            border-color: ${(p) => p.theme.colors.border.base} !important;
+
+            &::after {
+                background: ${(p) => p.theme.colors.disabled} !important;
             }
+        }
 
-            ${Control} {
-                opacity: ${p.checked ? 1 : 0.5};
-                border-color: ${p.theme.colors.border.base} !important;
+        &[data-state="checked"] ${Control} {
+            opacity: 1;
+        }
+    }
 
-                &::after {
-                    background: ${p.theme.colors.disabled} !important;
-                }
+    &[data-invalid] {
+        ${Control} {
+            border-color: ${(p) => p.theme.colors.danger.base};
+
+            &::after {
+                background-color: ${(p) => p.theme.colors.danger.base};
             }
-        `}
+        }
 
-    ${(p) =>
-        p.isInvalid &&
-        css`
-            ${Control} {
-                border-color: ${(p) => p.theme.colors.danger.base};
+        &:hover ${Control} {
+            border-color: ${(p) => p.theme.colors.danger.hover};
 
-                &::after {
-                    background-color: ${(p) => p.theme.colors.danger.base};
-                }
+            &::after {
+                background-color: ${(p) => p.theme.colors.danger.hover};
             }
+        }
 
-            &:hover ${Control} {
-                border-color: ${(p) => p.theme.colors.danger.hover};
-
-                &::after {
-                    background-color: ${p.theme.colors.danger.hover};
-                }
-            }
-
-            ${Input}:focus:enabled + ${Control} {
-                border-color: ${(p) => p.theme.colors.danger.hover};
-                box-shadow: 0 0 0 1px ${(p) => p.theme.colors.danger.hover};
-            }
-        `}
+        ${Input}:focus:enabled + ${Control} {
+            border-color: ${(p) => p.theme.colors.danger.base};
+            box-shadow: 0 0 0 2px ${(p) => p.theme.colors.danger.hover};
+        }
+    }
 `;
 
 const RadioGroupContext = createContext<RadioGroupContextValue | undefined>(undefined);
@@ -230,9 +221,9 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
     return (
         <Label
             className={className}
-            checked={isChecked}
-            disabled={isDisabled}
-            isInvalid={isInvalid}
+            data-state={isChecked ? "checked" : "unchecked"}
+            data-disabled={isDisabled}
+            data-invalid={isInvalid}
         >
             <Input
                 ref={ref}
