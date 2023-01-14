@@ -1,25 +1,38 @@
-import type { SpaceProps, FlexboxProps } from "styled-system";
-import { forwardRef } from "react";
-import { space, flexbox } from "styled-system";
-import styled, { css } from "styled-components";
+import { forwardRef, createContext, useContext, useMemo } from "react";
+import styled from "styled-components";
 
-import { useControllableState } from "../hooks";
+import { useControllableState, useCallbackRef } from "../hooks";
 
+import type { FlexProps } from "./flex";
+import { Flex } from "./flex";
 import { Box } from "./box";
 
-interface LabelProps extends SpaceProps, FlexboxProps {
-    checked?: boolean;
+interface CheckboxGroupContextValue {
+    value: (string | number)[];
+    onChange?: (checked: boolean, value: string | number) => void;
+    name: string;
     disabled?: boolean;
+    isInvalid?: boolean;
 }
 
 export interface CheckboxProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
     orientation?: "horizontal" | "vertical";
+    value?: string | number;
     checked?: boolean;
     defaultChecked?: boolean;
-    onChange?: (value: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
     disabled?: boolean;
     children?: React.ReactNode;
+}
+
+export interface CheckboxGroupProps extends FlexProps {
+    value?: (string | number)[];
+    defaultValue?: (string | number)[];
+    onChange?: (value: (string | number)[]) => void;
+    name: string;
+    disabled?: boolean;
+    isInvalid?: boolean;
 }
 
 const Input = styled.input`
@@ -65,15 +78,13 @@ const Control = styled.span`
     }
 `;
 
-const Label = styled.label<LabelProps>`
+const Label = styled.label`
     display: inline-flex;
     align-items: center;
     vertical-align: top;
     position: relative;
     user-select: none;
     cursor: pointer;
-    ${space}
-    ${flexbox}
 
     &:hover ${Control} {
         border-color: ${(p) => p.theme.colors.gray[5]};
@@ -83,79 +94,164 @@ const Label = styled.label<LabelProps>`
         box-shadow: 0 0 0 2px ${(p) => p.theme.colors.primary[2]};
     }
 
-    ${(p) =>
-        p.checked &&
-        css`
-            ${Control} {
-                background-color: ${p.theme.colors.primary.base};
-                border-color: ${p.theme.colors.primary.base};
+    &[data-orientation="horizontal"] {
+        flex-direction: row;
+    }
 
-                &::after {
-                    transform: rotate(45deg) scale(1) translate(-50%, -50%);
-                    opacity: 1;
-                }
+    &[data-orientation="vertical"] {
+        flex-direction: column;
+    }
+
+    &[data-state="checked"] {
+        ${Control} {
+            background: ${(p) => p.theme.colors.primary.base};
+            border-color: ${(p) => p.theme.colors.primary.base};
+
+            &::after {
+                transform: rotate(45deg) scale(1) translate(-50%, -50%);
+                opacity: 1;
+            }
+        }
+
+        &:hover ${Control} {
+            background: ${(p) => p.theme.colors.primary.hover};
+            border-color: ${(p) => p.theme.colors.primary.hover};
+        }
+    }
+
+    &[data-invalid] {
+        ${Control} {
+            border-color: ${(p) => p.theme.colors.danger.base};
+        }
+
+        &:hover ${Control} {
+            border-color: ${(p) => p.theme.colors.danger.hover};
+        }
+
+        ${Input}:focus:enabled + ${Control} {
+            box-shadow: 0 0 0 2px ${(p) => p.theme.colors.danger[2]};
+        }
+
+        &[data-state="checked"] {
+            ${Control} {
+                background: ${(p) => p.theme.colors.danger.base};
+                border-color: ${(p) => p.theme.colors.danger.base};
             }
 
             &:hover ${Control} {
-                background-color: ${p.theme.colors.primary.hover};
-                border-color: ${p.theme.colors.primary.hover};
+                background: ${(p) => p.theme.colors.danger.hover};
+                border-color: ${(p) => p.theme.colors.danger.hover};
             }
-        `}
+        }
+    }
 
-    ${(p) =>
-        p.disabled &&
-        css`
-            color: ${p.theme.colors.disabled};
+    &[data-disabled] {
+        color: ${(p) => p.theme.colors.disabled};
 
-            &,
-            ${Input} {
-                cursor: not-allowed;
+        &,
+        ${Input} {
+            cursor: not-allowed;
+        }
+
+        ${Control} {
+            opacity: 0.5;
+            background: ${(p) => p.theme.colors.gray[1]} !important;
+            border-color: ${(p) => p.theme.colors.border.base} !important;
+
+            &::after {
+                border-color: ${(p) => p.theme.colors.disabled};
             }
+        }
 
-            ${Control} {
-                opacity: ${p.checked ? 1 : 0.5};
-                background: ${p.theme.colors.gray[p.checked ? 4 : 1]} !important;
-                border-color: ${p.theme.colors.border.base} !important;
-
-                &::after {
-                    border-color: ${p.theme.colors.disabled};
-                }
-            }
-        `}
+        &[data-state="checked"] ${Control} {
+            opacity: 1;
+            background: ${(p) => p.theme.colors.gray[4]} !important;
+        }
+    }
 `;
 
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
+const CheckboxGroupContext = createContext<CheckboxGroupContextValue | undefined>(undefined);
+
+const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>((props, ref) => {
+    const {
+        value: valueProp,
+        defaultValue = [],
+        onChange,
+        name,
+        disabled,
+        isInvalid,
+        color,
+        children,
+        ...rest
+    } = props;
+
+    const [listValue, setListValue] = useControllableState(valueProp, defaultValue);
+
+    const handleChange = useCallbackRef((checked: boolean, value: string | number) => {
+        const val = checked ? [...listValue, value] : listValue.filter((v) => v !== value);
+        setListValue(val);
+        onChange?.(val);
+    });
+
+    const group = useMemo(
+        () => ({ value: listValue, onChange: handleChange, name, disabled, isInvalid }),
+        [listValue, handleChange, name, disabled, isInvalid]
+    );
+
+    return (
+        <CheckboxGroupContext.Provider value={group}>
+            <Flex ref={ref} position="relative" gap={3} width={1} color={color as any} {...rest}>
+                {children}
+            </Flex>
+        </CheckboxGroupContext.Provider>
+    );
+});
+
+const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
     const {
         checked: checkedProp,
         defaultChecked = false,
         onChange,
         orientation = "horizontal",
+        name,
+        value = "",
         disabled,
         className,
         children,
         ...rest
     } = props;
+    const group = useContext(CheckboxGroupContext);
+    const inputName = group?.name ?? name;
+    const isDisabled = group?.disabled || disabled;
+    const isInvalid = group?.isInvalid;
 
-    const [checked, setChecked] = useControllableState(checkedProp, defaultChecked);
+    const [checked, setChecked] = useControllableState(
+        group?.value.includes(value) ?? checkedProp,
+        defaultChecked
+    );
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const val = event.target.checked;
-        setChecked(val);
-        onChange?.(val, event);
+        const checked = event.target.checked;
+        setChecked(checked);
+        group?.onChange?.(checked, value);
+        onChange?.(checked, event);
     };
 
     return (
         <Label
             className={className}
-            checked={checked}
-            disabled={disabled}
-            flexDirection={orientation === "horizontal" ? "row" : "column"}
+            data-state={checked ? "checked" : "unchecked"}
+            data-orientation={orientation}
+            data-disabled={isDisabled}
+            data-invalid={isInvalid}
         >
             <Input
                 ref={ref}
                 type="checkbox"
+                name={inputName}
+                value={value}
                 checked={checked}
-                disabled={disabled}
+                disabled={isDisabled}
                 onChange={handleChange}
                 {...rest}
             />
@@ -172,6 +268,14 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
     );
 });
 
+const CompoundCheckbox = Object.assign(Checkbox, {
+    id: "Checkbox",
+    Group: CheckboxGroup,
+});
+
+export { CompoundCheckbox as Checkbox };
+
 if (process.env.NODE_ENV !== "production") {
     Checkbox.displayName = "Checkbox";
+    CheckboxGroup.displayName = "CheckboxGroup";
 }

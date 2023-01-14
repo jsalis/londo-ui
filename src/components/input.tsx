@@ -8,7 +8,7 @@ import type {
     ResponsiveValue,
 } from "styled-system";
 import { forwardRef, cloneElement } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { system, space, layout, position, flexbox, color } from "styled-system";
 
 import { getValidChildren } from "../utils/react-util";
@@ -50,17 +50,13 @@ export interface InputProps
     cursor?: ResponsiveValue<CSS.Property.Cursor>;
 }
 
-interface StyledInputProps {
-    isInvalid?: boolean;
-}
-
 const other = system({
     textTransform: true,
     pointerEvents: true,
     cursor: true,
 });
 
-const StyledInput = styled.input<StyledInputProps>`
+const StyledInput = styled.input`
     width: 100%;
     min-width: 0;
     height: 24px;
@@ -98,19 +94,18 @@ const StyledInput = styled.input<StyledInputProps>`
         cursor: not-allowed;
     }
 
-    ${(p) =>
-        p.isInvalid &&
-        css`
-            &,
-            &:hover:enabled {
-                border-color: ${(p) => p.theme.colors.danger.base};
-            }
+    &[data-invalid]:not(:disabled) {
+        border-color: ${(p) => p.theme.colors.danger.base};
 
-            &:focus:enabled {
-                border-color: ${(p) => p.theme.colors.danger.hover};
-                box-shadow: 0 0 0 1px ${(p) => p.theme.colors.danger.hover};
-            }
-        `}
+        &:hover:enabled {
+            border-color: ${(p) => p.theme.colors.danger.hover};
+        }
+
+        &:focus:enabled {
+            border-color: ${(p) => p.theme.colors.danger.hover};
+            box-shadow: 0 0 0 1px ${(p) => p.theme.colors.danger.hover};
+        }
+    }
 `;
 
 const InputElement = styled.div`
@@ -191,6 +186,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         width,
         height,
         onChange,
+        isInvalid,
         ...rest
     } = props;
 
@@ -212,6 +208,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             width={width as any}
             height={height as any}
             color={color as any}
+            data-invalid={isInvalid}
             {...rest}
         />
     );

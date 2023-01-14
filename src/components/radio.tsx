@@ -1,5 +1,4 @@
 import { forwardRef, createContext, useContext, useMemo } from "react";
-import { space, flexbox } from "styled-system";
 import styled from "styled-components";
 
 import { useControllableState, useCallbackRef } from "../hooks";
@@ -84,8 +83,6 @@ const Label = styled.label`
     position: relative;
     user-select: none;
     cursor: pointer;
-    ${space}
-    ${flexbox}
 
     &:hover ${Control} {
         border-color: ${(p) => p.theme.colors.gray[5]};
@@ -114,6 +111,28 @@ const Label = styled.label`
         }
     }
 
+    &[data-invalid] {
+        ${Control} {
+            border-color: ${(p) => p.theme.colors.danger.base};
+
+            &::after {
+                background-color: ${(p) => p.theme.colors.danger.base};
+            }
+        }
+
+        &:hover ${Control} {
+            border-color: ${(p) => p.theme.colors.danger.hover};
+
+            &::after {
+                background-color: ${(p) => p.theme.colors.danger.hover};
+            }
+        }
+
+        ${Input}:focus:enabled + ${Control} {
+            box-shadow: 0 0 0 2px ${(p) => p.theme.colors.danger[2]};
+        }
+    }
+
     &[data-disabled] {
         color: ${(p) => p.theme.colors.disabled};
 
@@ -133,29 +152,6 @@ const Label = styled.label`
 
         &[data-state="checked"] ${Control} {
             opacity: 1;
-        }
-    }
-
-    &[data-invalid] {
-        ${Control} {
-            border-color: ${(p) => p.theme.colors.danger.base};
-
-            &::after {
-                background-color: ${(p) => p.theme.colors.danger.base};
-            }
-        }
-
-        &:hover ${Control} {
-            border-color: ${(p) => p.theme.colors.danger.hover};
-
-            &::after {
-                background-color: ${(p) => p.theme.colors.danger.hover};
-            }
-        }
-
-        ${Input}:focus:enabled + ${Control} {
-            border-color: ${(p) => p.theme.colors.danger.base};
-            box-shadow: 0 0 0 2px ${(p) => p.theme.colors.danger.hover};
         }
     }
 `;
