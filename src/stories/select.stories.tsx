@@ -52,7 +52,7 @@ export default {
     title: "Design System/Select",
     component: Select,
     parameters: {
-        componentSubtitle: "",
+        componentSubtitle: "A control for picking a value from predefined options.",
     },
 };
 

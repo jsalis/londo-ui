@@ -4,7 +4,7 @@ export default {
     title: "Design System/NumberInput",
     component: NumberInput,
     parameters: {
-        componentSubtitle: "",
+        componentSubtitle: "A numeric input with controls for increasing or decreasing the value.",
     },
     argTypes: {
         value: {

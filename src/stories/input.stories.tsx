@@ -9,7 +9,7 @@ export default {
         Suffix: Input.Suffix,
     },
     parameters: {
-        componentSubtitle: "",
+        componentSubtitle: "A basic text input.",
     },
 };
 

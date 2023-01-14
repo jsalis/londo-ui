@@ -6,6 +6,9 @@ import { UserIcon } from "../icons";
 export default {
     title: "Design System/Avatar",
     component: Avatar,
+    subcomponents: {
+        Group: Avatar.Group,
+    },
     parameters: {
         componentSubtitle:
             "An image element with a fallback for representing people or organizations.",

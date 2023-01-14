@@ -4,7 +4,7 @@ export default {
     title: "Design System/PasswordInput",
     component: PasswordInput,
     parameters: {
-        componentSubtitle: "",
+        componentSubtitle: "A password input.",
     },
 };
 

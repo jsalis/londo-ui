@@ -10,7 +10,7 @@ export default {
     title: "Design System/Popover",
     component: Popover,
     parameters: {
-        componentSubtitle: "",
+        componentSubtitle: "A non-modal that floats around a trigger element.",
     },
 };
 

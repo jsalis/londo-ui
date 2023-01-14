@@ -5,7 +5,8 @@ export default {
     title: "Design System/Tag",
     component: Tag,
     parameters: {
-        componentSubtitle: "",
+        componentSubtitle:
+            "A component for items that need to be labeled, categorized, or organized using keywords that describe them.",
     },
 };
 
