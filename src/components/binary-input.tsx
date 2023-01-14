@@ -89,7 +89,7 @@ export const BinaryInput = forwardRef<HTMLInputElement, BinaryInputProps>(
                                 checked={checked}
                                 onChange={(val) => handleSelect(i, val)}
                                 disabled={activeBits.length >= max && !checked}
-                                direction="column"
+                                orientation="vertical"
                             >
                                 {i + 1}
                             </Checkbox>

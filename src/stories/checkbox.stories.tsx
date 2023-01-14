@@ -11,3 +11,11 @@ export default {
 export function Basic(args) {
     return <Checkbox {...args}>Enabled</Checkbox>;
 }
+
+export function Vertical(args) {
+    return (
+        <Checkbox {...args} orientation="vertical">
+            Enabled
+        </Checkbox>
+    );
+}

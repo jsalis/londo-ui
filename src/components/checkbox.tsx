@@ -14,7 +14,7 @@ interface LabelProps extends SpaceProps, FlexboxProps {
 
 export interface CheckboxProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
-    direction?: "row" | "column";
+    orientation?: "horizontal" | "vertical";
     checked?: boolean;
     defaultChecked?: boolean;
     onChange?: (value: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -129,7 +129,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
         checked: checkedProp,
         defaultChecked = false,
         onChange,
-        direction = "row",
+        orientation = "horizontal",
         disabled,
         className,
         children,
@@ -149,7 +149,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
             className={className}
             checked={checked}
             disabled={disabled}
-            flexDirection={direction}
+            flexDirection={orientation === "horizontal" ? "row" : "column"}
         >
             <Input
                 ref={ref}
@@ -161,7 +161,10 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
             />
             <Control />
             {children ? (
-                <Box pl={direction === "row" ? 2 : 0} pt={direction === "column" ? 2 : 0}>
+                <Box
+                    pl={orientation === "horizontal" ? 2 : 0}
+                    pt={orientation === "vertical" ? 2 : 0}
+                >
                     {children}
                 </Box>
             ) : null}
