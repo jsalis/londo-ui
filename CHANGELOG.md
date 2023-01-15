@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.30](https://github.com/jsalis/londo-ui/compare/v0.1.29...v0.1.30) (2023-01-15)
+
+### Bug Fixes
+
+- only set invalid data attribute when invalid ([467b758](https://github.com/jsalis/londo-ui/commit/467b758a21d29770f48eef3692c1bf539e75e800))
+- scroll box height ([7082171](https://github.com/jsalis/londo-ui/commit/708217152a05cb1c672de16fee12ff957c068654))
+
 ### [0.1.29](https://github.com/jsalis/londo-ui/compare/v0.1.28...v0.1.29) (2023-01-14)
 
 ### Features
