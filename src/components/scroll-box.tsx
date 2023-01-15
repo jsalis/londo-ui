@@ -61,6 +61,10 @@ const ScrollAreaViewport = styled(ScrollAreaPrimitive.Viewport)`
     height: 100%;
     max-height: inherit;
     border-radius: inherit;
+
+    & > div {
+        height: inherit;
+    }
 `;
 
 const ScrollAreaRoot = styled(ScrollAreaPrimitive.Root)<ScrollBoxProps>`
