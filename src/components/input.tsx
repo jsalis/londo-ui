@@ -208,7 +208,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             width={width as any}
             height={height as any}
             color={color as any}
-            data-invalid={isInvalid}
+            data-invalid={isInvalid ? "" : null}
             {...rest}
         />
     );

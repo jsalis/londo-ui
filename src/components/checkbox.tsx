@@ -200,7 +200,16 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>((props, ref
 
     return (
         <CheckboxGroupContext.Provider value={group}>
-            <Flex ref={ref} position="relative" gap={3} width={1} color={color as any} {...rest}>
+            <Flex
+                ref={ref}
+                position="relative"
+                width={1}
+                rowGap={2}
+                columnGap={3}
+                wrap="wrap"
+                color={color as any}
+                {...rest}
+            >
                 {children}
             </Flex>
         </CheckboxGroupContext.Provider>
@@ -243,7 +252,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
             data-state={checked ? "checked" : "unchecked"}
             data-orientation={orientation}
             data-disabled={isDisabled}
-            data-invalid={isInvalid}
+            data-invalid={isInvalid ? "" : null}
         >
             <Input
                 ref={ref}
