@@ -36,13 +36,12 @@ const ScrollAreaThumb = styled(ScrollAreaPrimitive.Thumb)`
 const ScrollAreaScrollbar = styled(ScrollAreaPrimitive.Scrollbar)`
     display: flex;
     padding: 2px;
-    background: ${(p) => p.theme.colors.alpha[0]};
     transition: background 160ms ease-out;
     user-select: none;
     touch-action: none;
 
     &:hover {
-        background: ${(p) => p.theme.colors.alpha[2]};
+        background: ${(p) => p.theme.colors.alpha[1]};
     }
 
     &[data-orientation="vertical"] {
@@ -55,9 +54,7 @@ const ScrollAreaScrollbar = styled(ScrollAreaPrimitive.Scrollbar)`
     }
 `;
 
-const ScrollAreaCorner = styled(ScrollAreaPrimitive.Corner)`
-    background: ${(p) => p.theme.colors.alpha[2]};
-`;
+const ScrollAreaCorner = styled(ScrollAreaPrimitive.Corner)``;
 
 const ScrollAreaViewport = styled(ScrollAreaPrimitive.Viewport)`
     width: 100%;
