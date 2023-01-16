@@ -37,8 +37,7 @@
     ]
   },
   "browserslist": [
-    "defaults",
-    "not IE 11"
+    "defaults"
   ],
   "dependencies": {
     "@floating-ui/react-dom": "^1.0.0",
