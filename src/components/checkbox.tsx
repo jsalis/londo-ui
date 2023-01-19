@@ -251,7 +251,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
             className={className}
             data-state={checked ? "checked" : "unchecked"}
             data-orientation={orientation}
-            data-disabled={isDisabled}
+            data-disabled={isDisabled ? "" : null}
             data-invalid={isInvalid ? "" : null}
         >
             <Input

@@ -218,7 +218,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
         <Label
             className={className}
             data-state={isChecked ? "checked" : "unchecked"}
-            data-disabled={isDisabled}
+            data-disabled={isDisabled ? "" : null}
             data-invalid={isInvalid ? "" : null}
         >
             <Input
