@@ -85,7 +85,7 @@ const SwitchRoot = styled(SwitchPrimitive.Root)<SwitchProps>`
     }
 
     &:focus {
-        box-shadow: 0 0 0 2px ${(p) => p.theme.colors.alpha[1]};
+        box-shadow: 0 0 0 2px ${(p) => p.theme.colors.primary[2]};
         outline: 0;
     }
 
@@ -124,10 +124,6 @@ const SwitchRoot = styled(SwitchPrimitive.Root)<SwitchProps>`
 
         &:not([data-disabled]):hover {
             background: ${(p) => p.theme.colors.primary.hover};
-        }
-
-        &:focus {
-            box-shadow: 0 0 0 2px ${(p) => p.theme.colors.primary[2]};
         }
 
         ${SwitchThumb} {
