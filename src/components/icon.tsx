@@ -14,12 +14,14 @@ export interface IconProps extends FontSizeProps, SpaceProps, LayoutProps, Color
     as?: keyof JSX.IntrinsicElements;
     viewBox?: string;
     fill?: string;
+    transform?: ResponsiveValue<CSS.Property.Transform>;
     cursor?: ResponsiveValue<CSS.Property.Cursor>;
     onClick?: React.MouseEventHandler;
     children?: React.ReactNode;
 }
 
 const other = system({
+    transform: true,
     cursor: true,
 });
 
