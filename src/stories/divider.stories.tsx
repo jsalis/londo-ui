@@ -3,10 +3,16 @@ import { Divider, Box, Button, Text } from "../components";
 export default {
     title: "Design System/Divider",
     component: Divider,
-    decorators: [(story) => <Box width={400}>{story()}</Box>],
     parameters: {
         componentSubtitle: "A horizontal line that separates content such as text and links.",
     },
+    decorators: [
+        (Story) => (
+            <Box width={400}>
+                <Story />
+            </Box>
+        ),
+    ],
 };
 
 export function Basic(args) {

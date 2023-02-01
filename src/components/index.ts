@@ -40,5 +40,6 @@ export * from "./tag";
 export * from "./text";
 export * from "./textarea";
 export * from "./theme-provider";
+export * from "./toast";
 export * from "./tooltip";
 export * from "./visually-hidden";

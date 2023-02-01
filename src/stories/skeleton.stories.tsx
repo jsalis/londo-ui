@@ -3,11 +3,17 @@ import { Skeleton, Box } from "../components";
 export default {
     title: "Design System/Skeleton",
     component: Skeleton,
-    decorators: [(story) => <Box width={300}>{story()}</Box>],
     parameters: {
         componentSubtitle:
             "A placeholder to visualise content that is loading. Their bones are their money.",
     },
+    decorators: [
+        (Story) => (
+            <Box width={300}>
+                <Story />
+            </Box>
+        ),
+    ],
 };
 
 export function Basic(args) {
