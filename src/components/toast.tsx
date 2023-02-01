@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 
 import { Box } from "./box";
 import { IconButton } from "./icon-button";
-import { CloseIcon, WarningIcon } from "../icons";
+import { CloseIcon, InfoIcon, CheckIcon, ErrorIcon, WarningIcon } from "../icons";
 import { useCallbackRef } from "../hooks";
 import { omit } from "../utils/object-util";
 
@@ -151,9 +151,9 @@ const ToastViewport = styled(ToastPrimitive.Viewport)`
 `;
 
 const iconMap = {
-    info: WarningIcon,
-    success: WarningIcon,
-    error: WarningIcon,
+    info: InfoIcon,
+    success: CheckIcon,
+    error: ErrorIcon,
     warning: WarningIcon,
 };
 

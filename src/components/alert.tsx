@@ -5,7 +5,7 @@ import type { FlexProps } from "./flex";
 import { Flex } from "./flex";
 import { Box } from "./box";
 import { VisuallyHidden } from "./visually-hidden";
-import { CloseIcon, WarningIcon } from "../icons";
+import { CloseIcon, InfoIcon, CheckIcon, ErrorIcon, WarningIcon } from "../icons";
 
 export interface AlertProps extends FlexProps {
     type?: "info" | "success" | "error" | "warning";
@@ -88,21 +88,20 @@ const StyledAlert = styled(Flex)<AlertProps>`
         `}
 `;
 
+const iconMap = {
+    info: <InfoIcon />,
+    success: <CheckIcon />,
+    error: <ErrorIcon />,
+    warning: <WarningIcon />,
+};
+
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(
     (
-        {
-            type = "info",
-            message,
-            banner = false,
-            icon = <WarningIcon />,
-            closable = false,
-            onClose,
-            color,
-            ...rest
-        },
+        { type = "info", message, banner = false, icon, closable = false, onClose, color, ...rest },
         ref
     ) => {
         const [closed, setClosed] = useState(false);
+        const iconNode = icon ?? iconMap[type];
 
         const handleClose = (event: React.MouseEvent) => {
             event.preventDefault();
@@ -124,7 +123,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
                 color={color as any}
                 role="alert"
             >
-                {icon ? <PrefixIcon>{icon}</PrefixIcon> : null}
+                {iconNode ? <PrefixIcon>{iconNode}</PrefixIcon> : null}
                 <Box flexGrow={1}>{message}</Box>
                 {closable ? (
                     <CloseButton type="button" onClick={handleClose}>
