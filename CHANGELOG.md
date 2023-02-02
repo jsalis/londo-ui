@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.31](https://github.com/jsalis/londo-ui/compare/v0.1.30...v0.1.31) (2023-02-02)
+
+### Features
+
+- add icon prop to toast ([7747fa2](https://github.com/jsalis/londo-ui/commit/7747fa227a978afa106039c29790a9f2bdd63002))
+- add status icons ([0a0d06d](https://github.com/jsalis/londo-ui/commit/0a0d06d4e10bb072bece224eaf553ae95964eff1))
+- add toast component ([c05d33a](https://github.com/jsalis/londo-ui/commit/c05d33ad5c28058e9b7c5a1554fbe4e19074dbff))
+- add transform prop to icon ([9792884](https://github.com/jsalis/londo-ui/commit/9792884560dd3c5cefb701072d61c32de685af9a))
+
+### Bug Fixes
+
+- adjust scrollbar thumb size ([57152f0](https://github.com/jsalis/londo-ui/commit/57152f0081b5caffa82c383d4dbc7d473b0dfcd7))
+- only set disabled data attribute when disabled ([64c0833](https://github.com/jsalis/londo-ui/commit/64c08336f82d0995e5a5e6ffa086317deca9eeb4))
+- switch component focus color ([c31b3a7](https://github.com/jsalis/londo-ui/commit/c31b3a7ddec1d23ba2e3e05184bd662ed24b6353))
+
 ### [0.1.30](https://github.com/jsalis/londo-ui/compare/v0.1.29...v0.1.30) (2023-01-15)
 
 ### Bug Fixes
