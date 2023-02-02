@@ -1,6 +1,7 @@
 import { actions } from "@storybook/addon-actions";
 
 import { Alert, Flex, Box } from "../components";
+import { SunIcon } from "../icons";
 
 const events = actions("onClose", "afterClose");
 
@@ -44,5 +45,13 @@ export function Types() {
             <Alert message="Error Text" type="error" />
             <Alert message="Warning Text" type="warning" />
         </Flex>
+    );
+}
+
+export function CustomIcon() {
+    return (
+        <Box width={400}>
+            <Alert message="Message Text" type="warning" icon={<SunIcon />} />
+        </Box>
     );
 }

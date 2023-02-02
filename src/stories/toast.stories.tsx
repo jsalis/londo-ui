@@ -1,6 +1,7 @@
 import { actions } from "@storybook/addon-actions";
 
 import { ToastProvider, useToast, Flex, Button } from "../components";
+import { SunIcon } from "../icons";
 
 const events = actions("onClose");
 
@@ -65,6 +66,24 @@ export function WithAction() {
                     description: "This is the content of the toast.",
                     actionAltText: "Undo",
                     action: <Button>Undo</Button>,
+                    ...events,
+                });
+            }}
+        >
+            Open
+        </Button>
+    );
+}
+
+export function CustomIcon() {
+    const toast = useToast();
+    return (
+        <Button
+            onClick={() => {
+                toast.warning({
+                    title: "Title",
+                    description: "This is the content of the toast.",
+                    icon: <SunIcon />,
                     ...events,
                 });
             }}

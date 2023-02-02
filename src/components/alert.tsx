@@ -18,7 +18,7 @@ export interface AlertProps extends FlexProps {
 
 const PrefixIcon = styled.div`
     display: inline-flex;
-    flex: none;
+    flex-shrink: 0;
     font-size: 24px;
 `;
 

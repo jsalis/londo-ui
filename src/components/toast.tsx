@@ -17,12 +17,17 @@ interface ToastProps {
     key?: string;
     title: React.ReactNode;
     description?: React.ReactNode;
+    icon?: React.ReactNode;
     action?: React.ReactNode;
     actionAltText?: string;
     duration?: number;
     type?: "info" | "success" | "error" | "warning";
     sensitivity?: "foreground" | "background";
     onClose?: () => void;
+}
+
+interface ToastIconProps {
+    type?: ToastProps["type"];
 }
 
 interface ToastController {
@@ -75,7 +80,7 @@ const makeTypeColor = (type: string, color: string) => (p: any) =>
         color: ${p.theme.colors[color].base};
     `;
 
-const ToastIcon = styled.span`
+const ToastIcon = styled.span<ToastIconProps>`
     font-size: ${(p) => p.theme.fontSizes[5]}px;
 
     ${makeTypeColor("info", "info")}
@@ -151,15 +156,16 @@ const ToastViewport = styled(ToastPrimitive.Viewport)`
 `;
 
 const iconMap = {
-    info: InfoIcon,
-    success: CheckIcon,
-    error: ErrorIcon,
-    warning: WarningIcon,
+    info: <InfoIcon />,
+    success: <CheckIcon />,
+    error: <ErrorIcon />,
+    warning: <WarningIcon />,
 };
 
 function Toast({
     title,
     description,
+    icon,
     action,
     actionAltText = "Action",
     duration = 5000,
@@ -168,7 +174,7 @@ function Toast({
     onClose,
 }: ToastProps) {
     const [open, setOpen] = useState(true);
-    const iconType = type ? iconMap[type] : null;
+    const iconNode = icon ?? (type ? iconMap[type] : null);
 
     useEffect(() => {
         if (!open) {
@@ -180,7 +186,7 @@ function Toast({
 
     return (
         <ToastRoot open={open} onOpenChange={setOpen} type={sensitivity} duration={duration}>
-            {iconType ? <ToastIcon as={iconType as any} type={type} /> : null}
+            {iconNode ? <ToastIcon type={type}>{iconNode}</ToastIcon> : null}
             <Box flexGrow={1}>
                 <ToastTitle>{title}</ToastTitle>
                 {description ? <ToastDescription>{description}</ToastDescription> : null}
