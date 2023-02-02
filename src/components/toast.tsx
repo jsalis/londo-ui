@@ -81,6 +81,7 @@ const makeTypeColor = (type: string, color: string) => (p: any) =>
     `;
 
 const ToastIcon = styled.span<ToastIconProps>`
+    display: inline-flex;
     font-size: ${(p) => p.theme.fontSizes[5]}px;
 
     ${makeTypeColor("info", "info")}
@@ -168,7 +169,7 @@ function Toast({
     icon,
     action,
     actionAltText = "Action",
-    duration = 5000,
+    duration = 4000,
     type,
     sensitivity = "foreground",
     onClose,
