@@ -1,5 +1,6 @@
 export * from "./alert";
 export * from "./avatar";
+export * from "./badge";
 export * from "./binary-input";
 export * from "./box";
 export * from "./button";
