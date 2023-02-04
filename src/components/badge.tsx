@@ -80,13 +80,13 @@ const BadgeRoot = styled.span`
 `;
 
 function stringifyCount(count?: number, overflowCount: number = 0) {
-    if (isNumber(count)) {
-        if (count > overflowCount) {
-            return `${overflowCount}+`;
-        }
-        return String(count);
+    if (!isNumber(count)) {
+        return "";
     }
-    return "";
+    if (count > overflowCount) {
+        return `${overflowCount}+`;
+    }
+    return String(count);
 }
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
