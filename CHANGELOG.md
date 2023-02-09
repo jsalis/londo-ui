@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.32](https://github.com/jsalis/londo-ui/compare/v0.1.31...v0.1.32) (2023-02-09)
+
+### Features
+
+- add badge component ([9488846](https://github.com/jsalis/londo-ui/commit/9488846e95d3a2f5d59c3317d2b8c584af44f163))
+
+### Bug Fixes
+
+- add label element props to type definition ([9c0dff2](https://github.com/jsalis/londo-ui/commit/9c0dff26c673aa19268e12346b6f108bb7bcbb5b))
+- toast icon alignment ([0e91440](https://github.com/jsalis/londo-ui/commit/0e91440a28c87306cbfbf0c6fc6b8952d8481dd7))
+
 ### [0.1.31](https://github.com/jsalis/londo-ui/compare/v0.1.30...v0.1.31) (2023-02-02)
 
 ### Features
