@@ -1,0 +1,41 @@
+import { Meta, Props, IconGallery, IconItem } from "@storybook/addon-docs";
+
+import { ThemeProvider, ResetStyle } from "../src";
+
+import { iconList } from "./utils/icon-list";
+import { SearchConsumer } from "./components/search-consumer";
+
+<Meta title="Design System/Icons" />
+
+# Icons
+
+<p>There are {iconList.length} icons.</p>
+
+### Usage
+
+```javascript
+import { SunIcon } from "londo-ui";
+```
+
+<ThemeProvider>
+    <ResetStyle />
+    <SearchConsumer placeholder="Search Icons..." style={{ width: 300 }}>
+        {(searchTerm) => {
+            const filteredIcons = iconList
+                .map(([key, Icon]) => {
+                    if (key.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return (
+                            <IconItem key={key} name={key}>
+                                <Icon />
+                            </IconItem>
+                        );
+                    }
+                })
+                .filter((x) => x);
+            if (filteredIcons.length === 0) {
+                return <i>No icons found</i>;
+            }
+            return <IconGallery>{filteredIcons}</IconGallery>;
+        }}
+    </SearchConsumer>
+</ThemeProvider>
