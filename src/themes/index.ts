@@ -1,4 +1,4 @@
 import { light } from "./light";
 import { dark } from "./dark";
-export { reset } from "./reset";
+export { ResetStyle } from "./reset-style";
 export const themes = { light, dark };

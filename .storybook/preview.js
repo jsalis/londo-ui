@@ -1,16 +1,13 @@
-import { createGlobalStyle } from "styled-components";
 import { withThemesProvider } from "storybook-addon-styled-component-theme";
 
-import { ThemeProvider, themes, reset } from "../src";
+import { ResetStyle, ThemeProvider, themes } from "../src";
 
 import { storybookTheme } from "./theme";
-
-const GlobalStyle = createGlobalStyle`${reset}`;
 
 export const decorators = [
     (Story) => (
         <>
-            <GlobalStyle />
+            <ResetStyle />
             <Story />
         </>
     ),

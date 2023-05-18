@@ -1,6 +1,6 @@
-import { css } from "styled-components";
+import { css, createGlobalStyle } from "styled-components";
 
-export const reset = css`
+const reset = css`
     html,
     body {
         width: 100%;
@@ -277,3 +277,5 @@ export const reset = css`
         -webkit-appearance: button;
     }
 `;
+
+export const ResetStyle = createGlobalStyle`${reset}`;
