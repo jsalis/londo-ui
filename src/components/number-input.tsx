@@ -31,6 +31,7 @@ export interface NumberInputProps {
     isInvalid?: boolean;
     readOnly?: boolean;
     disabled?: boolean;
+    id?: string;
     className?: string;
 }
 
@@ -203,6 +204,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>((props
 
     const inputProps = {
         ref: useForkRef(ref, dragger.ref),
+        id: props.id,
         onFocus: props.onFocus,
         onBlur: useForkHandler(props.onBlur, handleBlur),
         onKeyDown: useForkHandler(props.onKeyDown, handleKeyDown),
