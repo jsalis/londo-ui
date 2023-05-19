@@ -1,5 +1,6 @@
 import { Meta } from "@storybook/addon-docs";
 
+import bannerUrl from "../assets/londo.jpg";
 import packageJson from "../package.json";
 
 <Meta title="Design System/Intro" />
@@ -9,6 +10,8 @@ import packageJson from "../package.json";
 <p>
     <strong>v{packageJson.version}</strong>
 </p>
+
+<img width="100%" src={bannerUrl} style={{ marginBottom: "16px" }} />
 
 ### Installation
 

@@ -2,7 +2,7 @@
 
 The spectacular view. A component library for React web apps.
 
-<img width="100%" src="./assets/londo.jpg">
+<img width="100%" src="./assets/londo.jpg" />
 
 > **WARNING** This package is a work in progess. Initial release coming soon.
 
