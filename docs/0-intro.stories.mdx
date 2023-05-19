@@ -1,0 +1,40 @@
+import { Meta } from "@storybook/addon-docs";
+
+import packageJson from "../package.json";
+
+<Meta title="Design System/Intro" />
+
+# Londo UI
+
+<p>
+    <strong>v{packageJson.version}</strong>
+</p>
+
+### Installation
+
+```bash
+npm install londo-ui styled-components
+```
+
+### Usage
+
+```jsx
+import React from "react";
+import { ThemeProvider, ResetStyle, NumberInput } from "londo-ui";
+
+function App() {
+    return (
+        <ThemeProvider theme="dark">
+            <ResetStyle />
+            <NumberInput />
+        </ThemeProvider>
+    );
+}
+```
+
+```html
+<link
+    href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Inconsolata:wght@500;700&display=swap"
+    rel="stylesheet"
+/>
+```

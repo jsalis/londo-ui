@@ -1,0 +1,318 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/addon-docs";
+
+import { ThemeProvider, ResetStyle } from "../src";
+import { themes } from "../src/themes";
+
+<Meta title="Design System/Theme" />
+
+# Theme
+
+The theme object can be accessed from anywhere in the component tree with the `useTheme` hook.
+
+```js
+import { useTheme } from "styled-components";
+```
+
+### Colors
+
+`theme.colors`
+
+<ThemeProvider>
+    <ResetStyle />
+    <ColorPalette>
+        <ColorItem title="primary" colors={themes.dark.colors.primary} />
+        <ColorItem title="success" colors={themes.dark.colors.success} />
+        <ColorItem title="danger" colors={themes.dark.colors.danger} />
+        <ColorItem title="warning" colors={themes.dark.colors.warning} />
+        <ColorItem title="info" colors={themes.dark.colors.info} />
+        <ColorItem title="gray" colors={themes.dark.colors.gray} />
+        <ColorItem title="alpha" colors={themes.dark.colors.alpha} />
+        <ColorItem title="magenta" colors={themes.dark.colors.magenta} />
+        <ColorItem title="red" colors={themes.dark.colors.red} />
+        <ColorItem title="volcano" colors={themes.dark.colors.volcano} />
+        <ColorItem title="orange" colors={themes.dark.colors.orange} />
+        <ColorItem title="gold" colors={themes.dark.colors.gold} />
+        <ColorItem title="yellow" colors={themes.dark.colors.yellow} />
+        <ColorItem title="lime" colors={themes.dark.colors.lime} />
+        <ColorItem title="green" colors={themes.dark.colors.green} />
+        <ColorItem title="cyan" colors={themes.dark.colors.cyan} />
+        <ColorItem title="blue" colors={themes.dark.colors.blue} />
+        <ColorItem title="geekblue" colors={themes.dark.colors.geekblue} />
+        <ColorItem title="purple" colors={themes.dark.colors.purple} />
+    </ColorPalette>
+</ThemeProvider>
+
+### Space
+
+`theme.space`
+
+| Key | Alias  | Value   |
+| --- | ------ | ------- |
+| `0` | _none_ | `0px`   |
+| `1` | `"xs"` | `4px`   |
+| `2` | `"sm"` | `8px`   |
+| `3` | `"md"` | `16px`  |
+| `4` | `"lg"` | `32px`  |
+| `5` | _none_ | `64px`  |
+| `6` | _none_ | `128px` |
+| `7` | _none_ | `256px` |
+
+-   Numbers from 0 to 7 and alias strings are converted to values on the space scale.
+-   Numbers greater than 7 are converted to raw pixel values.
+-   Negative values can be used for negative margins.
+-   String values are passed as raw CSS values.
+-   Array values are converted into [responsive values](#breakpoints).
+
+### Font Sizes
+
+`theme.fontSizes`
+
+| Key | Alias  | Value  |
+| --- | ------ | ------ |
+| `0` | `"sm"` | `12px` |
+| `1` | `"md"` | `14px` |
+| `2` | `"lg"` | `16px` |
+| `3` | _none_ | `20px` |
+| `4` | _none_ | `24px` |
+| `5` | _none_ | `32px` |
+| `6` | _none_ | `48px` |
+| `7` | _none_ | `64px` |
+
+### Fonts
+
+`theme.fonts`
+
+| Key       | Value                                                                             |
+| --------- | --------------------------------------------------------------------------------- |
+| `"brand"` | `'Chakra Petch', sans-serif`                                                      |
+| `"body"`  | `Inconsolata, Monaco, Menlo, 'Ubuntu Mono', Consolas, source-code-pro, monospace` |
+
+### Line Heights
+
+`theme.lineHeights`
+
+| Key         | Value   |
+| ----------- | ------- |
+| `"none"`    | `1`     |
+| `"shorter"` | `1.25`  |
+| `"short"`   | `1.375` |
+| `"base"`    | `1.5`   |
+| `"tall"`    | `1.625` |
+| `"taller"`  | `2`     |
+
+### Radii
+
+`theme.radii`
+
+| Key      | Value |
+| -------- | ----- |
+| `"base"` | `2`   |
+
+### Borders
+
+`theme.borders`
+
+| Key       | Value               |
+| --------- | ------------------- |
+| `"base"`  | `1px solid gray.4`  |
+| `"split"` | `1px solid alpha.0` |
+| `"grid"`  | `1px solid gray.2`  |
+
+### Shadows
+
+`theme.shadows`
+
+| Key       |
+| --------- |
+| `"base"`  |
+| `"up"`    |
+| `"down"`  |
+| `"left"`  |
+| `"right"` |
+| `"cell"`  |
+
+### Breakpoints
+
+`theme.breakpoints`
+
+| Key    | Value    |
+| ------ | -------- |
+| `"md"` | `768px`  |
+| `"lg"` | `1200px` |
+
+Breakpoints are CSS lengths intended for use in media queries. The breakpoint scale is used to create mobile-first
+responsive media queries based on an array of values. **All** Styled System component props will create media queries
+for its corresponding CSS properties when defined as an array of values.
+
+For example, using a `margin` value of `[0, 1, 2]` creates styles with multiple mobile-first min-width media queries.
+
+```jsx harmony
+<Box margin={[0, 1, 2]} />
+```
+
+```css
+.Box-hash {
+    margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .Box-hash {
+        margin: 4px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .Box-hash {
+        margin: 8px;
+    }
+}
+```
+
+To skip certain breakpoints, you can pass `null` to any position in the array to avoid generating unnecessary CSS.
+
+```jsx harmony
+<Box width={[1, null, 2]} />
+```
+
+## Component Props
+
+### Color
+
+| Prop                 | CSS Property       | Theme Key |
+| -------------------- | ------------------ | --------- |
+| `color`              | `color`            | `colors`  |
+| `bg,backgroundColor` | `background-color` | `colors`  |
+| `opacity`            | `opacity`          | _none_    |
+
+### Space
+
+| Prop               | CSS Property                 | Theme Key |
+| ------------------ | ---------------------------- | --------- |
+| `m,margin`         | `margin`                     | `space`   |
+| `mt,marginTop`     | `margin-top`                 | `space`   |
+| `mr,marginRight`   | `margin-right`               | `space`   |
+| `mb,marginBottom`  | `margin-bottom`              | `space`   |
+| `ml,marginLeft`    | `margin-left`                | `space`   |
+| `mx`               | `margin-left,margin-right`   | `space`   |
+| `my`               | `margin-top,margin-bottom`   | `space`   |
+| `p,padding`        | `padding`                    | `space`   |
+| `pt,paddingTop`    | `padding-top`                | `space`   |
+| `pr,paddingRight`  | `padding-right`              | `space`   |
+| `pb,paddingBottom` | `padding-bottom`             | `space`   |
+| `pl,paddingLeft`   | `padding-left`               | `space`   |
+| `px`               | `padding-left,padding-right` | `space`   |
+| `py`               | `padding-top,padding-bottom` | `space`   |
+
+### Typography
+
+| Prop            | CSS Property     | Theme Key     |
+| --------------- | ---------------- | ------------- |
+| `fontFamily`    | `font-family`    | `fonts`       |
+| `fontSize`      | `font-size`      | `fontSizes`   |
+| `fontWeight`    | `font-weight`    | _none_        |
+| `lineHeight`    | `line-height`    | `lineHeights` |
+| `letterSpacing` | `letter-spacing` | _none_        |
+| `textAlign`     | `text-align`     | _none_        |
+| `fontStyle`     | `font-style`     | _none_        |
+
+### Border
+
+| Prop                      | CSS Property                 | Theme Key |
+| ------------------------- | ---------------------------- | --------- |
+| `border`                  | `border`                     | `borders` |
+| `borderColor`             | `border-color`               | `colors`  |
+| `borderRadius`            | `border-radius`              | `radii`   |
+| `borderTop`               | `border-top`                 | `borders` |
+| `borderTopColor`          | `border-top-color`           | `colors`  |
+| `borderTopLeftRadius`     | `border-top-left-radius`     | `radii`   |
+| `borderTopRightRadius`    | `border-top-right-radius`    | `radii`   |
+| `borderRight`             | `border-right`               | `borders` |
+| `borderRightColor`        | `border-right-color`         | `colors`  |
+| `borderBottom`            | `border-bottom`              | `borders` |
+| `borderBottomColor`       | `border-bottom-color`        | `colors`  |
+| `borderBottomLeftRadius`  | `border-bottom-left-radius`  | `radii`   |
+| `borderBottomRightRadius` | `border-bottom-right-radius` | `radii`   |
+| `borderLeft`              | `border-left`                | `borders` |
+| `borderLeftColor`         | `border-left-color`          | `colors`  |
+| `borderX`                 | `border-left,border-right`   | `borders` |
+| `borderY`                 | `border-top,border-bottom`   | `borders` |
+
+### Shadow
+
+| Prop         | CSS Property  | Theme Key |
+| ------------ | ------------- | --------- |
+| `boxShadow`  | `box-shadow`  | `shadows` |
+| `textShadow` | `text-shadow` | `shadows` |
+
+### Layout
+
+| Prop            | CSS Property     | Theme Key |
+| --------------- | ---------------- | --------- |
+| `width`         | `width`          | _none_    |
+| `height`        | `height`         | _none_    |
+| `minWidth`      | `min-width`      | _none_    |
+| `maxWidth`      | `max-width`      | _none_    |
+| `minHeight`     | `min-height`     | _none_    |
+| `maxHeight`     | `max-height`     | _none_    |
+| `size`          | `width,height`   | _none_    |
+| `display`       | `display`        | _none_    |
+| `verticalAlign` | `vertical-align` | _none_    |
+| `overflow`      | `overflow`       | _none_    |
+| `overflowX`     | `overflowX`      | _none_    |
+| `overflowY`     | `overflowY`      | _none_    |
+
+### Position
+
+| Prop       | CSS Property | Theme Key |
+| ---------- | ------------ | --------- |
+| `position` | `position`   | _none_    |
+| `zIndex`   | `z-index`    | _none_    |
+| `top`      | `top`        | `space`   |
+| `right`    | `right`      | `space`   |
+| `bottom`   | `bottom`     | `space`   |
+| `left`     | `left`       | `space`   |
+
+### Flexbox
+
+| Prop           | CSS Property      | Theme Key |
+| -------------- | ----------------- | --------- |
+| `gap`          | `gap`             | `space`   |
+| `align`        | `align-items`     | _none_    |
+| `alignContent` | `align-content`   | _none_    |
+| `alignSelf`    | `align-self`      | _none_    |
+| `justifyItems` | `justify-items`   | _none_    |
+| `justify`      | `justify-content` | _none_    |
+| `justifySelf`  | `justify-self`    | _none_    |
+| `flex`         | `flex`            | _none_    |
+| `wrap`         | `flex-wrap`       | _none_    |
+| `direction`    | `flex-direction`  | _none_    |
+| `grow`         | `flex-grow`       | _none_    |
+| `shrink`       | `flex-shrink`     | _none_    |
+| `basis`        | `flex-basis`      | _none_    |
+| `order`        | `order`           | _none_    |
+
+### Grid
+
+| Prop          | CSS Property            | Theme Key |
+| ------------- | ----------------------- | --------- |
+| `gap`         | `gap`                   | `space`   |
+| `columnGap`   | `column-gap`            | `space`   |
+| `rowGap`      | `row-gap`               | `space`   |
+| `columns`     | `grid-template-columns` | _none_    |
+| `rows`        | `grid-template-rows`    | _none_    |
+| `autoColumns` | `grid-auto-columns`     | _none_    |
+| `autoRows`    | `grid-auto-rows`        | _none_    |
+| `flow`        | `grid-auto-flow`        | _none_    |
+| `areas`       | `grid-template-areas`   | _none_    |
+
+### Cell
+
+| Prop          | CSS Property        | Theme Key |
+| ------------- | ------------------- | --------- |
+| `columnStart` | `grid-column-start` | _none_    |
+| `columnEnd`   | `grid-column-end`   | _none_    |
+| `columnSpan`  | `grid-column-end`   | _none_    |
+| `rowStart`    | `grid-row-start`    | _none_    |
+| `rowEnd`      | `grid-row-end`      | _none_    |
+| `rowSpan`     | `grid-row-end`      | _none_    |
+| `area`        | `grid-area`         | _none_    |
