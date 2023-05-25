@@ -25,7 +25,9 @@ const other = system({
     cursor: true,
 });
 
-export const StyledIcon = styled.svg<IconProps>`
+export const StyledIcon = styled.svg.withConfig({
+    shouldForwardProp: (prop) => prop !== "transform",
+})<IconProps>`
     display: inline-block;
     user-select: none;
     flex-shrink: 0;
