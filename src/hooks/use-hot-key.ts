@@ -1,6 +1,8 @@
 import { useCallbackRef } from "./use-callback-ref";
 import { useEventListener } from "./use-event-listener";
 
+const alphaRegex = /^[a-zA-Z]$/;
+
 /**
  * Uses an action triggered by a hot key shortcut.
  */
@@ -10,7 +12,8 @@ export function useHotKey(keyPattern: string, callback: () => void) {
     useEventListener(
         "keydown",
         (event) => {
-            if (isValidTarget(event) && matchesPattern(event as KeyboardEvent, keyPattern)) {
+            const keyEvent = event as KeyboardEvent;
+            if (isValidTarget(keyEvent) && matchesPattern(keyEvent, keyPattern)) {
                 event.preventDefault();
                 savedCallback();
             }
@@ -20,9 +23,10 @@ export function useHotKey(keyPattern: string, callback: () => void) {
     );
 }
 
-function isValidTarget(event: Event) {
+function isValidTarget(event: KeyboardEvent) {
     const el = event.target as HTMLElement;
     return (
+        !event.repeat &&
         !el.isContentEditable &&
         el.tagName !== "INPUT" &&
         el.tagName !== "SELECT" &&
@@ -34,8 +38,7 @@ function matchesPattern(event: KeyboardEvent, keyPattern: string) {
     const [key, ...modifiers] = keyPattern.split("+").reverse();
     return (
         event.key.toLowerCase() === key.toLowerCase() &&
-        !event.repeat &&
-        matchesModifiers(event, modifiers)
+        (!alphaRegex.test(event.key) || matchesModifiers(event, modifiers))
     );
 }
 
