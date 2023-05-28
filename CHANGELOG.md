@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.33](https://github.com/jsalis/londo-ui/compare/v0.1.32...v0.1.33) (2023-05-28)
+
+### Features
+
+- add id prop to NumberInput ([3a3848c](https://github.com/jsalis/londo-ui/commit/3a3848cc9bd49bb28bb486625660390200e962fe))
+- add ResetStyle component ([823d7cb](https://github.com/jsalis/londo-ui/commit/823d7cbacfc04f67abf4f55a719485f3a0f0a991))
+
+### Bug Fixes
+
+- do not forward the transform prop for the Icon component ([9d969ab](https://github.com/jsalis/londo-ui/commit/9d969ab1c9aa7c6e82d368d4f633adf5a2b2323c))
+- only match modifier keys for alpha characters ([4fb0eaa](https://github.com/jsalis/londo-ui/commit/4fb0eaa8ba73535b639bcce2214f9a26c620968c))
+- scroll box width with ellipsis content ([9f8431d](https://github.com/jsalis/londo-ui/commit/9f8431db43d83096e16513f0bc8055fe4a54e8e4))
+
 ### [0.1.32](https://github.com/jsalis/londo-ui/compare/v0.1.31...v0.1.32) (2023-02-09)
 
 ### Features
