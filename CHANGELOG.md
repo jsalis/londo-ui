@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.34](https://github.com/jsalis/londo-ui/compare/v0.1.33...v0.1.34) (2023-05-28)
+
+### Features
+
+- add maxScrollHeight prop to select component ([5cae30b](https://github.com/jsalis/londo-ui/commit/5cae30be8a943365f2d202e27db596820cce8da9))
+- add renderOverlay prop to select component ([fb70857](https://github.com/jsalis/londo-ui/commit/fb70857a33d981615d2bfde880f9ca23fbe806e9))
+- add suffixIcon prop to select component ([e215159](https://github.com/jsalis/londo-ui/commit/e215159e624b84fc30626d36d4ebacf827f7d7e3))
+
 ### [0.1.33](https://github.com/jsalis/londo-ui/compare/v0.1.32...v0.1.33) (2023-05-28)
 
 ### Features
