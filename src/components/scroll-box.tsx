@@ -64,6 +64,7 @@ const ScrollAreaViewport = styled(ScrollAreaPrimitive.Viewport)`
 
     & > div {
         height: inherit;
+        display: block !important; // https://github.com/radix-ui/primitives/issues/926
     }
 `;
 
