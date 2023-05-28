@@ -1,4 +1,5 @@
 import { Select, Box, Button } from "../components";
+import { CubeIcon } from "../icons";
 
 const numberOptions = [
     { value: 1, label: "One" },
@@ -65,6 +66,19 @@ export function Basic(args) {
 }
 
 Basic.args = {
+    options: numberOptions,
+    placeholder: "Select option",
+};
+
+export function Suffix(args) {
+    return (
+        <Box width={180}>
+            <Select {...args} suffixIcon={<CubeIcon />} />
+        </Box>
+    );
+}
+
+Suffix.args = {
     options: numberOptions,
     placeholder: "Select option",
 };

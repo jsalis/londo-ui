@@ -23,6 +23,7 @@ interface OptionProps {
 
 export interface SelectProps extends InputProps {
     options?: SelectOption[];
+    suffixIcon?: React.ReactNode;
     maxScrollHeight?: number;
     renderOverlay?: (items: React.ReactNode) => React.ReactNode;
     onChange?: (value: any) => void;
@@ -67,6 +68,7 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
             onBlur,
             onKeyDown,
             disabled,
+            suffixIcon,
             maxScrollHeight = 256,
             renderOverlay,
             className,
@@ -143,9 +145,7 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
                         readOnly
                         {...inputProps}
                     />
-                    <Input.Suffix>
-                        <ChevronDownIcon />
-                    </Input.Suffix>
+                    <Input.Suffix>{suffixIcon ?? <ChevronDownIcon />}</Input.Suffix>
                 </Input.Group>
             </Dropdown>
         );
