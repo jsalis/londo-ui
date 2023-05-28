@@ -24,6 +24,7 @@ interface OptionProps {
 export interface SelectProps extends InputProps {
     options?: SelectOption[];
     maxScrollHeight?: number;
+    renderOverlay?: (items: React.ReactNode) => React.ReactNode;
     onChange?: (value: any) => void;
     onOpen?: () => void;
     onClose?: () => void;
@@ -67,6 +68,7 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
             onKeyDown,
             disabled,
             maxScrollHeight = 256,
+            renderOverlay,
             className,
             ...rest
         },
@@ -102,7 +104,7 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
             ...rest,
         };
 
-        const overlay = (
+        const overlayItems = (
             <ScrollBox maxHeight={maxScrollHeight}>
                 {options.length > 0 ? (
                     options.map((opt) => (
@@ -121,6 +123,8 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
                 )}
             </ScrollBox>
         );
+
+        const overlay = renderOverlay?.(overlayItems) ?? overlayItems;
 
         return (
             <Dropdown

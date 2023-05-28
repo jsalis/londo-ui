@@ -1,4 +1,4 @@
-import { Select, Box } from "../components";
+import { Select, Box, Button } from "../components";
 
 const numberOptions = [
     { value: 1, label: "One" },
@@ -80,4 +80,27 @@ export function CustomOptionRender(args) {
 CustomOptionRender.args = {
     options: countryOptions,
     placeholder: "Select country",
+};
+
+export function CustomOverlayRender(args) {
+    const renderOverlay = (items) => (
+        <>
+            {items}
+            <Box mt={1} p={1} pb={0} borderTop="split">
+                <Button width={1} size="sm" variant="text">
+                    Add Item
+                </Button>
+            </Box>
+        </>
+    );
+    return (
+        <Box width={180}>
+            <Select {...args} renderOverlay={renderOverlay} />
+        </Box>
+    );
+}
+
+CustomOverlayRender.args = {
+    options: numberOptions,
+    placeholder: "Select option",
 };
