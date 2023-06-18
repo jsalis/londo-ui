@@ -4,12 +4,14 @@ import styled, { css, keyframes } from "styled-components";
 import { nanoid } from "nanoid";
 
 import { Box } from "./box";
+import { Portal } from "./portal";
 import { IconButton } from "./icon-button";
 import { CloseIcon, InfoIcon, CheckIcon, ErrorIcon, WarningIcon } from "../icons";
 import { useCallbackRef } from "../hooks";
 import { omit } from "../utils/object-util";
 
 export interface ToastProviderProps {
+    container?: HTMLElement | (() => HTMLElement);
     children?: React.ReactNode;
 }
 
@@ -209,7 +211,7 @@ function Toast({
     );
 }
 
-export function ToastProvider({ children }: ToastProviderProps) {
+export function ToastProvider({ container, children }: ToastProviderProps) {
     const [toasts, setToasts] = useState<Record<string, ToastProps>>({});
 
     const open = useCallbackRef((props) => {
@@ -260,7 +262,9 @@ export function ToastProvider({ children }: ToastProviderProps) {
                 {Object.values(toasts).map((props) => (
                     <Toast {...props} onClose={() => handleClose(props.key)} />
                 ))}
-                <ToastViewport />
+                <Portal container={container}>
+                    <ToastViewport />
+                </Portal>
             </ToastPrimitive.Provider>
         </ToastContext.Provider>
     );
