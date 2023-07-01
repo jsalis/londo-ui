@@ -121,8 +121,8 @@ const PickerWrap = styled(Flex)`
 function getRelativePosition(el: HTMLElement, event: MouseEvent) {
     const rect = el.getBoundingClientRect();
     return {
-        left: clamp((event.pageX - (rect.left + window.pageXOffset)) / rect.width),
-        top: clamp((event.pageY - (rect.top + window.pageYOffset)) / rect.height),
+        left: clamp((event.pageX - (rect.left + window.scrollX)) / rect.width),
+        top: clamp((event.pageY - (rect.top + window.scrollY)) / rect.height),
     };
 }
 
