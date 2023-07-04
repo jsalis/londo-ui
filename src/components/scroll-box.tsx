@@ -57,6 +57,7 @@ const ScrollAreaScrollbar = styled(ScrollAreaPrimitive.Scrollbar)`
 const ScrollAreaCorner = styled(ScrollAreaPrimitive.Corner)``;
 
 const ScrollAreaViewport = styled(ScrollAreaPrimitive.Viewport)`
+    display: flex;
     width: 100%;
     height: 100%;
     max-height: inherit;
