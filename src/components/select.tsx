@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import styled, { css } from "styled-components";
 
 import { useDisclosure, useControllableState, useForkHandler } from "../hooks";
-import { ChevronDownIcon } from "../icons";
+import { ChevronDownIcon, CloseIcon } from "../icons";
 import { KeyCode } from "../utils/key-code";
 
 import type { InputProps } from "./input";
@@ -24,6 +24,8 @@ interface OptionProps {
 export interface SelectProps extends InputProps {
     options?: SelectOption[];
     suffixIcon?: React.ReactNode;
+    clearIcon?: React.ReactNode;
+    allowClear?: boolean;
     maxScrollHeight?: number;
     renderOverlay?: (items: React.ReactNode) => React.ReactNode;
     onChange?: (value: any) => void;
@@ -56,6 +58,40 @@ const Option = styled.div<OptionProps>`
         `}
 `;
 
+const SelectArrow = styled.span`
+    display: contents;
+`;
+
+const SelectClear = styled.span`
+    color: ${(p) => p.theme.colors.text};
+    display: none;
+`;
+
+const StyledSuffix = styled(Input.Suffix)`
+    pointer-events: none;
+`;
+
+const StyledGroup = styled(Input.Group)`
+    &[data-allow-clear="true"] {
+        input:enabled ~ ${StyledSuffix} {
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        &:hover {
+            input:enabled ~ ${StyledSuffix} {
+                ${SelectClear} {
+                    display: contents;
+                }
+
+                ${SelectArrow} {
+                    display: none;
+                }
+            }
+        }
+    }
+`;
+
 export const Select = forwardRef<HTMLInputElement, SelectProps>(
     (
         {
@@ -69,6 +105,8 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
             onKeyDown,
             disabled,
             suffixIcon,
+            clearIcon,
+            allowClear = false,
             maxScrollHeight = 256,
             renderOverlay,
             className,
@@ -97,6 +135,13 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
             setSelectedValue(val);
             onChange?.(val);
             close();
+        };
+
+        const handleClear = (event: React.MouseEvent) => {
+            if (allowClear) {
+                event.preventDefault();
+                handleSelect("");
+            }
         };
 
         const inputProps = {
@@ -136,17 +181,20 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
                 onClose={close}
                 disabled={disabled}
             >
-                <Input.Group className={className}>
+                <StyledGroup className={className} data-allow-clear={allowClear && !!selectedValue}>
                     <Input
                         ref={ref}
-                        value={selectedOption?.label ?? ""}
+                        value={selectedOption?.label ?? selectedValue ?? ""}
                         role="combobox"
                         cursor="pointer"
                         readOnly
                         {...inputProps}
                     />
-                    <Input.Suffix>{suffixIcon ?? <ChevronDownIcon />}</Input.Suffix>
-                </Input.Group>
+                    <StyledSuffix onClick={handleClear} aria-hidden>
+                        <SelectArrow>{suffixIcon ?? <ChevronDownIcon />}</SelectArrow>
+                        <SelectClear>{clearIcon ?? <CloseIcon />}</SelectClear>
+                    </StyledSuffix>
+                </StyledGroup>
             </Dropdown>
         );
     }

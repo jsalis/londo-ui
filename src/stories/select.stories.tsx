@@ -70,6 +70,20 @@ Basic.args = {
     placeholder: "Select option",
 };
 
+export function AllowClear(args) {
+    return (
+        <Box width={180}>
+            <Select {...args} />
+        </Box>
+    );
+}
+
+AllowClear.args = {
+    options: numberOptions,
+    placeholder: "Select option",
+    allowClear: true,
+};
+
 export function Suffix(args) {
     return (
         <Box width={180}>
