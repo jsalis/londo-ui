@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.35](https://github.com/jsalis/londo-ui/compare/v0.1.34...v0.1.35) (2023-07-04)
+
+### Features
+
+- add allowClear and clearIcon props to select component ([68d9bd0](https://github.com/jsalis/londo-ui/commit/68d9bd0050e046e7eb9378e761774c5a7980e16e))
+- add portal container prop to toast provider ([0e2b822](https://github.com/jsalis/londo-ui/commit/0e2b822d6437e0f4aad1d84dad9d1873f4ef4318))
+
+### Bug Fixes
+
+- deprecated property warning ([2fbcfc4](https://github.com/jsalis/londo-ui/commit/2fbcfc48bb9d418ebe5ef680dbfc74c8a97b3901))
+- scroll box height issue ([09fc082](https://github.com/jsalis/londo-ui/commit/09fc082716b86cbf4edc717addb01c9964749d26))
+
 ### [0.1.34](https://github.com/jsalis/londo-ui/compare/v0.1.33...v0.1.34) (2023-05-28)
 
 ### Features
