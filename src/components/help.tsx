@@ -29,6 +29,7 @@ export const Help = forwardRef<HTMLDivElement, HelpProps>(
                     ref={ref}
                     type={type}
                     p={2}
+                    lineHeight="shorter"
                     bg="primary.base"
                     borderRadius="base"
                     color={color as any}
