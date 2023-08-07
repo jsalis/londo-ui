@@ -79,9 +79,9 @@ const Content = forwardRef<HTMLDivElement, ModalContentProps>((props, ref) => {
 
     useEffect(() => {
         if (contentRef.current) {
-            // exclude toast container
-            const regions = document.querySelectorAll("[role='region']");
-            return suppressOthers([contentRef.current, ...regions]);
+            // exclude toast container and floating elements
+            const excludeNodes = document.querySelectorAll("[role='region'],[role='tooltip']");
+            return suppressOthers([contentRef.current, ...excludeNodes]);
         }
         return;
     }, []);
