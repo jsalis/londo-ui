@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.36](https://github.com/jsalis/londo-ui/compare/v0.1.35...v0.1.36) (2023-08-07)
+
+### Bug Fixes
+
+- add epsilon to round function ([21f384f](https://github.com/jsalis/londo-ui/commit/21f384f0238f395f4777c896e207a46c1958fb7c))
+- add line height to help component ([729f5eb](https://github.com/jsalis/londo-ui/commit/729f5ebcb8b34daeca148fba7349df8e0260fb5f))
+- floating elements should not be inert when modal is open ([55aee03](https://github.com/jsalis/londo-ui/commit/55aee03d40151c822d6e90d4c842c804b2306ab2))
+- set min width for input prefix and suffix ([d058048](https://github.com/jsalis/londo-ui/commit/d058048f9969e568efc9302901817a6a8099920c))
+- toast container should not be inert when modal is open ([091d3e6](https://github.com/jsalis/londo-ui/commit/091d3e6ca5a10c7dc649e45efddac9f6db6c0094))
+
 ### [0.1.35](https://github.com/jsalis/londo-ui/compare/v0.1.34...v0.1.35) (2023-07-04)
 
 ### Features
