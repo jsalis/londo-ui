@@ -114,7 +114,7 @@ const InputElement = styled.div`
     justify-content: center;
     position: absolute;
     top: 0;
-    min-width: 24px;
+    width: 24px;
     height: 24px;
     font-size: 14px;
     padding: 0 4px;
