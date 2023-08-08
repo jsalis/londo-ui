@@ -1,4 +1,5 @@
 export * from "./arrow-back-icon";
+export * from "./block-icon";
 export * from "./brush-icon";
 export * from "./check-icon";
 export * from "./chevron-down-icon";
