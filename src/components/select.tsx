@@ -140,6 +140,7 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
         const handleClear = (event: React.MouseEvent) => {
             if (allowClear) {
                 event.preventDefault();
+                event.stopPropagation();
                 handleSelect("");
             }
         };
