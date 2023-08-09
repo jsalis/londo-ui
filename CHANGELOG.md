@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.37](https://github.com/jsalis/londo-ui/compare/v0.1.36...v0.1.37) (2023-08-09)
+
+### Features
+
+- add block icon ([17bd631](https://github.com/jsalis/londo-ui/commit/17bd631f265234ec139e53ef4cd32cbedcbca4a1))
+
+### Bug Fixes
+
+- select clear button closes modal ([607257c](https://github.com/jsalis/londo-ui/commit/607257c4009da195c294dfb8c87383b9051aabfe))
+
 ### [0.1.36](https://github.com/jsalis/londo-ui/compare/v0.1.35...v0.1.36) (2023-08-07)
 
 ### Bug Fixes
