@@ -1,5 +1,6 @@
 export * from "./use-breakpoints";
 export * from "./use-callback-ref";
+export * from "./use-clipboard";
 export * from "./use-color-manipulation";
 export * from "./use-controllable-state";
 export * from "./use-counter";
@@ -17,4 +18,5 @@ export * from "./use-lazy-ref";
 export * from "./use-local-storage";
 export * from "./use-media-query";
 export * from "./use-session-storage";
+export * from "./use-timeout";
 export * from "./use-update-effect";

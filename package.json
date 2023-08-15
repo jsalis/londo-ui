@@ -47,6 +47,7 @@
     "@radix-ui/react-switch": "^1.0.1",
     "@radix-ui/react-toast": "^1.1.2",
     "aria-hidden": "^1.2.2",
+    "copy-to-clipboard": "^3.3.3",
     "framer-motion": "^6.5.1",
     "nanoid": "^4.0.0",
     "react-focus-lock": "^2.9.1",
