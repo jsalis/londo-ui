@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.38](https://github.com/jsalis/londo-ui/compare/v0.1.37...v0.1.38) (2023-08-17)
+
+### Features
+
+- add ctrl and alt key support to useHotKey ([57ba895](https://github.com/jsalis/londo-ui/commit/57ba8951808cb5770a99e544999506c75613e919))
+- add useTimeout and useClipboard hooks ([16dd73d](https://github.com/jsalis/londo-ui/commit/16dd73d9fc9357105722ee7c2bd1173fd167f0ac))
+
 ### [0.1.37](https://github.com/jsalis/londo-ui/compare/v0.1.36...v0.1.37) (2023-08-09)
 
 ### Features
