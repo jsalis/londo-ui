@@ -43,11 +43,10 @@ function matchesPattern(event: KeyboardEvent, keyPattern: string) {
 }
 
 function matchesModifiers(event: KeyboardEvent, modifiers: string[]) {
-    if (event.altKey || event.ctrlKey) {
-        return false;
-    }
     return (
-        modifiers.includes("meta") === event.metaKey &&
-        modifiers.includes("shift") === event.shiftKey
+        modifiers.includes("ctrl") === event.ctrlKey &&
+        modifiers.includes("shift") === event.shiftKey &&
+        modifiers.includes("alt") === event.altKey &&
+        modifiers.includes("meta") === event.metaKey
     );
 }
