@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.39](https://github.com/jsalis/londo-ui/compare/v0.1.38...v0.1.39) (2023-11-24)
+
+### Features
+
+- add download and upload icons ([05d319d](https://github.com/jsalis/londo-ui/commit/05d319ddde938899e7b27eeef6e76e82b1e4301d))
+- add login and clipboard icons ([2eca2c9](https://github.com/jsalis/londo-ui/commit/2eca2c93aff47ea1d9d11848ac14c18a6a711cae))
+- add pixelated prop to avatar component ([ffc0131](https://github.com/jsalis/londo-ui/commit/ffc01316722ebd65854989c5b02876c0ee02aa49))
+- update check icon ([7158ffd](https://github.com/jsalis/londo-ui/commit/7158ffd17cafde6a3195fb31f90d820ee7d5498d))
+
+### Bug Fixes
+
+- disable pointer events for tooltips ([6573b8c](https://github.com/jsalis/londo-ui/commit/6573b8c812aaaa9a098b74294d9af11522a8daef))
+
 ### [0.1.38](https://github.com/jsalis/londo-ui/compare/v0.1.37...v0.1.38) (2023-08-17)
 
 ### Features
