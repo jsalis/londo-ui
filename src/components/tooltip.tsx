@@ -49,7 +49,12 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
         return (
             <>
                 {anchor}
-                <Floater anchor={anchorNode} isOpen={isOpen} placement={placement}>
+                <Floater
+                    anchor={anchorNode}
+                    isOpen={isOpen}
+                    placement={placement}
+                    style={{ pointerEvents: "none" }}
+                >
                     <Box
                         ref={ref}
                         p={1}
