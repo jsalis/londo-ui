@@ -248,6 +248,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
 
     return (
         <Label
+            // TODO margin props
             className={className}
             data-state={checked ? "checked" : "unchecked"}
             data-orientation={orientation}
