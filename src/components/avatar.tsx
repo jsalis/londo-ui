@@ -19,6 +19,7 @@ export interface AvatarProps extends Omit<AvatarPrimitiveProps, "color">, Margin
     onLoadingStatusChange?: AvatarImageProps["onLoadingStatusChange"];
     size?: "sm" | "md" | "lg" | number;
     shape?: "circle" | "square";
+    pixelated?: boolean;
 }
 
 function getSizeStyle(size: number) {
@@ -55,6 +56,13 @@ const AvatarRoot = styled(AvatarPrimitive.Root)<AvatarProps>`
     ${(p) => p.size === "sm" && getSizeStyle(24)}
     ${(p) => p.size === "lg" && getSizeStyle(40)}
     ${(p) => isNumber(p.size) && getSizeStyle(p.size)}
+
+    ${(p) =>
+        p.pixelated &&
+        css`
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        `}
 `;
 
 const AvatarImage = styled(AvatarPrimitive.Image)`
