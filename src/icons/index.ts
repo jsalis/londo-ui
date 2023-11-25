@@ -27,6 +27,7 @@ export * from "./folder-icon";
 export * from "./folder-open-icon";
 export * from "./fullscreen-enter-icon";
 export * from "./fullscreen-exit-icon";
+export * from "./gamepad-icon";
 export * from "./globe-icon";
 export * from "./grid-off-icon";
 export * from "./grid-on-icon";
