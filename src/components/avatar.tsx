@@ -4,8 +4,6 @@ import { forwardRef } from "react";
 import { margin, color } from "styled-system";
 import styled, { css } from "styled-components";
 
-import { isNumber } from "../utils/type-util";
-
 import { Flex } from "./flex";
 
 type AvatarPrimitiveProps = React.ComponentProps<typeof AvatarPrimitive.Root>;
@@ -17,7 +15,7 @@ export interface AvatarProps extends Omit<AvatarPrimitiveProps, "color">, Margin
     fallback?: React.ReactNode;
     delayMs?: number;
     onLoadingStatusChange?: AvatarImageProps["onLoadingStatusChange"];
-    size?: "sm" | "md" | "lg" | number;
+    size?: number;
     shape?: "circle" | "square";
     pixelated?: boolean;
 }
@@ -43,8 +41,6 @@ const AvatarRoot = styled(AvatarPrimitive.Root)<AvatarProps>`
     text-align: center;
     overflow: hidden;
     user-select: none;
-    width: 32px;
-    height: 32px;
     font-size: 16px;
     font-weight: 500;
     border-radius: ${(p) => (p.shape === "square" ? `${p.theme.radii.base}px` : "50%")};
@@ -53,9 +49,7 @@ const AvatarRoot = styled(AvatarPrimitive.Root)<AvatarProps>`
     ${margin}
     ${color}
 
-    ${(p) => p.size === "sm" && getSizeStyle(24)}
-    ${(p) => p.size === "lg" && getSizeStyle(40)}
-    ${(p) => isNumber(p.size) && getSizeStyle(p.size)}
+    ${(p) => getSizeStyle(p.size ?? 32)}
 
     ${(p) =>
         p.pixelated &&
@@ -99,10 +93,10 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         {
             src,
             alt,
-            delayMs,
-            size = "md",
-            shape = "circle",
+            size,
+            shape = "square",
             color,
+            delayMs = 100,
             onLoadingStatusChange,
             fallback,
             ...rest
