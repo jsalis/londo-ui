@@ -117,7 +117,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                         boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
                         bg: "primary.3",
-                        color: "alpha.5",
+                        color: "alpha.6",
                     },
                 },
                 danger: {
@@ -140,7 +140,7 @@ const StyledButton = styled(Box)<StyledButtonProps>`
                         boxShadow: "0 2px 0 0 var(--shadow-color)",
                         transform: "translateY(0)",
                         bg: "danger.3",
-                        color: "alpha.5",
+                        color: "alpha.6",
                     },
                 },
                 dash: {
