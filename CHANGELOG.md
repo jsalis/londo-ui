@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.40](https://github.com/jsalis/londo-ui/compare/v0.1.39...v0.1.40) (2023-12-09)
+
+### Features
+
+- add gamepad icon ([2a3609c](https://github.com/jsalis/londo-ui/commit/2a3609c40a033ce57008dbc77a10e4b2e2c1ef90))
+- add useUnloadBlocker hook ([10dc6c9](https://github.com/jsalis/londo-ui/commit/10dc6c97b88268dbaa99a31134b81102789bd232))
+- change avatar size prop to number only ([910e0d6](https://github.com/jsalis/londo-ui/commit/910e0d6d0c9b40309cf44835da99d7f2a2970077))
+- replace clipboard icon with copy icon ([ad73874](https://github.com/jsalis/londo-ui/commit/ad73874f5f3309fbb8ef9f4a89799a527dfc02e3))
+
+### Bug Fixes
+
+- adjust button disabled color ([b7c8f00](https://github.com/jsalis/londo-ui/commit/b7c8f0012ba2411c832cb53e5530fcbf615b5dac))
+- confirm when popconfirm is disabled ([cabf511](https://github.com/jsalis/londo-ui/commit/cabf511d38581ed8ce8d5aa561b6767c22be498e))
+
 ### [0.1.39](https://github.com/jsalis/londo-ui/compare/v0.1.38...v0.1.39) (2023-11-24)
 
 ### Features
