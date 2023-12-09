@@ -61,6 +61,8 @@ export const Popconfirm = forwardRef<HTMLDivElement, PopconfirmProps>(
         const handleOpen = () => {
             if (!disabled) {
                 open();
+            } else {
+                onConfirm?.();
             }
         };
 
