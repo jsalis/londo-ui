@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.41](https://github.com/jsalis/londo-ui/compare/v0.1.40...v0.1.41) (2023-12-09)
+
+### Features
+
+- allow function for useUnloadBlocker enabled option ([3db644a](https://github.com/jsalis/londo-ui/commit/3db644ac4eebd5c077550ebee5e93e7b3848e475))
+
 ### [0.1.40](https://github.com/jsalis/londo-ui/compare/v0.1.39...v0.1.40) (2023-12-09)
 
 ### Features
