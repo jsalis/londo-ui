@@ -19,4 +19,5 @@ export * from "./use-local-storage";
 export * from "./use-media-query";
 export * from "./use-session-storage";
 export * from "./use-timeout";
+export * from "./use-unload-blocker";
 export * from "./use-update-effect";
