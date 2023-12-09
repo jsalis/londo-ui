@@ -1,7 +1,9 @@
+import { isFunction } from "../utils/type-util";
+
 import { useEventListener } from "./use-event-listener";
 
 type UnloadBlockerOptions = {
-    enabled?: boolean;
+    enabled?: boolean | (() => boolean);
     onBlock?: () => void;
 };
 
@@ -12,7 +14,7 @@ export function useUnloadBlocker({ enabled, onBlock }: UnloadBlockerOptions = {}
     useEventListener(
         "beforeunload",
         (event) => {
-            if (enabled) {
+            if (isFunction(enabled) ? enabled() : enabled) {
                 event.preventDefault();
                 // @ts-ignore
                 event.returnValue = "Changes you made may not be saved.";
