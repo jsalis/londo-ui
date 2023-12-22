@@ -44,6 +44,7 @@ export * from "./plus-icon";
 export * from "./redo-icon";
 export * from "./refresh-icon";
 export * from "./save-icon";
+export * from "./search-icon";
 export * from "./select-icon";
 export * from "./selection-icon";
 export * from "./sun-icon";

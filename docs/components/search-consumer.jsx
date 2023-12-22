@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Box, Input, Debouncer } from "../../src";
+import { Box, Input, Debouncer, SearchIcon } from "../../src";
 
 export function SearchConsumer({ children, ...rest }) {
     const [value, setValue] = useState("");
@@ -8,7 +8,14 @@ export function SearchConsumer({ children, ...rest }) {
         <>
             <Box mb={4}>
                 <Debouncer value={value} onChange={setValue}>
-                    {({ value, onChange }) => <Input {...rest} value={value} onChange={onChange} />}
+                    {({ value, onChange }) => (
+                        <Input.Group width={300}>
+                            <Input {...rest} value={value} onChange={onChange} />
+                            <Input.Suffix>
+                                <SearchIcon />
+                            </Input.Suffix>
+                        </Input.Group>
+                    )}
                 </Debouncer>
             </Box>
             {children(value)}
