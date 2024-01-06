@@ -229,6 +229,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
         children,
         ...rest
     } = props;
+
     const group = useContext(CheckboxGroupContext);
     const inputName = group?.name ?? name;
     const isDisabled = group?.disabled || disabled;

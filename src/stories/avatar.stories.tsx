@@ -1,6 +1,6 @@
 // @ts-ignore
 import imageSrc from "../../assets/solaire.jpg";
-import { Avatar, Flex } from "../components";
+import { Avatar, Badge, Flex } from "../components";
 import { UserIcon } from "../icons";
 
 export default {
@@ -50,11 +50,24 @@ export function Square() {
 
 export function Group() {
     return (
-        <Avatar.Group>
-            <Avatar shape="circle" src={imageSrc} alt="Solaire" />
-            <Avatar shape="circle" fallback="JS" />
-            <Avatar shape="circle" fallback={<UserIcon />} />
-            <Avatar shape="circle" fallback={<UserIcon />} bg="green.base" />
+        <Avatar.Group shape="circle">
+            <Avatar src={imageSrc} alt="Solaire" />
+            <Avatar fallback="JS" />
+            <Avatar fallback={<UserIcon />} />
+            <Avatar fallback={<UserIcon />} bg="green.base" />
         </Avatar.Group>
+    );
+}
+
+export function WithBadge() {
+    return (
+        <Flex gap={3} alignItems="center">
+            <Badge count={1}>
+                <Avatar shape="square" fallback={<UserIcon />} />
+            </Badge>
+            <Badge dot>
+                <Avatar shape="square" fallback={<UserIcon />} />
+            </Badge>
+        </Flex>
     );
 }
