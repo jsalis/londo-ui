@@ -13,7 +13,6 @@ export * from "./debouncer";
 export * from "./divider";
 export * from "./dropdown";
 export * from "./flex";
-export * from "./floater";
 export * from "./focus-lock";
 export * from "./grid";
 export * from "./heading";
