@@ -1,7 +1,6 @@
 import { forwardRef, createContext, useContext, useRef, useEffect } from "react";
 import { RemoveScroll } from "react-remove-scroll";
-// @ts-ignore
-import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { suppressOthers } from "aria-hidden";
 import styled from "styled-components";
 
@@ -210,7 +209,7 @@ const CloseButton = forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTM
                 {...props}
             />
         );
-    }
+    },
 );
 
 export function Modal({

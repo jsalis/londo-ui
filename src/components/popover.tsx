@@ -10,8 +10,7 @@ import {
     useLayoutEffect,
 } from "react";
 import { useFloating, autoUpdate, offset, flip, shift, arrow, size } from "@floating-ui/react-dom";
-// @ts-ignore
-import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { color } from "styled-system";
 import styled from "styled-components";
 
@@ -72,7 +71,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
             children,
             ...rest
         },
-        ref
+        ref,
     ) => {
         const { isOpen, open, close, toggle, clearDelayTimer } = useDisclosure({
             isOpen: isOpenProp,
@@ -224,7 +223,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
                 </AnimatePresence>
             </>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

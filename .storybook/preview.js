@@ -1,38 +1,29 @@
-import { withThemesProvider } from "storybook-addon-styled-component-theme";
+import { withThemeFromJSXProvider } from "@storybook/addon-themes";
 
 import { ResetStyle, ThemeProvider, themes } from "../src";
 
 import { storybookTheme } from "./theme";
 
+export const tags = ["autodocs"];
+
 export const decorators = [
-    (Story) => (
-        <>
-            <ResetStyle />
-            <Story />
-        </>
-    ),
-    withThemesProvider([themes.dark, themes.light], ThemeProvider),
+    withThemeFromJSXProvider({
+        themes: {
+            dark: themes.dark.name,
+            light: themes.light.name,
+        },
+        defaultTheme: themes.dark.name,
+        Provider: ThemeProvider,
+        GlobalStyles: ResetStyle,
+    }),
 ];
 
 export const parameters = {
     docs: {
         theme: storybookTheme,
     },
-    actions: {
-        argTypesRegex: "^on[A-Z].*",
-    },
     backgrounds: {
-        default: themes.dark.name,
-        values: [
-            {
-                name: themes.dark.name,
-                value: themes.dark.colors.bg.body,
-            },
-            {
-                name: themes.light.name,
-                value: themes.light.colors.bg.body,
-            },
-        ],
+        disable: true,
     },
     controls: {
         matchers: {

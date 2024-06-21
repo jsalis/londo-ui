@@ -1,7 +1,6 @@
 import type { TextColorProps, BackgroundColorProps } from "styled-system";
 import { forwardRef } from "react";
-// @ts-ignore
-import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { color } from "styled-system";
 import styled from "styled-components";
 
@@ -102,7 +101,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
             children,
             ...rest
         },
-        ref
+        ref,
     ) => {
         const countString = stringifyCount(count, overflowCount);
         const countDisplay = dot ? "" : countString;
@@ -137,7 +136,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
                 </AnimatePresence>
             </BadgeRoot>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {
