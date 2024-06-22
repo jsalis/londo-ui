@@ -171,7 +171,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     ) => {
         return (
             <SwitchRoot
-                ref={ref}
+                ref={ref as any}
                 {...rest}
                 disabled={disabled || isLoading}
                 onCheckedChange={onChange}

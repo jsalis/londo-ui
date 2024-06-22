@@ -126,12 +126,12 @@ const SliderRoot = styled(SliderPrimitive.Root)`
     }
 `;
 
-export const Slider = forwardRef<HTMLElement, SliderProps>(({ onChange, ...rest }, ref) => {
+export const Slider = forwardRef<HTMLSpanElement, SliderProps>(({ onChange, ...rest }, ref) => {
     const value = rest.defaultValue ?? rest.value;
     const thumbs = Array.isArray(value) ? value : [value];
 
     return (
-        <SliderRoot ref={ref} {...rest} onValueCommit={onChange}>
+        <SliderRoot ref={ref as any} {...rest} onValueCommit={onChange}>
             <SliderTrack>
                 <SliderRange />
             </SliderTrack>

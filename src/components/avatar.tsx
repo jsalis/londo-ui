@@ -138,7 +138,7 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
 
         return (
             <AvatarRoot
-                ref={ref}
+                ref={ref as any}
                 {...rest}
                 size={group?.size ?? size}
                 shape={group?.shape ?? shape}
