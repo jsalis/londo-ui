@@ -71,7 +71,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
             children,
             ...rest
         },
-        ref,
+        ref
     ) => {
         const { isOpen, open, close, toggle, clearDelayTimer } = useDisclosure({
             isOpen: isOpenProp,
@@ -123,8 +123,6 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
             x,
             y,
             refs,
-            reference,
-            floating,
             update,
             middlewareData,
             placement: autoPlacement,
@@ -132,9 +130,9 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
             strategy,
             placement,
             middleware,
+            elements: { reference: anchorNode },
         });
 
-        useLayoutEffect(() => reference(anchorNode), [anchorNode]);
         useLayoutEffect(() => update(), [isOpen, refs.floating.current]);
 
         useLayoutEffect(() => {
@@ -171,7 +169,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
                     {isOpen ? (
                         <Portal container={container}>
                             <motion.div
-                                ref={floating}
+                                ref={refs.setFloating}
                                 role="tooltip"
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -223,7 +221,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
                 </AnimatePresence>
             </>
         );
-    },
+    }
 );
 
 if (process.env.NODE_ENV !== "production") {

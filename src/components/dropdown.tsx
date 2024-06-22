@@ -95,17 +95,15 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
             x,
             y,
             refs,
-            reference,
-            floating,
             update,
             placement: autoPlacement,
         } = useFloating({
             strategy,
             placement,
             middleware,
+            elements: { reference: anchorNode },
         });
 
-        useLayoutEffect(() => reference(anchorNode), [anchorNode]);
         useLayoutEffect(() => update(), [isOpen, refs.floating.current]);
 
         useEffect(() => {
@@ -122,7 +120,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
                     {isOpen || keepMounted ? (
                         <Portal container={container}>
                             <div
-                                ref={floating}
+                                ref={refs.setFloating}
                                 role="tooltip"
                                 style={{
                                     position: strategy,

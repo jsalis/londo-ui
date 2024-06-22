@@ -61,17 +61,15 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
             x,
             y,
             refs,
-            reference,
-            floating,
             update,
             placement: autoPlacement,
         } = useFloating({
             strategy,
             placement,
             middleware,
+            elements: { reference: anchorNode },
         });
 
-        useLayoutEffect(() => reference(anchorNode), [anchorNode]);
         useLayoutEffect(() => update(), [isOpen, refs.floating.current]);
 
         useEffect(() => {
@@ -92,7 +90,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
                 {isOpen ? (
                     <Portal container={container}>
                         <div
-                            ref={floating}
+                            ref={refs.setFloating}
                             role="tooltip"
                             style={{
                                 position: strategy,

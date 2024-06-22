@@ -40,18 +40,18 @@
     "defaults"
   ],
   "dependencies": {
-    "@floating-ui/react-dom": "^1.0.0",
-    "@radix-ui/react-avatar": "^1.0.1",
-    "@radix-ui/react-scroll-area": "^1.0.2",
-    "@radix-ui/react-slider": "^1.1.0",
-    "@radix-ui/react-switch": "^1.0.1",
-    "@radix-ui/react-toast": "^1.1.2",
-    "aria-hidden": "^1.2.2",
+    "@floating-ui/react-dom": "^2.1.0",
+    "@radix-ui/react-avatar": "^1.1.0",
+    "@radix-ui/react-scroll-area": "^1.1.0",
+    "@radix-ui/react-slider": "^1.2.0",
+    "@radix-ui/react-switch": "^1.1.0",
+    "@radix-ui/react-toast": "^1.2.1",
+    "aria-hidden": "^1.2.4",
     "copy-to-clipboard": "^3.3.3",
     "framer-motion": "^6.5.1",
-    "nanoid": "^4.0.0",
-    "react-focus-lock": "^2.9.1",
-    "react-remove-scroll": "^2.5.5",
+    "nanoid": "^5.0.7",
+    "react-focus-lock": "^2.12.1",
+    "react-remove-scroll": "^2.5.10",
     "styled-system": "^5.1.5"
   },
   "peerDependencies": {
