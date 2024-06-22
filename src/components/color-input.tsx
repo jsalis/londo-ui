@@ -26,7 +26,7 @@ export interface ColorInputProps extends InputProps {
 }
 
 function escapeInput(val: string) {
-    return val.replace(/([^0-9A-F]+)/gi, "").substr(0, 6);
+    return val.replace(/([^0-9A-F]+)/gi, "").substring(0, 6);
 }
 
 function isEyeDropperSupported() {

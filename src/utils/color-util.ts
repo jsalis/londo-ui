@@ -30,7 +30,7 @@ export function equalColorHex(first: string, second: string) {
 
 export function hexToRgba(hex: string): RgbaColor {
     if (hex[0] === "#") {
-        hex = hex.substr(1);
+        hex = hex.substring(1);
     }
 
     if (hex.length < 6) {
@@ -43,9 +43,9 @@ export function hexToRgba(hex: string): RgbaColor {
     }
 
     return {
-        r: parseInt(hex.substr(0, 2), 16),
-        g: parseInt(hex.substr(2, 2), 16),
-        b: parseInt(hex.substr(4, 2), 16),
+        r: parseInt(hex.substring(0, 2), 16),
+        g: parseInt(hex.substring(2, 4), 16),
+        b: parseInt(hex.substring(4, 6), 16),
         a: 1,
     };
 }
