@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.42](https://github.com/jsalis/londo-ui/compare/v0.1.41...v0.1.42) (2024-06-22)
+
+### Features
+
+- add avatar group context and props ([b15832d](https://github.com/jsalis/londo-ui/commit/b15832def4bb4ad4055e2246a2b4ece501d09b84))
+- add search icon ([cdbac7a](https://github.com/jsalis/londo-ui/commit/cdbac7acb9be95e603c82dbbca66d9488f73b468))
+- remove floater component ([5590dab](https://github.com/jsalis/londo-ui/commit/5590dabf5178a491b0c1e739112057b3c5075baf))
+- remove floater from dropdown component and add props for strategy and container ([ffb4a79](https://github.com/jsalis/londo-ui/commit/ffb4a79d344dd75ad7b1f3cd5ef21c43912268d0))
+- remove floater from tooltip component and add props for strategy and container ([e64c688](https://github.com/jsalis/londo-ui/commit/e64c6884c4a61e207691cc06ce481a1019b343e8))
+
+### Bug Fixes
+
+- deprecated substr method ([f8ea99a](https://github.com/jsalis/londo-ui/commit/f8ea99aadfa45dbf458c4c03cb6b1b9a3db25f06))
+- modal transition is too slow ([2894244](https://github.com/jsalis/londo-ui/commit/289424472d08bd70b1e64c0a80f1312dcf48a79c))
+
 ### [0.1.41](https://github.com/jsalis/londo-ui/compare/v0.1.40...v0.1.41) (2023-12-09)
 
 ### Features
