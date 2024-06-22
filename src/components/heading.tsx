@@ -10,7 +10,7 @@ export interface HeadingProps extends TextProps {
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
     ({ level = 2, ...rest }, ref) => (
         <Text ref={ref} as={`h${level}`} fontSize={Math.max(0, 7 - level)} {...rest} />
-    )
+    ),
 );
 
 if (process.env.NODE_ENV !== "production") {

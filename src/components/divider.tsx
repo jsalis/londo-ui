@@ -106,7 +106,7 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
                 {children ? <InnerText>{children}</InnerText> : null}
             </StyledDivider>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

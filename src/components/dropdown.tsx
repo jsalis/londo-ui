@@ -49,7 +49,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
             children,
             ...rest
         },
-        ref
+        ref,
     ) => {
         const handleClick = () => {
             if (!disabled) {
@@ -149,7 +149,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
                 </div>
             </ClickAwayListener>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

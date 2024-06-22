@@ -19,7 +19,7 @@ export function useHotKey(keyPattern: string, callback: () => void) {
             }
         },
         window,
-        true
+        true,
     );
 }
 

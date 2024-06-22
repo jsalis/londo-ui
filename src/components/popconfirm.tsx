@@ -49,7 +49,7 @@ export const Popconfirm = forwardRef<HTMLDivElement, PopconfirmProps>(
             children,
             ...rest
         },
-        ref
+        ref,
     ) => {
         const { isOpen, open, close } = useDisclosure({
             isOpen: isOpenProp,
@@ -130,7 +130,7 @@ export const Popconfirm = forwardRef<HTMLDivElement, PopconfirmProps>(
                 {children}
             </Popover>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

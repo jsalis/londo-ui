@@ -65,7 +65,9 @@ const StyledInput = styled.input`
     outline: 0;
     position: relative;
     appearance: none;
-    transition: all 0.2s, height 0ms;
+    transition:
+        all 0.2s,
+        height 0ms;
     border: ${(p) => p.theme.borders.base};
     border-radius: ${(p) => p.theme.radii.base}px;
     background: ${(p) => p.theme.colors.gray[1]};

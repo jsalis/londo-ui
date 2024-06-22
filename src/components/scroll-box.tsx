@@ -81,7 +81,7 @@ const ScrollAreaRoot = styled(ScrollAreaPrimitive.Root)<ScrollBoxProps>`
 export const ScrollBox = forwardRef<HTMLDivElement, ScrollBoxProps>(
     (
         { type = "hover", scrollHideDelay = 600, overScroll = "auto", color, children, ...rest },
-        ref
+        ref,
     ) => {
         return (
             <ScrollAreaRoot
@@ -102,7 +102,7 @@ export const ScrollBox = forwardRef<HTMLDivElement, ScrollBoxProps>(
                 </Box>
             </ScrollAreaRoot>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

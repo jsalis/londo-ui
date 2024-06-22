@@ -21,6 +21,6 @@ export function useUnloadBlocker({ enabled, onBlock }: UnloadBlockerOptions = {}
                 onBlock?.();
             }
         },
-        window
+        window,
     );
 }

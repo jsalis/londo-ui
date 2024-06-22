@@ -112,7 +112,7 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
             className,
             ...rest
         },
-        ref
+        ref,
     ) => {
         const { isOpen, open, close } = useDisclosure({ onOpen, onClose });
         const [selectedValue, setSelectedValue] = useControllableState(value, defaultValue);
@@ -198,7 +198,7 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
                 </StyledGroup>
             </Dropdown>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

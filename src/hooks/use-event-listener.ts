@@ -9,7 +9,7 @@ export function useEventListener(
     eventType: string,
     callback: EventListener,
     el: EventTarget | null = document,
-    options?: EventListenerOptions | boolean
+    options?: EventListenerOptions | boolean,
 ) {
     const savedCallback = useCallbackRef(callback);
 

@@ -45,7 +45,7 @@ export const BinaryInput = forwardRef<HTMLInputElement, BinaryInputProps>(
             className,
             ...rest
         },
-        ref
+        ref,
     ) => {
         const { isOpen, open, close } = useDisclosure({ onOpen, onClose });
         const [decimal, setDecimal] = useControllableState(value, defaultValue);
@@ -122,7 +122,7 @@ export const BinaryInput = forwardRef<HTMLInputElement, BinaryInputProps>(
                 </Input.Group>
             </Dropdown>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

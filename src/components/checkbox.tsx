@@ -73,7 +73,9 @@ const Control = styled.span`
         border-left: 0;
         transform: rotate(45deg) scale(0) translate(-50%, -50%);
         opacity: 0;
-        transition: all 0.2s ${(p) => p.theme.transitions.easeOutBack}, opacity 0.1s;
+        transition:
+            all 0.2s ${(p) => p.theme.transitions.easeOutBack},
+            opacity 0.1s;
         content: " ";
     }
 `;
@@ -195,7 +197,7 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>((props, ref
 
     const group = useMemo(
         () => ({ value: listValue, onChange: handleChange, name, disabled, isInvalid }),
-        [listValue, handleChange, name, disabled, isInvalid]
+        [listValue, handleChange, name, disabled, isInvalid],
     );
 
     return (
@@ -237,7 +239,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
 
     const [checked, setChecked] = useControllableState(
         group?.value.includes(value) ?? checkedProp,
-        defaultChecked
+        defaultChecked,
     );
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

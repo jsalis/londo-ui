@@ -115,7 +115,7 @@ const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
                 </AvatarGroupRoot>
             </AvatarGroupContext.Provider>
         );
-    }
+    },
 );
 
 const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
@@ -132,7 +132,7 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
             fallback,
             ...rest
         },
-        ref
+        ref,
     ) => {
         const group = useContext(AvatarGroupContext);
 
@@ -149,7 +149,7 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
                 <AvatarFallback delayMs={delayMs}>{fallback}</AvatarFallback>
             </AvatarRoot>
         );
-    }
+    },
 );
 
 const CompoundAvatar = Object.assign(Avatar, {

@@ -88,7 +88,7 @@ const BaseColorSwatch = forwardRef<HTMLSpanElement, ColorSwatchProps>(
                 style={{ backgroundColor: color, ...style }}
             />
         );
-    }
+    },
 );
 
 export const ColorSwatch = memo(BaseColorSwatch);

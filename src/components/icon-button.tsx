@@ -20,7 +20,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
                 {children}
             </Button>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

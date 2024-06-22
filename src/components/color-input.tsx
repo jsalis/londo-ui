@@ -68,7 +68,7 @@ export const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
             className,
             ...rest
         },
-        ref
+        ref,
     ) => {
         const { isOpen, open, close } = useDisclosure({ onOpen, onClose });
         const [color, setColor] = useControllableState(value, defaultValue);
@@ -157,7 +157,7 @@ export const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
                 </StyledGroup>
             </Dropdown>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

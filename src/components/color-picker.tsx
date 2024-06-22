@@ -245,7 +245,7 @@ const Saturation = memo(
                 </Interactive>
             </SaturationWrap>
         );
-    })
+    }),
 );
 
 const Hue = memo(
@@ -275,7 +275,7 @@ const Hue = memo(
                 </Interactive>
             </HueWrap>
         );
-    })
+    }),
 );
 
 const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
@@ -296,7 +296,7 @@ const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
                 <Hue hue={hsva.h} onChange={updateHsva} />
             </PickerWrap>
         );
-    }
+    },
 );
 
 const CompoundColorPicker = Object.assign(ColorPicker, {

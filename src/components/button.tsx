@@ -217,7 +217,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 )}
             </StyledButton>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

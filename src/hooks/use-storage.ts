@@ -22,7 +22,7 @@ export function useStorage(storage: Storage, key: string, initialState?: any) {
                 setState(detail.state);
             }
         },
-        window
+        window,
     );
 
     useUpdateEffect(() => {
@@ -39,7 +39,7 @@ export function useStorage(storage: Storage, key: string, initialState?: any) {
                 window.dispatchEvent(
                     new CustomEvent(CHANGE_EVENT_NAME, {
                         detail: { id, key, state },
-                    })
+                    }),
                 );
             }
         } catch {} // eslint-disable-line no-empty

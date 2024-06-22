@@ -43,7 +43,7 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
                 {label ? <VisuallyHidden>{label}</VisuallyHidden> : null}
             </StyledSpinner>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

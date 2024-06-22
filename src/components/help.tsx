@@ -39,7 +39,7 @@ export const Help = forwardRef<HTMLDivElement, HelpProps>(
                 </StyledHelp>
             ) : null}
         </>
-    )
+    ),
 );
 
 if (process.env.NODE_ENV !== "production") {

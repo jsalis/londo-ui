@@ -167,7 +167,7 @@ const SwitchRoot = styled(SwitchPrimitive.Root)<SwitchProps>`
 export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     (
         { size = "md", disabled, isLoading, onChange, checkedContent, uncheckedContent, ...rest },
-        ref
+        ref,
     ) => {
         return (
             <SwitchRoot
@@ -184,7 +184,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
                 </SwitchContent>
             </SwitchRoot>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

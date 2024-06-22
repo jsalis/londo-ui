@@ -132,7 +132,7 @@ export const SizePicker = forwardRef<HTMLDivElement, SizePickerProps>(
                 </Label>
             </div>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

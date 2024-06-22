@@ -71,7 +71,9 @@ const Control = styled.span`
         border-radius: 14px;
         transform: scale(0);
         opacity: 0;
-        transition: all 0.2s ${(p) => p.theme.transitions.easeOutBack}, opacity 0.1s;
+        transition:
+            all 0.2s ${(p) => p.theme.transitions.easeOutBack},
+            opacity 0.1s;
         content: " ";
     }
 `;
@@ -177,12 +179,12 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
         (val: string | number, event: React.ChangeEvent<HTMLInputElement>) => {
             setValue(val);
             onChange?.(val, event);
-        }
+        },
     );
 
     const group = useMemo(
         () => ({ value, onChange: handleChange, name, disabled, isInvalid }),
-        [value, handleChange, name, disabled, isInvalid]
+        [value, handleChange, name, disabled, isInvalid],
     );
 
     return (

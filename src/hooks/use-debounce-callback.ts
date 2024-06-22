@@ -9,7 +9,7 @@ import { useCallbackRef } from "./use-callback-ref";
 export function useDebounceCallback<T extends (...args: any[]) => any>(
     callback: T,
     wait: number,
-    leading = false
+    leading = false,
 ) {
     const timeout = useRef<number | undefined>();
     const savedCallback = useCallbackRef(callback);

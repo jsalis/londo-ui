@@ -42,7 +42,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
                 </StyledSuffix>
             </StyledGroup>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

@@ -37,7 +37,7 @@ export function ClickAwayListener(props: ClickAwayListenerProps) {
     const handleRef = useForkRef(
         // @ts-expect-error
         children.ref,
-        nodeRef
+        nodeRef,
     );
 
     useEffect(() => {

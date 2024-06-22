@@ -35,7 +35,9 @@ const CloseButton = styled.button`
     background-color: transparent;
     border-radius: ${(p) => p.theme.radii.base}px;
     border: none;
-    transition: box-shadow 0.2s, background 0.2s;
+    transition:
+        box-shadow 0.2s,
+        background 0.2s;
     outline: 0;
     cursor: pointer;
 
@@ -98,7 +100,7 @@ const iconMap = {
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(
     (
         { type = "info", message, banner = false, icon, closable = false, onClose, color, ...rest },
-        ref
+        ref,
     ) => {
         const [closed, setClosed] = useState(false);
         const iconNode = icon ?? iconMap[type];
@@ -133,7 +135,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
                 ) : null}
             </StyledAlert>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

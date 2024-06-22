@@ -31,7 +31,7 @@ export function Portal({ container, onMount, onUnmount, children }: PortalProps)
 
     return createPortal(
         <PortalContext.Provider value={portal}>{children}</PortalContext.Provider>,
-        portal
+        portal,
     );
 }
 

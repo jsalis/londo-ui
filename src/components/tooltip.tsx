@@ -43,7 +43,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
             children,
             ...rest
         },
-        ref
+        ref,
     ) => {
         const { isOpen, open, close, clearDelayTimer } = useDisclosure({ onOpen, onClose });
 
@@ -118,7 +118,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
                 ) : null}
             </>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

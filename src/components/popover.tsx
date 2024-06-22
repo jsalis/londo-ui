@@ -71,7 +71,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
             children,
             ...rest
         },
-        ref
+        ref,
     ) => {
         const { isOpen, open, close, toggle, clearDelayTimer } = useDisclosure({
             isOpen: isOpenProp,
@@ -221,7 +221,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
                 </AnimatePresence>
             </>
         );
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {

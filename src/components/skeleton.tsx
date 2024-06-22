@@ -49,12 +49,12 @@ export const Skeleton = forwardRef<HTMLSpanElement, SkeletonProps>(
             elements.push(
                 <Bar {...rest} key={i} duration={duration} borderRadius={borderRadius}>
                     &zwnj;
-                </Bar>
+                </Bar>,
             );
         }
 
         return <span ref={ref}>{elements}</span>;
-    }
+    },
 );
 
 if (process.env.NODE_ENV !== "production") {
