@@ -259,8 +259,8 @@ export function ToastProvider({ container, children }: ToastProviderProps) {
         <ToastContext.Provider value={contextValue}>
             <ToastPrimitive.Provider swipeDirection="right">
                 {children}
-                {Object.values(toasts).map((props) => (
-                    <Toast {...props} onClose={() => handleClose(props.key)} />
+                {Object.values(toasts).map(({ key, ...props }) => (
+                    <Toast key={key} {...props} onClose={() => handleClose(key)} />
                 ))}
                 <Portal container={container}>
                     <ToastViewport />
