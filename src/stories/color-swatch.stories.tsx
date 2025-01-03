@@ -33,3 +33,12 @@ Secondary.args = {
     secondary: true,
     color: "#DF212B",
 };
+
+export function WithLabel(args) {
+    return <ColorSwatch {...args}>C#</ColorSwatch>;
+}
+
+WithLabel.args = {
+    color: "#378223",
+    size: 32,
+};

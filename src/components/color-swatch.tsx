@@ -26,11 +26,15 @@ const other = system({
 
 const Swatch = styled.span<StyledColorSwatchProps>`
     --accent-color: ${(p) => p.accentColor};
-    display: inline-block;
+    display: inline-flex;
     position: relative;
+    justify-content: center;
+    align-items: center;
     border-radius: 2px;
     border-color: transparent;
     box-shadow: ${(p) => p.theme.colors.alpha[3]} 0 0 0 1px inset;
+    color: var(--accent-color);
+    user-select: none;
     ${margin}
     ${layout}
     ${other}
