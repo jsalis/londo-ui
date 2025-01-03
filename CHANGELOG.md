@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.43](https://github.com/jsalis/londo-ui/compare/v0.1.42...v0.1.43) (2025-01-03)
+
+### Features
+
+- add label to color swatch ([7b97537](https://github.com/jsalis/londo-ui/commit/7b975376982b77ad846acadaf41635527518d473))
+
+### Bug Fixes
+
+- react error when component key is spread ([e6960b7](https://github.com/jsalis/londo-ui/commit/e6960b70ff8b4710e10b3d59e4bb6ac167b9b938))
+
 ### [0.1.42](https://github.com/jsalis/londo-ui/compare/v0.1.41...v0.1.42) (2024-06-22)
 
 ### Features
