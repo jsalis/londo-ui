@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.44](https://github.com/jsalis/londo-ui/compare/v0.1.43...v0.1.44) (2025-01-03)
+
 ### [0.1.43](https://github.com/jsalis/londo-ui/compare/v0.1.42...v0.1.43) (2025-01-03)
 
 ### Features
